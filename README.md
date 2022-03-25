@@ -13,7 +13,7 @@ erstellt werden. Diese Plattform sollte ein Benutzer bei sich selbst hosten
 können und so eine Onlinepräsenz über einen Blog für sich erstellen können.
 
 Auf der Startpage werden den Besuchern die zuletzt veröffentlichten Posts angezeigt.
-Wie man von einer Blogging-Plattform erwarten würde, können die Benutzer du den einzelnen
+Wie man von einer Blogging-Plattform erwarten würde, können die Benutzer zu den einzelnen
 Artikeln navigieren und diese dann lesen. Unter jedem Post haben Besucher der Seite die Möglichkeit
 anonym Kommentare unter diesem zu schreiben. Den Posts können zudem Kategorien zugewiesen werden
 und es ist möglich alle Posts einer Kategorie zu Listen. Das gleiche ist auch mit dem Veröffentlichungsdatum
