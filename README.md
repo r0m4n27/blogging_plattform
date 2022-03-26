@@ -35,6 +35,7 @@ Falls der bisherige Umfang noch zu gering ist kann das Projekt mit folgenden Fea
   - Markdown Links können dann nicht nur auf externe URLs verweisen
   - Sondern man kann pro Post Bilder hochladen
   - Und diese verlinken
+- Gastaccounts für Kommentare
 
 ### Technologie Stack
 
