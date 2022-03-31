@@ -42,9 +42,7 @@ Falls der bisherige Umfang noch zu gering ist kann das Projekt mit folgenden Fea
 Als Datenbank wird in diesem Projekt PostgreSQL verwendet, da jedoch zu zweit an diesem Projekt gearbeitet wird,
 wird diese indirekt über einen ORM angesprochen.
 
-Das Backend wir mit Hilfe der Programmiersprache `Elixir` und dem Framework `Phoenix` geschrieben werden.
-`Phoenix` stellt auch `Ecto`, ein ORM mit PostgreSQL Unterstützung, bereit. Um bestimmte Endpoints nur dem
-Betreiber zugänglich zu machen, werden Bearer Tokens im `Authorization` Header verwendet.
+Das Backend wird mit Hilfe des Frameworks `Express` (JS) geschrieben. Als ORM wird vermutlich `Prisma` eingesetzt.
 
 Das Frontend wird mit Hilfe von `Vue` erstellt. Da `vite` als Bundler verwendet wird,
 könnte Server Site Rendering (SSR) verwendet werden, um die Komponenten im Frontend server zu rendern
