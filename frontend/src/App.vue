@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import NavigationBar from "./components/navigationBar/NavigationBar.vue";
+import logo from "./static/logo_sample.png";
+</script>
+
 <template>
-  <h1 class="text-3xl font-bold underline">Hello World!</h1>
+  <NavigationBar title="My Awesome Blog Title" :logo-url="logo" />
 </template>
