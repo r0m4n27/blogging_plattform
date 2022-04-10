@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import Button from "../base/Button.vue";
 import IconButton from "../base/IconButton.vue";
-import { Menu } from "lucide-vue-next";
+import { Menu, X } from "lucide-vue-next";
+
+interface RightNavBarPartProps {
+  onMenuClick: () => void;
+  menuExpanded: boolean;
+}
+
+defineProps<RightNavBarPartProps>();
 </script>
 
 <template>
@@ -9,8 +16,9 @@ import { Menu } from "lucide-vue-next";
     <Button label="Categories" :onClick="() => ({})" class="hidden md:block" />
     <Button label="Archive" :onClick="() => ({})" class="hidden md:block" />
 
-    <IconButton :onClick="() => ({})" class="md:hidden">
-      <Menu />
+    <IconButton :onClick="onMenuClick" class="md:hidden">
+      <X v-if="menuExpanded" />
+      <Menu v-else />
     </IconButton>
   </div>
 </template>
