@@ -15,10 +15,10 @@ defineProps<ButtonProps>();
 
 <style scoped>
 .button {
-  @apply py-2 px-4 bg-white hover:bg-gray-100;
+  @apply py-2 px-4 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700;
 
-  @apply rounded-md border border-gray-200;
+  @apply rounded-md border border-gray-200 dark:border-blue-300;
 
-  @apply font-semibold text-gray-700 text-base;
+  @apply font-semibold text-gray-700 dark:text-blue-300 text-base;
 }
 </style>

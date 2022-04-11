@@ -15,14 +15,20 @@ defineProps<IconButtonProps>();
 
 <template>
   <button @click="onClick" class="button">
-    <component :is="icon" class="text-gray-700 text-base w-6 h-6" />
+    <component :is="icon" class="icon" />
   </button>
 </template>
 
 <style scoped>
 .button {
-  @apply p-2 bg-white hover:bg-gray-100;
+  @apply p-2 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700;
 
-  @apply rounded-md border border-gray-200;
+  @apply rounded-md border border-gray-200 dark:border-blue-300;
+}
+
+.icon {
+  @apply w-6 h-6;
+
+  @apply text-gray-700 dark:text-blue-300 text-base;
 }
 </style>
