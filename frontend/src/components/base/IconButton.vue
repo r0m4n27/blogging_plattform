@@ -1,5 +1,12 @@
 <script setup lang="ts">
+import type { SVGProps } from "lucide-vue-next";
+import type { FunctionalComponent } from "vue";
+
+// Type extracted from the lucide icon package
+export type Icon = (props: SVGProps) => FunctionalComponent<SVGProps>;
+
 interface IconButtonProps {
+  icon: Icon;
   onClick: () => void;
 }
 
@@ -8,7 +15,7 @@ defineProps<IconButtonProps>();
 
 <template>
   <button @click="onClick" class="button">
-    <slot></slot>
+    <component :is="icon" class="text-gray-700 text-base w-6 h-6" />
   </button>
 </template>
 
@@ -17,7 +24,5 @@ defineProps<IconButtonProps>();
   @apply p-2 bg-white hover:bg-gray-100;
 
   @apply rounded-md border border-gray-200;
-
-  @apply text-gray-700 text-base;
 }
 </style>

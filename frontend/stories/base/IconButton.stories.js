@@ -10,11 +10,12 @@ const Template = (args) => ({
   setup() {
     return { args };
   },
-  template: "<IconButton><Menu/></IconButton>",
+  template: "<IconButton v-bind='args'/>",
 });
 
 export const Primary = Template.bind({});
 
 Primary.args = {
   onClick: () => ({}),
+  icon: Menu,
 };

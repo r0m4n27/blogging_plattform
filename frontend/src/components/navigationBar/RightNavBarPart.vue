@@ -8,7 +8,9 @@ interface RightNavBarPartProps {
   menuExpanded: boolean;
 }
 
-defineProps<RightNavBarPartProps>();
+const props = defineProps<RightNavBarPartProps>();
+
+const menuIcon = props.menuExpanded ? X : Menu;
 </script>
 
 <template>
@@ -16,9 +18,6 @@ defineProps<RightNavBarPartProps>();
     <Button label="Categories" :onClick="() => ({})" class="hidden md:block" />
     <Button label="Archive" :onClick="() => ({})" class="hidden md:block" />
 
-    <IconButton :onClick="onMenuClick" class="md:hidden">
-      <X v-if="menuExpanded" />
-      <Menu v-else />
-    </IconButton>
+    <IconButton :icon="menuIcon" :onClick="onMenuClick" class="md:hidden" />
   </div>
 </template>
