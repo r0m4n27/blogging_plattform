@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.dark {
+  @apply bg-gray-800;
+}
+
 /* The body has a base padding of 16px apparently */
 body {
   margin: 0 !important;

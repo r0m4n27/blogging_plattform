@@ -30,7 +30,7 @@ const toggleMenu = () => {
         :menu-expanded="menuExpanded"
       />
     </div>
-    <div class="h-px bg-gray-200" />
+    <div class="h-px bg-gray-200 dark:bg-gray-700" />
     <MobileNavMenu v-if="menuExpanded" />
   </nav>
 </template>
