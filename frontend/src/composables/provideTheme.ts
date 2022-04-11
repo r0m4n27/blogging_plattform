@@ -1,4 +1,4 @@
-import { provide, ref, watch, type InjectionKey, type Ref } from "vue";
+import { provide, ref, type InjectionKey, type Ref } from "vue";
 
 const localStorageKey = "themePreference";
 
@@ -7,7 +7,12 @@ export enum Theme {
   Light,
 }
 
-export const provideThemeKey: InjectionKey<Ref<Theme>> = Symbol();
+export interface ProvideThemeProps {
+  theme: Ref<Theme>;
+  toggleTheme: () => void;
+}
+
+export const provideThemeKey: InjectionKey<ProvideThemeProps> = Symbol();
 
 // Provide the current theme and set it to the local storage
 // also update the html tag class according to the theme
@@ -20,11 +25,15 @@ export function provideTheme() {
   // and we must use a watcher
   updateTheme(theme.value);
 
-  watch(theme, (newTheme) => {
-    updateTheme(newTheme);
-  });
+  provide(provideThemeKey, {
+    theme: theme,
+    toggleTheme: () => {
+      const newTheme = theme.value === Theme.Light ? Theme.Dark : Theme.Light;
 
-  provide(provideThemeKey, theme);
+      updateTheme(newTheme);
+      theme.value = newTheme;
+    },
+  });
 }
 
 function updateTheme(theme: Theme) {
