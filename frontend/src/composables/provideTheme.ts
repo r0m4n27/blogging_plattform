@@ -1,6 +1,5 @@
 import { provide, ref, type InjectionKey, type Ref } from "vue";
-
-const localStorageKey = "themePreference";
+import { localStorageConfig } from "../config/localStorage";
 
 export enum Theme {
   Dark,
@@ -17,7 +16,8 @@ export const provideThemeKey: InjectionKey<ProvideThemeProps> = Symbol();
 // Provide the current theme and set it to the local storage
 // also update the html tag class according to the theme
 export function provideTheme() {
-  const themeString = localStorage.getItem(localStorageKey) ?? "Light";
+  const themeString =
+    localStorage.getItem(localStorageConfig.themePreferenceKey) ?? "Light";
 
   const theme = ref(Theme[themeString as keyof typeof Theme]);
 
@@ -37,7 +37,7 @@ export function provideTheme() {
 }
 
 function updateTheme(theme: Theme) {
-  localStorage.setItem(localStorageKey, Theme[theme]);
+  localStorage.setItem(localStorageConfig.themePreferenceKey, Theme[theme]);
 
   if (theme === Theme.Dark) {
     document.documentElement.classList.add("dark");
