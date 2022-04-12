@@ -4,6 +4,7 @@ import { ref } from "vue";
 import LeftNavBarPart from "./LeftNavBarPart.vue";
 import RightNavBarPart from "./RightNavBarPart.vue";
 import MobileNavMenu from "./MobileNavMenu.vue";
+import NavBarDivider from "./NavBarDivider.vue";
 
 interface NavBarProps {
   title: string;
@@ -30,7 +31,7 @@ const toggleMenu = () => {
         :menu-expanded="menuExpanded"
       />
     </div>
-    <div class="h-px bg-gray-200 dark:bg-gray-700" />
+    <NavBarDivider />
     <MobileNavMenu v-if="menuExpanded" />
   </nav>
 </template>

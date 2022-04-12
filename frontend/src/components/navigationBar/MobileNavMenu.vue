@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import NavBarDivider from "./NavBarDivider.vue";
+
 const menuItems = ["Categories", "Archive"];
 </script>
 
@@ -9,7 +11,7 @@ const menuItems = ["Categories", "Archive"];
         {{ item }}
       </a>
     </div>
-    <div class="h-px bg-gray-200 dark:bg-gray-700" />
+    <NavBarDivider />
   </div>
 </template>
 
