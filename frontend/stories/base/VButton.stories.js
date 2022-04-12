@@ -1,15 +1,15 @@
-import Button from "../../src/components/base/Button.vue";
+import VButton from "../../src/components/base/VButton.vue";
 
 export default {
-  component: Button,
+  component: VButton,
 };
 
 const Template = (args) => ({
-  components: { Button },
+  components: { VButton },
   setup() {
     return { args };
   },
-  template: '<Button v-bind="args" />',
+  template: '<VButton v-bind="args" />',
 });
 
 export const Primary = Template.bind({});

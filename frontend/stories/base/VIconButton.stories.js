@@ -1,16 +1,16 @@
-import IconButton from "../../src/components/base/IconButton.vue";
+import VIconButton from "../../src/components/base/VIconButton.vue";
 import { Menu } from "lucide-vue-next";
 
 export default {
-  component: IconButton,
+  component: VIconButton,
 };
 
 const Template = (args) => ({
-  components: { IconButton, Menu },
+  components: { VIconButton, Menu },
   setup() {
     return { args };
   },
-  template: "<IconButton v-bind='args'/>",
+  template: "<VIconButton v-bind='args'/>",
 });
 
 export const Primary = Template.bind({});

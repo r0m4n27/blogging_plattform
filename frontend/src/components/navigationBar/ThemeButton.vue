@@ -2,7 +2,7 @@
 import { Moon, Sun } from "lucide-vue-next";
 import { computed } from "vue";
 import { useTheme } from "../../composables/useTheme";
-import IconButton from "../base/IconButton.vue";
+import VIconButton from "../base/VIconButton.vue";
 
 const { useDarkMode, toggleDarkMode } = useTheme();
 
@@ -30,7 +30,7 @@ const iconClasses = [
 </script>
 
 <template>
-  <IconButton
+  <VIconButton
     :icon="themeIcon"
     :onClick="toggleDarkMode"
     :iconClasses="iconClasses"
