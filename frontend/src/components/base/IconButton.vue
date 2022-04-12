@@ -12,7 +12,9 @@ interface IconButtonProps {
   iconClasses?: string[];
   // Negate showBorder because of:
   // https://vuejs.org/guide/components/props.html#boolean-casting
-  dontShowBorder: boolean;
+  //
+  // Needs still to be optional otherwise the compiler gets sometime confused
+  dontShowBorder?: boolean;
 }
 
 const props = defineProps<IconButtonProps>();
@@ -27,7 +29,7 @@ const buttonClasses = computed(() => {
     "dark:border-blue-300",
   ];
 
-  if (!props.dontShowBorder) {
+  if (!(props.dontShowBorder ?? false)) {
     buttonClasses.push("border");
   }
 

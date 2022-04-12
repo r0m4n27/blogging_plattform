@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import { Moon, Sun } from "lucide-vue-next";
 import { computed } from "vue";
-import { provideThemeKey, Theme } from "../../composables/provideTheme";
-import { injectGlobal } from "../../util/inject";
+import { useTheme } from "../../composables/useTheme";
 import IconButton from "../base/IconButton.vue";
 
-const { theme, toggleTheme } = injectGlobal(provideThemeKey);
+const { useDarkMode, toggleDarkMode } = useTheme();
 
 const themeIcon = computed(() => {
-  if (theme.value === Theme.Light) {
-    return Moon;
-  } else {
+  if (useDarkMode.value) {
     return Sun;
+  } else {
+    return Moon;
   }
 });
 
@@ -33,7 +32,7 @@ const iconClasses = [
 <template>
   <IconButton
     :icon="themeIcon"
-    :onClick="toggleTheme"
+    :onClick="toggleDarkMode"
     :iconClasses="iconClasses"
     :buttonClasses="buttonClasses"
     dontShowBorder
