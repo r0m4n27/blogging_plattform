@@ -1,21 +1,16 @@
 import NavigationBar from "../src/components/navigationBar/NavigationBar.vue";
 import logo from "../src/static/logo_sample.png";
-import ProvideTheme from "../src/components/base/ProvideTheme";
 
 export default {
   component: NavigationBar,
 };
 
 const Template = (args) => ({
-  components: { NavigationBar, ProvideTheme },
+  components: { NavigationBar },
   setup() {
     return { args };
   },
-  template: `
-    <ProvideTheme>
-      <NavigationBar v-bind='args'/>
-    <ProvideTheme/>
-  `,
+  template: "<NavigationBar v-bind='args'/>",
 });
 
 export const Primary = Template.bind({});
