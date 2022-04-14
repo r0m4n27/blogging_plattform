@@ -16,11 +16,11 @@ const menuItems = ["Categories", "Archive"];
 </template>
 
 <style scoped>
-.mobileMenu {
+/* .mobileMenu {
   @apply flex flex-col py-4 space-y-4 items-center bg-gray-50 dark:bg-gray-800;
 }
 
 .menuItem {
   @apply text-gray-700 dark:text-gray-300 font-bold text-2xl;
-}
+} */
 </style>
