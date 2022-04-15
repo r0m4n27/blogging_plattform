@@ -16,7 +16,7 @@ const smBreakpointQuery = `@media screen and (min-width: ${breakpointsConfig.sm}
  * to the stylesheet and add the `md` value with a media query to the stylesheet.
  *
  * @param style Style where the responsive property will be inserted into
- * @param propertyName Name if the inserted property
+ * @param propertyName Name of the inserted property
  * @param mapper Maps `T` into a valid css value
  * @param prop Responive property to add into the style
  * @returns Nothing
@@ -31,23 +31,27 @@ export const addResponsivePropToStyle = <T>(
 
   if ((prop as ResponsiveObject<T>).sm !== undefined) {
     const responsiveObject = prop as ResponsiveObject<T>;
+    addGenericPropToStyle(style, propertyName, mapper, responsiveObject.sm);
 
-    style[propertyName] = mapper(responsiveObject.sm);
-
-    const mappedMd = mapper(responsiveObject.md);
-    if (typeof style[smBreakpointQuery] === "object") {
-      // @ts-expect-error: Since we check in the if clause
-      // that the 'style[breakpointQueries.sm]' value is an object
-      // it is save to add anther key to it
-      style[smBreakpointQuery][propertyName] = mappedMd;
-    } else {
-      style[smBreakpointQuery] = {
-        [propertyName]: mappedMd,
-      };
-    }
+    style[smBreakpointQuery] ??= {};
+    addGenericPropToStyle(
+      // SAFETY: Since we build up the CSSObject
+      // we can make sure this key contains only a CSSObject
+      style[smBreakpointQuery] as CSSObject,
+      propertyName,
+      mapper,
+      responsiveObject.md
+    );
   } else {
-    const mapped = mapper(prop as T);
-
-    style[propertyName] = mapped;
+    addGenericPropToStyle(style, propertyName, mapper, prop as T);
   }
+};
+
+const addGenericPropToStyle = <T>(
+  style: CSSObject,
+  propertyName: keyof CSSObject,
+  mapper: (value: T) => CSSInterpolation,
+  prop: T
+) => {
+  style[propertyName] = mapper(prop);
 };
