@@ -3,7 +3,11 @@ import { createSystemPropsCss, type SystemProps } from "@/lib/base/systemProps";
 
 interface VBoxProps {
   padding?: SystemProps["padding"];
-  margin?: SystemProps["padding"];
+  margin?: SystemProps["margin"];
+
+  color?: SystemProps["color"];
+  backgroundColor?: SystemProps["backgroundColor"];
+  borderColor?: SystemProps["borderColor"];
 }
 
 const props = defineProps<VBoxProps>();

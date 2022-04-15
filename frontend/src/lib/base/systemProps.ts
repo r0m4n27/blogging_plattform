@@ -1,4 +1,5 @@
 import { css, type CSSObject } from "@emotion/css";
+import { addColorToStyle, type Color } from "./color";
 import {
   addResponsivePropToStyle,
   type ResponsiveProp,
@@ -15,6 +16,10 @@ import { spacingMapper, type Spacing } from "./spacing";
 export interface SystemProps {
   padding?: ResponsiveProp<Spacing>;
   margin?: ResponsiveProp<Spacing>;
+
+  color?: Color;
+  backgroundColor?: Color;
+  borderColor?: Color;
 }
 
 /**
@@ -28,6 +33,10 @@ export const createSystemPropsCss = (props: SystemProps): string => {
 
   addResponsivePropToStyle(style, "padding", spacingMapper, props.padding);
   addResponsivePropToStyle(style, "margin", spacingMapper, props.margin);
+
+  addColorToStyle(style, "color", props.color);
+  addColorToStyle(style, "background-color", props.backgroundColor);
+  addColorToStyle(style, "border-color", props.borderColor);
 
   return css(style);
 };
