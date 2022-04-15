@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import { injectTheme } from "@/composables/provideTheme";
 import { Moon, Sun } from "lucide-vue-next";
 import { computed } from "vue";
-import { useTheme } from "../../composables/useTheme";
 import VIconButton from "../base/VIconButton.vue";
 
-const { useDarkMode, toggleDarkMode } = useTheme();
+const { useDarkMode, toggleDarkMode } = injectTheme();
 
 const themeIcon = computed(() => {
   if (useDarkMode.value) {
