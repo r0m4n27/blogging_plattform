@@ -1,0 +1,22 @@
+<script setup lang="ts">
+import { type TextProps, createTextPropsCss } from "@/lib/base/textProps";
+
+interface VTextProps {
+  as: "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+
+  family?: TextProps["family"];
+  size?: TextProps["size"];
+  weight?: TextProps["weight"];
+  lineHeight?: TextProps["lineHeight"];
+  letterSpacing?: TextProps["letterSpacing"];
+  alignment?: TextProps["alignment"];
+}
+
+const props = defineProps<VTextProps>();
+</script>
+
+<template>
+  <component :is="as" :class="createTextPropsCss(props)">
+    <slot />
+  </component>
+</template>
