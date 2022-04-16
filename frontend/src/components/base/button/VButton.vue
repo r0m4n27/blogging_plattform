@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { getColor } from "@/config/theme/colors";
-import { type SystemProps, createSystemPropsCss } from "@/lib/base/systemProps";
+import {
+  type SystemProps,
+  createSystemPropsCss,
+} from "@/lib/base/props/systemProps";
 
 interface ButtonProps {
   padding?: SystemProps["padding"];

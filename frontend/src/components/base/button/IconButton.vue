@@ -7,7 +7,7 @@ import { colorWriter, type Color } from "@/lib/base/color";
 import { css, type CSSObject } from "@emotion/css";
 import {
   writeResponsivePropToStyle,
-  type ResponsiveProp,
+  type Responsive,
 } from "@/lib/base/responsiveProp";
 
 // Type extracted from the lucide icon package
@@ -16,16 +16,16 @@ export type Icon = (props: SVGProps) => FunctionalComponent<SVGProps>;
 interface IconButtonProps {
   icon: Icon;
 
-  fill?: ResponsiveProp<Color>;
-  color?: ResponsiveProp<Color>;
-  backgroundColor?: ResponsiveProp<Color>;
+  fill?: Responsive<Color>;
+  color?: Responsive<Color>;
+  backgroundColor?: Responsive<Color>;
 
   // Negate showBorder because of:
   // https://vuejs.org/guide/components/props.html#boolean-casting
   //
   // Needs still to be optional otherwise the compiler gets sometime confused
   dontShowBorder?: boolean;
-  borderColor?: ResponsiveProp<Color>;
+  borderColor?: Responsive<Color>;
 }
 
 const props = defineProps<IconButtonProps>();

@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { createSystemPropsCss, type SystemProps } from "@/lib/base/systemProps";
+import {
+  createSystemPropsCss,
+  type SystemProps,
+} from "@/lib/base/props/systemProps";
 
 interface VBoxProps {
   padding?: SystemProps["padding"];

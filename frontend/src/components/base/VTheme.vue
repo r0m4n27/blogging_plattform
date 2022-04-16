@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { cx } from "@emotion/css";
 import { globalThemeConfig } from "@/config/theme/global";
-import { createSystemPropsCss } from "@/lib/base/systemProps";
-import { createTextPropsCss } from "@/lib/base/textProps";
+import { createSystemPropsCss } from "@/lib/base/props/systemProps";
+import { createTextPropsCss } from "@/lib/base/props/textProps";
 import { computed } from "vue";
 
 const className = computed(() =>

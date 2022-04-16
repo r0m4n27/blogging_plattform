@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type TextProps, createTextPropsCss } from "@/lib/base/textProps";
+import { type TextProps, createTextPropsCss } from "@/lib/base/props/textProps";
 
 interface VTextProps {
   as: "span" | "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";

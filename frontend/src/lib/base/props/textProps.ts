@@ -6,11 +6,8 @@ import {
   lineHeights,
 } from "@/config/theme/text";
 import { css, type CSSObject } from "@emotion/css";
-import { createRecordWriter, createValueWriter } from "./writer";
-import {
-  writeResponsivePropToStyle,
-  type ResponsiveProp,
-} from "./responsiveProp";
+import { createRecordWriter, createValueWriter } from "../writer";
+import { writeResponsivePropToStyle, type Responsive } from "../responsiveProp";
 
 type FontFamily = keyof typeof fonts;
 const fontFamilyWriter = createRecordWriter(fonts);
@@ -34,13 +31,13 @@ type WordWrap = "normal" | "break-word";
 const wordWrapWriter = createValueWriter<WordWrap>();
 
 export interface TextProps {
-  family?: ResponsiveProp<FontFamily>;
-  size?: ResponsiveProp<FontSize>;
-  weight?: ResponsiveProp<FontWeight>;
-  lineHeight?: ResponsiveProp<LineHeight>;
-  letterSpacing?: ResponsiveProp<LetterSpacing>;
-  alignment?: ResponsiveProp<Alignment>;
-  wordWrap?: ResponsiveProp<WordWrap>;
+  family?: Responsive<FontFamily>;
+  size?: Responsive<FontSize>;
+  weight?: Responsive<FontWeight>;
+  lineHeight?: Responsive<LineHeight>;
+  letterSpacing?: Responsive<LetterSpacing>;
+  alignment?: Responsive<Alignment>;
+  wordWrap?: Responsive<WordWrap>;
 }
 
 export const createTextPropsCss = (props: TextProps): string => {

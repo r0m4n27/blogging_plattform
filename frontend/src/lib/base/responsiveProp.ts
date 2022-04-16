@@ -1,7 +1,7 @@
 import { breakpointsConfig } from "@/config/theme/breakpoints";
 import type { CSSObject } from "@emotion/css";
 
-export type ResponsiveProp<T> = T | ResponsiveObject<T>;
+export type Responsive<T> = T | ResponsiveObject<T>;
 
 export interface ResponsiveObject<T> {
   sm: T;
@@ -23,7 +23,7 @@ export const writeResponsivePropToStyle = <T>(
   style: CSSObject,
   propertyName: keyof CSSObject,
   writer: (style: CSSObject, propertyName: keyof CSSObject, value: T) => void,
-  prop?: ResponsiveProp<T>
+  prop?: Responsive<T>
 ) => {
   if (prop === undefined) return;
 

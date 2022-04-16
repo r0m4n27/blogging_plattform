@@ -1,13 +1,10 @@
 import { borderConfig } from "@/config/theme/border";
 import { sizeConfig } from "@/config/theme/size";
 import { css, type CSSObject } from "@emotion/css";
-import { colorWriter, type Color } from "./color";
-import {
-  writeResponsivePropToStyle,
-  type ResponsiveProp,
-} from "./responsiveProp";
-import { createRecordWriter } from "./writer";
-import { spacingWriter, type Spacing } from "./spacing";
+import { colorWriter, type Color } from "../color";
+import { writeResponsivePropToStyle, type Responsive } from "../responsiveProp";
+import { createRecordWriter } from "../writer";
+import { spacingWriter, type Spacing } from "../spacing";
 
 export type BorderRadius = keyof typeof borderConfig;
 const borderRadiusWriter = createRecordWriter(borderConfig);
@@ -23,18 +20,18 @@ const sizeWriter = createRecordWriter(sizeConfig);
 // You have to redefine the keys in the actual props
 // otherwise defineProps() will not compile
 export interface SystemProps {
-  padding?: ResponsiveProp<Spacing>;
-  margin?: ResponsiveProp<Spacing>;
+  padding?: Responsive<Spacing>;
+  margin?: Responsive<Spacing>;
 
-  color?: ResponsiveProp<Color>;
-  backgroundColor?: ResponsiveProp<Color>;
+  color?: Responsive<Color>;
+  backgroundColor?: Responsive<Color>;
 
   showBorder?: boolean;
-  borderRadius?: ResponsiveProp<BorderRadius>;
-  borderColor?: ResponsiveProp<Color>;
+  borderRadius?: Responsive<BorderRadius>;
+  borderColor?: Responsive<Color>;
 
-  height?: ResponsiveProp<Size>;
-  width?: ResponsiveProp<Size>;
+  height?: Responsive<Size>;
+  width?: Responsive<Size>;
 }
 
 /**
