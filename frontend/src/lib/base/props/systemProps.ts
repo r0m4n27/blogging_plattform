@@ -5,6 +5,8 @@ import { colorWriter, type Color } from "../color";
 import { writeResponsivePropToStyle, type Responsive } from "../responsiveProp";
 import { createRecordWriter } from "../writer";
 import { spacingWriter, type Spacing } from "../spacing";
+import type { PropType } from "vue";
+import type { TypeFromProps } from "@/lib/typeFromProps";
 
 export type BorderRadius = keyof typeof borderConfig;
 const borderRadiusWriter = createRecordWriter(borderConfig);
@@ -12,27 +14,49 @@ const borderRadiusWriter = createRecordWriter(borderConfig);
 export type Size = keyof typeof sizeConfig;
 const sizeWriter = createRecordWriter(sizeConfig);
 
-// NOTE: This interface can't be directly used for either
-// defineProps<SytemProps>() or for extending an interface
-// and than using it in defineProps()
+// NOTE: You can't use an imported interface for defineProps
 // https://github.com/vuejs/core/issues/4294
 //
-// You have to redefine the keys in the actual props
-// otherwise defineProps() will not compile
-export interface SystemProps {
-  padding?: Responsive<Spacing>;
-  margin?: Responsive<Spacing>;
+// Instead we create an object that holds the configuration.
+// With this soultion you don't have to duplicate every inteface
+// defintion and you can achieve simple 'inteface extends'
+// by spreading the props
 
-  color?: Responsive<Color>;
-  backgroundColor?: Responsive<Color>;
+export const systemProps = {
+  padding: {
+    type: Object as PropType<Responsive<Spacing>>,
+  },
+  margin: {
+    type: Object as PropType<Responsive<Spacing>>,
+  },
 
-  showBorder?: boolean;
-  borderRadius?: Responsive<BorderRadius>;
-  borderColor?: Responsive<Color>;
+  color: {
+    type: Object as PropType<Responsive<Color>>,
+  },
+  backgroundColor: {
+    type: Object as PropType<Responsive<Color>>,
+  },
 
-  height?: Responsive<Size>;
-  width?: Responsive<Size>;
-}
+  showBorder: {
+    type: Boolean as PropType<boolean>,
+    default: false,
+  },
+  borderRadius: {
+    type: Object as PropType<Responsive<BorderRadius>>,
+  },
+  borderColor: {
+    type: Object as PropType<Responsive<Color>>,
+  },
+
+  height: {
+    type: Object as PropType<Responsive<Size>>,
+  },
+  width: {
+    type: Object as PropType<Responsive<Size>>,
+  },
+} as const;
+
+export type SystemProps = TypeFromProps<typeof systemProps>;
 
 /**
  * Create a stylesheet for the `SystemProps` using the emotion package

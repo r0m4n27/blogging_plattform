@@ -1,48 +1,55 @@
 <script setup lang="ts">
 import { getColor } from "@/config/theme/colors";
+import type { Color } from "@/lib/base/color";
 import {
-  type SystemProps,
+  systemProps,
   createSystemPropsCss,
+  type BorderRadius,
 } from "@/lib/base/props/systemProps";
+import type { Responsive } from "@/lib/base/responsiveProp";
+import type { PropType } from "vue";
 
-interface ButtonProps {
-  padding?: SystemProps["padding"];
-  margin?: SystemProps["margin"];
+const props = defineProps({
+  ...systemProps,
 
-  color?: SystemProps["color"];
-  backgroundColor?: SystemProps["backgroundColor"];
+  backgroundColor: {
+    type: Object as PropType<Responsive<Color>>,
+    default: () => ({
+      default: {
+        light: getColor("white"),
+        dark: getColor("gray", 800),
+      },
+      hover: {
+        light: getColor("gray", 100),
+        dark: getColor("gray", 700),
+      },
+    }),
+  },
 
-  showBorder?: SystemProps["showBorder"];
-  borderRadius?: SystemProps["borderRadius"];
-  borderColor?: SystemProps["borderColor"];
+  color: {
+    type: Object as PropType<Responsive<Color>>,
+    default: () => ({
+      light: getColor("gray", 700),
+      dark: getColor("blue", 300),
+    }),
+  },
 
-  height?: SystemProps["height"];
-  width?: SystemProps["width"];
-}
-
-const props = withDefaults(defineProps<ButtonProps>(), {
-  backgroundColor: () => ({
-    default: {
-      light: getColor("white"),
-      dark: getColor("gray", 800),
-    },
-    hover: {
-      light: getColor("gray", 100),
-      dark: getColor("gray", 700),
-    },
-  }),
-  color: () => ({
-    light: getColor("gray", 700),
-    dark: getColor("blue", 300),
-  }),
-
-  showBorder: true,
-  borderRadius: "md",
-  borderColor: () => ({
-    light: getColor("gray", 200),
-    dark: getColor("blue", 300),
-  }),
-});
+  showBorder: {
+    type: Boolean as PropType<boolean>,
+    default: true,
+  },
+  borderRadius: {
+    type: String as PropType<Responsive<BorderRadius>>,
+    default: "md",
+  },
+  borderColor: {
+    type: Object as PropType<Responsive<Color>>,
+    default: () => ({
+      light: getColor("gray", 200),
+      dark: getColor("blue", 300),
+    }),
+  },
+} as const);
 </script>
 
 <template>

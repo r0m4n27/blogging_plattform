@@ -8,6 +8,8 @@ import {
 import { css, type CSSObject } from "@emotion/css";
 import { createRecordWriter, createValueWriter } from "../writer";
 import { writeResponsivePropToStyle, type Responsive } from "../responsiveProp";
+import type { PropType } from "vue";
+import type { TypeFromProps } from "@/lib/typeFromProps";
 
 type FontFamily = keyof typeof fonts;
 const fontFamilyWriter = createRecordWriter(fonts);
@@ -30,15 +32,32 @@ const aligmentWriter = createValueWriter<Alignment>();
 type WordWrap = "normal" | "break-word";
 const wordWrapWriter = createValueWriter<WordWrap>();
 
-export interface TextProps {
-  family?: Responsive<FontFamily>;
-  size?: Responsive<FontSize>;
-  weight?: Responsive<FontWeight>;
-  lineHeight?: Responsive<LineHeight>;
-  letterSpacing?: Responsive<LetterSpacing>;
-  alignment?: Responsive<Alignment>;
-  wordWrap?: Responsive<WordWrap>;
-}
+export const textProps = {
+  family: {
+    type: Object as PropType<Responsive<FontFamily>>,
+  },
+  size: {
+    type: Object as PropType<Responsive<FontSize>>,
+  },
+  weight: {
+    type: Object as PropType<Responsive<FontWeight>>,
+  },
+  lineHeight: {
+    type: Object as PropType<Responsive<LineHeight>>,
+  },
+  letterSpacing: {
+    type: Object as PropType<Responsive<LetterSpacing>>,
+  },
+
+  alignment: {
+    type: Object as PropType<Responsive<Alignment>>,
+  },
+  wordWrap: {
+    type: Object as PropType<Responsive<WordWrap>>,
+  },
+} as const;
+
+export type TextProps = TypeFromProps<typeof textProps>;
 
 export const createTextPropsCss = (props: TextProps): string => {
   const style: CSSObject = {};

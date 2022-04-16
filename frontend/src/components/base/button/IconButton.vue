@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { SVGProps } from "lucide-vue-next";
-import { computed, type FunctionalComponent } from "vue";
+import { computed, type FunctionalComponent, type PropType } from "vue";
 import VButton from "./VButton.vue";
 import VBox from "../layout/VBox.vue";
 import { colorWriter, type Color } from "@/lib/base/color";
@@ -9,26 +9,26 @@ import {
   writeResponsivePropToStyle,
   type Responsive,
 } from "@/lib/base/responsiveProp";
+import { systemProps } from "@/lib/base/props/systemProps";
+import type { Spacing } from "@/lib/base/spacing";
 
 // Type extracted from the lucide icon package
 export type Icon = (props: SVGProps) => FunctionalComponent<SVGProps>;
 
-interface IconButtonProps {
-  icon: Icon;
+const props = defineProps({
+  icon: { type: Function as PropType<Icon>, required: true },
+  fill: { type: Object as PropType<Responsive<Color>> },
+  ...systemProps,
+  padding: {
+    type: Object as PropType<Responsive<Spacing>>,
+    default: () => 2,
+  },
 
-  fill?: Responsive<Color>;
-  color?: Responsive<Color>;
-  backgroundColor?: Responsive<Color>;
-
-  // Negate showBorder because of:
-  // https://vuejs.org/guide/components/props.html#boolean-casting
-  //
-  // Needs still to be optional otherwise the compiler gets sometime confused
-  dontShowBorder?: boolean;
-  borderColor?: Responsive<Color>;
-}
-
-const props = defineProps<IconButtonProps>();
+  showBorder: {
+    type: Boolean as PropType<boolean>,
+    default: true,
+  },
+} as const);
 
 const iconClass = computed(() => {
   const iconStyle: CSSObject = {};
@@ -40,13 +40,7 @@ const iconClass = computed(() => {
 </script>
 
 <template>
-  <VButton
-    :padding="2"
-    :color="color"
-    :background-color="backgroundColor"
-    :show-border="!dontShowBorder"
-    :border-color="borderColor"
-  >
+  <VButton v-bind="props">
     <VBox :width="6" :height="6">
       <component :is="icon" :class="iconClass" />
     </VBox>
