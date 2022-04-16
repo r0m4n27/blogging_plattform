@@ -1,4 +1,9 @@
-export type ColorWithPalette = "gray" | "blue" | "whiteAlpha";
+export type ColorWithPalette =
+  | "gray"
+  | "blue"
+  | "whiteAlpha"
+  | "purple"
+  | "orange";
 export type ColorPaletteValues =
   | 50
   | 100
@@ -36,6 +41,30 @@ const colorsWithPalette = {
     "700": "#2C5282",
     "800": "#2A4365",
     "900": "#1A365D",
+  },
+  purple: {
+    "50": "#FAF5FF",
+    "100": "#E9D8FD",
+    "200": "#D6BCFA",
+    "300": "#B794F4",
+    "400": "#9F7AEA",
+    "500": "#805AD5",
+    "600": "#6B46C1",
+    "700": "#553C9A",
+    "800": "#44337A",
+    "900": "#322659",
+  },
+  orange: {
+    "50": "#FFFAF0",
+    "100": "#FEEBC8",
+    "200": "#FBD38D",
+    "300": "#F6AD55",
+    "400": "#ED8936",
+    "500": "#DD6B20",
+    "600": "#C05621",
+    "700": "#9C4221",
+    "800": "#7B341E",
+    "900": "#652B19",
   },
   whiteAlpha: {
     "50": "rgba(255, 255, 255, 0.04)",
