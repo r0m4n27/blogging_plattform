@@ -3,8 +3,12 @@ import type { SVGProps } from "lucide-vue-next";
 import { computed, type FunctionalComponent } from "vue";
 import VButton from "./VButton.vue";
 import VBox from "../layout/VBox.vue";
-import { addColorToStyle, type Color } from "@/lib/base/color";
+import { colorWriter, type Color } from "@/lib/base/color";
 import { css, type CSSObject } from "@emotion/css";
+import {
+  writeResponsivePropToStyle,
+  type ResponsiveProp,
+} from "@/lib/base/responsiveProp";
 
 // Type extracted from the lucide icon package
 export type Icon = (props: SVGProps) => FunctionalComponent<SVGProps>;
@@ -12,16 +16,16 @@ export type Icon = (props: SVGProps) => FunctionalComponent<SVGProps>;
 interface IconButtonProps {
   icon: Icon;
 
-  fill?: Color;
-  color?: Color;
-  backgroundColor?: Color;
+  fill?: ResponsiveProp<Color>;
+  color?: ResponsiveProp<Color>;
+  backgroundColor?: ResponsiveProp<Color>;
 
   // Negate showBorder because of:
   // https://vuejs.org/guide/components/props.html#boolean-casting
   //
   // Needs still to be optional otherwise the compiler gets sometime confused
   dontShowBorder?: boolean;
-  borderColor?: Color;
+  borderColor?: ResponsiveProp<Color>;
 }
 
 const props = defineProps<IconButtonProps>();
@@ -29,7 +33,7 @@ const props = defineProps<IconButtonProps>();
 const iconClass = computed(() => {
   const iconStyle: CSSObject = {};
 
-  addColorToStyle(iconStyle, "fill", props.fill);
+  writeResponsivePropToStyle(iconStyle, "fill", colorWriter, props.fill);
 
   return css(iconStyle);
 });

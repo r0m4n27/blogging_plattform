@@ -1,5 +1,6 @@
 import { injectTheme } from "@/composables/provideTheme";
 import type { CSSObject } from "@emotion/css";
+import type { Ref } from "vue";
 
 export type Color = LightAndDarkColor | ColorWithState;
 
@@ -13,37 +14,25 @@ interface ColorWithState {
   hover: LightAndDarkColor;
 }
 
-/**
- * Add a color to the style based on the current theme of the page.
- * This will also take care of special effects like a hover;
- *
- * @param style Style where the color is inserted
- * @param propertyName Name of the inserted property
- * @param prop Color to insert
- * @returns Nothing
- */
-export const addColorToStyle = (
+// Writer for inserting a color into the style
+//
+// If the Color is a `ColorWithState` it will add
+// an "&:hover" entry into the style if it didn't exist
+export const colorWriter = (
   style: CSSObject,
   propertyName: keyof CSSObject,
-  prop?: Color
+  color: Color
 ) => {
-  if (prop === undefined) return;
-
   const { useDarkMode } = injectTheme();
 
-  if ((prop as ColorWithState).default !== undefined) {
-    const colorWithState = prop as ColorWithState;
+  if ((color as ColorWithState).default !== undefined) {
+    const colorWithState = color as ColorWithState;
 
-    addLightAndDarkColorToStyle(
-      useDarkMode.value,
-      style,
-      propertyName,
-      colorWithState.default
-    );
+    addColorToStyle(useDarkMode, style, propertyName, colorWithState.default);
 
     style["&:hover"] ??= {};
-    addLightAndDarkColorToStyle(
-      useDarkMode.value,
+    addColorToStyle(
+      useDarkMode,
       // SAFETY: Since we build up the CSSObject
       // we can make sure that the hover key
       // contains an object
@@ -52,22 +41,18 @@ export const addColorToStyle = (
       colorWithState.hover
     );
   } else {
-    addLightAndDarkColorToStyle(
-      useDarkMode.value,
+    addColorToStyle(
+      useDarkMode,
       style,
       propertyName,
-      prop as LightAndDarkColor
+      color as LightAndDarkColor
     );
   }
 };
 
-const addLightAndDarkColorToStyle = (
-  useDarkMode: boolean,
+const addColorToStyle = (
+  useDarkMode: Ref<boolean>,
   style: CSSObject,
   propertyName: keyof CSSObject,
   prop: LightAndDarkColor
-) => {
-  const color = useDarkMode ? prop.dark : prop.light;
-
-  style[propertyName] = color;
-};
+) => (style[propertyName] = useDarkMode.value ? prop.dark : prop.light);

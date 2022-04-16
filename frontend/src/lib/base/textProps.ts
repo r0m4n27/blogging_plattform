@@ -6,18 +6,32 @@ import {
   lineHeights,
 } from "@/config/theme/text";
 import { css, type CSSObject } from "@emotion/css";
+import { createRecordWriter, createValueWriter } from "./writer";
 import {
-  addResponsivePropToStyle,
+  writeResponsivePropToStyle,
   type ResponsiveProp,
 } from "./responsiveProp";
 
 type FontFamily = keyof typeof fonts;
+const fontFamilyWriter = createRecordWriter(fonts);
+
 type FontSize = keyof typeof fontSizes;
+const fontSizeWriter = createRecordWriter(fontSizes);
+
 type FontWeight = keyof typeof fontWeights;
+const fontWeightWriter = createRecordWriter(fontWeights);
+
 type LineHeight = keyof typeof lineHeights;
+const lineHeightWriter = createRecordWriter(lineHeights);
+
 type LetterSpacing = keyof typeof letterSpacings;
+const letterSpacingWriter = createRecordWriter(letterSpacings);
+
 type Alignment = "left" | "right" | "center" | "justify";
+const aligmentWriter = createValueWriter<Alignment>();
+
 type WordWrap = "normal" | "break-word";
+const wordWrapWriter = createValueWriter<WordWrap>();
 
 export interface TextProps {
   family?: ResponsiveProp<FontFamily>;
@@ -31,45 +45,40 @@ export interface TextProps {
 
 export const createTextPropsCss = (props: TextProps): string => {
   const style: CSSObject = {};
-  addResponsivePropToStyle(
+  writeResponsivePropToStyle(
     style,
     "fontFamily",
-    (value) => fonts[value],
+    fontFamilyWriter,
     props.family
   );
-  addResponsivePropToStyle(
-    style,
-    "fontSize",
-    (value) => fontSizes[value],
-    props.size
-  );
-  addResponsivePropToStyle(
+  writeResponsivePropToStyle(style, "fontSize", fontSizeWriter, props.size);
+  writeResponsivePropToStyle(
     style,
     "fontWeight",
-    (value) => fontWeights[value],
+    fontWeightWriter,
     props.weight
   );
-  addResponsivePropToStyle(
+  writeResponsivePropToStyle(
     style,
     "lineHeight",
-    (value) => lineHeights[value],
+    lineHeightWriter,
     props.lineHeight
   );
-  addResponsivePropToStyle(
+  writeResponsivePropToStyle(
     style,
     "letterSpacing",
-    (value) => letterSpacings[value],
+    letterSpacingWriter,
     props.letterSpacing
   );
 
-  addResponsivePropToStyle(
+  writeResponsivePropToStyle(
     style,
     "textAlign",
-    (value) => value,
+    aligmentWriter,
     props.alignment
   );
 
-  addResponsivePropToStyle(style, "wordWrap", (value) => value, props.wordWrap);
+  writeResponsivePropToStyle(style, "wordWrap", wordWrapWriter, props.wordWrap);
 
   return css(style);
 };

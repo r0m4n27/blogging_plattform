@@ -1,17 +1,19 @@
 import { borderConfig } from "@/config/theme/border";
 import { sizeConfig } from "@/config/theme/size";
 import { css, type CSSObject } from "@emotion/css";
-import { addColorToStyle, type Color } from "./color";
+import { colorWriter, type Color } from "./color";
 import {
-  addResponsivePropToStyle,
+  writeResponsivePropToStyle,
   type ResponsiveProp,
 } from "./responsiveProp";
-import { spacingMapper, type Spacing } from "./spacing";
+import { createRecordWriter } from "./writer";
+import { spacingWriter, type Spacing } from "./spacing";
 
 export type BorderRadius = keyof typeof borderConfig;
-export type Size = keyof typeof sizeConfig;
+const borderRadiusWriter = createRecordWriter(borderConfig);
 
-const sizeMapper = (size: Size): string => sizeConfig[size];
+export type Size = keyof typeof sizeConfig;
+const sizeWriter = createRecordWriter(sizeConfig);
 
 // NOTE: This interface can't be directly used for either
 // defineProps<SytemProps>() or for extending an interface
@@ -24,12 +26,12 @@ export interface SystemProps {
   padding?: ResponsiveProp<Spacing>;
   margin?: ResponsiveProp<Spacing>;
 
-  color?: Color;
-  backgroundColor?: Color;
+  color?: ResponsiveProp<Color>;
+  backgroundColor?: ResponsiveProp<Color>;
 
   showBorder?: boolean;
-  borderRadius?: BorderRadius;
-  borderColor?: Color;
+  borderRadius?: ResponsiveProp<BorderRadius>;
+  borderColor?: ResponsiveProp<Color>;
 
   height?: ResponsiveProp<Size>;
   width?: ResponsiveProp<Size>;
@@ -44,24 +46,37 @@ export interface SystemProps {
 export const createSystemPropsCss = (props: SystemProps): string => {
   const style: CSSObject = {};
 
-  addResponsivePropToStyle(style, "padding", spacingMapper, props.padding);
-  addResponsivePropToStyle(style, "margin", spacingMapper, props.margin);
+  writeResponsivePropToStyle(style, "padding", spacingWriter, props.padding);
+  writeResponsivePropToStyle(style, "margin", spacingWriter, props.margin);
 
-  addResponsivePropToStyle(style, "width", sizeMapper, props.width);
-  addResponsivePropToStyle(style, "height", sizeMapper, props.height);
+  writeResponsivePropToStyle(style, "width", sizeWriter, props.width);
+  writeResponsivePropToStyle(style, "height", sizeWriter, props.height);
 
-  addColorToStyle(style, "color", props.color);
-  addColorToStyle(style, "backgroundColor", props.backgroundColor);
+  writeResponsivePropToStyle(style, "color", colorWriter, props.color);
+  writeResponsivePropToStyle(
+    style,
+    "backgroundColor",
+    colorWriter,
+    props.backgroundColor
+  );
 
   if (props.showBorder !== undefined && props.showBorder) {
     style["borderWidth"] = "1px";
     style["borderStyle"] = "solid";
   }
-  addColorToStyle(style, "borderColor", props.borderColor);
+  writeResponsivePropToStyle(
+    style,
+    "borderColor",
+    colorWriter,
+    props.borderColor
+  );
 
-  if (props.borderRadius !== undefined) {
-    style["borderRadius"] = borderConfig[props.borderRadius];
-  }
+  writeResponsivePropToStyle(
+    style,
+    "borderRadius",
+    borderRadiusWriter,
+    props.borderRadius
+  );
 
   return css(style);
 };
