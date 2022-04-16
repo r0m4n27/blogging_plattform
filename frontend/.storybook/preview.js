@@ -1,4 +1,5 @@
-import "../src/base.css";
+import "ress/dist/ress.min.css";
+import "../src/main.css";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

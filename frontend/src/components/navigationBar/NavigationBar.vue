@@ -5,6 +5,8 @@ import LeftNavBarPart from "./LeftNavBarPart.vue";
 import RightNavBarPart from "./RightNavBarPart.vue";
 import MobileNavMenu from "./MobileNavMenu.vue";
 import NavBarDivider from "./NavBarDivider.vue";
+import VRow from "../base/layout/VRow.vue";
+import VContainer from "../base/layout/VContainer.vue";
 
 interface NavBarProps {
   title: string;
@@ -22,15 +24,16 @@ const toggleMenu = () => {
 
 <template>
   <nav>
-    <div
-      class="md:container md:mx-auto p-3 flex flex-row justify-between items-center"
-    >
-      <LeftNavBarPart :title="title" :logo-url="logoUrl" />
-      <RightNavBarPart
-        :onMenuClick="toggleMenu"
-        :menu-expanded="menuExpanded"
-      />
-    </div>
+    <VContainer :padding="3" size="lg">
+      <VRow justify="space-between">
+        <LeftNavBarPart :title="title" :logo-url="logoUrl" />
+        <RightNavBarPart
+          :onMenuClick="toggleMenu"
+          :menu-expanded="menuExpanded"
+        />
+      </VRow>
+    </VContainer>
+
     <NavBarDivider />
     <MobileNavMenu v-if="menuExpanded" />
   </nav>

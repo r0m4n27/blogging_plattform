@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import Button from "../base/Button.vue";
-import IconButton from "../base/IconButton.vue";
 import { Menu, X } from "lucide-vue-next";
 import ThemeButton from "./ThemeButton.vue";
 import { computed } from "vue";
+import TextButton from "../base/button/TextButton.vue";
+import IconButton from "../base/button/IconButton.vue";
+import VRow from "../base/layout/VRow.vue";
 
 interface RightNavBarPartProps {
   onMenuClick: () => void;
@@ -13,15 +14,23 @@ interface RightNavBarPartProps {
 const props = defineProps<RightNavBarPartProps>();
 
 const menuIcon = computed(() => (props.menuExpanded ? X : Menu));
+
+const textButtonHiddenProp = {
+  sm: true,
+  md: false,
+};
 </script>
 
 <template>
-  <div class="flex flex-row space-x-2 md:space-x-4 align-middle">
+  <VRow :gap="{ sm: 2, md: 4 }">
+    <TextButton label="Categories" :hidden="textButtonHiddenProp" />
+    <TextButton label="Archive" :hidden="textButtonHiddenProp" />
+
     <ThemeButton />
-
-    <Button label="Categories" :onClick="() => ({})" class="hidden md:block" />
-    <Button label="Archive" :onClick="() => ({})" class="hidden md:block" />
-
-    <IconButton :icon="menuIcon" :onClick="onMenuClick" class="md:hidden" />
-  </div>
+    <IconButton
+      :icon="menuIcon"
+      @click="onMenuClick"
+      :hidden="{ sm: false, md: true }"
+    />
+  </VRow>
 </template>

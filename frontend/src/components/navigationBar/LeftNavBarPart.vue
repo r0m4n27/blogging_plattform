@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import VRow from "../base/layout/VRow.vue";
+import VHeading from "../base/text/VHeading.vue";
+import VImage from "../base/VImage.vue";
+import VBox from "../base/layout/VBox.vue";
 defineProps<{
   title: string;
   logoUrl: string;
@@ -6,13 +10,13 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex flex-row space-x-4">
-    <img :src="logoUrl" class="w-12 h-12 rounded-full" />
+  <VRow :gap="4">
+    <VImage :src="logoUrl" :height="12" :width="12" border-radius="full" />
 
-    <div
-      class="text-3xl text-gray-900 dark:text-gray-200 font-bold font-sans self-center hidden md:block"
-    >
-      {{ title }}
-    </div>
-  </div>
+    <VBox :hidden="{ sm: true, md: false }">
+      <VHeading as="span" size="lg">
+        {{ title }}
+      </VHeading>
+    </VBox>
+  </VRow>
 </template>
