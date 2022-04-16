@@ -1,5 +1,6 @@
 // Taken from https://chakra-ui.com/docs/styled-system/theming/theme#spacing
 export const spacingConfig = {
+  0: "0px",
   px: "1px",
   0.5: "0.125rem",
   1: "0.25rem",

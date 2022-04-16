@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import VRow from "../base/layout/VRow.vue";
+import VHeading from "../base/text/VHeading.vue";
 defineProps<{
   title: string;
   logoUrl: string;
@@ -6,13 +8,11 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex flex-row space-x-4">
+  <VRow :gap="4">
     <img :src="logoUrl" class="w-12 h-12 rounded-full" />
 
-    <div
-      class="text-3xl text-gray-900 dark:text-gray-200 font-bold font-sans self-center hidden md:block"
-    >
+    <VHeading as="span" size="lg">
       {{ title }}
-    </div>
-  </div>
+    </VHeading>
+  </VRow>
 </template>

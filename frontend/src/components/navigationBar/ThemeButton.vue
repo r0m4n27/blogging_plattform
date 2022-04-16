@@ -39,7 +39,7 @@ const fill = {
   <IconButton
     :icon="themeIcon"
     @click="toggleDarkMode"
-    dontShowBorder
+    :showBorder="false"
     :backgroundColor="backgroundColor"
     :color="color"
     :fill="fill"

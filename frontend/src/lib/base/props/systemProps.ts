@@ -14,6 +14,21 @@ const borderRadiusWriter = createRecordWriter(borderConfig);
 export type Size = keyof typeof sizeConfig;
 const sizeWriter = createRecordWriter(sizeConfig);
 
+export type Hidden = boolean | "none";
+const hiddenWriter = (
+  style: CSSObject,
+  propertyName: keyof CSSObject,
+  value: Hidden
+) => {
+  if (value !== "none") {
+    if (value) {
+      style[propertyName] = "none";
+    } else {
+      style[propertyName] = "block";
+    }
+  }
+};
+
 // NOTE: You can't use an imported interface for defineProps
 // https://github.com/vuejs/core/issues/4294
 //
@@ -53,6 +68,11 @@ export const systemProps = {
   },
   width: {
     type: Object as PropType<Responsive<Size>>,
+  },
+
+  hidden: {
+    type: [Boolean, String] as PropType<Responsive<boolean>>,
+    default: "none",
   },
 } as const;
 
@@ -98,6 +118,8 @@ export const createSystemPropsCss = (props: SystemProps): string => {
     borderRadiusWriter,
     props.borderRadius
   );
+
+  writeResponsivePropToStyle(style, "display", hiddenWriter, props.hidden);
 
   return css(style);
 };

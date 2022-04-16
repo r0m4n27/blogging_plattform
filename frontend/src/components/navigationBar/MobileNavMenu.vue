@@ -1,26 +1,32 @@
 <script setup lang="ts">
 import NavBarDivider from "./NavBarDivider.vue";
+import VColumn from "../base/layout/VColumn.vue";
+import { getColor } from "@/config/theme/colors";
+import VBox from "../base/layout/VBox.vue";
+import VHeading from "../base/text/VHeading.vue";
 
 const menuItems = ["Categories", "Archive"];
 </script>
 
 <template>
-  <div class="md:hidden">
-    <div class="mobileMenu">
-      <a v-for="item in menuItems" :key="item" class="menuItem" href="">
+  <VBox :hidden="{ sm: false, md: true }">
+    <VColumn
+      :padding="{ x: 0, y: 4 }"
+      :gap="4"
+      :background-color="{
+        light: getColor('gray', 50),
+        dark: getColor('gray', 800),
+      }"
+      :color="{
+        light: getColor('gray', 700),
+        dark: getColor('gray', 300),
+      }"
+    >
+      <VHeading v-for="item in menuItems" :key="item" size="md" as="span">
         {{ item }}
-      </a>
-    </div>
+      </VHeading>
+    </VColumn>
+
     <NavBarDivider />
-  </div>
+  </VBox>
 </template>
-
-<style scoped>
-/* .mobileMenu {
-  @apply flex flex-col py-4 space-y-4 items-center bg-gray-50 dark:bg-gray-800;
-}
-
-.menuItem {
-  @apply text-gray-700 dark:text-gray-300 font-bold text-2xl;
-} */
-</style>

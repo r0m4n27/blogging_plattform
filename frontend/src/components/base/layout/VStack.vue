@@ -9,6 +9,7 @@ import { css, type CSSObject } from "@emotion/css";
 import { computed, type PropType } from "vue";
 import { cx } from "@emotion/css";
 import { createSystemPropsCss } from "@/lib/base/props/systemProps";
+import { flexAlignmentWriter, type FlexAlignment } from "@/lib/base/flex";
 
 const props = defineProps({
   direction: {
@@ -17,6 +18,10 @@ const props = defineProps({
   },
   gap: {
     type: Object as PropType<Responsive<Spacing>>,
+  },
+  align: {
+    type: [Object, String] as PropType<Responsive<FlexAlignment>>,
+    default: () => "center",
   },
   ...systemProps,
 });
@@ -27,6 +32,12 @@ const flexClassName = computed(() => {
   writeResponsivePropToStyle(style, "gridGap", spacingWriter, props.gap);
   style["display"] = "flex";
   style["flexDirection"] = props.direction;
+  writeResponsivePropToStyle(
+    style,
+    "alignItems",
+    flexAlignmentWriter,
+    props.align
+  );
 
   return css(style);
 });

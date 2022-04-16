@@ -19,3 +19,12 @@ export const createValueWriter = <T extends CSSInterpolation>(): ((
     style[propertyName] = prop;
   };
 };
+
+// Creates a that mapps tha value to a css value and writes it to the style
+export const createMapperWriter = <T>(
+  mapper: (value: T) => CSSInterpolation
+): ((style: CSSObject, propertyName: keyof CSSObject, prop: T) => void) => {
+  return (style: CSSObject, propertyName: keyof CSSObject, prop: T) => {
+    style[propertyName] = mapper(prop);
+  };
+};
