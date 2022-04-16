@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import VButton from "../base/VButton.vue";
-import VIconButton from "../base/VIconButton.vue";
 import { Menu, X } from "lucide-vue-next";
 import ThemeButton from "./ThemeButton.vue";
 import { computed } from "vue";
+import TextButton from "../base/button/TextButton.vue";
+import IconButton from "../base/button/IconButton.vue";
 
 interface RightNavBarPartProps {
   onMenuClick: () => void;
@@ -19,9 +19,11 @@ const menuIcon = computed(() => (props.menuExpanded ? X : Menu));
   <div class="flex flex-row space-x-2 md:space-x-4 align-middle">
     <ThemeButton />
 
-    <VButton label="Categories" :onClick="() => ({})" class="hidden md:block" />
-    <VButton label="Archive" :onClick="() => ({})" class="hidden md:block" />
+    <TextButton label="Categories" />
+    <!--"hidden md:block"-->
+    <TextButton label="Archive" />
+    <!--"hidden md:block"-->
 
-    <VIconButton :icon="menuIcon" :onClick="onMenuClick" class="md:hidden" />
+    <IconButton :icon="menuIcon" @click="onMenuClick" />
   </div>
 </template>

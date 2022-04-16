@@ -7,7 +7,13 @@ interface VBoxProps {
 
   color?: SystemProps["color"];
   backgroundColor?: SystemProps["backgroundColor"];
+
+  showBorder?: SystemProps["showBorder"];
+  borderRadius?: SystemProps["borderRadius"];
   borderColor?: SystemProps["borderColor"];
+
+  height?: SystemProps["height"];
+  width?: SystemProps["width"];
 }
 
 const props = defineProps<VBoxProps>();

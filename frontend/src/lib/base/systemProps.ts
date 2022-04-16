@@ -1,4 +1,5 @@
 import { borderConfig } from "@/config/theme/border";
+import { sizeConfig } from "@/config/theme/size";
 import { css, type CSSObject } from "@emotion/css";
 import { addColorToStyle, type Color } from "./color";
 import {
@@ -8,6 +9,9 @@ import {
 import { spacingMapper, type Spacing } from "./spacing";
 
 export type BorderRadius = keyof typeof borderConfig;
+export type Size = keyof typeof sizeConfig;
+
+const sizeMapper = (size: Size): string => sizeConfig[size];
 
 // NOTE: This interface can't be directly used for either
 // defineProps<SytemProps>() or for extending an interface
@@ -23,8 +27,12 @@ export interface SystemProps {
   color?: Color;
   backgroundColor?: Color;
 
+  showBorder?: boolean;
   borderRadius?: BorderRadius;
   borderColor?: Color;
+
+  height?: ResponsiveProp<Size>;
+  width?: ResponsiveProp<Size>;
 }
 
 /**
@@ -39,13 +47,17 @@ export const createSystemPropsCss = (props: SystemProps): string => {
   addResponsivePropToStyle(style, "padding", spacingMapper, props.padding);
   addResponsivePropToStyle(style, "margin", spacingMapper, props.margin);
 
+  addResponsivePropToStyle(style, "width", sizeMapper, props.width);
+  addResponsivePropToStyle(style, "height", sizeMapper, props.height);
+
   addColorToStyle(style, "color", props.color);
   addColorToStyle(style, "backgroundColor", props.backgroundColor);
 
-  if (props.borderColor) {
+  if (props.showBorder !== undefined && props.showBorder) {
     style["borderWidth"] = "1px";
+    style["borderStyle"] = "solid";
   }
-  addColorToStyle(style, "border-color", props.borderColor);
+  addColorToStyle(style, "borderColor", props.borderColor);
 
   if (props.borderRadius !== undefined) {
     style["borderRadius"] = borderConfig[props.borderRadius];

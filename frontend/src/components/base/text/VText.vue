@@ -2,7 +2,7 @@
 import { type TextProps, createTextPropsCss } from "@/lib/base/textProps";
 
 interface VTextProps {
-  as: "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  as: "span" | "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
   family?: TextProps["family"];
   size?: TextProps["size"];
