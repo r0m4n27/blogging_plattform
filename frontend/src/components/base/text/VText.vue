@@ -10,6 +10,7 @@ interface VTextProps {
   lineHeight?: TextProps["lineHeight"];
   letterSpacing?: TextProps["letterSpacing"];
   alignment?: TextProps["alignment"];
+  wordWrap?: TextProps["wordWrap"];
 }
 
 const props = defineProps<VTextProps>();

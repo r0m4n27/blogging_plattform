@@ -17,6 +17,7 @@ type FontWeight = keyof typeof fontWeights;
 type LineHeight = keyof typeof lineHeights;
 type LetterSpacing = keyof typeof letterSpacings;
 type Alignment = "left" | "right" | "center" | "justify";
+type WordWrap = "normal" | "break-word";
 
 export interface TextProps {
   family?: ResponsiveProp<FontFamily>;
@@ -25,6 +26,7 @@ export interface TextProps {
   lineHeight?: ResponsiveProp<LineHeight>;
   letterSpacing?: ResponsiveProp<LetterSpacing>;
   alignment?: ResponsiveProp<Alignment>;
+  wordWrap?: ResponsiveProp<WordWrap>;
 }
 
 export const createTextPropsCss = (props: TextProps): string => {
@@ -66,6 +68,8 @@ export const createTextPropsCss = (props: TextProps): string => {
     (value) => value,
     props.alignment
   );
+
+  addResponsivePropToStyle(style, "wordWrap", (value) => value, props.wordWrap);
 
   return css(style);
 };

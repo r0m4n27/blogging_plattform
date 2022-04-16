@@ -40,7 +40,7 @@ export const createSystemPropsCss = (props: SystemProps): string => {
   addResponsivePropToStyle(style, "margin", spacingMapper, props.margin);
 
   addColorToStyle(style, "color", props.color);
-  addColorToStyle(style, "background-color", props.backgroundColor);
+  addColorToStyle(style, "backgroundColor", props.backgroundColor);
 
   if (props.borderColor) {
     style["borderWidth"] = "1px";

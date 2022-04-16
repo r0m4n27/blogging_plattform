@@ -1,4 +1,4 @@
-export type ColorWithPalette = "gray" | "blue";
+export type ColorWithPalette = "gray" | "blue" | "whiteAlpha";
 export type ColorPaletteValues =
   | 50
   | 100
@@ -37,10 +37,22 @@ const colorsWithPalette = {
     "800": "#2A4365",
     "900": "#1A365D",
   },
+  whiteAlpha: {
+    "50": "rgba(255, 255, 255, 0.04)",
+    "100": "rgba(255, 255, 255, 0.06)",
+    "200": "rgba(255, 255, 255, 0.08)",
+    "300": "rgba(255, 255, 255, 0.16)",
+    "400": "rgba(255, 255, 255, 0.24)",
+    "500": "rgba(255, 255, 255, 0.36)",
+    "600": "rgba(255, 255, 255, 0.48)",
+    "700": "rgba(255, 255, 255, 0.64)",
+    "800": "rgba(255, 255, 255, 0.80)",
+    "900": "rgba(255, 255, 255, 0.92)",
+  },
 };
 
-const white = "#000000";
-const black = "#FFFFFF";
+const white = "#FFFFFF";
+const black = "#000000";
 
 export function getColor(color: "white" | "black"): string;
 export function getColor(
