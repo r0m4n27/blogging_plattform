@@ -50,5 +50,5 @@ Custom.args = {
     light: getColor("white"),
     dark: getColor("gray", 700),
   },
-  dontShowBorder: true,
+  showBorder: false,
 };
