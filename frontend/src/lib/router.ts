@@ -5,17 +5,23 @@ import {
   type RouteRecordRaw,
 } from "vue-router";
 
+export const routeDestinations = {
+  home: "/",
+  archive: "/archive",
+  categories: "/categories",
+};
+
 const routes: RouteRecordRaw[] = [
   {
-    path: "/",
+    path: routeDestinations.home,
     component: HomePage,
   },
   {
-    path: "/categories",
+    path: routeDestinations.categories,
     component: HomePage,
   },
   {
-    path: "/archive",
+    path: routeDestinations.archive,
     component: HomePage,
   },
 ];

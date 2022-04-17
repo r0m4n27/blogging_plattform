@@ -8,6 +8,7 @@ import NavBarDivider from "./NavBarDivider.vue";
 import VRow from "../base/layout/VRow.vue";
 import VContainer from "../base/layout/VContainer.vue";
 import type { NavigationDestination } from "@/lib/navigation/navDestination";
+import { routeDestinations } from "@/lib/router";
 
 interface NavBarProps {
   title: string;
@@ -25,11 +26,11 @@ const toggleMenu = () => {
 const destinations: NavigationDestination[] = [
   {
     label: "Categories",
-    to: "/categories",
+    to: routeDestinations.categories,
   },
   {
     label: "Archive",
-    to: "/archive",
+    to: routeDestinations.archive,
   },
 ];
 </script>
