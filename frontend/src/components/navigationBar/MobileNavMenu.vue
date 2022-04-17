@@ -4,8 +4,13 @@ import VColumn from "../base/layout/VColumn.vue";
 import { getColor } from "@/config/theme/colors";
 import VBox from "../base/layout/VBox.vue";
 import VHeading from "../base/text/VHeading.vue";
+import type { NavigationDestination } from "@/lib/navigation/navDestination";
 
-const menuItems = ["Categories", "Archive"];
+interface MobileNavMenuProps {
+  destinations: NavigationDestination[];
+}
+
+defineProps<MobileNavMenuProps>();
 </script>
 
 <template>
@@ -22,9 +27,16 @@ const menuItems = ["Categories", "Archive"];
         dark: getColor('gray', 300),
       }"
     >
-      <VHeading v-for="item in menuItems" :key="item" size="md" as="span">
-        {{ item }}
-      </VHeading>
+      <RouterLink
+        v-for="destination in destinations"
+        :key="destination.label"
+        :to="destination.to"
+        :replace="destination.replace"
+      >
+        <VHeading size="md" as="span">
+          {{ destination.label }}
+        </VHeading>
+      </RouterLink>
     </VColumn>
 
     <NavBarDivider />

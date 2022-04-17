@@ -10,6 +10,14 @@ const routes: RouteRecordRaw[] = [
     path: "/",
     component: HomePage,
   },
+  {
+    path: "/categories",
+    component: HomePage,
+  },
+  {
+    path: "/archive",
+    component: HomePage,
+  },
 ];
 
 export const router = createRouter({
