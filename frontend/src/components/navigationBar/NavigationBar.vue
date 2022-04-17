@@ -7,6 +7,8 @@ import MobileNavMenu from "./MobileNavMenu.vue";
 import NavBarDivider from "./NavBarDivider.vue";
 import VRow from "../base/layout/VRow.vue";
 import VContainer from "../base/layout/VContainer.vue";
+import type { NavigationDestination } from "@/lib/navigation/navDestination";
+import { routeDestinations } from "@/lib/router";
 
 interface NavBarProps {
   title: string;
@@ -20,6 +22,17 @@ const menuExpanded = ref(false);
 const toggleMenu = () => {
   menuExpanded.value = !menuExpanded.value;
 };
+
+const destinations: NavigationDestination[] = [
+  {
+    label: "Categories",
+    to: routeDestinations.categories,
+  },
+  {
+    label: "Archive",
+    to: routeDestinations.archive,
+  },
+];
 </script>
 
 <template>
@@ -30,11 +43,12 @@ const toggleMenu = () => {
         <RightNavBarPart
           :onMenuClick="toggleMenu"
           :menu-expanded="menuExpanded"
+          :destinations="destinations"
         />
       </VRow>
     </VContainer>
 
     <NavBarDivider />
-    <MobileNavMenu v-if="menuExpanded" />
+    <MobileNavMenu v-if="menuExpanded" :destinations="destinations" />
   </nav>
 </template>
