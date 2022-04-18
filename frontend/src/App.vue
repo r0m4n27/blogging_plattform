@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import ProvideGlobals from "./components/ProvideGlobals.vue";
-import VTheme from "./components/base/VTheme.vue";
 import { RouterView } from "vue-router";
+import VRoot from "./components/base/VRoot.vue";
 </script>
 
 <template>
   <ProvideGlobals>
-    <VTheme>
+    <VRoot>
       <RouterView />
-    </VTheme>
+    </VRoot>
   </ProvideGlobals>
 </template>
