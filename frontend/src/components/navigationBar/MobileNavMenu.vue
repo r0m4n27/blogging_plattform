@@ -5,6 +5,7 @@ import { getColor } from "@/config/theme/colors";
 import VBox from "../base/layout/VBox.vue";
 import VHeading from "../base/text/VHeading.vue";
 import type { NavigationDestination } from "@/lib/navigation/navDestination";
+import VLink from "../base/VLink.vue";
 
 interface MobileNavMenuProps {
   destinations: NavigationDestination[];
@@ -22,21 +23,21 @@ defineProps<MobileNavMenuProps>();
         light: getColor('gray', 50),
         dark: getColor('gray', 800),
       }"
-      :color="{
-        light: getColor('gray', 700),
-        dark: getColor('gray', 300),
-      }"
     >
-      <RouterLink
+      <VLink
         v-for="destination in destinations"
         :key="destination.label"
         :to="destination.to"
         :replace="destination.replace"
+        :color="{
+          light: getColor('gray', 700),
+          dark: getColor('gray', 300),
+        }"
       >
         <VHeading size="md" as="span">
           {{ destination.label }}
         </VHeading>
-      </RouterLink>
+      </VLink>
     </VColumn>
 
     <NavBarDivider />

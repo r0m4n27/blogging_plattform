@@ -3,7 +3,7 @@ import { sizeConfig } from "@/config/theme/size";
 import { css, type CSSObject } from "@emotion/css";
 import { colorWriter, type Color } from "../color";
 import { writeResponsivePropToStyle, type Responsive } from "../responsiveProp";
-import { createRecordWriter } from "../writer";
+import { createRecordWriter, createValueWriter } from "../writer";
 import { spacingWriter, type Spacing } from "../spacing";
 import type { PropType } from "vue";
 import type { TypeFromProps } from "@/lib/typeFromProps";
@@ -13,6 +13,9 @@ const borderRadiusWriter = createRecordWriter(borderConfig);
 
 export type Size = keyof typeof sizeConfig;
 const sizeWriter = createRecordWriter(sizeConfig);
+
+export type Display = "block" | "inline" | "inline-block" | "inherit";
+const displayWriter = createValueWriter<Display>();
 
 export type Hidden = boolean | "none";
 const hiddenWriter = (
@@ -39,17 +42,17 @@ const hiddenWriter = (
 
 export const systemProps = {
   padding: {
-    type: Object as PropType<Responsive<Spacing>>,
+    type: [Object, String, Number] as PropType<Responsive<Spacing>>,
   },
   margin: {
-    type: Object as PropType<Responsive<Spacing>>,
+    type: [Object, String, Number] as PropType<Responsive<Spacing>>,
   },
 
   color: {
-    type: Object as PropType<Responsive<Color>>,
+    type: [Object, String] as PropType<Responsive<Color>>,
   },
   backgroundColor: {
-    type: Object as PropType<Responsive<Color>>,
+    type: [Object, String] as PropType<Responsive<Color>>,
   },
 
   showBorder: {
@@ -57,21 +60,28 @@ export const systemProps = {
     default: false,
   },
   borderRadius: {
-    type: Object as PropType<Responsive<BorderRadius>>,
+    type: [Object, String] as PropType<Responsive<BorderRadius>>,
   },
   borderColor: {
-    type: Object as PropType<Responsive<Color>>,
+    type: [Object, String] as PropType<Responsive<Color>>,
   },
 
   height: {
-    type: Object as PropType<Responsive<Size>>,
+    type: [Object, String, Number] as PropType<Responsive<Size>>,
   },
   width: {
-    type: Object as PropType<Responsive<Size>>,
+    type: [Object, String, Number] as PropType<Responsive<Size>>,
   },
 
+  display: {
+    type: [String, Object] as PropType<Responsive<Display>>,
+  },
+
+  // Since vue inserts a default false, when a boolean value
+  // is specified as a prop, we need a third value to not
+  // overwrite for example the flex behaviour
   hidden: {
-    type: [Boolean, String] as PropType<Responsive<boolean>>,
+    type: [Boolean, String, Object] as PropType<Responsive<boolean>>,
     default: "none",
   },
 } as const;
@@ -118,6 +128,8 @@ export const createSystemPropsCss = (props: SystemProps): string => {
     borderRadiusWriter,
     props.borderRadius
   );
+
+  writeResponsivePropToStyle(style, "display", displayWriter, props.display);
 
   writeResponsivePropToStyle(style, "display", hiddenWriter, props.hidden);
 

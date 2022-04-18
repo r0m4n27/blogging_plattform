@@ -8,10 +8,10 @@ import VStack from "./VStack.vue";
 
 const props = defineProps({
   gap: {
-    type: Object as PropType<Responsive<Spacing>>,
+    type: [Object, String, Number] as PropType<Responsive<Spacing>>,
   },
   align: {
-    type: Object as PropType<Responsive<FlexAlignment>>,
+    type: [Object, String] as PropType<Responsive<FlexAlignment>>,
   },
   ...systemProps,
 });

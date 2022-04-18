@@ -34,26 +34,26 @@ const wordWrapWriter = createValueWriter<WordWrap>();
 
 export const textProps = {
   family: {
-    type: Object as PropType<Responsive<FontFamily>>,
+    type: [Object, String] as PropType<Responsive<FontFamily>>,
   },
   size: {
-    type: Object as PropType<Responsive<FontSize>>,
+    type: [Object, String] as PropType<Responsive<FontSize>>,
   },
   weight: {
-    type: Object as PropType<Responsive<FontWeight>>,
+    type: [Object, String] as PropType<Responsive<FontWeight>>,
   },
   lineHeight: {
-    type: Object as PropType<Responsive<LineHeight>>,
+    type: [Object, String] as PropType<Responsive<LineHeight>>,
   },
   letterSpacing: {
-    type: Object as PropType<Responsive<LetterSpacing>>,
+    type: [Object, String] as PropType<Responsive<LetterSpacing>>,
   },
 
   alignment: {
-    type: Object as PropType<Responsive<Alignment>>,
+    type: [Object, String] as PropType<Responsive<Alignment>>,
   },
   wordWrap: {
-    type: Object as PropType<Responsive<WordWrap>>,
+    type: [Object, String] as PropType<Responsive<WordWrap>>,
   },
 } as const;
 

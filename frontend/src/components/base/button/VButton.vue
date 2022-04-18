@@ -13,7 +13,7 @@ const props = defineProps({
   ...systemProps,
 
   backgroundColor: {
-    type: Object as PropType<Responsive<Color>>,
+    type: [Object, String] as PropType<Responsive<Color>>,
     default: () => ({
       default: {
         light: getColor("white"),
@@ -27,7 +27,7 @@ const props = defineProps({
   },
 
   color: {
-    type: Object as PropType<Responsive<Color>>,
+    type: [Object, String] as PropType<Responsive<Color>>,
     default: () => ({
       light: getColor("gray", 700),
       dark: getColor("blue", 300),
@@ -39,11 +39,11 @@ const props = defineProps({
     default: true,
   },
   borderRadius: {
-    type: String as PropType<Responsive<BorderRadius>>,
+    type: [Object, String] as PropType<Responsive<BorderRadius>>,
     default: "md",
   },
   borderColor: {
-    type: Object as PropType<Responsive<Color>>,
+    type: [Object, String] as PropType<Responsive<Color>>,
     default: () => ({
       light: getColor("gray", 200),
       dark: getColor("blue", 300),

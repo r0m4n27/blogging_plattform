@@ -17,10 +17,10 @@ export type Icon = (props: SVGProps) => FunctionalComponent<SVGProps>;
 
 const props = defineProps({
   icon: { type: Function as PropType<Icon>, required: true },
-  fill: { type: Object as PropType<Responsive<Color>> },
+  fill: { type: [Object, String] as PropType<Responsive<Color>> },
   ...systemProps,
   padding: {
-    type: Object as PropType<Responsive<Spacing>>,
+    type: [Object, String, Number] as PropType<Responsive<Spacing>>,
     default: () => 2,
   },
 
