@@ -15,7 +15,13 @@ defineProps<{
 <template>
   <VRow :gap="4">
     <RouterLink :to="routeDestinations.home">
-      <VImage :src="logoUrl" :height="12" :width="12" border-radius="full" />
+      <VImage
+        :src="logoUrl"
+        border-radius="full"
+        :height="12"
+        :width="12"
+        display="inherit"
+      />
     </RouterLink>
 
     <VBox :hidden="{ sm: true, md: false }">

@@ -3,7 +3,7 @@ import { sizeConfig } from "@/config/theme/size";
 import { css, type CSSObject } from "@emotion/css";
 import { colorWriter, type Color } from "../color";
 import { writeResponsivePropToStyle, type Responsive } from "../responsiveProp";
-import { createRecordWriter } from "../writer";
+import { createRecordWriter, createValueWriter } from "../writer";
 import { spacingWriter, type Spacing } from "../spacing";
 import type { PropType } from "vue";
 import type { TypeFromProps } from "@/lib/typeFromProps";
@@ -13,6 +13,9 @@ const borderRadiusWriter = createRecordWriter(borderConfig);
 
 export type Size = keyof typeof sizeConfig;
 const sizeWriter = createRecordWriter(sizeConfig);
+
+export type Display = "block" | "inline" | "inline-block" | "inherit";
+const displayWriter = createValueWriter<Display>();
 
 export type Hidden = boolean | "none";
 const hiddenWriter = (
@@ -70,6 +73,10 @@ export const systemProps = {
     type: Object as PropType<Responsive<Size>>,
   },
 
+  display: {
+    type: [String, Object] as PropType<Responsive<Display>>,
+  },
+
   hidden: {
     type: [Boolean, String] as PropType<Responsive<boolean>>,
     default: "none",
@@ -118,6 +125,8 @@ export const createSystemPropsCss = (props: SystemProps): string => {
     borderRadiusWriter,
     props.borderRadius
   );
+
+  writeResponsivePropToStyle(style, "display", displayWriter, props.display);
 
   writeResponsivePropToStyle(style, "display", hiddenWriter, props.hidden);
 
