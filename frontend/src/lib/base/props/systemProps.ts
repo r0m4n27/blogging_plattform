@@ -7,6 +7,7 @@ import { createRecordWriter, createValueWriter } from "../writer";
 import { spacingWriter, type Spacing } from "../spacing";
 import type { PropType } from "vue";
 import type { TypeFromProps } from "@/lib/typeFromProps";
+import { shadowConfig } from "@/config/theme/shadow";
 
 export type BorderRadius = keyof typeof borderConfig;
 const borderRadiusWriter = createRecordWriter(borderConfig);
@@ -16,6 +17,9 @@ const sizeWriter = createRecordWriter(sizeConfig);
 
 export type Display = "block" | "inline" | "inline-block" | "inherit";
 const displayWriter = createValueWriter<Display>();
+
+export type Shadow = keyof typeof shadowConfig;
+export const shadowWriter = createRecordWriter(shadowConfig);
 
 export type Hidden = boolean | "none";
 const hiddenWriter = (
@@ -64,6 +68,9 @@ export const systemProps = {
   },
   borderColor: {
     type: [Object, String] as PropType<Responsive<Color>>,
+  },
+  shadow: {
+    type: [Object, String] as PropType<Responsive<Shadow>>,
   },
 
   height: {
@@ -121,6 +128,7 @@ export const createSystemPropsCss = (props: SystemProps): string => {
     colorWriter,
     props.borderColor
   );
+  writeResponsivePropToStyle(style, "boxShadow", shadowWriter, props.shadow);
 
   writeResponsivePropToStyle(
     style,
