@@ -9,6 +9,8 @@ export const routeDestinations = {
   home: "/",
   archive: "/archive",
   categories: "/categories",
+  article: "/articles/:id",
+  category: "/categories/:id",
 };
 
 const routes: RouteRecordRaw[] = [
@@ -22,6 +24,14 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: routeDestinations.archive,
+    component: HomePage,
+  },
+  {
+    path: routeDestinations.article,
+    component: HomePage,
+  },
+  {
+    path: routeDestinations.category,
     component: HomePage,
   },
 ];
