@@ -32,7 +32,7 @@ export const flexJustifyWriter = createMapperWriter((value: FlexJustify) => {
 
 export const flexProps = {
   gap: {
-    type: Object as PropType<Responsive<Spacing>>,
+    type: [Object, String, Number] as PropType<Responsive<Spacing>>,
   },
   align: {
     type: [Object, String] as PropType<Responsive<FlexAlignment>>,

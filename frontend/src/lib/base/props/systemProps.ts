@@ -42,17 +42,17 @@ const hiddenWriter = (
 
 export const systemProps = {
   padding: {
-    type: Object as PropType<Responsive<Spacing>>,
+    type: [Object, String, Number] as PropType<Responsive<Spacing>>,
   },
   margin: {
-    type: Object as PropType<Responsive<Spacing>>,
+    type: [Object, String, Number] as PropType<Responsive<Spacing>>,
   },
 
   color: {
-    type: Object as PropType<Responsive<Color>>,
+    type: [Object, String] as PropType<Responsive<Color>>,
   },
   backgroundColor: {
-    type: Object as PropType<Responsive<Color>>,
+    type: [Object, String] as PropType<Responsive<Color>>,
   },
 
   showBorder: {
@@ -60,25 +60,28 @@ export const systemProps = {
     default: false,
   },
   borderRadius: {
-    type: Object as PropType<Responsive<BorderRadius>>,
+    type: [Object, String] as PropType<Responsive<BorderRadius>>,
   },
   borderColor: {
-    type: Object as PropType<Responsive<Color>>,
+    type: [Object, String] as PropType<Responsive<Color>>,
   },
 
   height: {
-    type: Object as PropType<Responsive<Size>>,
+    type: [Object, String, Number] as PropType<Responsive<Size>>,
   },
   width: {
-    type: Object as PropType<Responsive<Size>>,
+    type: [Object, String, Number] as PropType<Responsive<Size>>,
   },
 
   display: {
     type: [String, Object] as PropType<Responsive<Display>>,
   },
 
+  // Since vue inserts a default false, when a boolean value
+  // is specified as a prop, we need a third value to not
+  // overwrite for example the flex behaviour
   hidden: {
-    type: [Boolean, String] as PropType<Responsive<boolean>>,
+    type: [Boolean, String, Object] as PropType<Responsive<boolean>>,
     default: "none",
   },
 } as const;
