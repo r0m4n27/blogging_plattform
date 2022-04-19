@@ -30,6 +30,10 @@ export const flexJustifyWriter = createMapperWriter((value: FlexJustify) => {
   }
 });
 
+export const gridColumnsWriter = createMapperWriter(
+  (value: number) => `repeat(${value}, minmax(0, 1fr))`
+);
+
 export const flexProps = {
   gap: {
     type: [Object, String, Number] as PropType<Responsive<Spacing>>,
@@ -45,14 +49,38 @@ export const flexProps = {
 
 type FlexProps = ExtractPropTypes<typeof flexProps>;
 
-export const writeFlexPropsToCss = (
+export const createFlexCss = (
   props: FlexProps,
   flexDirection: "row" | "column"
 ): string => {
-  const style: CSSObject = {};
+  const style = createGeneralFlexStyle(props);
 
   style["display"] = "flex";
   style["flexDirection"] = flexDirection;
+
+  return css(style);
+};
+
+export const createGridCss = (
+  props: FlexProps,
+  columns: Responsive<number>
+): string => {
+  const style = createGeneralFlexStyle(props);
+
+  style["display"] = "grid";
+
+  writeResponsivePropToStyle(
+    style,
+    "gridTemplateColumns",
+    gridColumnsWriter,
+    columns
+  );
+
+  return css(style);
+};
+
+const createGeneralFlexStyle = (props: FlexProps): CSSObject => {
+  const style: CSSObject = {};
 
   writeResponsivePropToStyle(style, "gap", spacingWriter, props.gap);
 
@@ -70,5 +98,5 @@ export const writeFlexPropsToCss = (
     props.justify
   );
 
-  return css(style);
+  return style;
 };
