@@ -3,11 +3,12 @@ import { systemProps } from "@/lib/base/props/systemProps";
 import { computed, type PropType } from "vue";
 import { cx } from "@emotion/css";
 import { createSystemPropsCss } from "@/lib/base/props/systemProps";
-import { createFlexCss, flexProps } from "@/lib/base/flex";
+import { createGridCss, flexProps } from "@/lib/base/flex";
+import type { Responsive } from "@/lib/base/responsiveProp";
 
 const props = defineProps({
-  direction: {
-    type: String as PropType<"row" | "column">,
+  columns: {
+    type: [Number, Object] as PropType<Responsive<number>>,
     required: true,
   },
   ...flexProps,
@@ -15,7 +16,7 @@ const props = defineProps({
 });
 
 const classes = computed(() =>
-  cx(createFlexCss(props, props.direction), createSystemPropsCss(props))
+  cx(createGridCss(props, props.columns), createSystemPropsCss(props))
 );
 </script>
 
