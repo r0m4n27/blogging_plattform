@@ -17,10 +17,12 @@ wird diese indirekt über einen ORM angesprochen.
 Das Backend wird mit Hilfe des Frameworks `Express` (JS) geschrieben. Als ORM wird vermutlich `Prisma` eingesetzt.
 Um bestimmte Endpoints nur dem Betreiber zugänglich zu machen, werden Bearer Tokens im `Authorization` Header verwendet.
 
-Das Frontend wird mit Hilfe von `Vue` erstellt. Da `vite` als Bundler verwendet wird,
-könnte Server Site Rendering (SSR) verwendet werden, um die Komponenten im Frontend server zu rendern
-und so die Zeit zu reduzieren bis der Nutzer den Seiteninhalt sieht. Dies sollte jedoch erst dann gemacht werden
-wenn die Anwendung mit den klassischen Client Side Rendering funktioniert.
-In diesen Projekt sollte die Composition API von `Vue` verwendet werden. Falls festgestellt wird, dass das interne State Management von `Vue` nicht ausreicht
-wird [Pinia](https://pinia.vuejs.org/) verwendet. Außerdem sollte `Chakra UI`, ein simple Komponenten-Bibliothek, als Basis für die Komponenten dienen.
-Dadurch sollte größtenteils auf eigene css Dateien verzichtet werden können und die Konzeption für zwei nicht Gestalter erleichtert werden :).
+#### Frontend
+
+- Verwendung von `Vue`
+- Falls nötig [Pinia](https://pinia.vuejs.org/) als state management library
+- Es wurde gedacht `Chakra UI` als Komponentenbibliothek zu verwenden
+  - Es doch befindet diese sich für Vue 3 in der alpha und hat nicht alle benötigten Komponenten
+- Das Design in Figma wurde mit den Komponenten von `Chakra` erstellt
+- Diese wurden jedoch selbst nachgebaut und die theming werte von `Chakra` übernommen
+- Zur Hilfe wurde [Emotion](https://emotion.sh/docs/introduction) verwendet
