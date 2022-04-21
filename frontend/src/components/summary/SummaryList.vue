@@ -24,7 +24,7 @@ withDefaults(defineProps<SummaryListProps>(), {
       </VHeading>
     </VBox>
 
-    <VGrid :columns="columns" :gap="{ sm: 4, md: 6 }">
+    <VGrid :columns="columns" :gap="{ sm: 4, md: 6 }" width="full">
       <slot />
     </VGrid>
   </VColumn>
