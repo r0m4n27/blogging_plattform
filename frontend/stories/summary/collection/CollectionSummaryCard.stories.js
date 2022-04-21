@@ -31,5 +31,6 @@ Primary.args = {
   collection: {
     name: "2022",
     articleCount: 10,
+    destination: "",
   },
 };

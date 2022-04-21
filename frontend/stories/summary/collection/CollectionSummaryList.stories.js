@@ -29,6 +29,7 @@ export const Primary = Template.bind({});
 const collection = {
   name: "2022",
   articleCount: 10,
+  destination: "",
 };
 
 Primary.decorators = [vueRouter()];
