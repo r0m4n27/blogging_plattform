@@ -1,7 +1,7 @@
 import BlogArticle from "@/components/article/BlogArticle.vue";
 import ProvideGlobals from "@/components/ProvideGlobals.vue";
 import VRoot from "@/components/base/VRoot.vue";
-import VContainer from "../../src/components/base/layout/VContainer.vue";
+import VContainer from "@/components/base/layout/VContainer.vue";
 import vueRouter from "storybook-vue3-router";
 
 export default {

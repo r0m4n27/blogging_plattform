@@ -1,5 +1,5 @@
-import NavigationBar from "../src/components/navigationBar/NavigationBar.vue";
-import logo from "../src/static/logo_sample.png";
+import NavigationBar from "@/components/navigationBar/NavigationBar.vue";
+import logo from "@/static/logo_sample.png";
 import ProvideGlobals from "@/components/ProvideGlobals.vue";
 import VRoot from "@/components/base/VRoot.vue";
 import vueRouter from "storybook-vue3-router";
