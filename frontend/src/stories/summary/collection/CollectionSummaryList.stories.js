@@ -1,27 +1,16 @@
 import CollectionSummaryList from "@/components/summary/collection/CollectionSummaryList.vue";
-import ProvideGlobals from "@/components/ProvideGlobals.vue";
-import VRoot from "@/components/base/VRoot.vue";
-import VContainer from "@/components/base/layout/VContainer.vue";
-import vueRouter from "storybook-vue3-router";
+import { createContainerDecorator } from "../../decorators/ containerDecorator";
 
 export default {
   component: CollectionSummaryList,
 };
 
 const Template = (args) => ({
-  components: { CollectionSummaryList, ProvideGlobals, VRoot, VContainer },
+  components: { CollectionSummaryList },
   setup() {
     return { args };
   },
-  template: `
-    <ProvideGlobals>
-      <VRoot>
-        <VContainer size="lg">
-          <CollectionSummaryList v-bind="args" />
-        </VContainer>
-      </VRoot>
-    </ProvideGlobals>
-  `,
+  template: `<CollectionSummaryList v-bind="args" />`,
 });
 
 export const Primary = Template.bind({});
@@ -32,7 +21,7 @@ const collection = {
   destination: "",
 };
 
-Primary.decorators = [vueRouter()];
+Primary.decorators = [createContainerDecorator("lg")];
 Primary.args = {
   title: "Archive",
   showTitleOnDesktop: true,

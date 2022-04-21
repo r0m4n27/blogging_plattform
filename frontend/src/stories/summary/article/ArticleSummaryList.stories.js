@@ -1,27 +1,16 @@
 import ArticleSummaryList from "@/components/summary/article/ArticleSummaryList.vue";
-import ProvideGlobals from "@/components/ProvideGlobals.vue";
-import VRoot from "@/components/base/VRoot.vue";
-import VContainer from "@/components/base/layout/VContainer.vue";
-import vueRouter from "storybook-vue3-router";
+import { createContainerDecorator } from "../../decorators/ containerDecorator";
 
 export default {
   component: ArticleSummaryList,
 };
 
 const Template = (args) => ({
-  components: { ArticleSummaryList, ProvideGlobals, VRoot, VContainer },
+  components: { ArticleSummaryList },
   setup() {
     return { args };
   },
-  template: `
-    <ProvideGlobals>
-      <VRoot>
-        <VContainer size="lg">
-          <ArticleSummaryList v-bind="args" />
-        </VContainer>
-      </VRoot>
-    </ProvideGlobals>
-  `,
+  template: `<ArticleSummaryList v-bind="args" />`,
 });
 
 export const Primary = Template.bind({});
@@ -39,7 +28,7 @@ const article = {
   ],
 };
 
-Primary.decorators = [vueRouter()];
+Primary.decorators = [createContainerDecorator("lg")];
 Primary.args = {
   title: "Latest Articles",
   showTitleOnDesktop: true,

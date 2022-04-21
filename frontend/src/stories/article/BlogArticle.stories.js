@@ -1,32 +1,21 @@
 import BlogArticle from "@/components/article/BlogArticle.vue";
-import ProvideGlobals from "@/components/ProvideGlobals.vue";
-import VRoot from "@/components/base/VRoot.vue";
-import VContainer from "@/components/base/layout/VContainer.vue";
-import vueRouter from "storybook-vue3-router";
+import { createContainerDecorator } from "../decorators/ containerDecorator";
 
 export default {
   component: BlogArticle,
 };
 
 const Template = (args) => ({
-  components: { BlogArticle, ProvideGlobals, VRoot, VContainer },
+  components: { BlogArticle },
   setup() {
     return { args };
   },
-  template: `
-    <ProvideGlobals>
-      <VRoot>
-        <VContainer size="md">
-          <BlogArticle v-bind="args" />
-        </VContainer>
-      </VRoot>
-    </ProvideGlobals>
-  `,
+  template: `<BlogArticle v-bind="args" />`,
 });
 
 export const Primary = Template.bind({});
 
-Primary.decorators = [vueRouter()];
+Primary.decorators = [createContainerDecorator("md")];
 Primary.args = {
   article: {
     id: "1",

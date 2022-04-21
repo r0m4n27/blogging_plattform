@@ -1,32 +1,21 @@
 import ArticleSummaryCard from "@/components/summary/article/ArticleSummaryCard.vue";
-import ProvideGlobals from "@/components/ProvideGlobals.vue";
-import VRoot from "@/components/base/VRoot.vue";
-import VContainer from "@/components/base/layout/VContainer.vue";
-import vueRouter from "storybook-vue3-router";
+import { createContainerDecorator } from "../../decorators/ containerDecorator";
 
 export default {
   component: ArticleSummaryCard,
 };
 
 const Template = (args) => ({
-  components: { ArticleSummaryCard, ProvideGlobals, VRoot, VContainer },
+  components: { ArticleSummaryCard },
   setup() {
     return { args };
   },
-  template: `
-    <ProvideGlobals>
-      <VRoot>
-        <VContainer size="sm">
-          <ArticleSummaryCard v-bind="args" />
-        </VContainer>
-      </VRoot>
-    </ProvideGlobals>
-  `,
+  template: `  <ArticleSummaryCard v-bind="args" />`,
 });
 
 export const Primary = Template.bind({});
 
-Primary.decorators = [vueRouter()];
+Primary.decorators = [createContainerDecorator("sm")];
 Primary.args = {
   article: {
     id: "1",

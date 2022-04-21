@@ -1,32 +1,21 @@
 import CollectionSummaryCard from "@/components/summary/collection/CollectionSummaryCard.vue";
-import ProvideGlobals from "@/components/ProvideGlobals.vue";
-import VRoot from "@/components/base/VRoot.vue";
-import VContainer from "@/components/base/layout/VContainer.vue";
-import vueRouter from "storybook-vue3-router";
+import { createContainerDecorator } from "../../decorators/ containerDecorator";
 
 export default {
   component: CollectionSummaryCard,
 };
 
 const Template = (args) => ({
-  components: { CollectionSummaryCard, ProvideGlobals, VRoot, VContainer },
+  components: { CollectionSummaryCard },
   setup() {
     return { args };
   },
-  template: `
-    <ProvideGlobals>
-      <VRoot>
-        <VContainer size="sm">
-          <CollectionSummaryCard v-bind="args" />
-        </VContainer>
-      </VRoot>
-    </ProvideGlobals>
-  `,
+  template: `<CollectionSummaryCard v-bind="args" />`,
 });
 
 export const Primary = Template.bind({});
 
-Primary.decorators = [vueRouter()];
+Primary.decorators = [createContainerDecorator("sm")];
 Primary.args = {
   collection: {
     name: "2022",

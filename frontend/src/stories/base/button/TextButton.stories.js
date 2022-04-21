@@ -1,23 +1,15 @@
 import TextButton from "@/components/base/button/TextButton.vue";
-import ProvideGlobals from "@/components/ProvideGlobals.vue";
-import VRoot from "@/components/base/VRoot.vue";
 
 export default {
   component: TextButton,
 };
 
 const Template = (args) => ({
-  components: { TextButton, ProvideGlobals, VRoot },
+  components: { TextButton },
   setup() {
     return { args };
   },
-  template: `
-    <ProvideGlobals>
-      <VRoot>
-        <TextButton v-bind="args" />
-      </VRoot>
-    </ProvideGlobals>
-  `,
+  template: `<TextButton v-bind="args" />`,
 });
 
 export const Primary = Template.bind({});

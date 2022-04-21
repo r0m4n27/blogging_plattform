@@ -1,6 +1,4 @@
 import IconButton from "@/components/base/button/IconButton.vue";
-import ProvideGlobals from "@/components/ProvideGlobals.vue";
-import VRoot from "@/components/base/VRoot.vue";
 import { Menu, Moon } from "lucide-vue-next";
 import { getColor } from "@/config/theme/colors";
 
@@ -9,17 +7,11 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { IconButton, Menu, Moon, ProvideGlobals, VRoot },
+  components: { IconButton, Menu, Moon },
   setup() {
     return { args };
   },
-  template: `
-  <ProvideGlobals>
-    <VRoot>
-      <IconButton v-bind='args'/>
-    </VRoot>
-  </ProvideGlobals>
-`,
+  template: `<IconButton v-bind='args'/>`,
 });
 
 export const Primary = Template.bind({});
