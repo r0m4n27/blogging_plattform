@@ -1,15 +1,15 @@
-import SummaryCard from "@/components/summary/SummaryCard.vue";
+import ArticleSummaryCard from "@/components/summary/article/ArticleSummaryCard.vue";
 import ProvideGlobals from "@/components/ProvideGlobals.vue";
 import VRoot from "@/components/base/VRoot.vue";
-import VContainer from "../../src/components/base/layout/VContainer.vue";
+import VContainer from "@/components/base/layout/VContainer.vue";
 import vueRouter from "storybook-vue3-router";
 
 export default {
-  component: SummaryCard,
+  component: ArticleSummaryCard,
 };
 
 const Template = (args) => ({
-  components: { SummaryCard, ProvideGlobals, VRoot, VContainer },
+  components: { ArticleSummaryCard, ProvideGlobals, VRoot, VContainer },
   setup() {
     return { args };
   },
@@ -17,7 +17,7 @@ const Template = (args) => ({
     <ProvideGlobals>
       <VRoot>
         <VContainer size="sm">
-          <SummaryCard v-bind="args" />
+          <ArticleSummaryCard v-bind="args" />
         </VContainer>
       </VRoot>
     </ProvideGlobals>

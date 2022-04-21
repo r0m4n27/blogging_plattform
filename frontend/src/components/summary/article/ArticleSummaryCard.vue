@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import VColumn from "../base/layout/VColumn.vue";
-import VRow from "../base/layout/VRow.vue";
-import VHeading from "../base/text/VHeading.vue";
-import VText from "../base/text/VText.vue";
-import CategoryTag from "../util/CategoryTag.vue";
+import VColumn from "@/components/base/layout/VColumn.vue";
+import VRow from "@/components/base/layout/VRow.vue";
+import VHeading from "@/components/base/text/VHeading.vue";
+import VText from "@/components/base/text/VText.vue";
+import CategoryTag from "@/components/util/CategoryTag.vue";
 import type { Article } from "@/api/article";
-import VCard from "../base/layout/VCard.vue";
-import VLink from "../base/VLink.vue";
+import VCard from "@/components/base/layout/VCard.vue";
+import VLink from "@/components/base/VLink.vue";
 import { computed } from "@vue/reactivity";
 import type { Color } from "@/lib/base/color";
 import { getColor } from "@/config/theme/colors";
 
-interface CategoryTagProps {
+interface ArticleCategoryTagProps {
   article: Article;
 }
 
-const props = defineProps<CategoryTagProps>();
+const props = defineProps<ArticleCategoryTagProps>();
 
 const articleDestination = computed(() => `/articles/${props.article.id}`);
 
