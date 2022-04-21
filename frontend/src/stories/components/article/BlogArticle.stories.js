@@ -1,5 +1,5 @@
 import BlogArticle from "@/components/article/BlogArticle.vue";
-import { createContainerDecorator } from "../decorators/ containerDecorator";
+import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
 
 export default {
   component: BlogArticle,

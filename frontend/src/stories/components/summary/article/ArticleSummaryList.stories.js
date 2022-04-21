@@ -1,5 +1,5 @@
 import ArticleSummaryList from "@/components/summary/article/ArticleSummaryList.vue";
-import { createContainerDecorator } from "../../decorators/ containerDecorator";
+import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
 
 export default {
   component: ArticleSummaryList,
