@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import type { Article } from "@/api/article";
 import VGrid from "@/components/base/layout/VGrid.vue";
-import SummaryCard from "./SummaryCard.vue";
-import VColumn from "../base/layout/VColumn.vue";
-import VHeading from "../base/text/VHeading.vue";
-import VBox from "../base/layout/VBox.vue";
+import VColumn from "@/components/base/layout/VColumn.vue";
+import VHeading from "@/components/base/text/VHeading.vue";
+import VBox from "@/components/base/layout/VBox.vue";
+import type { Responsive } from "@/lib/base/responsiveProp";
 
 interface SummaryListProps {
   title: string;
   showTitleOnDesktop?: boolean;
-  articles: Article[];
+  columns: Responsive<number>;
 }
 
 withDefaults(defineProps<SummaryListProps>(), {
@@ -25,12 +24,8 @@ withDefaults(defineProps<SummaryListProps>(), {
       </VHeading>
     </VBox>
 
-    <VGrid :columns="{ sm: 1, md: 2 }" :gap="{ sm: 4, md: 6 }">
-      <SummaryCard
-        v-for="article in articles"
-        :key="article.id"
-        :article="article"
-      />
+    <VGrid :columns="columns" :gap="{ sm: 4, md: 6 }" width="full">
+      <slot />
     </VGrid>
   </VColumn>
 </template>

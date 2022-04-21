@@ -1,15 +1,15 @@
-import SummaryList from "@/components/summary/SummaryList.vue";
+import ArticleSummaryList from "@/components/summary/article/ArticleSummaryList.vue";
 import ProvideGlobals from "@/components/ProvideGlobals.vue";
 import VRoot from "@/components/base/VRoot.vue";
-import VContainer from "../../src/components/base/layout/VContainer.vue";
+import VContainer from "@/components/base/layout/VContainer.vue";
 import vueRouter from "storybook-vue3-router";
 
 export default {
-  component: SummaryList,
+  component: ArticleSummaryList,
 };
 
 const Template = (args) => ({
-  components: { SummaryList, ProvideGlobals, VRoot, VContainer },
+  components: { ArticleSummaryList, ProvideGlobals, VRoot, VContainer },
   setup() {
     return { args };
   },
@@ -17,7 +17,7 @@ const Template = (args) => ({
     <ProvideGlobals>
       <VRoot>
         <VContainer size="lg">
-          <SummaryList v-bind="args" />
+          <ArticleSummaryList v-bind="args" />
         </VContainer>
       </VRoot>
     </ProvideGlobals>
