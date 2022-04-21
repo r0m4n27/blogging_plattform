@@ -1,4 +1,5 @@
 import CategoryTag from "@/components/util/CategoryTag.vue";
+import { jsCategory } from "@/stories/data/category";
 
 export default {
   component: CategoryTag,
@@ -13,10 +14,6 @@ const Template = (args) => ({
 });
 
 export const Primary = Template.bind({});
-
 Primary.args = {
-  category: {
-    name: "Programming",
-    id: "1",
-  },
+  category: jsCategory,
 };

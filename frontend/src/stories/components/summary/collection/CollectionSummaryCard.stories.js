@@ -1,5 +1,6 @@
 import CollectionSummaryCard from "@/components/summary/collection/CollectionSummaryCard.vue";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
+import { mockCollection } from "../../../data/collection";
 
 export default {
   component: CollectionSummaryCard,
@@ -17,9 +18,5 @@ export const Primary = Template.bind({});
 
 Primary.decorators = [createContainerDecorator("sm")];
 Primary.args = {
-  collection: {
-    name: "2022",
-    articleCount: 10,
-    destination: "",
-  },
+  collection: mockCollection,
 };
