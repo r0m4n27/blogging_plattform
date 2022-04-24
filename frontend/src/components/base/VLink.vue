@@ -4,7 +4,7 @@ import type { PropType } from "vue";
 import { type RouteLocationRaw, RouterLink } from "vue-router";
 import type { Color } from "@/styling/color";
 import type { Responsive } from "@/styling/responsive";
-import { globalThemeConfig } from "@/config/theme/global";
+import { globalContentConfig } from "@/config/content/global";
 
 const props = defineProps({
   ...systemProps,
@@ -19,7 +19,7 @@ const props = defineProps({
   // the color will be somehow not updated
   color: {
     type: [Object, String] as PropType<Responsive<Color>>,
-    default: globalThemeConfig.color,
+    default: globalContentConfig.color,
   },
 });
 </script>

@@ -1,9 +1,9 @@
 import type { SystemProps } from "@/styling/props/systemProps";
 import type { TextProps } from "@/styling/props/textProps";
-import { getColor } from "./colors";
+import { getColor } from "@/config/theme/colors";
 
 // Default values taken from: https://github.com/chakra-ui/chakra-ui/blob/next/packages/theme/src/styles.ts
-export const globalThemeConfig: SystemProps & TextProps = {
+export const globalContentConfig: SystemProps & TextProps = {
   family: "body",
   lineHeight: "base",
   wordWrap: "break-word",
