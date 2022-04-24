@@ -3,7 +3,7 @@ import { systemProps } from "@/styling/props/systemProps";
 import {
   writeResponsivePropToStyle,
   type Responsive,
-} from "@/styling/responsiveProp";
+} from "@/styling/responsive";
 import type { PropType } from "vue";
 import VBox from "./VBox.vue";
 import { containerConfig } from "@/config/theme/container";

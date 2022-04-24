@@ -1,6 +1,6 @@
 import { css, type CSSObject } from "@emotion/css";
 import type { ExtractPropTypes, PropType } from "vue";
-import { writeResponsivePropToStyle, type Responsive } from "./responsiveProp";
+import { writeResponsivePropToStyle, type Responsive } from "./responsive";
 import { spacingWriter, type Spacing } from "./spacing";
 import { createMapperWriter } from "./writer";
 

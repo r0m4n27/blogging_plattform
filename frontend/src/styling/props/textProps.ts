@@ -7,7 +7,7 @@ import {
 } from "@/config/theme/text";
 import { css, type CSSObject } from "@emotion/css";
 import { createRecordWriter, createValueWriter } from "../writer";
-import { writeResponsivePropToStyle, type Responsive } from "../responsiveProp";
+import { writeResponsivePropToStyle, type Responsive } from "../responsive";
 import type { PropType } from "vue";
 import type { TypeFromProps } from "@/lib/typeFromProps";
 

@@ -6,7 +6,7 @@ import {
   createSystemPropsCss,
   type BorderRadius,
 } from "@/styling/props/systemProps";
-import type { Responsive } from "@/styling/responsiveProp";
+import type { Responsive } from "@/styling/responsive";
 import type { PropType } from "vue";
 
 const props = defineProps({

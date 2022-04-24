@@ -3,7 +3,7 @@ import { systemProps, createSystemPropsCss } from "@/styling/props/systemProps";
 import type { PropType } from "vue";
 import { type RouteLocationRaw, RouterLink } from "vue-router";
 import type { Color } from "@/styling/color";
-import type { Responsive } from "@/styling/responsiveProp";
+import type { Responsive } from "@/styling/responsive";
 import { globalThemeConfig } from "@/config/theme/global";
 
 const props = defineProps({

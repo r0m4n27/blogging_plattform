@@ -8,7 +8,7 @@ import { css, type CSSObject } from "@emotion/css";
 import {
   writeResponsivePropToStyle,
   type Responsive,
-} from "@/styling/responsiveProp";
+} from "@/styling/responsive";
 import { systemProps } from "@/styling/props/systemProps";
 import type { Spacing } from "@/styling/spacing";
 

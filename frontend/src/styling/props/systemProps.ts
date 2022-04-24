@@ -2,7 +2,7 @@ import { borderConfig } from "@/config/theme/border";
 import { sizeConfig } from "@/config/theme/size";
 import { css, type CSSObject } from "@emotion/css";
 import { colorWriter, type Color } from "../color";
-import { writeResponsivePropToStyle, type Responsive } from "../responsiveProp";
+import { writeResponsivePropToStyle, type Responsive } from "../responsive";
 import { createRecordWriter, createValueWriter } from "../writer";
 import { spacingWriter, type Spacing } from "../spacing";
 import type { PropType } from "vue";
