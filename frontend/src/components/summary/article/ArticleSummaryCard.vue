@@ -6,10 +6,9 @@ import type { Article } from "@/api/article";
 import VCard from "@/components/base/layout/VCard.vue";
 import VLink from "@/components/base/VLink.vue";
 import { computed } from "@vue/reactivity";
-import type { Color } from "@/styling/color";
-import { getColor } from "@/config/theme/colors";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import CategoryList from "../../util/CategoryList.vue";
+import { contentColorConfig } from "@/config/content/color";
 
 interface ArticleCategoryTagProps {
   article: Article;
@@ -18,23 +17,18 @@ interface ArticleCategoryTagProps {
 const props = defineProps<ArticleCategoryTagProps>();
 
 const articleDestination = computed(() => `/articles/${props.article.id}`);
-
-const textColor: Color = {
-  default: { light: getColor("gray", 800), dark: getColor("whiteAlpha", 900) },
-  hover: { light: getColor("gray", 600), dark: getColor("whiteAlpha", 700) },
-};
 </script>
 
 <template>
   <VCard :padding="contentSpacingConfig.md">
     <VColumn :gap="contentSpacingConfig.sm" align="start">
-      <VLink :to="articleDestination" :color="textColor">
+      <VLink :to="articleDestination" :color="contentColorConfig.fgWithHover">
         <VHeading as="h3" size="md">
           {{ article.title }}
         </VHeading>
       </VLink>
 
-      <VLink :to="articleDestination" :color="textColor">
+      <VLink :to="articleDestination" :color="contentColorConfig.fgWithHover">
         <VText as="span" size="sm">
           {{ article.summary }}
         </VText>

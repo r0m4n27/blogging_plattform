@@ -4,8 +4,8 @@ import type { PropType } from "vue";
 import VBox from "./VBox.vue";
 import type { Responsive } from "@/styling/responsive";
 import type { Color } from "@/styling/color";
-import { getColor } from "@/config/theme/colors";
 import type { BorderRadius, Shadow } from "@/styling/system";
+import { contentColorConfig } from "@/config/content/color";
 
 const props = defineProps({
   ...systemProps,
@@ -19,10 +19,7 @@ const props = defineProps({
   },
   borderColor: {
     type: [Object, String] as PropType<Responsive<Color>>,
-    default: () => ({
-      light: getColor("gray", 200),
-      dark: getColor("whiteAlpha", 300),
-    }),
+    default: () => contentColorConfig.border,
   },
   shadow: {
     type: [Object, String] as PropType<Responsive<Shadow>>,

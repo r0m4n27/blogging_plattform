@@ -1,34 +1,22 @@
 <script setup lang="ts">
-import { getColor } from "@/config/theme/colors";
 import type { Color } from "@/styling/color";
 import { systemProps, createSystemPropsCss } from "@/styling/props/systemProps";
 import type { BorderRadius } from "@/styling/system";
 import type { Responsive } from "@/styling/responsive";
 import type { PropType } from "vue";
+import { contentColorConfig } from "@/config/content/color";
 
 const props = defineProps({
   ...systemProps,
 
   backgroundColor: {
     type: [Object, String] as PropType<Responsive<Color>>,
-    default: () => ({
-      default: {
-        light: getColor("white"),
-        dark: getColor("gray", 800),
-      },
-      hover: {
-        light: getColor("gray", 100),
-        dark: getColor("gray", 700),
-      },
-    }),
+    default: () => contentColorConfig.bgWithHover,
   },
 
   color: {
     type: [Object, String] as PropType<Responsive<Color>>,
-    default: () => ({
-      light: getColor("gray", 700),
-      dark: getColor("blue", 300),
-    }),
+    default: () => contentColorConfig.buttonFg,
   },
 
   showBorder: {
@@ -41,10 +29,7 @@ const props = defineProps({
   },
   borderColor: {
     type: [Object, String] as PropType<Responsive<Color>>,
-    default: () => ({
-      light: getColor("gray", 200),
-      dark: getColor("blue", 300),
-    }),
+    default: () => contentColorConfig.buttonBorder,
   },
 } as const);
 </script>

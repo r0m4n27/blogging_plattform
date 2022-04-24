@@ -1,14 +1,8 @@
 <script setup lang="ts">
 import VBox from "../base/layout/VBox.vue";
-import { getColor } from "@/config/theme/colors";
+import { contentColorConfig } from "@/config/content/color";
 </script>
 
 <template>
-  <VBox
-    height="px"
-    :background-color="{
-      light: getColor('gray', 200),
-      dark: getColor('gray', 700),
-    }"
-  />
+  <VBox height="px" :background-color="contentColorConfig.border" />
 </template>
