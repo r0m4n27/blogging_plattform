@@ -7,6 +7,7 @@ import IconButton from "../base/button/IconButton.vue";
 import VRow from "../base/layout/VRow.vue";
 import type { NavigationDestination } from "./navDestination";
 import VLink from "../base/VLink.vue";
+import { contentSpacingConfig } from "@/config/content/spacing";
 
 interface RightNavBarPartProps {
   onMenuClick: () => void;
@@ -25,7 +26,7 @@ const textButtonHiddenProp = {
 </script>
 
 <template>
-  <VRow :gap="{ sm: 2, md: 4 }">
+  <VRow :gap="{ sm: contentSpacingConfig.xs, md: contentSpacingConfig.md }">
     <VLink
       v-for="destination in destinations"
       :key="destination.label"

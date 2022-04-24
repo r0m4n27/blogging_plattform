@@ -4,6 +4,7 @@ import VHeading from "../base/text/VHeading.vue";
 import VImage from "../base/VImage.vue";
 import { routeDestinations } from "@/lib/router";
 import VLink from "../base/VLink.vue";
+import { contentSpacingConfig } from "@/config/content/spacing";
 
 defineProps<{
   title: string;
@@ -12,7 +13,7 @@ defineProps<{
 </script>
 
 <template>
-  <VRow :gap="4">
+  <VRow :gap="contentSpacingConfig.md">
     <VLink :to="routeDestinations.home">
       <VImage
         :src="logoUrl"

@@ -10,6 +10,7 @@ import VLink from "@/components/base/VLink.vue";
 import { computed } from "@vue/reactivity";
 import type { Color } from "@/styling/color";
 import { getColor } from "@/config/theme/colors";
+import { contentSpacingConfig } from "@/config/content/spacing";
 
 interface ArticleCategoryTagProps {
   article: Article;
@@ -26,8 +27,8 @@ const textColor: Color = {
 </script>
 
 <template>
-  <VCard :padding="6">
-    <VColumn :gap="4" align="start">
+  <VCard :padding="contentSpacingConfig.md">
+    <VColumn :gap="contentSpacingConfig.sm" align="start">
       <VLink :to="articleDestination" :color="textColor">
         <VHeading as="h3" size="md">
           {{ article.title }}
@@ -40,7 +41,7 @@ const textColor: Color = {
         </VText>
       </VLink>
 
-      <VRow :gap="3" justify="end" width="full">
+      <VRow :gap="contentSpacingConfig.xs" justify="end" width="full">
         <CategoryTag
           v-for="category in article.categories"
           :key="category.name"

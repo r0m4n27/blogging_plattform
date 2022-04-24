@@ -6,6 +6,7 @@ import VBox from "../base/layout/VBox.vue";
 import VHeading from "../base/text/VHeading.vue";
 import type { NavigationDestination } from "./navDestination";
 import VLink from "../base/VLink.vue";
+import { contentSpacingConfig } from "@/config/content/spacing";
 
 interface MobileNavMenuProps {
   destinations: NavigationDestination[];
@@ -17,8 +18,8 @@ defineProps<MobileNavMenuProps>();
 <template>
   <VBox :hidden="{ sm: false, md: true }">
     <VColumn
-      :padding="{ x: 0, y: 4 }"
-      :gap="4"
+      :padding="contentSpacingConfig.md"
+      :gap="contentSpacingConfig.md"
       :background-color="{
         light: getColor('gray', 50),
         dark: getColor('gray', 800),

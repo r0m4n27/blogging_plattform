@@ -7,6 +7,7 @@ import { getColor } from "@/config/theme/colors";
 import type { Collection } from "./collection";
 import type { Color } from "@/styling/color";
 import VLink from "../../base/VLink.vue";
+import { contentSpacingConfig } from "@/config/content/spacing";
 
 interface CollectionSummaryCardProps {
   collection: Collection;
@@ -21,7 +22,7 @@ const textColor: Color = {
 </script>
 
 <template>
-  <VCard :padding="4">
+  <VCard :padding="contentSpacingConfig.sm">
     <VColumn>
       <VLink
         :to="collection.destination"
