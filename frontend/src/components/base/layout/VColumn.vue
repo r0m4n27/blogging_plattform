@@ -1,18 +1,10 @@
 <script setup lang="ts">
-import type { FlexAlignment } from "@/lib/base/flex";
-import { systemProps } from "@/lib/base/props/systemProps";
-import type { Responsive } from "@/lib/base/responsiveProp";
-import type { Spacing } from "@/lib/base/spacing";
-import type { PropType } from "vue";
+import { systemProps } from "@/styling/props/systemProps";
+import { flexProps } from "@/styling/flex";
 import VStack from "./VStack.vue";
 
 const props = defineProps({
-  gap: {
-    type: [Object, String, Number] as PropType<Responsive<Spacing>>,
-  },
-  align: {
-    type: [Object, String] as PropType<Responsive<FlexAlignment>>,
-  },
+  ...flexProps,
   ...systemProps,
 });
 </script>

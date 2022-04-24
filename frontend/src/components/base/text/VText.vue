@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { createTextPropsCss, textProps } from "@/lib/base/props/textProps";
+import { createTextPropsCss, textProps } from "@/styling/props/textProps";
 import type { PropType } from "vue";
 
 type ConversionType = "span" | "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";

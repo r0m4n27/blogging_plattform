@@ -3,14 +3,14 @@ import type { SVGProps } from "lucide-vue-next";
 import { computed, type FunctionalComponent, type PropType } from "vue";
 import VButton from "./VButton.vue";
 import VBox from "../layout/VBox.vue";
-import { colorWriter, type Color } from "@/lib/base/color";
+import { colorWriter, type Color } from "@/styling/color";
 import { css, type CSSObject } from "@emotion/css";
 import {
   writeResponsivePropToStyle,
   type Responsive,
-} from "@/lib/base/responsiveProp";
-import { systemProps } from "@/lib/base/props/systemProps";
-import type { Spacing } from "@/lib/base/spacing";
+} from "@/styling/responsiveProp";
+import { systemProps } from "@/styling/props/systemProps";
+import type { Spacing } from "@/styling/spacing";
 
 // Type extracted from the lucide icon package
 export type Icon = (props: SVGProps) => FunctionalComponent<SVGProps>;

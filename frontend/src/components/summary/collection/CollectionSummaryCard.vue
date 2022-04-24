@@ -5,7 +5,7 @@ import VHeading from "@/components/base/text/VHeading.vue";
 import VText from "@/components/base/text/VText.vue";
 import { getColor } from "@/config/theme/colors";
 import type { Collection } from "./collection";
-import type { Color } from "@/lib/base/color";
+import type { Color } from "@/styling/color";
 import VLink from "../../base/VLink.vue";
 
 interface CollectionSummaryCardProps {

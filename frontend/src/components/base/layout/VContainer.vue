@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { systemProps } from "@/lib/base/props/systemProps";
+import { systemProps } from "@/styling/props/systemProps";
 import {
   writeResponsivePropToStyle,
   type Responsive,
-} from "@/lib/base/responsiveProp";
+} from "@/styling/responsiveProp";
 import type { PropType } from "vue";
 import VBox from "./VBox.vue";
 import { containerConfig } from "@/config/theme/container";
-import { createRecordWriter } from "@/lib/base/writer";
+import { createRecordWriter } from "@/styling/writer";
 import { css, type CSSObject } from "@emotion/css";
 import { computed } from "@vue/reactivity";
 
