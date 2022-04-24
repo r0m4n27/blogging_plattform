@@ -2,13 +2,9 @@
 import VColumn from "@/components/base/layout/VColumn.vue";
 import type { Article } from "@/api/article";
 import VHeading from "../base/text/VHeading.vue";
-import VRow from "../base/layout/VRow.vue";
-import CategoryTag from "../util/CategoryTag.vue";
 import ArticleContent from "./ArticleContent.vue";
-import {
-  defaultContentSpacing,
-  contentSpacingConfig,
-} from "@/config/content/spacing";
+import { defaultContentSpacing } from "@/config/content/spacing";
+import CategoryList from "../util/CategoryList.vue";
 
 interface BlogArticleProps {
   article: Article;
@@ -27,13 +23,7 @@ defineProps<BlogArticleProps>();
       {{ article.title }}
     </VHeading>
 
-    <VRow :gap="contentSpacingConfig.xs">
-      <CategoryTag
-        v-for="category in article.categories"
-        :key="category.name"
-        :category="category"
-      />
-    </VRow>
+    <CategoryList :categories="article.categories" />
 
     <ArticleContent :content="article.content" />
   </VColumn>

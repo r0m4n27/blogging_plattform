@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import VColumn from "@/components/base/layout/VColumn.vue";
-import VRow from "@/components/base/layout/VRow.vue";
 import VHeading from "@/components/base/text/VHeading.vue";
 import VText from "@/components/base/text/VText.vue";
-import CategoryTag from "@/components/util/CategoryTag.vue";
 import type { Article } from "@/api/article";
 import VCard from "@/components/base/layout/VCard.vue";
 import VLink from "@/components/base/VLink.vue";
@@ -11,6 +9,7 @@ import { computed } from "@vue/reactivity";
 import type { Color } from "@/styling/color";
 import { getColor } from "@/config/theme/colors";
 import { contentSpacingConfig } from "@/config/content/spacing";
+import CategoryList from "../../util/CategoryList.vue";
 
 interface ArticleCategoryTagProps {
   article: Article;
@@ -41,13 +40,11 @@ const textColor: Color = {
         </VText>
       </VLink>
 
-      <VRow :gap="contentSpacingConfig.xs" justify="end" width="full">
-        <CategoryTag
-          v-for="category in article.categories"
-          :key="category.name"
-          :category="category"
-        />
-      </VRow>
+      <CategoryList
+        :categories="article.categories"
+        justify="end"
+        width="full"
+      />
     </VColumn>
   </VCard>
 </template>

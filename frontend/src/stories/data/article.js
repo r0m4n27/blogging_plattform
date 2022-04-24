@@ -1,4 +1,4 @@
-import { jsCategory, programmingCateogry } from "./category";
+import { jsCategory, programmingCategory } from "./category";
 
 export const mockArticle = {
   id: "1",
@@ -21,7 +21,7 @@ export const mockArticle = {
     consetetur sadipscing elitr, sed diam nonumy eirmod tempor
     invidunt ut labore et dolore magna aliquyam erat,
     sed diam voluptua.`,
-  categories: [jsCategory, programmingCateogry],
+  categories: [jsCategory, programmingCategory],
 };
 
 export const mockArticles = Array(5).fill(mockArticle);
