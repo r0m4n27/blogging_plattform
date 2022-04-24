@@ -5,7 +5,7 @@ import { computed } from "vue";
 import TextButton from "../base/button/TextButton.vue";
 import IconButton from "../base/button/IconButton.vue";
 import VRow from "../base/layout/VRow.vue";
-import type { NavigationDestination } from "@/lib/navigation/navDestination";
+import type { NavigationDestination } from "./navDestination";
 import VLink from "../base/VLink.vue";
 
 interface RightNavBarPartProps {
