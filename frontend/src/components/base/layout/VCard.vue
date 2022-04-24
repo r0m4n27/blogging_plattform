@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import {
-  systemProps,
-  type BorderRadius,
-  type Shadow,
-} from "@/styling/props/systemProps";
+import { systemProps } from "@/styling/props/systemProps";
 import type { PropType } from "vue";
 import VBox from "./VBox.vue";
 import type { Responsive } from "@/styling/responsive";
 import type { Color } from "@/styling/color";
 import { getColor } from "@/config/theme/colors";
+import type { BorderRadius, Shadow } from "@/styling/system";
 
 const props = defineProps({
   ...systemProps,
