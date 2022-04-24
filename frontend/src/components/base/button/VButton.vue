@@ -1,11 +1,8 @@
 <script setup lang="ts">
 import { getColor } from "@/config/theme/colors";
 import type { Color } from "@/styling/color";
-import {
-  systemProps,
-  createSystemPropsCss,
-  type BorderRadius,
-} from "@/styling/props/systemProps";
+import { systemProps, createSystemPropsCss } from "@/styling/props/systemProps";
+import type { BorderRadius } from "@/styling/system";
 import type { Responsive } from "@/styling/responsive";
 import type { PropType } from "vue";
 

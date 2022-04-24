@@ -1,40 +1,20 @@
-import { borderConfig } from "@/config/theme/border";
-import { sizeConfig } from "@/config/theme/size";
 import { css, type CSSObject } from "@emotion/css";
 import { colorWriter, type Color } from "../color";
 import { writeResponsivePropToStyle, type Responsive } from "../responsive";
-import { createRecordWriter, createValueWriter } from "../writer";
 import { spacingWriter, type Spacing } from "../spacing";
 import type { PropType } from "vue";
 import type { TypeFromProps } from "@/lib/typeFromProps";
-import { shadowConfig } from "@/config/theme/shadow";
-
-export type BorderRadius = keyof typeof borderConfig;
-const borderRadiusWriter = createRecordWriter(borderConfig);
-
-export type Size = keyof typeof sizeConfig;
-const sizeWriter = createRecordWriter(sizeConfig);
-
-export type Display = "block" | "inline" | "inline-block" | "inherit";
-const displayWriter = createValueWriter<Display>();
-
-export type Shadow = keyof typeof shadowConfig;
-export const shadowWriter = createRecordWriter(shadowConfig);
-
-export type Hidden = boolean | "none";
-const hiddenWriter = (
-  style: CSSObject,
-  propertyName: keyof CSSObject,
-  value: Hidden
-) => {
-  if (value !== "none") {
-    if (value) {
-      style[propertyName] = "none";
-    } else {
-      style[propertyName] = "block";
-    }
-  }
-};
+import {
+  type BorderRadius,
+  type Shadow,
+  type Size,
+  type Display,
+  sizeWriter,
+  shadowWriter,
+  borderRadiusWriter,
+  displayWriter,
+  hiddenWriter,
+} from "../system";
 
 // NOTE: You can't use an imported interface for defineProps
 // https://github.com/vuejs/core/issues/4294
