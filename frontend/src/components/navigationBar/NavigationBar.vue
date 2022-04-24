@@ -7,7 +7,7 @@ import MobileNavMenu from "./MobileNavMenu.vue";
 import NavBarDivider from "./NavBarDivider.vue";
 import VRow from "../base/layout/VRow.vue";
 import VContainer from "../base/layout/VContainer.vue";
-import type { NavigationDestination } from "@/lib/navigation/navDestination";
+import type { NavigationDestination } from "./navDestination";
 import { routeDestinations } from "@/lib/router";
 
 interface NavBarProps {

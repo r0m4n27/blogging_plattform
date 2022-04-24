@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { cx } from "@emotion/css";
 import { globalThemeConfig } from "@/config/theme/global";
-import { createSystemPropsCss } from "@/lib/base/props/systemProps";
-import { createTextPropsCss } from "@/lib/base/props/textProps";
+import { createSystemPropsCss } from "@/styling/props/systemProps";
+import { createTextPropsCss } from "@/styling/props/textProps";
 import { computed } from "vue";
 
 // This is a bnit of a ugly solution for applying a global style

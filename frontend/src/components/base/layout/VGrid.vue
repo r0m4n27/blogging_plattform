@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { systemProps } from "@/lib/base/props/systemProps";
+import { systemProps, createSystemPropsCss } from "@/styling/props/systemProps";
 import { computed, type PropType } from "vue";
 import { cx } from "@emotion/css";
-import { createSystemPropsCss } from "@/lib/base/props/systemProps";
-import { createGridCss, flexProps } from "@/lib/base/flex";
-import type { Responsive } from "@/lib/base/responsiveProp";
+import type { Responsive } from "@/styling/responsive";
+import { flexProps, createGridCss } from "@/styling/props/flexProps";
 
 const props = defineProps({
   columns: {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TextProps } from "@/lib/base/props/textProps";
+import type { TextProps } from "@/styling/props/textProps";
 import VText from "./VText.vue";
 
 type HeadingSizes =

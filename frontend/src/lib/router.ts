@@ -13,7 +13,7 @@ export const routeDestinations = {
   category: "/categories/:id",
 };
 
-const routes: RouteRecordRaw[] = [
+export const routes: RouteRecordRaw[] = [
   {
     path: routeDestinations.home,
     component: HomePage,

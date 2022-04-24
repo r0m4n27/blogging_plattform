@@ -8,7 +8,7 @@ import type { Article } from "@/api/article";
 import VCard from "@/components/base/layout/VCard.vue";
 import VLink from "@/components/base/VLink.vue";
 import { computed } from "@vue/reactivity";
-import type { Color } from "@/lib/base/color";
+import type { Color } from "@/styling/color";
 import { getColor } from "@/config/theme/colors";
 
 interface ArticleCategoryTagProps {

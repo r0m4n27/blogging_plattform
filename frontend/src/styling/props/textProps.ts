@@ -1,36 +1,23 @@
-import {
-  fonts,
-  fontSizes,
-  fontWeights,
-  letterSpacings,
-  lineHeights,
-} from "@/config/theme/text";
 import { css, type CSSObject } from "@emotion/css";
-import { createRecordWriter, createValueWriter } from "../writer";
-import { writeResponsivePropToStyle, type Responsive } from "../responsiveProp";
+import { writeResponsivePropToStyle, type Responsive } from "../responsive";
 import type { PropType } from "vue";
 import type { TypeFromProps } from "@/lib/typeFromProps";
-
-type FontFamily = keyof typeof fonts;
-const fontFamilyWriter = createRecordWriter(fonts);
-
-type FontSize = keyof typeof fontSizes;
-const fontSizeWriter = createRecordWriter(fontSizes);
-
-type FontWeight = keyof typeof fontWeights;
-const fontWeightWriter = createRecordWriter(fontWeights);
-
-type LineHeight = keyof typeof lineHeights;
-const lineHeightWriter = createRecordWriter(lineHeights);
-
-type LetterSpacing = keyof typeof letterSpacings;
-const letterSpacingWriter = createRecordWriter(letterSpacings);
-
-type Alignment = "left" | "right" | "center" | "justify";
-const aligmentWriter = createValueWriter<Alignment>();
-
-type WordWrap = "normal" | "break-word";
-const wordWrapWriter = createValueWriter<WordWrap>();
+import {
+  type FontFamily,
+  type FontSize,
+  type FontWeight,
+  type LineHeight,
+  type LetterSpacing,
+  type Alignment,
+  type WordWrap,
+  fontFamilyWriter,
+  fontSizeWriter,
+  fontWeightWriter,
+  letterSpacingWriter,
+  lineHeightWriter,
+  wordWrapWriter,
+  aligmentWriter,
+} from "../text";
 
 export const textProps = {
   family: {
