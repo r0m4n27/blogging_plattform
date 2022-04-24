@@ -2,7 +2,7 @@
 import { systemProps, createSystemPropsCss } from "@/styling/props/systemProps";
 import { computed, type PropType } from "vue";
 import { cx } from "@emotion/css";
-import { createFlexCss, flexProps } from "@/styling/flex";
+import { flexProps, createFlexCss } from "@/styling/props/flexProps";
 
 const props = defineProps({
   direction: {
