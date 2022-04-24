@@ -4,6 +4,7 @@ import VColumn from "@/components/base/layout/VColumn.vue";
 import VHeading from "@/components/base/text/VHeading.vue";
 import VBox from "@/components/base/layout/VBox.vue";
 import type { Responsive } from "@/styling/responsive";
+import { defaultContentSpacing } from "@/config/content/spacing";
 
 interface SummaryListProps {
   title: string;
@@ -17,14 +18,14 @@ withDefaults(defineProps<SummaryListProps>(), {
 </script>
 
 <template>
-  <VColumn :padding="{ sm: 4, md: 6 }" :gap="{ sm: 4, md: 6 }">
+  <VColumn :padding="defaultContentSpacing" :gap="defaultContentSpacing">
     <VBox :hidden="{ sm: false, md: !showTitleOnDesktop }">
       <VHeading as="h2" size="2xl">
         {{ title }}
       </VHeading>
     </VBox>
 
-    <VGrid :columns="columns" :gap="{ sm: 4, md: 6 }" width="full">
+    <VGrid :columns="columns" :gap="defaultContentSpacing" width="full">
       <slot />
     </VGrid>
   </VColumn>

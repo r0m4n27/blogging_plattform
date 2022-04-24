@@ -9,6 +9,7 @@ import VRow from "../base/layout/VRow.vue";
 import VContainer from "../base/layout/VContainer.vue";
 import type { NavigationDestination } from "./navDestination";
 import { routeDestinations } from "@/lib/router";
+import { contentSpacingConfig } from "@/config/content/spacing";
 
 interface NavBarProps {
   title: string;
@@ -37,7 +38,7 @@ const destinations: NavigationDestination[] = [
 
 <template>
   <nav>
-    <VContainer :padding="3" size="lg">
+    <VContainer :padding="contentSpacingConfig.xs" size="lg">
       <VRow justify="space-between">
         <LeftNavBarPart :title="title" :logo-url="logoUrl" />
         <RightNavBarPart
