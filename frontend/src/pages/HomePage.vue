@@ -1,8 +1,15 @@
 <script setup lang="ts">
-import NavigationBar from "@/components/navigationBar/NavigationBar.vue";
-import logo from "@/static/logo_sample.png";
+import { mockSiteConfig } from "@/api/siteConfig";
+import ArticleSummaryList from "../components/summary/article/ArticleSummaryList.vue";
+import { mockArticles } from "@/api/article";
+import UserPageLayout from "../components/layout/UserPageLayout.vue";
 </script>
 
 <template>
-  <NavigationBar title="My Awesome Blog Title" :logo-url="logo" />
+  <UserPageLayout>
+    <ArticleSummaryList
+      :title="mockSiteConfig.blogTitle"
+      :articles="mockArticles"
+    />
+  </UserPageLayout>
 </template>
