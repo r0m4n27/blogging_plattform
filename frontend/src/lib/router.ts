@@ -3,6 +3,7 @@ import type { Category } from "@/api/category";
 import ArticlePage from "@/pages/ArticlePage.vue";
 import CategoriesPage from "@/pages/CategoriesPage.vue";
 import HomePage from "@/pages/HomePage.vue";
+import CategoryPage from "@/pages/CategoryPage.vue";
 import {
   createRouter,
   createWebHistory,
@@ -42,7 +43,7 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     path: routeDestinations.category,
-    component: HomePage,
+    component: CategoryPage,
   },
 ];
 

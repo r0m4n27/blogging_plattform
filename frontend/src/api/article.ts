@@ -32,4 +32,29 @@ export const mockArticle = {
   categories: [jsCategory, programmingCategory],
 };
 
+export const secondMockArticle = {
+  id: "2",
+  title: "Some interesting title",
+  summary: `Lorem ipsum dolor sit amet,
+    consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+    invidunt ut labore et dolore magna aliquyam erat,
+    sed diam voluptua.`,
+  content: `Lorem ipsum dolor sit amet,
+    consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+    invidunt ut labore et dolore magna aliquyam erat,
+    sed diam voluptua.
+
+    Lorem ipsum dolor sit amet,
+    consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+    invidunt ut labore et dolore magna aliquyam erat,
+    sed diam voluptua.
+
+    Lorem ipsum dolor sit amet,
+    consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+    invidunt ut labore et dolore magna aliquyam erat,
+    sed diam voluptua.`,
+  categories: [jsCategory],
+};
+
 export const mockArticles: Article[] = Array(5).fill(mockArticle);
+mockArticles.push(secondMockArticle);
