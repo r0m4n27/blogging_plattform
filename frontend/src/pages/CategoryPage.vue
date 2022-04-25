@@ -5,17 +5,25 @@ import ArticleSummaryList from "@/components/summary/article/ArticleSummaryList.
 import { mockArticles } from "@/api/article";
 import { useRoute } from "vue-router";
 import type { Category } from "@/api/category";
+import { computed } from "vue";
 
 const route = useRoute();
-const categoryId = route.params.id as string;
-const category = mockCategories.find(
-  (category) => category.id == categoryId
-) as Category;
 
-const articles = mockArticles.filter((article) => {
-  const categoryIds = article.categories.map((c) => c.id);
-  return categoryIds.includes(categoryId);
-});
+const categoryId = computed(() => route.params.id as string);
+
+const category = computed(
+  () =>
+    mockCategories.find(
+      (category) => category.id == categoryId.value
+    ) as Category
+);
+
+const articles = computed(() =>
+  mockArticles.filter((article) => {
+    const categoryIds = article.categories.map((c) => c.id);
+    return categoryIds.includes(categoryId.value);
+  })
+);
 </script>
 
 <template>
