@@ -32,4 +32,4 @@ export const mockArticle = {
   categories: [],
 };
 
-export const mockArticles = Array(5).fill(mockArticle);
+export const mockArticles: Article[] = Array(5).fill(mockArticle);

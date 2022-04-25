@@ -1,3 +1,4 @@
+import ArticlePage from "@/pages/ArticlePage.vue";
 import HomePage from "@/pages/HomePage.vue";
 import {
   createRouter,
@@ -28,7 +29,7 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     path: routeDestinations.article,
-    component: HomePage,
+    component: ArticlePage,
   },
   {
     path: routeDestinations.category,
