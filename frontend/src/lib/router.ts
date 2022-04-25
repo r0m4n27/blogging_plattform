@@ -1,4 +1,6 @@
+import type { Category } from "@/api/category";
 import ArticlePage from "@/pages/ArticlePage.vue";
+import CategoriesPage from "@/pages/CategoriesPage.vue";
 import HomePage from "@/pages/HomePage.vue";
 import {
   createRouter,
@@ -14,6 +16,9 @@ export const routeDestinations = {
   category: "/categories/:id",
 };
 
+export const createCategoryDestination = (category: Category): string =>
+  `/categories/${category.id}`;
+
 export const routes: RouteRecordRaw[] = [
   {
     path: routeDestinations.home,
@@ -21,7 +26,7 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     path: routeDestinations.categories,
-    component: HomePage,
+    component: CategoriesPage,
   },
   {
     path: routeDestinations.archive,

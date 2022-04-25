@@ -1,4 +1,4 @@
-import type { Category } from "./category";
+import { jsCategory, programmingCategory, type Category } from "./category";
 
 export interface Article {
   id: string;
@@ -29,7 +29,7 @@ export const mockArticle = {
     consetetur sadipscing elitr, sed diam nonumy eirmod tempor
     invidunt ut labore et dolore magna aliquyam erat,
     sed diam voluptua.`,
-  categories: [],
+  categories: [jsCategory, programmingCategory],
 };
 
 export const mockArticles: Article[] = Array(5).fill(mockArticle);
