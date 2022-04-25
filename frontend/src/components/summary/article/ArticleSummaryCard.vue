@@ -9,6 +9,7 @@ import { computed } from "@vue/reactivity";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import CategoryList from "../../util/CategoryList.vue";
 import { contentColorConfig } from "@/config/content/color";
+import { createArticleDestination } from "@/lib/router";
 
 interface ArticleCategoryTagProps {
   article: Article;
@@ -16,7 +17,9 @@ interface ArticleCategoryTagProps {
 
 const props = defineProps<ArticleCategoryTagProps>();
 
-const articleDestination = computed(() => `/articles/${props.article.id}`);
+const articleDestination = computed(() =>
+  createArticleDestination(props.article)
+);
 </script>
 
 <template>
