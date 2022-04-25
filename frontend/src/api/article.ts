@@ -2,6 +2,7 @@ import { jsCategory, programmingCategory, type Category } from "./category";
 
 export interface Article {
   id: string;
+  year: number;
   title: string;
   summary: string;
   content: string;
@@ -10,6 +11,7 @@ export interface Article {
 
 export const mockArticle = {
   id: "1",
+  year: 2021,
   title: "Why Next.js is the most AWESOME Framework!",
   summary: `Lorem ipsum dolor sit amet,
     consetetur sadipscing elitr, sed diam nonumy eirmod tempor
@@ -34,6 +36,7 @@ export const mockArticle = {
 
 export const secondMockArticle = {
   id: "2",
+  year: 2022,
   title: "Some interesting title",
   summary: `Lorem ipsum dolor sit amet,
     consetetur sadipscing elitr, sed diam nonumy eirmod tempor

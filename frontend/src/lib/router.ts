@@ -9,6 +9,8 @@ import {
   createWebHistory,
   type RouteRecordRaw,
 } from "vue-router";
+import type { Year } from "@/api/year";
+import ArchivePage from "@/pages/ArchivePage.vue";
 
 export const routeDestinations = {
   home: "/",
@@ -16,6 +18,7 @@ export const routeDestinations = {
   categories: "/categories",
   article: "/articles/:id",
   category: "/categories/:id",
+  year: "/years/:id",
 };
 
 export const createCategoryDestination = (category: Category): string =>
@@ -23,6 +26,9 @@ export const createCategoryDestination = (category: Category): string =>
 
 export const createArticleDestination = (article: Article): string =>
   `/articles/${article.id}`;
+
+export const createYearDestination = (year: Year): string =>
+  `/years/${year.value}`;
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -35,7 +41,7 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     path: routeDestinations.archive,
-    component: HomePage,
+    component: ArchivePage,
   },
   {
     path: routeDestinations.article,
@@ -44,6 +50,10 @@ export const routes: RouteRecordRaw[] = [
   {
     path: routeDestinations.category,
     component: CategoryPage,
+  },
+  {
+    path: routeDestinations.year,
+    component: HomePage,
   },
 ];
 
