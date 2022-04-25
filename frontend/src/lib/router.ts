@@ -1,9 +1,17 @@
+import type { Article } from "@/api/article";
+import type { Category } from "@/api/category";
+import ArticlePage from "@/pages/ArticlePage.vue";
+import CategoriesPage from "@/pages/CategoriesPage.vue";
 import HomePage from "@/pages/HomePage.vue";
+import CategoryPage from "@/pages/CategoryPage.vue";
 import {
   createRouter,
   createWebHistory,
   type RouteRecordRaw,
 } from "vue-router";
+import type { Year } from "@/api/year";
+import ArchivePage from "@/pages/ArchivePage.vue";
+import YearPage from "@/pages/YearPage.vue";
 
 export const routeDestinations = {
   home: "/",
@@ -11,7 +19,17 @@ export const routeDestinations = {
   categories: "/categories",
   article: "/articles/:id",
   category: "/categories/:id",
+  year: "/years/:id",
 };
+
+export const createCategoryDestination = (category: Category): string =>
+  `/categories/${category.id}`;
+
+export const createArticleDestination = (article: Article): string =>
+  `/articles/${article.id}`;
+
+export const createYearDestination = (year: Year): string =>
+  `/years/${year.value}`;
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -20,19 +38,23 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     path: routeDestinations.categories,
-    component: HomePage,
+    component: CategoriesPage,
   },
   {
     path: routeDestinations.archive,
-    component: HomePage,
+    component: ArchivePage,
   },
   {
     path: routeDestinations.article,
-    component: HomePage,
+    component: ArticlePage,
   },
   {
     path: routeDestinations.category,
-    component: HomePage,
+    component: CategoryPage,
+  },
+  {
+    path: routeDestinations.year,
+    component: YearPage,
   },
 ];
 

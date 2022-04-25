@@ -5,6 +5,7 @@ import type { Category } from "@/api/category";
 import VCenter from "@/components/base/layout/VCenter.vue";
 import VLink from "../base/VLink.vue";
 import { computed } from "vue";
+import { createCategoryDestination } from "@/lib/router";
 
 interface SummaryTagProps {
   category: Category;
@@ -12,7 +13,9 @@ interface SummaryTagProps {
 
 const props = defineProps<SummaryTagProps>();
 
-const categoryDestination = computed(() => `/categories/${props.category.id}`);
+const categoryDestination = computed(() =>
+  createCategoryDestination(props.category)
+);
 </script>
 
 <template>

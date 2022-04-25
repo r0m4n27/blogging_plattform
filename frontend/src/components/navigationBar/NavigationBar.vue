@@ -10,6 +10,7 @@ import VContainer from "../base/layout/VContainer.vue";
 import type { NavigationDestination } from "./navDestination";
 import { routeDestinations } from "@/lib/router";
 import { contentSpacingConfig } from "@/config/content/spacing";
+import VBox from "../base/layout/VBox.vue";
 
 interface NavBarProps {
   title: string;
@@ -37,7 +38,7 @@ const destinations: NavigationDestination[] = [
 </script>
 
 <template>
-  <nav>
+  <VBox width="full">
     <VContainer :padding="contentSpacingConfig.xs" size="lg">
       <VRow justify="space-between">
         <LeftNavBarPart :title="title" :logo-url="logoUrl" />
@@ -51,5 +52,5 @@ const destinations: NavigationDestination[] = [
 
     <NavBarDivider />
     <MobileNavMenu v-if="menuExpanded" :destinations="destinations" />
-  </nav>
+  </VBox>
 </template>
