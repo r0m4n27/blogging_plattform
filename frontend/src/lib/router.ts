@@ -11,6 +11,7 @@ import {
 } from "vue-router";
 import type { Year } from "@/api/year";
 import ArchivePage from "@/pages/ArchivePage.vue";
+import YearPage from "@/pages/YearPage.vue";
 
 export const routeDestinations = {
   home: "/",
@@ -53,7 +54,7 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     path: routeDestinations.year,
-    component: HomePage,
+    component: YearPage,
   },
 ];
 
