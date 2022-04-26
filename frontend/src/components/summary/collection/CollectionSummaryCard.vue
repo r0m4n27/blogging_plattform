@@ -23,12 +23,12 @@ defineProps<CollectionSummaryCardProps>();
         :replace="collection.replace"
         :color="contentColorConfig.fgWithHover"
       >
-        <VHeading as="h3" size="xl">
+        <VHeading as="h3" size="lg">
           {{ collection.name }}
         </VHeading>
       </VLink>
 
-      <VText as="p" size="xl">
+      <VText as="p" size="md">
         {{ `${collection.articleCount} Articles` }}
       </VText>
     </VColumn>

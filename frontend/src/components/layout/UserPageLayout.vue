@@ -23,7 +23,7 @@ withDefaults(defineProps<UserPageLayoutProps>(), {
       :logo-url="mockSiteConfig.logoUrl"
     />
 
-    <VContainer :size="containerSize">
+    <VContainer :size="containerSize" width="full">
       <slot />
     </VContainer>
   </VColumn>
