@@ -8,7 +8,7 @@ import type { ContainerSize } from "@/styling/props/containerProps";
 import { contentSpacingConfig } from "@/config/content/spacing";
 
 interface UserPageLayoutProps {
-  containerSize: Responsive<ContainerSize>;
+  containerSize?: Responsive<ContainerSize>;
 }
 
 withDefaults(defineProps<UserPageLayoutProps>(), {
