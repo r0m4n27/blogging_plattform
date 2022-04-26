@@ -5,7 +5,7 @@ import type { PropType } from "vue";
 import { flexProps } from "@/styling/props/flexProps";
 import CategoryTag from "./CategoryTag.vue";
 import VRow from "@/components/base/layout/VRow.vue";
-import type { Responsive } from "@/styling/responsive";
+import type { Responsive } from "@/lib/responsive";
 import type { Spacing } from "@/styling/spacing";
 
 const props = defineProps({

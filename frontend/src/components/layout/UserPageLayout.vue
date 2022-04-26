@@ -3,7 +3,7 @@ import VColumn from "../base/layout/VColumn.vue";
 import NavigationBar from "../navigationBar/NavigationBar.vue";
 import { mockSiteConfig } from "@/api/siteConfig";
 import VContainer from "../base/layout/VContainer.vue";
-import type { Responsive } from "@/styling/responsive";
+import type { Responsive } from "@/lib/responsive";
 import type { ContainerSize } from "@/styling/props/containerProps";
 import { contentSpacingConfig } from "@/config/content/spacing";
 

@@ -1,6 +1,6 @@
 import { css, type CSSObject } from "@emotion/css";
 import { colorWriter, type Color } from "../color";
-import { writeResponsivePropToStyle, type Responsive } from "../responsive";
+import { writeResponsivePropToStyle } from "../responsive";
 import { spacingWriter, type Spacing } from "../spacing";
 import type { PropType } from "vue";
 import type { TypeFromProps } from "@/lib/typeFromProps";
@@ -15,6 +15,7 @@ import {
   displayWriter,
   hiddenWriter,
 } from "../system";
+import type { Responsive } from "@/lib/responsive";
 
 // NOTE: You can't use an imported interface for defineProps
 // https://github.com/vuejs/core/issues/4294

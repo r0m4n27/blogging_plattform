@@ -2,7 +2,7 @@
 import { systemProps } from "@/styling/props/systemProps";
 import type { PropType } from "vue";
 import VBox from "./VBox.vue";
-import type { Responsive } from "@/styling/responsive";
+import type { Responsive } from "@/lib/responsive";
 import type { Color } from "@/styling/color";
 import type { BorderRadius, Shadow } from "@/styling/system";
 import { contentColorConfig } from "@/config/content/color";

@@ -1,4 +1,4 @@
-import type { Responsive } from "@/styling/responsive";
+import type { Responsive } from "@/lib/responsive";
 import type { Spacing } from "@/styling/spacing";
 
 export const contentSpacingConfig = {

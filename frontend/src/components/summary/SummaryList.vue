@@ -3,7 +3,7 @@ import VGrid from "@/components/base/layout/VGrid.vue";
 import VColumn from "@/components/base/layout/VColumn.vue";
 import VHeading from "@/components/base/text/VHeading.vue";
 import VBox from "@/components/base/layout/VBox.vue";
-import type { Responsive } from "@/styling/responsive";
+import type { Responsive } from "@/lib/responsive";
 import { defaultContentSpacing } from "@/config/content/spacing";
 
 interface SummaryListProps {

@@ -1,5 +1,6 @@
 import { css, type CSSObject } from "@emotion/css";
-import { writeResponsivePropToStyle, type Responsive } from "../responsive";
+import { writeResponsivePropToStyle } from "../responsive";
+import type { Responsive } from "@/lib/responsive";
 import type { PropType } from "vue";
 import type { TypeFromProps } from "@/lib/typeFromProps";
 import {
