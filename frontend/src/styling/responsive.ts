@@ -1,12 +1,6 @@
 import { breakpointsConfig } from "@/config/theme/breakpoints";
+import type { Responsive, ResponsiveObject } from "@/lib/responsive";
 import type { CSSObject } from "@emotion/css";
-
-export type Responsive<T> = T | ResponsiveObject<T>;
-
-export interface ResponsiveObject<T> {
-  sm: T;
-  md: T;
-}
 
 const smBreakpointQuery = `@media screen and (min-width: ${breakpointsConfig.sm})`;
 

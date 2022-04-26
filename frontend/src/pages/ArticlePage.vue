@@ -14,7 +14,7 @@ const article = computed(() => {
 </script>
 
 <template>
-  <UserPageLayout>
+  <UserPageLayout container-size="md">
     <BlogArticle :article="article" />
   </UserPageLayout>
 </template>

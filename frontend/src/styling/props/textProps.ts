@@ -1,5 +1,6 @@
 import { css, type CSSObject } from "@emotion/css";
-import { writeResponsivePropToStyle, type Responsive } from "../responsive";
+import { writeResponsivePropToStyle } from "../responsive";
+import type { Responsive } from "@/lib/responsive";
 import type { PropType } from "vue";
 import type { TypeFromProps } from "@/lib/typeFromProps";
 import {
@@ -16,7 +17,8 @@ import {
   letterSpacingWriter,
   lineHeightWriter,
   wordWrapWriter,
-  aligmentWriter,
+  alignmentWriter,
+  maxLinesWriter,
 } from "../text";
 
 export const textProps = {
@@ -41,6 +43,10 @@ export const textProps = {
   },
   wordWrap: {
     type: [Object, String] as PropType<Responsive<WordWrap>>,
+  },
+
+  maxLines: {
+    type: [Object, Number] as PropType<Responsive<number>>,
   },
 } as const;
 
@@ -77,11 +83,23 @@ export const createTextPropsCss = (props: TextProps): string => {
   writeResponsivePropToStyle(
     style,
     "textAlign",
-    aligmentWriter,
+    alignmentWriter,
     props.alignment
   );
 
   writeResponsivePropToStyle(style, "wordWrap", wordWrapWriter, props.wordWrap);
+
+  if (props.maxLines !== undefined) {
+    style["display"] = "-webkit-box";
+    style["overflow"] = "hidden";
+    style["WebkitBoxOrient"] = "vertical";
+    writeResponsivePropToStyle(
+      style,
+      "WebkitLineClamp",
+      maxLinesWriter,
+      props.maxLines
+    );
+  }
 
   return css(style);
 };

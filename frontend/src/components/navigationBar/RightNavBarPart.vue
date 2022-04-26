@@ -26,7 +26,7 @@ const textButtonHiddenProp = {
 </script>
 
 <template>
-  <VRow :gap="{ sm: contentSpacingConfig.xs, md: contentSpacingConfig.md }">
+  <VRow :gap="{ sm: contentSpacingConfig.xs, md: contentSpacingConfig.sm }">
     <VLink
       v-for="destination in destinations"
       :key="destination.label"

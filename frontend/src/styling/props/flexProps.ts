@@ -1,3 +1,4 @@
+import type { Responsive } from "@/lib/responsive";
 import { css, type CSSObject } from "@emotion/css";
 import type { ExtractPropTypes, PropType } from "vue";
 import {
@@ -7,7 +8,7 @@ import {
   flexAlignmentWriter,
   flexJustifyWriter,
 } from "../flex";
-import { type Responsive, writeResponsivePropToStyle } from "../responsive";
+import { writeResponsivePropToStyle } from "../responsive";
 import { type Spacing, spacingWriter } from "../spacing";
 
 export const flexProps = {

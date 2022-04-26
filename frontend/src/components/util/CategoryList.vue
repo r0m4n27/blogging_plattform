@@ -5,10 +5,15 @@ import type { PropType } from "vue";
 import { flexProps } from "@/styling/props/flexProps";
 import CategoryTag from "./CategoryTag.vue";
 import VRow from "@/components/base/layout/VRow.vue";
-import type { Responsive } from "@/styling/responsive";
+import type { Responsive } from "@/lib/responsive";
 import type { Spacing } from "@/styling/spacing";
+import type { CategoryTagSize } from "@/config/components/categoryTag";
 
 const props = defineProps({
+  size: {
+    type: [String, Object] as PropType<Responsive<CategoryTagSize>>,
+    default: "sm",
+  },
   categories: {
     required: true,
     type: Array as PropType<Category[]>,
@@ -27,6 +32,7 @@ const props = defineProps({
       v-for="category in categories"
       :key="category.name"
       :category="category"
+      :size="size"
     />
   </VRow>
 </template>

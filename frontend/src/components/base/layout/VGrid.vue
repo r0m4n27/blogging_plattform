@@ -2,7 +2,7 @@
 import { systemProps, createSystemPropsCss } from "@/styling/props/systemProps";
 import { computed, type PropType } from "vue";
 import { cx } from "@emotion/css";
-import type { Responsive } from "@/styling/responsive";
+import type { Responsive } from "@/lib/responsive";
 import { flexProps, createGridCss } from "@/styling/props/flexProps";
 
 const props = defineProps({

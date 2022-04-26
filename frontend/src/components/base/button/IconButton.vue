@@ -9,7 +9,7 @@ import {
   fillIconProps,
   createFillIconPropsCss,
 } from "@/styling/props/iconButton";
-import type { Responsive } from "@/styling/responsive";
+import type { Responsive } from "@/lib/responsive";
 
 // Type extracted from the lucide icon package
 export type Icon = (props: SVGProps) => FunctionalComponent<SVGProps>;

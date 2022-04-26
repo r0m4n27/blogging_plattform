@@ -17,12 +17,12 @@ const paragraphs = computed(() => props.content.split("\n\n"));
 </script>
 
 <template>
-  <VColumn :gap="contentSpacingConfig.xs">
+  <VColumn :gap="contentSpacingConfig.sm">
     <template v-for="paragraph in paragraphs" :key="paragraph">
-      <VText v-if="paragraph != ''" as="p">
+      <VText v-if="paragraph != ''" as="p" :size="{ sm: 'sm', md: 'md' }">
         {{ paragraph }}
       </VText>
-      <VBox v-else :height="contentSpacingConfig.xs" />
+      <VBox v-else :height="contentSpacingConfig.sm" />
     </template>
   </VColumn>
 </template>

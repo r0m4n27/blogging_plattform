@@ -3,7 +3,7 @@ import VGrid from "@/components/base/layout/VGrid.vue";
 import VColumn from "@/components/base/layout/VColumn.vue";
 import VHeading from "@/components/base/text/VHeading.vue";
 import VBox from "@/components/base/layout/VBox.vue";
-import type { Responsive } from "@/styling/responsive";
+import type { Responsive } from "@/lib/responsive";
 import { defaultContentSpacing } from "@/config/content/spacing";
 
 interface SummaryListProps {
@@ -20,7 +20,7 @@ withDefaults(defineProps<SummaryListProps>(), {
 <template>
   <VColumn :padding="defaultContentSpacing" :gap="defaultContentSpacing">
     <VBox :hidden="{ sm: false, md: !showTitleOnDesktop }">
-      <VHeading as="h2" size="2xl">
+      <VHeading as="h2" size="xl">
         {{ title }}
       </VHeading>
     </VBox>
