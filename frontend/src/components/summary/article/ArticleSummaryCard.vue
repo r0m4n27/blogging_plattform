@@ -11,6 +11,11 @@ import CategoryList from "../../util/CategoryList.vue";
 import { contentColorConfig } from "@/config/content/color";
 import { createArticleDestination } from "@/lib/router";
 
+// Limitations for the article card
+//
+// An article should have at least one category and
+// a bit of a summary. Otherwise the cards don't look that great
+
 interface ArticleCategoryTagProps {
   article: Article;
 }
@@ -25,22 +30,27 @@ const articleDestination = computed(() =>
 <template>
   <VCard :padding="contentSpacingConfig.md">
     <VColumn :gap="contentSpacingConfig.sm" align="start">
-      <VLink :to="articleDestination" :color="contentColorConfig.fgWithHover">
-        <VHeading as="h3" size="md">
-          {{ article.title }}
-        </VHeading>
-      </VLink>
+      <VColumn :height="12" justify="center">
+        <VLink :to="articleDestination" :color="contentColorConfig.fgWithHover">
+          <VHeading as="h3" size="md" :max-lines="2">
+            {{ article.title }}
+          </VHeading>
+        </VLink>
+      </VColumn>
 
-      <VLink :to="articleDestination" :color="contentColorConfig.fgWithHover">
-        <VText as="span" size="sm">
-          {{ article.summary }}
-        </VText>
-      </VLink>
+      <VColumn :height="12" justify="center">
+        <VLink :to="articleDestination" :color="contentColorConfig.fgWithHover">
+          <VText as="span" size="sm" :max-lines="2">
+            {{ article.summary }}
+          </VText>
+        </VLink>
+      </VColumn>
 
       <CategoryList
         :categories="article.categories"
         justify="end"
         width="full"
+        :height="6"
       />
     </VColumn>
   </VCard>
