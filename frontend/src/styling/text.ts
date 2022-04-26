@@ -23,7 +23,9 @@ export type LetterSpacing = keyof typeof letterSpacings;
 export const letterSpacingWriter = createRecordWriter(letterSpacings);
 
 export type Alignment = "left" | "right" | "center" | "justify";
-export const aligmentWriter = createValueWriter<Alignment>();
+export const alignmentWriter = createValueWriter<Alignment>();
 
 export type WordWrap = "normal" | "break-word";
 export const wordWrapWriter = createValueWriter<WordWrap>();
+
+export const maxLinesWriter = createValueWriter<number>();
