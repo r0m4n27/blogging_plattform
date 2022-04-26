@@ -6,23 +6,62 @@ import VCenter from "@/components/base/layout/VCenter.vue";
 import VLink from "../base/VLink.vue";
 import { computed } from "vue";
 import { createCategoryDestination } from "@/lib/router";
+import type { CategoryTagSize } from "@/config/components/categoryTag";
+import { type Responsive, mapResponsiveFromConfig } from "@/lib/responsive";
+import {
+  categoryTagButtonConfig,
+  categoryTagTextConfig,
+} from "@/config/components/categoryTag";
 
 interface SummaryTagProps {
   category: Category;
+  size?: Responsive<CategoryTagSize>;
 }
 
-const props = defineProps<SummaryTagProps>();
+const props = withDefaults(defineProps<SummaryTagProps>(), {
+  size: "sm",
+});
 
 const categoryDestination = computed(() =>
   createCategoryDestination(props.category)
 );
+
+const buttonProps = computed(() => {
+  const height = mapResponsiveFromConfig(
+    props.size,
+    categoryTagButtonConfig.height
+  );
+
+  const padding = mapResponsiveFromConfig(
+    props.size,
+    categoryTagButtonConfig.padding
+  );
+
+  return {
+    height,
+    padding,
+  };
+});
+
+const textProps = computed(() => {
+  const size = mapResponsiveFromConfig(props.size, categoryTagTextConfig.size);
+  const lineHeight = mapResponsiveFromConfig(
+    props.size,
+    categoryTagTextConfig.lineHeight
+  );
+
+  return {
+    size,
+    lineHeight,
+  };
+});
 </script>
 
 <template>
   <VLink :to="categoryDestination">
-    <VButton :padding="{ x: 2, y: 0 }">
-      <VCenter :height="6">
-        <VText as="span" size="sm" weight="medium" line-height="5">
+    <VButton v-bind="buttonProps">
+      <VCenter>
+        <VText as="span" weight="medium" v-bind="textProps">
           {{ category.name }}
         </VText>
       </VCenter>
