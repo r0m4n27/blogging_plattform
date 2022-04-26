@@ -23,7 +23,10 @@ defineProps<BlogArticleProps>();
       {{ article.title }}
     </VHeading>
 
-    <CategoryList :categories="article.categories" />
+    <CategoryList
+      :categories="article.categories"
+      :size="{ sm: 'sm', md: 'md' }"
+    />
 
     <ArticleContent :content="article.content" />
   </VColumn>
