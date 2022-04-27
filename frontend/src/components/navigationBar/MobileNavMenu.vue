@@ -29,7 +29,7 @@ defineProps<MobileNavMenuProps>();
         :replace="destination.replace"
         :color="contentColorConfig.mutedFgWithHover"
       >
-        <VHeading size="md" as="span">
+        <VHeading size="md" is="span">
           {{ destination.label }}
         </VHeading>
       </VLink>

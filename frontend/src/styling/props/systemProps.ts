@@ -16,6 +16,7 @@ import {
   hiddenWriter,
 } from "../system";
 import type { Responsive } from "@/lib/responsive";
+import type { ElementType } from "@/lib/elementType";
 
 // NOTE: You can't use an imported interface for defineProps
 // https://github.com/vuejs/core/issues/4294
@@ -71,6 +72,11 @@ export const systemProps = {
   hidden: {
     type: [Boolean, String, Object] as PropType<Responsive<boolean>>,
     default: "none",
+  },
+
+  is: {
+    type: String as PropType<ElementType>,
+    default: "div",
   },
 } as const;
 

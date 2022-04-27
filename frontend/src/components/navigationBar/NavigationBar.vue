@@ -38,7 +38,7 @@ const destinations: NavigationDestination[] = [
 </script>
 
 <template>
-  <VBox width="full">
+  <VBox width="full" is="nav">
     <VContainer :padding="contentSpacingConfig.xs" size="lg">
       <VRow justify="space-between">
         <LeftNavBarPart :title="title" :logo-url="logoUrl" />

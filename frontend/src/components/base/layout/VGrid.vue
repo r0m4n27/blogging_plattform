@@ -20,7 +20,7 @@ const classes = computed(() =>
 </script>
 
 <template>
-  <div :class="classes">
+  <component :is="is" :class="classes">
     <slot />
-  </div>
+  </component>
 </template>

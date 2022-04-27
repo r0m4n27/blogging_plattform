@@ -32,7 +32,7 @@ const articleDestination = computed(() =>
     <VColumn :gap="contentSpacingConfig.sm" align="start">
       <VColumn :height="12" justify="center">
         <VLink :to="articleDestination" :color="contentColorConfig.fgWithHover">
-          <VHeading as="h3" size="md" :max-lines="2">
+          <VHeading is="h2" size="md" :max-lines="2">
             {{ article.title }}
           </VHeading>
         </VLink>
@@ -40,7 +40,7 @@ const articleDestination = computed(() =>
 
       <VColumn :height="12" justify="center">
         <VLink :to="articleDestination" :color="contentColorConfig.fgWithHover">
-          <VText as="span" size="sm" :max-lines="2">
+          <VText is="p" size="sm" :max-lines="2">
             {{ article.summary }}
           </VText>
         </VLink>

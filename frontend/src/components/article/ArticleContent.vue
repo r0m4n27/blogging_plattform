@@ -17,9 +17,9 @@ const paragraphs = computed(() => props.content.split("\n\n"));
 </script>
 
 <template>
-  <VColumn :gap="contentSpacingConfig.sm">
+  <VColumn :gap="contentSpacingConfig.sm" is="article">
     <template v-for="paragraph in paragraphs" :key="paragraph">
-      <VText v-if="paragraph != ''" as="p" :size="{ sm: 'sm', md: 'md' }">
+      <VText v-if="paragraph != ''" is="p" :size="{ sm: 'sm', md: 'md' }">
         {{ paragraph }}
       </VText>
       <VBox v-else :height="contentSpacingConfig.sm" />

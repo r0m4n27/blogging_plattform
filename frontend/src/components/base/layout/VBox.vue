@@ -5,7 +5,7 @@ const props = defineProps(systemProps);
 </script>
 
 <template>
-  <div :class="createSystemPropsCss(props)">
+  <component :is="is" :class="createSystemPropsCss(props)">
     <slot />
-  </div>
+  </component>
 </template>

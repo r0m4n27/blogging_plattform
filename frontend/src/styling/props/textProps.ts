@@ -20,6 +20,7 @@ import {
   alignmentWriter,
   maxLinesWriter,
 } from "../text";
+import type { TextElementType } from "@/lib/elementType";
 
 export const textProps = {
   family: {
@@ -47,6 +48,11 @@ export const textProps = {
 
   maxLines: {
     type: [Object, Number] as PropType<Responsive<number>>,
+  },
+
+  is: {
+    type: String as PropType<TextElementType>,
+    default: "span",
   },
 } as const;
 
