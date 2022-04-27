@@ -1,4 +1,4 @@
-export type ElementType = "div" | TextElementType;
+export type ElementType = "div" | "article" | "nav" | TextElementType;
 
 export type TextElementType =
   | "span"

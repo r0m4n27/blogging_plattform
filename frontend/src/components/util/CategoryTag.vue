@@ -61,7 +61,7 @@ const textProps = computed(() => {
   <VLink :to="categoryDestination">
     <VButton v-bind="buttonProps">
       <VCenter>
-        <VText as="span" weight="medium" v-bind="textProps">
+        <VText is="span" weight="medium" v-bind="textProps">
           {{ category.name }}
         </VText>
       </VCenter>

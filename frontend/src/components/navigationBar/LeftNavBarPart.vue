@@ -25,7 +25,7 @@ defineProps<{
     </VLink>
 
     <VLink :to="routeDestinations.home" :hidden="{ sm: true, md: false }">
-      <VHeading as="span" size="lg">
+      <VHeading is="span" size="lg">
         {{ title }}
       </VHeading>
     </VLink>

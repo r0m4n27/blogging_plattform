@@ -20,7 +20,7 @@ withDefaults(defineProps<SummaryListProps>(), {
 <template>
   <VColumn :padding="defaultContentSpacing" :gap="defaultContentSpacing">
     <VBox :hidden="{ sm: false, md: !showTitleOnDesktop }">
-      <VHeading as="h2" size="xl">
+      <VHeading is="h1" size="xl">
         {{ title }}
       </VHeading>
     </VBox>

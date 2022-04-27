@@ -19,7 +19,7 @@ defineProps<BlogArticleProps>();
     :gap="defaultContentSpacing"
     align="start"
   >
-    <VHeading as="h1" size="xl">
+    <VHeading is="h1" size="xl">
       {{ article.title }}
     </VHeading>
 
