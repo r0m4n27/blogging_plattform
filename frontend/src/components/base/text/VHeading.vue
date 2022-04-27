@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { TextElementType } from "@/lib/elementType";
 import type { TextProps } from "@/styling/props/textProps";
 import VText from "./VText.vue";
 
@@ -14,7 +15,7 @@ type HeadingSizes =
   | "4xl";
 
 interface VHeadingProps {
-  as: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "span";
+  is: TextElementType;
   size: HeadingSizes;
 }
 
@@ -47,7 +48,7 @@ const props = defineProps<VHeadingProps>();
 </script>
 
 <template>
-  <VText :as="as" family="heading" weight="bold" v-bind="sizes[props.size]">
+  <VText :is="is" family="heading" weight="bold" v-bind="sizes[props.size]">
     <slot />
   </VText>
 </template>
