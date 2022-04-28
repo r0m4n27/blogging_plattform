@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import { mockSiteConfig } from "@/api/siteConfig";
 import ArticleSummaryList from "@/components/summary/article/ArticleSummaryList.vue";
-import { mockArticles } from "@/api/article";
+import { fetchArticles } from "@/api/article";
 import UserPageLayout from "@/components/layout/UserPageLayout.vue";
+import { useSiteConfig } from "@/composables/useSiteConfig";
+import { useEndpoint } from "@/composables/useEndpoint";
+
+const siteConfig = useSiteConfig();
+const articles = useEndpoint(fetchArticles, []);
 </script>
 
 <template>
   <UserPageLayout>
-    <ArticleSummaryList
-      :title="mockSiteConfig.blogTitle"
-      :articles="mockArticles"
-    />
+    <ArticleSummaryList :title="siteConfig.blogTitle" :articles="articles" />
   </UserPageLayout>
 </template>
