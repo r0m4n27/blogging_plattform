@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import UserPageLayout from "@/components/layout/UserPageLayout.vue";
-import { mockYears } from "@/api/year";
+import { fetchYears } from "@/api/year";
 import CollectionSummaryList from "@/components/summary/collection/CollectionSummaryList.vue";
 import { yearToCollection } from "@/lib/collection";
+import { useEndpoint } from "@/composables/useEndpoint";
+import { computed } from "vue";
 
-const collections = mockYears.map(yearToCollection);
+const years = useEndpoint(fetchYears, []);
+const collections = computed(() => years.value.map(yearToCollection));
 </script>
 
 <template>

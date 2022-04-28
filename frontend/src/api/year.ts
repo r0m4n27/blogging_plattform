@@ -3,7 +3,7 @@ export interface Year {
   articleCount: number;
 }
 
-export const mockYears: Year[] = [
+const mockYears: Year[] = [
   {
     value: 2022,
     articleCount: 1,
@@ -13,3 +13,7 @@ export const mockYears: Year[] = [
     articleCount: 15,
   },
 ];
+
+export const fetchYears = async (): Promise<Year[]> => {
+  return mockYears;
+};

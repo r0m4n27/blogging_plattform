@@ -15,5 +15,13 @@ export const jsCategory: Category = {
   name: "Javascript",
   articleCount: 5,
 };
-export const mockCategories: Category[] = Array(3).fill(programmingCategory);
+const mockCategories: Category[] = Array(3).fill(programmingCategory);
 mockCategories.push(jsCategory);
+
+export const fetchCategories = async (): Promise<Category[]> => {
+  return mockCategories;
+};
+
+export const fetchCategory = async (id: string): Promise<Category> => {
+  return mockCategories.find((category) => category.id === id) as Category;
+};
