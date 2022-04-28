@@ -1,20 +1,16 @@
 <script setup lang="ts">
 import UserPageLayout from "@/components/layout/UserPageLayout.vue";
-import { fetchYears } from "@/api/year";
 import CollectionSummaryList from "@/components/summary/collection/CollectionSummaryList.vue";
-import { yearToCollection } from "@/lib/collection";
-import { useEndpoint } from "@/composables/useEndpoint";
-import { computed } from "vue";
+import { useArchivePageState } from "@/composables/pages/useArchivePageState";
 
-const years = useEndpoint(fetchYears, []);
-const collections = computed(() => years.value.map(yearToCollection));
+const { yearsCollections } = useArchivePageState();
 </script>
 
 <template>
   <UserPageLayout>
     <CollectionSummaryList
       title="Archive"
-      :collections="collections"
+      :collections="yearsCollections"
       show-title-on-desktop
     />
   </UserPageLayout>

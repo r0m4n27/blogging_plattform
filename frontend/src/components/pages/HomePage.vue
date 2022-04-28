@@ -1,16 +1,13 @@
 <script setup lang="ts">
 import ArticleSummaryList from "@/components/summary/article/ArticleSummaryList.vue";
-import { fetchArticles } from "@/api/article";
 import UserPageLayout from "@/components/layout/UserPageLayout.vue";
-import { useSiteConfig } from "@/composables/useSiteConfig";
-import { useEndpoint } from "@/composables/useEndpoint";
+import { useHomePageState } from "@/composables/pages/useHomePageState";
 
-const siteConfig = useSiteConfig();
-const articles = useEndpoint(fetchArticles, []);
+const { blogTitle, articles } = useHomePageState();
 </script>
 
 <template>
   <UserPageLayout>
-    <ArticleSummaryList :title="siteConfig.blogTitle" :articles="articles" />
+    <ArticleSummaryList :title="blogTitle" :articles="articles" />
   </UserPageLayout>
 </template>
