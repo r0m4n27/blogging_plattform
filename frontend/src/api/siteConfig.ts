@@ -5,7 +5,11 @@ export interface SiteConfig {
   logoUrl: string;
 }
 
-export const mockSiteConfig: SiteConfig = {
+const mockSiteConfig: SiteConfig = {
   blogTitle: "My Awesome Blog Title",
   logoUrl: logo,
+};
+
+export const fetchSiteConfig = async (): Promise<SiteConfig> => {
+  return mockSiteConfig;
 };

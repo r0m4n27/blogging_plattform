@@ -59,5 +59,43 @@ export const secondMockArticle = {
   categories: [jsCategory],
 };
 
-export const mockArticles: Article[] = Array(5).fill(mockArticle);
+const mockArticles: Article[] = Array(5).fill(mockArticle);
 mockArticles.push(secondMockArticle);
+
+export async function fetchArticles(
+  filterType: "category",
+  filterId: string
+): Promise<Article[]>;
+
+export async function fetchArticles(
+  filterType: "year",
+  filterId: number
+): Promise<Article[]>;
+
+export async function fetchArticles(): Promise<Article[]>;
+
+export async function fetchArticles(
+  filterType?: "category" | "year",
+  filterId?: number | string
+): Promise<Article[]> {
+  if (filterType === undefined) return mockArticles;
+
+  // SAFETY: If filterType is not undefined
+  // than the filterId is also not undefined
+  if (filterType === "category") {
+    const categoryId = filterId as string;
+
+    return mockArticles.filter((article) => {
+      const categoryIds = article.categories.map((c) => c.id);
+      return categoryIds.includes(categoryId);
+    });
+  } else {
+    const year = filterId as number;
+
+    return mockArticles.filter((article) => article.year === year);
+  }
+}
+
+export const fetchArticle = async (id: string): Promise<Article> => {
+  return mockArticles.find((article) => article.id === id) as Article;
+};
