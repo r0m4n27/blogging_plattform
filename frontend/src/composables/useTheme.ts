@@ -1,7 +1,8 @@
 import { defineStore } from "pinia";
-import { ref, watch, type Ref } from "vue";
-import { themeConfig } from "../config/localStorage";
+import type { Ref } from "vue";
+import { localStorageKeys } from "../config/localStorage";
 import { piniaKeysConfig } from "@/config/pinia";
+import { useLocalStorage } from "./useLocalStorage";
 
 export interface Theme {
   useDarkMode: Ref<boolean>;
@@ -11,25 +12,15 @@ export interface Theme {
 export const useTheme = defineStore<string, Theme>(
   piniaKeysConfig.theme,
   () => {
-    const themeString =
-      localStorage.getItem(themeConfig.key) ?? themeConfig.lightValue;
+    const useDarkMode = useLocalStorage(localStorageKeys.darkMode, false);
 
-    // NOTE: Everything that is not the light mode value
-    // will be interpreted as the dark-mode value
-    const useDarkMode = ref(themeString !== themeConfig.lightValue);
-
-    watch(useDarkMode, (newValue) => {
-      localStorage.setItem(
-        themeConfig.key,
-        newValue ? themeConfig.darkValue : themeConfig.lightValue
-      );
-    });
+    const toggleDarkMode = () => {
+      useDarkMode.value = !useDarkMode.value;
+    };
 
     return {
       useDarkMode,
-      toggleDarkMode: () => {
-        useDarkMode.value = !useDarkMode.value;
-      },
+      toggleDarkMode,
     };
   }
 );
