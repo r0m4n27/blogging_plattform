@@ -1,20 +1,16 @@
 <script setup lang="ts">
 import UserPageLayout from "@/components/layout/UserPageLayout.vue";
-import { fetchCategories } from "@/api/category";
 import CollectionSummaryList from "@/components/summary/collection/CollectionSummaryList.vue";
-import { categoryToCollection } from "@/lib/collection";
-import { useEndpoint } from "@/composables/useEndpoint";
-import { computed } from "vue";
+import { useCategoriesPageState } from "@/composables/pages/useCategoriesPageState";
 
-const categories = useEndpoint(fetchCategories, []);
-const collections = computed(() => categories.value.map(categoryToCollection));
+const { categoriesCollections } = useCategoriesPageState();
 </script>
 
 <template>
   <UserPageLayout>
     <CollectionSummaryList
       title="Categories"
-      :collections="collections"
+      :collections="categoriesCollections"
       show-title-on-desktop
     />
   </UserPageLayout>

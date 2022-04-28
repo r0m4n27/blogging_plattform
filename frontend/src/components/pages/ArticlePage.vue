@@ -1,14 +1,9 @@
 <script setup lang="ts">
 import UserPageLayout from "@/components/layout/UserPageLayout.vue";
-import { useRoute } from "vue-router";
-import { fetchArticle } from "@/api/article";
 import BlogArticle from "@/components/article/BlogArticle.vue";
-import { useEndpoint } from "@/composables/useEndpoint";
+import { useArticlePageState } from "@/composables/pages/useArticlePageState";
 
-const route = useRoute();
-const article = useEndpoint(async () =>
-  fetchArticle(route.params.id as string)
-);
+const { article } = useArticlePageState();
 </script>
 
 <template>
