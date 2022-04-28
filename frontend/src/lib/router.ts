@@ -1,17 +1,17 @@
 import type { Article } from "@/api/article";
 import type { Category } from "@/api/category";
-import ArticlePage from "@/pages/ArticlePage.vue";
-import CategoriesPage from "@/pages/CategoriesPage.vue";
-import HomePage from "@/pages/HomePage.vue";
-import CategoryPage from "@/pages/CategoryPage.vue";
+import ArticlePage from "@/components/pages/ArticlePage.vue";
+import CategoriesPage from "@/components/pages/CategoriesPage.vue";
+import HomePage from "@/components/pages/HomePage.vue";
+import CategoryPage from "@/components/pages/CategoryPage.vue";
 import {
   createRouter,
   createWebHistory,
   type RouteRecordRaw,
 } from "vue-router";
 import type { Year } from "@/api/year";
-import ArchivePage from "@/pages/ArchivePage.vue";
-import YearPage from "@/pages/YearPage.vue";
+import ArchivePage from "@/components/pages/ArchivePage.vue";
+import YearPage from "@/components/pages/YearPage.vue";
 
 export const routeDestinations = {
   home: "/",
