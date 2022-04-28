@@ -1,9 +1,10 @@
 import "ress/dist/ress.min.css";
 import "../src/main.css";
 import VRoot from "../src/components/base/VRoot.vue";
-import ProvideGlobals from "../src/components/ProvideGlobals.vue";
 import vueRouter from "storybook-vue3-router";
 import { routes } from "@/lib/router";
+import { app } from "@storybook/vue3";
+import { createPinia } from "pinia";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -15,6 +16,8 @@ export const parameters = {
   },
 };
 
+app.use(createPinia());
+
 const vRootDecorator = (story) => ({
   components: { story, VRoot },
   template: `
@@ -23,17 +26,5 @@ const vRootDecorator = (story) => ({
       </VRoot>
     `,
 });
-const provideGlobalsDecorator = (story) => ({
-  components: { story, ProvideGlobals },
-  template: `
-      <ProvideGlobals>
-        <story />
-      </ProvideGlobals>
-    `,
-});
 
-export const decorators = [
-  vueRouter(routes),
-  vRootDecorator,
-  provideGlobalsDecorator,
-];
+export const decorators = [vueRouter(routes), vRootDecorator];
