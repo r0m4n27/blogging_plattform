@@ -1,5 +1,3 @@
-export const themeConfig = {
-  key: "themePreference",
-  darkValue: "Dark",
-  lightValue: "Light",
+export const localStorageKeys = {
+  darkMode: "darkMode",
 };

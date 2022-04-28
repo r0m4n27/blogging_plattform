@@ -1,6 +1,5 @@
-import { injectTheme } from "@/composables/provideTheme";
+import { useTheme } from "@/composables/useTheme";
 import type { CSSObject } from "@emotion/css";
-import type { Ref } from "vue";
 
 export type Color = LightAndDarkColor | ColorWithState;
 
@@ -23,16 +22,21 @@ export const colorWriter = (
   propertyName: keyof CSSObject,
   color: Color
 ) => {
-  const { useDarkMode } = injectTheme();
+  const theme = useTheme();
 
   if ((color as ColorWithState).default !== undefined) {
     const colorWithState = color as ColorWithState;
 
-    addColorToStyle(useDarkMode, style, propertyName, colorWithState.default);
+    addColorToStyle(
+      theme.darkMode,
+      style,
+      propertyName,
+      colorWithState.default
+    );
 
     style["&:hover"] ??= {};
     addColorToStyle(
-      useDarkMode,
+      theme.darkMode,
       // SAFETY: Since we build up the CSSObject
       // we can make sure that the hover key
       // contains an object
@@ -42,7 +46,7 @@ export const colorWriter = (
     );
   } else {
     addColorToStyle(
-      useDarkMode,
+      theme.darkMode,
       style,
       propertyName,
       color as LightAndDarkColor
@@ -51,8 +55,8 @@ export const colorWriter = (
 };
 
 const addColorToStyle = (
-  useDarkMode: Ref<boolean>,
+  darkMode: boolean,
   style: CSSObject,
   propertyName: keyof CSSObject,
   prop: LightAndDarkColor
-) => (style[propertyName] = useDarkMode.value ? prop.dark : prop.light);
+) => (style[propertyName] = darkMode ? prop.dark : prop.light);

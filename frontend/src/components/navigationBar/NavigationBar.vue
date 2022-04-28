@@ -1,16 +1,13 @@
 <script setup lang="ts">
-import { ref } from "vue";
-
 import LeftNavBarPart from "./LeftNavBarPart.vue";
 import RightNavBarPart from "./RightNavBarPart.vue";
 import MobileNavMenu from "./MobileNavMenu.vue";
 import NavBarDivider from "./NavBarDivider.vue";
 import VRow from "../base/layout/VRow.vue";
 import VContainer from "../base/layout/VContainer.vue";
-import type { NavigationDestination } from "./navDestination";
-import { routeDestinations } from "@/lib/router";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import VBox from "../base/layout/VBox.vue";
+import { useNavBarState } from "@/composables/useNavBarState";
 
 interface NavBarProps {
   title: string;
@@ -19,22 +16,7 @@ interface NavBarProps {
 
 defineProps<NavBarProps>();
 
-const menuExpanded = ref(false);
-
-const toggleMenu = () => {
-  menuExpanded.value = !menuExpanded.value;
-};
-
-const destinations: NavigationDestination[] = [
-  {
-    label: "Categories",
-    to: routeDestinations.categories,
-  },
-  {
-    label: "Archive",
-    to: routeDestinations.archive,
-  },
-];
+const { menuExpanded, toggleMenu, destinations } = useNavBarState();
 </script>
 
 <template>
