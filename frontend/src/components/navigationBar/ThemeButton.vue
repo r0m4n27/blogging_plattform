@@ -8,7 +8,7 @@ import { getColor } from "@/config/theme/colors";
 const theme = useTheme();
 
 const themeIcon = computed(() => {
-  if (theme.useDarkMode) {
+  if (theme.darkMode) {
     return Sun;
   } else {
     return Moon;

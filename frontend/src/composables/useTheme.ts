@@ -5,21 +5,21 @@ import { piniaKeysConfig } from "@/config/pinia";
 import { useLocalStorage } from "./useLocalStorage";
 
 export interface Theme {
-  useDarkMode: Ref<boolean>;
+  darkMode: Ref<boolean>;
   toggleDarkMode: () => void;
 }
 
 export const useTheme = defineStore<string, Theme>(
   piniaKeysConfig.theme,
   () => {
-    const useDarkMode = useLocalStorage(localStorageKeys.darkMode, false);
+    const darkMode = useLocalStorage(localStorageKeys.darkMode, false);
 
     const toggleDarkMode = () => {
-      useDarkMode.value = !useDarkMode.value;
+      darkMode.value = !darkMode.value;
     };
 
     return {
-      useDarkMode,
+      darkMode,
       toggleDarkMode,
     };
   }

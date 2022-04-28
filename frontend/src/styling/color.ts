@@ -28,7 +28,7 @@ export const colorWriter = (
     const colorWithState = color as ColorWithState;
 
     addColorToStyle(
-      theme.useDarkMode,
+      theme.darkMode,
       style,
       propertyName,
       colorWithState.default
@@ -36,7 +36,7 @@ export const colorWriter = (
 
     style["&:hover"] ??= {};
     addColorToStyle(
-      theme.useDarkMode,
+      theme.darkMode,
       // SAFETY: Since we build up the CSSObject
       // we can make sure that the hover key
       // contains an object
@@ -46,7 +46,7 @@ export const colorWriter = (
     );
   } else {
     addColorToStyle(
-      theme.useDarkMode,
+      theme.darkMode,
       style,
       propertyName,
       color as LightAndDarkColor
@@ -55,8 +55,8 @@ export const colorWriter = (
 };
 
 const addColorToStyle = (
-  useDarkMode: boolean,
+  darkMode: boolean,
   style: CSSObject,
   propertyName: keyof CSSObject,
   prop: LightAndDarkColor
-) => (style[propertyName] = useDarkMode ? prop.dark : prop.light);
+) => (style[propertyName] = darkMode ? prop.dark : prop.light);
