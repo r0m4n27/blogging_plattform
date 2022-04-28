@@ -10,11 +10,16 @@ import { useEndpoint } from "@/composables/useEndpoint";
 const route = useRoute();
 
 const categoryId = computed(() => route.params.id as string);
-const category = useEndpoint(async () => fetchCategory(categoryId.value));
-const articles = useEndpoint(
-  async () => fetchArticles("category", categoryId.value),
-  []
+
+const categoryFetcher = computed(
+  () => async () => fetchCategory(categoryId.value)
 );
+const category = useEndpoint(categoryFetcher);
+
+const articlesFetcher = computed(
+  () => async () => fetchArticles("category", categoryId.value)
+);
+const articles = computed(() => useEndpoint(articlesFetcher, []));
 
 const title = computed(() => category.value?.name ?? "");
 </script>
@@ -23,7 +28,7 @@ const title = computed(() => category.value?.name ?? "");
   <UserPageLayout>
     <ArticleSummaryList
       :title="title"
-      :articles="articles"
+      :articles="articles.value"
       show-title-on-desktop
     />
   </UserPageLayout>

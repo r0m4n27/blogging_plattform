@@ -10,10 +10,10 @@ import { useEndpoint } from "@/composables/useEndpoint";
 const route = useRoute();
 
 const year = computed(() => route.params.id as string);
-const articles = useEndpoint(
-  async () => fetchArticles("year", parseInt(year.value)),
-  []
+const articlesFetcher = computed(
+  () => async () => fetchArticles("year", parseInt(year.value))
 );
+const articles = useEndpoint(articlesFetcher, []);
 </script>
 
 <template>
