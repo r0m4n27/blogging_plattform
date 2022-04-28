@@ -1,4 +1,4 @@
-import logo from "@/static/logo_sample.png";
+import logo from "/logo_sample.png";
 
 export interface SiteConfig {
   blogTitle: string;

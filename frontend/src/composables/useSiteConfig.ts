@@ -3,7 +3,7 @@ import { piniaKeysConfig } from "@/config/pinia";
 import { defineStore } from "pinia";
 import type { ComputedRef } from "vue";
 import { useEndpoint } from "./useEndpoint";
-import logoTransparent from "@/static/logo_transparent.png";
+import logoTransparent from "/logo_transparent.png";
 import { computed } from "@vue/reactivity";
 
 export interface UseSiteConfigState {
