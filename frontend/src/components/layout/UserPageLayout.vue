@@ -19,7 +19,10 @@ const siteConfig = useSiteConfig();
 </script>
 
 <template>
-  <VColumn :gap="{ sm: contentSpacingConfig.xs, md: contentSpacingConfig.sm }">
+  <VColumn
+    :gap="{ sm: contentSpacingConfig.xs, md: contentSpacingConfig.sm }"
+    is="main"
+  >
     <NavigationBar
       :title="siteConfig.blogTitle"
       :logo-url="siteConfig.logoUrl"
