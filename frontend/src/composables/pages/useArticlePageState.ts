@@ -4,6 +4,7 @@ import { computed } from "@vue/reactivity";
 import type { Ref } from "vue";
 import { useRoute } from "vue-router";
 import { useEndpoint } from "../useEndpoint";
+import { usePageHead } from "../usePageHead";
 
 export interface ArticlePageState {
   article: Ref<Option<Article>>;
@@ -18,6 +19,9 @@ export const useArticlePageState = (): ArticlePageState => {
   });
 
   const article = useEndpoint(articleFetcher);
+  const articleTitle = computed(() => article.value?.title ?? "");
+
+  usePageHead(articleTitle);
 
   return {
     article,
