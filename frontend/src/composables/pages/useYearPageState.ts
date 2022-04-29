@@ -1,8 +1,8 @@
 import { fetchArticles, type Article } from "@/api/article";
 import { computed, type ComputedRef, type Ref } from "vue";
 import { useRoute } from "vue-router";
+import { usePageTitle } from "../head/usePageTitle";
 import { useEndpoint } from "../useEndpoint";
-import { usePageHead } from "../usePageHead";
 
 export interface YearPageState {
   title: ComputedRef<string>;
@@ -18,7 +18,7 @@ export const useYearPageState = (): YearPageState => {
   );
   const articles = useEndpoint(articlesFetcher, []);
 
-  usePageHead(year);
+  usePageTitle(year);
 
   return {
     title: year,

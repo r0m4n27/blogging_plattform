@@ -3,8 +3,8 @@ import type { Option } from "@/lib/types";
 import { computed } from "@vue/reactivity";
 import type { Ref } from "vue";
 import { useRoute } from "vue-router";
+import { usePageTitle } from "../head/usePageTitle";
 import { useEndpoint } from "../useEndpoint";
-import { usePageHead } from "../usePageHead";
 
 export interface ArticlePageState {
   article: Ref<Option<Article>>;
@@ -21,7 +21,7 @@ export const useArticlePageState = (): ArticlePageState => {
   const article = useEndpoint(articleFetcher);
   const articleTitle = computed(() => article.value?.title ?? "");
 
-  usePageHead(articleTitle);
+  usePageTitle(articleTitle);
 
   return {
     article,

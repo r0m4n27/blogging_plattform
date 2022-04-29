@@ -1,8 +1,8 @@
 import { fetchArticles, type Article } from "@/api/article";
 import { storeToRefs } from "pinia";
 import type { Ref } from "vue";
+import { usePageTitle } from "../head/usePageTitle";
 import { useEndpoint } from "../useEndpoint";
-import { usePageHead } from "../usePageHead";
 import { useSiteConfig } from "../useSiteConfig";
 
 export interface HomePageState {
@@ -11,7 +11,7 @@ export interface HomePageState {
 }
 
 export const useHomePageState = (): HomePageState => {
-  usePageHead();
+  usePageTitle();
 
   const siteConfig = useSiteConfig();
   const { blogTitle } = storeToRefs(siteConfig);
