@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import { RouterView } from "vue-router";
+import VRoot from "./components/base/VRoot.vue";
+</script>
+
 <template>
-  <h1 class="text-3xl font-bold underline">Hello World!</h1>
+  <VRoot>
+    <RouterView />
+  </VRoot>
 </template>
