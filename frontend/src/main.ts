@@ -4,5 +4,8 @@ import "ress/dist/ress.min.css";
 import "./main.css";
 import { router } from "./lib/router";
 import { createPinia } from "pinia";
+import { createHead } from "@vueuse/head";
 
-createApp(App).use(router).use(createPinia()).mount("#app");
+const app = createApp(App).use(router).use(createPinia()).use(createHead());
+
+router.isReady().then(() => app.mount("#app"));

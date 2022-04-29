@@ -3,12 +3,12 @@ import { piniaKeysConfig } from "@/config/pinia";
 import { defineStore } from "pinia";
 import type { ComputedRef } from "vue";
 import { useEndpoint } from "./useEndpoint";
-import logoTransparent from "/logo_transparent.png";
 import { computed } from "@vue/reactivity";
 
 export interface UseSiteConfigState {
   blogTitle: ComputedRef<string>;
   logoUrl: ComputedRef<string>;
+  iconUrl: ComputedRef<string>;
 }
 
 // The site config is used in multiple places
@@ -21,12 +21,14 @@ export const useSiteConfig = defineStore<string, UseSiteConfigState>(
   () => {
     const fetcher = useEndpoint(fetchSiteConfig, {
       blogTitle: "",
-      logoUrl: logoTransparent,
+      logoUrl: "/logo_transparent.png",
+      iconUrl: "/favicon.ico",
     });
 
     return {
       blogTitle: computed(() => fetcher.value.blogTitle),
       logoUrl: computed(() => fetcher.value.logoUrl),
+      iconUrl: computed(() => fetcher.value.iconUrl),
     };
   }
 );
