@@ -16,7 +16,6 @@ withDefaults(defineProps<UserPageLayoutProps>(), {
 });
 
 const siteConfig = useSiteConfig();
-console.log(siteConfig.logoUrl);
 </script>
 
 <template>
