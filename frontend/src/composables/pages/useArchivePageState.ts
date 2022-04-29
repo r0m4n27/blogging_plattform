@@ -2,15 +2,15 @@ import { fetchYears } from "@/api/year";
 import type { Collection } from "@/components/summary/collection/collection";
 import { yearToCollection } from "@/lib/collection";
 import { computed, type ComputedRef } from "vue";
+import { usePageTitle } from "../head/usePageTitle";
 import { useEndpoint } from "../useEndpoint";
-import { usePageHead } from "../usePageHead";
 
 export interface ArchivePageState {
   yearsCollections: ComputedRef<Collection[]>;
 }
 
 export const useArchivePageState = (): ArchivePageState => {
-  usePageHead("Archive");
+  usePageTitle("Archive");
 
   const years = useEndpoint(fetchYears, []);
 

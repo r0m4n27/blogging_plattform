@@ -2,8 +2,8 @@ import { fetchArticles, type Article } from "@/api/article";
 import { fetchCategory } from "@/api/category";
 import { computed, type ComputedRef, type Ref } from "vue";
 import { useRoute } from "vue-router";
+import { usePageTitle } from "../head/usePageTitle";
 import { useEndpoint } from "../useEndpoint";
-import { usePageHead } from "../usePageHead";
 
 export interface CategoryPageState {
   title: ComputedRef<string>;
@@ -27,7 +27,7 @@ export const useCategoryPageState = (): CategoryPageState => {
 
   const title = computed(() => category.value?.name ?? "");
 
-  usePageHead(title);
+  usePageTitle(title);
 
   return {
     title,
