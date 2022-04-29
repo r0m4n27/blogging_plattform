@@ -3,7 +3,6 @@ import { piniaKeysConfig } from "@/config/pinia";
 import { defineStore } from "pinia";
 import type { ComputedRef } from "vue";
 import { useEndpoint } from "./useEndpoint";
-import logoTransparent from "/logo_transparent.png";
 import { computed } from "@vue/reactivity";
 
 export interface UseSiteConfigState {
@@ -21,7 +20,8 @@ export const useSiteConfig = defineStore<string, UseSiteConfigState>(
   () => {
     const fetcher = useEndpoint(fetchSiteConfig, {
       blogTitle: "",
-      logoUrl: logoTransparent,
+      logoUrl: "/logo_transparent.png",
+      iconUrl: "/favicon.ico",
     });
 
     return {
