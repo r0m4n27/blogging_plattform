@@ -2,12 +2,12 @@
 import LeftNavBarPart from "./LeftNavBarPart.vue";
 import RightNavBarPart from "./RightNavBarPart.vue";
 import MobileNavMenu from "./MobileNavMenu.vue";
-import NavBarDivider from "./NavBarDivider.vue";
 import VRow from "../base/layout/VRow.vue";
 import VContainer from "../base/layout/VContainer.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import VBox from "../base/layout/VBox.vue";
 import { useNavBarState } from "@/composables/useNavBarState";
+import ContentDivider from "../util/ContentDivider.vue";
 
 interface NavBarProps {
   title: string;
@@ -32,7 +32,7 @@ const { menuExpanded, toggleMenu, destinations } = useNavBarState();
       </VRow>
     </VContainer>
 
-    <NavBarDivider />
+    <ContentDivider />
     <MobileNavMenu v-if="menuExpanded" :destinations="destinations" />
   </VBox>
 </template>
