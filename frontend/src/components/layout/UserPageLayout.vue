@@ -6,6 +6,7 @@ import type { Responsive } from "@/lib/responsive";
 import type { ContainerSize } from "@/styling/props/containerProps";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import { useSiteConfig } from "@/composables/useSiteConfig";
+import PageFooter from "../util/footer/PageFooter.vue";
 
 interface UserPageLayoutProps {
   containerSize?: Responsive<ContainerSize>;
@@ -22,14 +23,17 @@ const siteConfig = useSiteConfig();
   <VColumn
     :gap="{ sm: contentSpacingConfig.xs, md: contentSpacingConfig.sm }"
     is="main"
+    height="fullVH"
   >
     <NavigationBar
       :title="siteConfig.blogTitle"
       :logo-url="siteConfig.logoUrl"
     />
 
-    <VContainer :size="containerSize" width="full">
+    <VContainer :size="containerSize" width="full" :style="{ flexGrow: 1 }">
       <slot />
     </VContainer>
+
+    <PageFooter />
   </VColumn>
 </template>

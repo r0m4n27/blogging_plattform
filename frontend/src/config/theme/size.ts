@@ -5,6 +5,7 @@ export const sizeConfig = {
   max: "max-content",
   min: "min-content",
   full: "100%",
+  fullVH: "100vh",
   "3xs": "14rem",
   "2xs": "16rem",
   xs: "20rem",

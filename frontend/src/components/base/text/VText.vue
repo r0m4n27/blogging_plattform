@@ -1,11 +1,21 @@
 <script setup lang="ts">
+import { createSystemPropsCss, systemProps } from "@/styling/props/systemProps";
 import { createTextPropsCss, textProps } from "@/styling/props/textProps";
+import { cx } from "@emotion/css";
+import { computed } from "vue";
 
-const props = defineProps(textProps);
+const props = defineProps({
+  ...systemProps,
+  ...textProps,
+});
+
+const className = computed(() =>
+  cx(createTextPropsCss(props), createSystemPropsCss(props))
+);
 </script>
 
 <template>
-  <component :is="is" :class="createTextPropsCss(props)">
+  <component :is="is" :class="className">
     <slot />
   </component>
 </template>
