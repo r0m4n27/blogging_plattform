@@ -8,7 +8,7 @@ export const footerLinks: FooterLink[] = [
   },
   {
     name: "Login",
-    destination: "/",
+    destination: "/login",
     isExternal: false,
   },
 ];

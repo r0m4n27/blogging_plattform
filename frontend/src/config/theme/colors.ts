@@ -3,7 +3,8 @@ export type ColorWithPalette =
   | "blue"
   | "whiteAlpha"
   | "purple"
-  | "orange";
+  | "orange"
+  | "red";
 export type ColorPaletteValues =
   | 50
   | 100
@@ -53,6 +54,18 @@ const colorsWithPalette = {
     "700": "#553C9A",
     "800": "#44337A",
     "900": "#322659",
+  },
+  red: {
+    "50": "#FFF5F5",
+    "100": "#FED7D7",
+    "200": "#FEB2B2",
+    "300": "#FC8181",
+    "400": "#F56565",
+    "500": "#E53E3E",
+    "600": "#C53030",
+    "700": "#9B2C2C",
+    "800": "#822727",
+    "900": "#63171B",
   },
   orange: {
     "50": "#FFFAF0",
