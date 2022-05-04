@@ -25,7 +25,7 @@ const { menuExpanded, toggleMenu, destinations } = useNavBarState();
       <VRow justify="space-between">
         <LeftNavBarPart :title="title" :logo-url="logoUrl" />
         <RightNavBarPart
-          :onMenuClick="toggleMenu"
+          @menu-click="toggleMenu"
           :menu-expanded="menuExpanded"
           :destinations="destinations"
         />

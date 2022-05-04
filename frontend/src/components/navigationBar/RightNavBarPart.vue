@@ -10,12 +10,16 @@ import VLink from "../base/VLink.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
 
 interface RightNavBarPartProps {
-  onMenuClick: () => void;
   menuExpanded: boolean;
   destinations: NavigationDestination[];
 }
 
+interface RightNavBarPartEmits {
+  (e: "menuClick"): void;
+}
+
 const props = defineProps<RightNavBarPartProps>();
+const emit = defineEmits<RightNavBarPartEmits>();
 
 const menuIcon = computed(() => (props.menuExpanded ? X : Menu));
 
@@ -39,7 +43,7 @@ const textButtonHiddenProp = {
     <ThemeButton />
     <IconButton
       :icon="menuIcon"
-      @click="onMenuClick"
+      @click="emit('menuClick')"
       :hidden="{ sm: false, md: true }"
     />
   </VRow>
