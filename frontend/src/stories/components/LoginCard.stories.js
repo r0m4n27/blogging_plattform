@@ -15,3 +15,9 @@ const Template = (args) => ({
 
 export const Primary = Template.bind({});
 Primary.decorators = [createContainerDecorator("lg")];
+
+export const Error = Template.bind({});
+Error.decorators = [createContainerDecorator("lg")];
+Error.args = {
+  showError: true,
+};
