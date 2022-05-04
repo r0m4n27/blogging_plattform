@@ -1,3 +1,4 @@
+import type { MaybeRef, Option } from "@/lib/types";
 import { ref, watchEffect, type Ref, type UnwrapRef } from "vue";
 
 /**
@@ -8,19 +9,32 @@ import { ref, watchEffect, type Ref, type UnwrapRef } from "vue";
  * @param defaultValue Default value when the local storage has no been set
  * @returns Ref to the storage item
  */
-export const useLocalStorage = <Key extends string, T>(
+export function useLocalStorage<Key extends string, T>(
   key: Key,
-  defaultValue: Ref<UnwrapRef<T>> | T
-): Ref<UnwrapRef<T>> => {
+  defaultValue: MaybeRef<T>
+): Ref<UnwrapRef<T>>;
+
+export function useLocalStorage<Key extends string, T>(
+  key: Key
+): Ref<Option<UnwrapRef<T>>>;
+
+export function useLocalStorage<Key extends string, T>(
+  key: Key,
+  defaultValue?: MaybeRef<T>
+) {
   const rawStorageItem = localStorage.getItem(key);
 
   const parsedStorageItem = ref(
     rawStorageItem !== null ? (JSON.parse(rawStorageItem) as T) : defaultValue
   );
 
-  watchEffect(() =>
-    localStorage.setItem(key, JSON.stringify(parsedStorageItem.value))
-  );
+  watchEffect(() => {
+    if (parsedStorageItem.value !== undefined) {
+      localStorage.setItem(key, JSON.stringify(parsedStorageItem.value));
+    } else {
+      localStorage.removeItem(key);
+    }
+  });
 
   return parsedStorageItem;
-};
+}
