@@ -42,7 +42,11 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["update:inputValue"]);
+interface TextInputEmits {
+  (e: "update:inputValue", newValue: string): void;
+}
+
+const emit = defineEmits<TextInputEmits>();
 
 const inputModel = computed({
   get() {

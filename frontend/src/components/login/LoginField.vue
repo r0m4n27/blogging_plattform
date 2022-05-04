@@ -12,9 +12,13 @@ interface LoginFieldProps {
   inputValue: string;
 }
 
+interface LoginFieldEmits {
+  (e: "update:inputValue", newValue: string): void;
+}
+
 const props = defineProps<LoginFieldProps>();
 
-const emit = defineEmits(["update:inputValue"]);
+const emit = defineEmits<LoginFieldEmits>();
 
 const inputModel = computed({
   get() {
