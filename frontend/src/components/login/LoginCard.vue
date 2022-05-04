@@ -7,6 +7,13 @@ import { contentSpacingConfig } from "@/config/content/spacing";
 import TextButton from "../base/button/TextButton.vue";
 import { getColor } from "@/config/theme/colors";
 import { ref } from "vue";
+import VText from "../base/text/VText.vue";
+
+interface LoginCardProps {
+  showError: boolean;
+}
+
+defineProps<LoginCardProps>();
 
 const username = ref("");
 const password = ref("");
@@ -29,6 +36,16 @@ const login = () => emit("login", username.value, password.value);
         input-type="password"
         v-model:input-value="password"
       />
+
+      <VText
+        :color="{
+          light: getColor('red', 400),
+          dark: getColor('red', 400),
+        }"
+        v-if="showError"
+      >
+        Password does not match!
+      </VText>
 
       <TextButton
         @click="login"

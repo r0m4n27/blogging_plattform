@@ -1,8 +1,9 @@
-import { ref } from "vue";
+import { ref, type Ref } from "vue";
 import { useRouter } from "vue-router";
 import { useUser } from "../useUser";
 
 export interface LoginPageState {
+  showError: Ref<boolean>;
   login: (username: string, password: string) => Promise<void>;
 }
 
@@ -24,5 +25,6 @@ export const useLoginPageState = (): LoginPageState => {
 
   return {
     login,
+    showError,
   };
 };
