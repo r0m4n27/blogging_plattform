@@ -6,14 +6,9 @@ import LoginField from "./LoginField.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import TextButton from "../base/button/TextButton.vue";
 import { getColor } from "@/config/theme/colors";
-import { ref, watchEffect } from "vue";
+import { useLoginCardState } from "@/composables/useLoginCardState";
 
-const username = ref("");
-const password = ref("");
-
-watchEffect(() => {
-  console.log(username.value);
-});
+const { username, password, login } = useLoginCardState();
 </script>
 
 <template>
@@ -31,6 +26,7 @@ watchEffect(() => {
       />
 
       <TextButton
+        @click="login"
         label="Login"
         width="full"
         :show-border="false"
