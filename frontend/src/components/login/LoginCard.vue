@@ -13,12 +13,15 @@ interface LoginCardProps {
   showError: boolean;
 }
 
+interface LoginCardsEmits {
+  (e: "login", username: string, password: string): void;
+}
+
 defineProps<LoginCardProps>();
+const emit = defineEmits<LoginCardsEmits>();
 
 const username = ref("");
 const password = ref("");
-
-const emit = defineEmits(["login"]);
 
 const login = () => emit("login", username.value, password.value);
 </script>
