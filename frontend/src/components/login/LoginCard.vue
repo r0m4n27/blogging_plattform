@@ -6,9 +6,14 @@ import LoginField from "./LoginField.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import TextButton from "../base/button/TextButton.vue";
 import { getColor } from "@/config/theme/colors";
-import { useLoginCardState } from "@/composables/useLoginCardState";
+import { ref } from "vue";
 
-const { username, password, login } = useLoginCardState();
+const username = ref("");
+const password = ref("");
+
+const emit = defineEmits(["login"]);
+
+const login = () => emit("login", username.value, password.value);
 </script>
 
 <template>
