@@ -5,8 +5,8 @@ import { routeDestinations } from "@/lib/router";
 import type { Option } from "@/lib/types";
 import { defineStore } from "pinia";
 import type { Ref } from "vue";
-import { useRouter } from "vue-router";
 import { useLocalStorage } from "./useLocalStorage";
+import { useEmptyStore } from "./emptyStore";
 
 export interface UserState {
   value: Ref<Option<User>>;
@@ -19,7 +19,7 @@ export interface UserState {
 export const useUser = defineStore<string, UserState>(
   piniaKeysConfig.user,
   () => {
-    const router = useRouter();
+    const emptyStore = useEmptyStore();
 
     const user = useLocalStorage<string, User>(localStorageKeys.user);
 
@@ -33,7 +33,8 @@ export const useUser = defineStore<string, UserState>(
     // Remove the user and also just redirect to the home page
     // to not create a weird state
     const logout = () => {
-      router.push(routeDestinations.home);
+      emptyStore.router.push(routeDestinations.home);
+
       user.value = undefined;
     };
 
