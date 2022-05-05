@@ -108,6 +108,18 @@ const createRouter = (): Router => {
     }
   });
 
+  // Redirect to login on unauthorized access
+  router.beforeEach((to) => {
+    const user = useUser();
+
+    if ((to.meta.requiredAuth ?? false) && user === undefined) {
+      return {
+        path: routeDestinations.login,
+        replace: true,
+      };
+    }
+  });
+
   return router;
 };
 
