@@ -1,6 +1,7 @@
 import type { NavigationDestination } from "@/components/navigationBar/navDestination";
 import { routeDestinations } from "@/lib/router";
 import { computed, ref, type ComputedRef, type Ref, type UnwrapRef } from "vue";
+import { useUser } from "./useUser";
 
 export interface NavBarState {
   menuExpanded: Ref<UnwrapRef<boolean>>;
@@ -11,6 +12,8 @@ export interface NavBarState {
 }
 
 export const useNavBarState = (): NavBarState => {
+  const user = useUser();
+
   const menuExpanded = ref(false);
 
   const toggleMenu = () => {
@@ -18,21 +21,32 @@ export const useNavBarState = (): NavBarState => {
   };
 
   // Later more destinations could be added when someone is logged in
-  const destinations = ref([
-    {
-      label: "Categories",
-      to: routeDestinations.categories,
-    },
-    {
-      label: "Archive",
-      to: routeDestinations.archive,
-    },
-  ]);
+  const destinations = computed(() => {
+    const destinations: NavigationDestination[] = [];
+    if (user.value !== undefined) {
+      destinations.push({
+        label: "Dashboard",
+        to: routeDestinations.dashboard,
+      });
+    }
+
+    destinations.push(
+      {
+        label: "Categories",
+        to: routeDestinations.categories,
+      },
+      {
+        label: "Archive",
+        to: routeDestinations.archive,
+      }
+    );
+
+    return destinations;
+  });
 
   return {
     menuExpanded,
     toggleMenu,
-    // Make destinations computed so no one else can modify it
-    destinations: computed(() => destinations.value),
+    destinations,
   };
 };
