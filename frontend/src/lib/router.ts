@@ -13,6 +13,7 @@ import type { Year } from "@/api/year";
 import ArchivePage from "@/components/pages/ArchivePage.vue";
 import YearPage from "@/components/pages/YearPage.vue";
 import LoginPage from "@/components/pages/LoginPage.vue";
+import DashboardPage from "@/components/pages/DashboardPage.vue";
 
 export const routeDestinations = {
   home: "/",
@@ -22,6 +23,7 @@ export const routeDestinations = {
   category: "/categories/:id",
   year: "/years/:id",
   login: "/login",
+  dashboard: "/dashboard",
 };
 
 export const createCategoryDestination = (category: Category): string =>
@@ -61,6 +63,10 @@ export const routes: RouteRecordRaw[] = [
   {
     path: routeDestinations.login,
     component: LoginPage,
+  },
+  {
+    path: routeDestinations.dashboard,
+    component: DashboardPage,
   },
 ];
 
