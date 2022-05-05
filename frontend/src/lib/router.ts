@@ -90,7 +90,7 @@ const createRouter = (): Router => {
   router.beforeEach((to, from) => {
     const user = useUser();
 
-    if (user !== undefined) {
+    if (user.value !== undefined) {
       // The previous path is also "/" when the user
       // loads the route directly
       // and this has to be handled separately
@@ -112,7 +112,7 @@ const createRouter = (): Router => {
   router.beforeEach((to) => {
     const user = useUser();
 
-    if ((to.meta.requiredAuth ?? false) && user === undefined) {
+    if ((to.meta.requiredAuth ?? false) && user.value === undefined) {
       return {
         path: routeDestinations.login,
         replace: true,
