@@ -2,19 +2,21 @@
 import VLink from "@/components/base/VLink.vue";
 import VExternalLink from "@/components/base/VExternalLink.vue";
 import PageFooterItem from "./PageFooterItem.vue";
-import type { FooterLink } from "./footerLink";
+import type { RouteLocationRaw } from "vue-router";
 
 interface PageFooterLinkProps {
-  link: FooterLink;
+  name: string;
+  isExternal: boolean;
+  destination: string | RouteLocationRaw;
 }
 
 defineProps<PageFooterLinkProps>();
 </script>
 <template>
-  <VLink v-if="!link.isExternal" :to="link.destination">
-    <PageFooterItem :name="link.name" />
+  <VLink v-if="!isExternal" :to="destination">
+    <PageFooterItem :name="name" />
   </VLink>
-  <VExternalLink v-else :href="(link.destination as string)">
-    <PageFooterItem :name="link.name" />
+  <VExternalLink v-else :href="(destination as string)">
+    <PageFooterItem :name="name" />
   </VExternalLink>
 </template>
