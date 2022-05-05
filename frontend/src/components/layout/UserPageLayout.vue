@@ -6,7 +6,7 @@ import type { Responsive } from "@/lib/responsive";
 import type { ContainerSize } from "@/styling/props/containerProps";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import { useSiteConfig } from "@/composables/useSiteConfig";
-import PageFooter from "../util/footer/PageFooter.vue";
+import PageFooter from "../footer/PageFooter.vue";
 
 interface UserPageLayoutProps {
   containerSize?: Responsive<ContainerSize>;

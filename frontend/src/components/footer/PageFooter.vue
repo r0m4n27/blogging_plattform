@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import VColumn from "../../base/layout/VColumn.vue";
-import VRow from "../../base/layout/VRow.vue";
-import VContainer from "../../base/layout/VContainer.vue";
+import VColumn from "../base/layout/VColumn.vue";
+import VRow from "../base/layout/VRow.vue";
+import VContainer from "../base/layout/VContainer.vue";
 import PageFooterLink from "./PageFooterLink.vue";
 import { footerLinks } from "@/config/components/pageFooter";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import { contentColorConfig } from "@/config/content/color";
-import VBox from "../../base/layout/VBox.vue";
-import ContentDivider from "../ContentDivider.vue";
+import VBox from "../base/layout/VBox.vue";
+import ContentDivider from "../util/ContentDivider.vue";
 </script>
 
 <template>
