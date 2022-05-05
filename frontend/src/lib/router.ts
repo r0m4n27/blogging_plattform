@@ -95,8 +95,8 @@ const createRouter = (): Router => {
       // loads the route directly
       // and this has to be handled separately
       if (
-        from.path == routeDestinations.home &&
-        to.path !== routeDestinations.home
+        from.path === routeDestinations.home &&
+        to.path === routeDestinations.login
       ) {
         return {
           path: "/",
