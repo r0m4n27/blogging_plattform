@@ -8,22 +8,30 @@ import { contentSpacingConfig } from "@/config/content/spacing";
 import VBox from "../base/layout/VBox.vue";
 import { useNavBarState } from "@/composables/useNavBarState";
 import ContentDivider from "../util/ContentDivider.vue";
+import type { NavigationDestination } from "./navDestination";
+import type { RouteLocationRaw } from "vue-router";
 
 interface NavBarProps {
   title: string;
   logoUrl: string;
+  destinations: NavigationDestination[];
+  headingDestination: RouteLocationRaw;
 }
 
 defineProps<NavBarProps>();
 
-const { menuExpanded, toggleMenu, destinations } = useNavBarState();
+const { menuExpanded, toggleMenu } = useNavBarState();
 </script>
 
 <template>
   <VBox width="full" is="nav">
     <VContainer :padding="contentSpacingConfig.xs" size="lg">
       <VRow justify="space-between">
-        <LeftNavBarPart :title="title" :logo-url="logoUrl" />
+        <LeftNavBarPart
+          :title="title"
+          :logo-url="logoUrl"
+          :heading-destination="headingDestination"
+        />
         <RightNavBarPart
           @menu-click="toggleMenu"
           :menu-expanded="menuExpanded"

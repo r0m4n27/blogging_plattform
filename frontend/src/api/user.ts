@@ -8,9 +8,9 @@ export const login = async (
   username: string,
   password: string
 ): Promise<Option<User>> => {
-  // return {
-  //   token: `${username}:${password}`,
-  // };
+  return {
+    token: `${username}:${password}`,
+  };
 
   return undefined;
 };

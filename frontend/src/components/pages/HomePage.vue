@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import ArticleSummaryList from "@/components/summary/article/ArticleSummaryList.vue";
-import UserPageLayout from "@/components/layout/UserPageLayout.vue";
+import VisitorPageLayout from "@/components/layout/VisitorPageLayout.vue";
 import { useHomePageState } from "@/composables/pages/useHomePageState";
 
 const { blogTitle, articles } = useHomePageState();
 </script>
 
 <template>
-  <UserPageLayout>
+  <VisitorPageLayout>
     <ArticleSummaryList :title="blogTitle" :articles="articles" />
-  </UserPageLayout>
+  </VisitorPageLayout>
 </template>

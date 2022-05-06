@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import UserPageLayout from "@/components/layout/UserPageLayout.vue";
+import VisitorPageLayout from "@/components/layout/VisitorPageLayout.vue";
 import ArticleSummaryList from "@/components/summary/article/ArticleSummaryList.vue";
 import { useCategoryPageState } from "@/composables/pages/useCategoryPageState";
 
@@ -7,11 +7,11 @@ const { title, articles } = useCategoryPageState();
 </script>
 
 <template>
-  <UserPageLayout>
+  <VisitorPageLayout>
     <ArticleSummaryList
       :title="title"
       :articles="articles"
       show-title-on-desktop
     />
-  </UserPageLayout>
+  </VisitorPageLayout>
 </template>
