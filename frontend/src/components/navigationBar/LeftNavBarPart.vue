@@ -2,19 +2,20 @@
 import VRow from "../base/layout/VRow.vue";
 import VHeading from "../base/text/VHeading.vue";
 import VImage from "../base/VImage.vue";
-import { routeDestinations } from "@/config/routes";
 import VLink from "../base/VLink.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
+import type { RouteLocationRaw } from "vue-router";
 
 defineProps<{
   title: string;
   logoUrl: string;
+  headingDestination: RouteLocationRaw;
 }>();
 </script>
 
 <template>
   <VRow :gap="contentSpacingConfig.md">
-    <VLink :to="routeDestinations.home">
+    <VLink :to="headingDestination">
       <VImage
         :src="logoUrl"
         border-radius="full"
@@ -24,7 +25,7 @@ defineProps<{
       />
     </VLink>
 
-    <VLink :to="routeDestinations.home" :hidden="{ sm: true, md: false }">
+    <VLink :to="headingDestination" :hidden="{ sm: true, md: false }">
       <VHeading is="span" size="lg">
         {{ title }}
       </VHeading>

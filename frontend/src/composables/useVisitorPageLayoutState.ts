@@ -7,24 +7,19 @@ import {
   loginLink,
   logoutLink,
 } from "@/config/components/pageFooter";
+import { routeDestinations } from "@/config/routes";
 import { computed } from "@vue/reactivity";
-import { storeToRefs } from "pinia";
-import type { ComputedRef, Ref } from "vue";
-import { useSiteConfig } from "./useSiteConfig";
+import type { ComputedRef } from "vue";
+import type { RouteLocationRaw } from "vue-router";
 import { useUser } from "./useUser";
 
 export interface VisitorPageLayoutState {
   footerLinks: ComputedRef<FooterLink[]>;
   navBarDestinations: NavigationDestination[];
-
-  blogTitle: Ref<string>;
-  logoUrl: Ref<string>;
+  headingDestination: RouteLocationRaw;
 }
 
 export const useVisitorPageLayoutState = (): VisitorPageLayoutState => {
-  const siteConfig = useSiteConfig();
-  const { blogTitle, logoUrl } = storeToRefs(siteConfig);
-
   const user = useUser();
 
   const footerLinks = computed(() => {
@@ -45,11 +40,11 @@ export const useVisitorPageLayoutState = (): VisitorPageLayoutState => {
   });
 
   const navBarDestinations = visitorNavBarDestinations;
+  const headingDestination = routeDestinations.home;
 
   return {
     footerLinks,
-    blogTitle,
-    logoUrl,
     navBarDestinations,
+    headingDestination,
   };
 };
