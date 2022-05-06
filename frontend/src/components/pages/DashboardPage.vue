@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import VisitorPageLayout from "@/components/layout/VisitorPageLayout.vue";
+import AuthorPageLayout from "../layout/AuthorPageLayout.vue";
 </script>
 
-<template>
-  <VisitorPageLayout> </VisitorPageLayout>
-</template>
+<template><AuthorPageLayout></AuthorPageLayout></template>

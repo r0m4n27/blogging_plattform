@@ -11,3 +11,5 @@ export const visitorNavBarDestinations: NavigationDestination[] = [
     to: routeDestinations.archive,
   },
 ];
+
+export const authorNavBarDestinations: NavigationDestination[] = [];
