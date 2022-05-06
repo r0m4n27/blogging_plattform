@@ -1,7 +1,7 @@
 import { type User, login as loginUser } from "@/api/user";
 import { localStorageKeys } from "@/config/localStorage";
 import { piniaKeysConfig } from "@/config/pinia";
-import { routeDestinations } from "@/lib/router";
+import { routeDestinations } from "@/config/routes";
 import type { Option } from "@/lib/types";
 import { defineStore } from "pinia";
 import type { Ref } from "vue";

@@ -1,4 +1,6 @@
 import type { FooterLink } from "@/components/footer/footerLink";
+import type { NavigationDestination } from "@/components/navigationBar/navDestination";
+import { visitorNavBarDestinations } from "@/config/components/navigationBar";
 import {
   contactLink,
   dashboardLink,
@@ -13,6 +15,8 @@ import { useUser } from "./useUser";
 
 export interface UserPageLayoutState {
   footerLinks: ComputedRef<FooterLink[]>;
+  navBarDestinations: NavigationDestination[];
+
   blogTitle: Ref<string>;
   logoUrl: Ref<string>;
 }
@@ -40,9 +44,12 @@ export const useUserPageLayoutState = (): UserPageLayoutState => {
     return destinations;
   });
 
+  const navBarDestinations = visitorNavBarDestinations;
+
   return {
     footerLinks,
     blogTitle,
     logoUrl,
+    navBarDestinations,
   };
 };

@@ -17,6 +17,7 @@ import LoginPage from "@/components/pages/LoginPage.vue";
 import DashboardPage from "@/components/pages/DashboardPage.vue";
 import "vue-router";
 import { useUser } from "@/composables/useUser";
+import { routeDestinations } from "@/config/routes";
 
 declare module "vue-router" {
   interface RouteMeta {
@@ -24,17 +25,6 @@ declare module "vue-router" {
     requiredAuth?: boolean;
   }
 }
-
-export const routeDestinations = {
-  home: "/",
-  archive: "/archive",
-  categories: "/categories",
-  article: "/articles/:id",
-  category: "/categories/:id",
-  year: "/years/:id",
-  login: "/login",
-  dashboard: "/dashboard",
-};
 
 export const createCategoryDestination = (category: Category): string =>
   `/categories/${category.id}`;

@@ -16,7 +16,8 @@ withDefaults(defineProps<UserPageLayoutProps>(), {
   containerSize: "lg",
 });
 
-const { footerLinks, blogTitle, logoUrl } = useUserPageLayoutState();
+const { footerLinks, blogTitle, logoUrl, navBarDestinations } =
+  useUserPageLayoutState();
 </script>
 
 <template>
@@ -25,7 +26,11 @@ const { footerLinks, blogTitle, logoUrl } = useUserPageLayoutState();
     is="main"
     height="fullVH"
   >
-    <NavigationBar :title="blogTitle" :logo-url="logoUrl" />
+    <NavigationBar
+      :title="blogTitle"
+      :logo-url="logoUrl"
+      :destinations="navBarDestinations"
+    />
 
     <VContainer :size="containerSize" width="full" :style="{ flexGrow: 1 }">
       <slot />

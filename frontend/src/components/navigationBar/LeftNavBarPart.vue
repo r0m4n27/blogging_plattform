@@ -2,7 +2,7 @@
 import VRow from "../base/layout/VRow.vue";
 import VHeading from "../base/text/VHeading.vue";
 import VImage from "../base/VImage.vue";
-import { routeDestinations } from "@/lib/router";
+import { routeDestinations } from "@/config/routes";
 import VLink from "../base/VLink.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
 
