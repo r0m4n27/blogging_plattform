@@ -13,7 +13,7 @@ import type { ComputedRef, Ref } from "vue";
 import { useSiteConfig } from "./useSiteConfig";
 import { useUser } from "./useUser";
 
-export interface UserPageLayoutState {
+export interface VisitorPageLayoutState {
   footerLinks: ComputedRef<FooterLink[]>;
   navBarDestinations: NavigationDestination[];
 
@@ -21,7 +21,7 @@ export interface UserPageLayoutState {
   logoUrl: Ref<string>;
 }
 
-export const useUserPageLayoutState = (): UserPageLayoutState => {
+export const useVisitorPageLayoutState = (): VisitorPageLayoutState => {
   const siteConfig = useSiteConfig();
   const { blogTitle, logoUrl } = storeToRefs(siteConfig);
 

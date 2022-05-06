@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import UserPageLayout from "@/components/layout/UserPageLayout.vue";
+import VisitorPageLayout from "@/components/layout/VisitorPageLayout.vue";
 import BlogArticle from "@/components/article/BlogArticle.vue";
 import { useArticlePageState } from "@/composables/pages/useArticlePageState";
 
@@ -7,7 +7,7 @@ const { article } = useArticlePageState();
 </script>
 
 <template>
-  <UserPageLayout container-size="md">
+  <VisitorPageLayout container-size="md">
     <BlogArticle v-if="article !== undefined" :article="article" />
-  </UserPageLayout>
+  </VisitorPageLayout>
 </template>

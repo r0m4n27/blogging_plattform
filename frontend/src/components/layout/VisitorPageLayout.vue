@@ -6,18 +6,18 @@ import type { Responsive } from "@/lib/responsive";
 import type { ContainerSize } from "@/styling/props/containerProps";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import PageFooter from "../footer/PageFooter.vue";
-import { useUserPageLayoutState } from "@/composables/useUserPageLayoutState";
+import { useVisitorPageLayoutState } from "@/composables/useVisitorPageLayoutState";
 
-interface UserPageLayoutProps {
+interface VisitorPageLayoutProps {
   containerSize?: Responsive<ContainerSize>;
 }
 
-withDefaults(defineProps<UserPageLayoutProps>(), {
+withDefaults(defineProps<VisitorPageLayoutProps>(), {
   containerSize: "lg",
 });
 
 const { footerLinks, blogTitle, logoUrl, navBarDestinations } =
-  useUserPageLayoutState();
+  useVisitorPageLayoutState();
 </script>
 
 <template>
