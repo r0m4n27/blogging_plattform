@@ -4,6 +4,7 @@ import { authorNavBarDestinations } from "@/config/components/navigationBar";
 import { blogLink, logoutLink } from "@/config/components/pageFooter";
 import { routeDestinations } from "@/config/routes";
 import type { RouteLocationRaw } from "vue-router";
+import { useUser } from "./useUser";
 
 export interface VisitorPageLayoutState {
   footerLinks: FooterLink[];
@@ -12,7 +13,13 @@ export interface VisitorPageLayoutState {
 }
 
 export const useAuthorPageLayoutState = (): VisitorPageLayoutState => {
-  const footerLinks = [logoutLink, blogLink];
+  const user = useUser();
+
+  const logoutWithAction = {
+    ...logoutLink,
+    onClick: () => user.logout(),
+  };
+  const footerLinks = [logoutWithAction, blogLink];
 
   const navBarDestinations = authorNavBarDestinations;
   const headingDestination = routeDestinations.dashboard;
