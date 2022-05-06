@@ -5,8 +5,8 @@ import VContainer from "../base/layout/VContainer.vue";
 import type { Responsive } from "@/lib/responsive";
 import type { ContainerSize } from "@/styling/props/containerProps";
 import { contentSpacingConfig } from "@/config/content/spacing";
-import { useSiteConfig } from "@/composables/useSiteConfig";
 import PageFooter from "../footer/PageFooter.vue";
+import { useUserPageLayoutState } from "@/composables/useUserPageLayoutState";
 
 interface UserPageLayoutProps {
   containerSize?: Responsive<ContainerSize>;
@@ -16,7 +16,7 @@ withDefaults(defineProps<UserPageLayoutProps>(), {
   containerSize: "lg",
 });
 
-const siteConfig = useSiteConfig();
+const { footerLinks, blogTitle, logoUrl } = useUserPageLayoutState();
 </script>
 
 <template>
@@ -25,15 +25,12 @@ const siteConfig = useSiteConfig();
     is="main"
     height="fullVH"
   >
-    <NavigationBar
-      :title="siteConfig.blogTitle"
-      :logo-url="siteConfig.logoUrl"
-    />
+    <NavigationBar :title="blogTitle" :logo-url="logoUrl" />
 
     <VContainer :size="containerSize" width="full" :style="{ flexGrow: 1 }">
       <slot />
     </VContainer>
 
-    <PageFooter />
+    <PageFooter :links="footerLinks" />
   </VColumn>
 </template>

@@ -2,15 +2,18 @@
 import VColumn from "../base/layout/VColumn.vue";
 import VRow from "../base/layout/VRow.vue";
 import VContainer from "../base/layout/VContainer.vue";
-import PageFooterLink from "./PageFooterLink.vue";
-import { contactLink } from "@/config/components/pageFooter";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import { contentColorConfig } from "@/config/content/color";
 import VBox from "../base/layout/VBox.vue";
 import ContentDivider from "../util/ContentDivider.vue";
-import { usePageFooterState } from "@/composables/usePageFooterState";
+import PageFooterLink from "./PageFooterLink.vue";
+import type { FooterLink } from "./footerLink";
 
-const state = usePageFooterState();
+interface PageFooterProps {
+  links: FooterLink[];
+}
+
+defineProps<PageFooterProps>();
 </script>
 
 <template>
@@ -23,25 +26,23 @@ const state = usePageFooterState();
           :gap="contentSpacingConfig.md"
           :padding="{ x: contentSpacingConfig.xs, y: 0 }"
         >
-          <PageFooterLink
-            :name="contactLink.name"
-            :is-external="contactLink.isExternal"
-            :destination="contactLink.destination"
-          />
-
-          <PageFooterLink
-            v-if="state.onClick === undefined"
-            :name="state.secondLinkName"
-            :destination="state.secondLinkDestination"
-            :is-external="false"
-          />
-          <PageFooterLink
-            v-else
-            :name="state.secondLinkName"
-            :destination="state.secondLinkDestination"
-            :is-external="false"
-            @click="state.onClick"
-          />
+          <template v-for="link in links">
+            <PageFooterLink
+              v-if="link.onClick === undefined"
+              :key="link.label"
+              :name="link.label"
+              :destination="link.destination"
+              :is-external="link.isExternal"
+            />
+            <PageFooterLink
+              v-else
+              :key="link.label"
+              :name="link.label"
+              :destination="link.destination"
+              :is-external="link.isExternal"
+              @click="link.onClick"
+            />
+          </template>
         </VRow>
       </VColumn>
     </VContainer>
