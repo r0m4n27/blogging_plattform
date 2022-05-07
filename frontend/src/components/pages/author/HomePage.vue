@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import AuthorPageLayout from "../layout/AuthorPageLayout.vue";
-</script>
+<script setup lang="ts"></script>
 
-<template><AuthorPageLayout></AuthorPageLayout></template>
+<template>
+  <div></div>
+</template>

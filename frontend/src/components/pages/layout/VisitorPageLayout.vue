@@ -1,16 +1,7 @@
 <script setup lang="ts">
-import type { Responsive } from "@/lib/responsive";
-import type { ContainerSize } from "@/styling/props/containerProps";
 import { useVisitorPageLayoutState } from "@/composables/pages/layout/visitorPageLayout";
 import BaseLayout from "@/components/layout/BaseLayout.vue";
-
-interface VisitorPageLayoutProps {
-  containerSize?: Responsive<ContainerSize>;
-}
-
-withDefaults(defineProps<VisitorPageLayoutProps>(), {
-  containerSize: "lg",
-});
+import { RouterView } from "vue-router";
 
 const { footerLinks, navBarDestinations, headingDestination } =
   useVisitorPageLayoutState();
@@ -22,6 +13,6 @@ const { footerLinks, navBarDestinations, headingDestination } =
     :footer-links="footerLinks"
     :heading-destination="headingDestination"
   >
-    <slot />
+    <RouterView />
   </BaseLayout>
 </template>

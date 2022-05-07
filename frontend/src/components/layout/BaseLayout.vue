@@ -2,8 +2,6 @@
 import VColumn from "../base/layout/VColumn.vue";
 import NavigationBar from "../navigationBar/NavigationBar.vue";
 import VContainer from "../base/layout/VContainer.vue";
-import type { Responsive } from "@/lib/responsive";
-import type { ContainerSize } from "@/styling/props/containerProps";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import PageFooter from "../footer/PageFooter.vue";
 import { useSiteConfig } from "@/composables/useSiteConfig";
@@ -12,17 +10,13 @@ import type { NavigationDestination } from "../navigationBar/navDestination";
 import type { FooterLink } from "../footer/footerLink";
 import type { RouteLocationRaw } from "vue-router";
 
-interface AuthorPageLayoutProps {
-  containerSize?: Responsive<ContainerSize>;
-
+interface BasePageLayoutProps {
   navBarDestinations: NavigationDestination[];
   footerLinks: FooterLink[];
   headingDestination: RouteLocationRaw;
 }
 
-withDefaults(defineProps<AuthorPageLayoutProps>(), {
-  containerSize: "lg",
-});
+defineProps<BasePageLayoutProps>();
 
 const { blogTitle, logoUrl } = storeToRefs(useSiteConfig());
 </script>
@@ -40,7 +34,7 @@ const { blogTitle, logoUrl } = storeToRefs(useSiteConfig());
       :heading-destination="headingDestination"
     />
 
-    <VContainer :size="containerSize" width="full" :style="{ flexGrow: 1 }">
+    <VContainer size="lg" width="full" :style="{ flexGrow: 1 }">
       <slot />
     </VContainer>
 

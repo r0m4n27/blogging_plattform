@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import VisitorPageLayout from "../layout/VisitorPageLayout.vue";
 import BlogArticle from "@/components/article/BlogArticle.vue";
 import { useArticlePageState } from "@/composables/pages/visitor/articlePage";
+import VContainer from "../../base/layout/VContainer.vue";
 
 const { article } = useArticlePageState();
 </script>
 
 <template>
-  <VisitorPageLayout container-size="md">
+  <VContainer size="md">
     <BlogArticle v-if="article !== undefined" :article="article" />
-  </VisitorPageLayout>
+  </VContainer>
 </template>
