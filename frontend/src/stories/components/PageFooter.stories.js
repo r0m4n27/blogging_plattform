@@ -1,5 +1,8 @@
 import PageFooter from "@/components/footer/PageFooter.vue";
-import { contactLink, loginLink } from "@/config/components/pageFooter";
+import {
+  createContactLink,
+  createLoginLink,
+} from "@/config/components/pageFooter";
 
 export default {
   component: PageFooter,
@@ -15,5 +18,5 @@ const Template = (args) => ({
 
 export const Primary = Template.bind({});
 Primary.args = {
-  links: [contactLink, loginLink],
+  links: [createContactLink(), createLoginLink()],
 };
