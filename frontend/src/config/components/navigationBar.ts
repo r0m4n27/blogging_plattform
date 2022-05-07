@@ -1,15 +1,16 @@
 import type { NavigationDestination } from "@/components/navigationBar/navDestination";
-import { routeDestinations } from "@/config/routes";
+import { visitorRoutes } from "@/lib/router/visitor";
 
-export const visitorNavBarDestinations: NavigationDestination[] = [
+// Import cycle has to be broken
+export const createVisitorNavBarDestinations = (): NavigationDestination[] => [
   {
     label: "Categories",
-    to: routeDestinations.categories,
+    to: visitorRoutes.categories.route,
   },
   {
     label: "Archive",
-    to: routeDestinations.archive,
+    to: visitorRoutes.archive.route,
   },
 ];
 
-export const authorNavBarDestinations: NavigationDestination[] = [];
+export const createAuthorNavBarDestinations = (): NavigationDestination[] => [];

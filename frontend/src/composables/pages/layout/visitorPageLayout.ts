@@ -1,13 +1,13 @@
 import type { FooterLink } from "@/components/footer/footerLink";
 import type { NavigationDestination } from "@/components/navigationBar/navDestination";
-import { visitorNavBarDestinations } from "@/config/components/navigationBar";
+import { createVisitorNavBarDestinations } from "@/config/components/navigationBar";
 import {
-  contactLink,
-  dashboardLink,
-  loginLink,
-  logoutLink,
+  createContactLink,
+  createDashboardLink,
+  createLoginLink,
+  createLogoutLink,
 } from "@/config/components/pageFooter";
-import { routeDestinations } from "@/config/routes";
+import { visitorRoutes } from "@/lib/router/visitor";
 import { computed } from "@vue/reactivity";
 import type { ComputedRef } from "vue";
 import type { RouteLocationRaw } from "vue-router";
@@ -24,23 +24,23 @@ export const useVisitorPageLayoutState = (): VisitorPageLayoutState => {
 
   const footerLinks = computed(() => {
     const destinations: FooterLink[] = [];
-    destinations.push(contactLink);
+    destinations.push(createContactLink());
 
     if (user.value === undefined) {
-      destinations.push(loginLink);
+      destinations.push(createLoginLink());
     } else {
       const logoutWithAction = {
-        ...logoutLink,
+        ...createLogoutLink(),
         onClick: () => user.logout(),
       };
-      destinations.push(logoutWithAction, dashboardLink);
+      destinations.push(logoutWithAction, createDashboardLink());
     }
 
     return destinations;
   });
 
-  const navBarDestinations = visitorNavBarDestinations;
-  const headingDestination = routeDestinations.home;
+  const navBarDestinations = createVisitorNavBarDestinations();
+  const headingDestination = visitorRoutes.home.route;
 
   return {
     footerLinks,

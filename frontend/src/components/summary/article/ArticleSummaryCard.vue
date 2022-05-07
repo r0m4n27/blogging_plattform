@@ -9,7 +9,7 @@ import { computed } from "@vue/reactivity";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import CategoryList from "../../util/CategoryList.vue";
 import { contentColorConfig } from "@/config/content/color";
-import { createArticleDestination } from "@/lib/router";
+import { visitorRoutes } from "@/lib/router/visitor";
 
 // Limitations for the article card
 //
@@ -23,7 +23,7 @@ interface ArticleCategoryTagProps {
 const props = defineProps<ArticleCategoryTagProps>();
 
 const articleDestination = computed(() =>
-  createArticleDestination(props.article)
+  visitorRoutes.article.createRoute(props.article)
 );
 </script>
 

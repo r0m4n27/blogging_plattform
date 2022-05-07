@@ -1,31 +1,33 @@
 import type { FooterLink } from "@/components/footer/footerLink";
+import { authorRoutes } from "@/lib/router/author";
+import { visitorRoutes } from "@/lib/router/visitor";
 
-export const contactLink: FooterLink = {
+export const createContactLink = (): FooterLink => ({
   label: "Contact",
   destination: "mailto:roman.kolesnikov@hs-augsburg.de",
   isExternal: true,
-};
+});
 
-export const loginLink: FooterLink = {
+export const createLoginLink = (): FooterLink => ({
   label: "Login",
-  destination: "/login",
+  destination: visitorRoutes.login.path,
   isExternal: false,
-};
+});
 
-export const logoutLink: FooterLink = {
+export const createLogoutLink = (): FooterLink => ({
   label: "Logout",
   destination: "#",
   isExternal: false,
-};
+});
 
-export const dashboardLink: FooterLink = {
+export const createDashboardLink = (): FooterLink => ({
   label: "Dashboard",
-  destination: "/dashboard",
+  destination: authorRoutes.home.route,
   isExternal: false,
-};
+});
 
-export const blogLink: FooterLink = {
+export const createBlogLink = (): FooterLink => ({
   label: "Blog",
-  destination: "/",
+  destination: visitorRoutes.home.route,
   isExternal: false,
-};
+});
