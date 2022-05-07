@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import VisitorPageLayout from "@/components/layout/VisitorPageLayout.vue";
-import LoginCard from "../login/LoginCard.vue";
-import VCenter from "../base/layout/VCenter.vue";
-import { useLoginPageState } from "@/composables/pages/useLoginPageState";
+import VisitorPageLayout from "../layout/VisitorPageLayout.vue";
+import LoginCard from "../../login/LoginCard.vue";
+import VCenter from "../../base/layout/VCenter.vue";
+import { useLoginPageState } from "@/composables/pages/visitor/loginPage";
 
 const { login, showError } = useLoginPageState();
 </script>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import VisitorPageLayout from "@/components/layout/VisitorPageLayout.vue";
+import VisitorPageLayout from "../layout/VisitorPageLayout.vue";
 import CollectionSummaryList from "@/components/summary/collection/CollectionSummaryList.vue";
-import { useArchivePageState } from "@/composables/pages/useArchivePageState";
+import { useArchivePageState } from "@/composables/pages/visitor/archivePage";
 
 const { yearsCollections } = useArchivePageState();
 </script>

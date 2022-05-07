@@ -1,9 +1,9 @@
 import type { Article } from "@/api/article";
 import type { Category } from "@/api/category";
-import ArticlePage from "@/components/pages/ArticlePage.vue";
-import CategoriesPage from "@/components/pages/CategoriesPage.vue";
-import HomePage from "@/components/pages/HomePage.vue";
-import CategoryPage from "@/components/pages/CategoryPage.vue";
+import ArticlePage from "@/components/pages/visitor/ArticlePage.vue";
+import CategoriesPage from "@/components/pages/visitor/CategoriesPage.vue";
+import HomePage from "@/components/pages/visitor/HomePage.vue";
+import CategoryPage from "@/components/pages/visitor/CategoryPage.vue";
 import {
   createRouter as createRouterInternal,
   createWebHistory,
@@ -11,10 +11,10 @@ import {
   type Router,
 } from "vue-router";
 import type { Year } from "@/api/year";
-import ArchivePage from "@/components/pages/ArchivePage.vue";
-import YearPage from "@/components/pages/YearPage.vue";
-import LoginPage from "@/components/pages/LoginPage.vue";
-import DashboardPage from "@/components/pages/DashboardPage.vue";
+import ArchivePage from "@/components/pages/visitor/ArchivePage.vue";
+import YearPage from "@/components/pages/visitor/YearPage.vue";
+import LoginPage from "@/components/pages/visitor/LoginPage.vue";
+import AuthorHomePage from "@/components/pages/author/HomePage.vue";
 import "vue-router";
 import { useUser } from "@/composables/useUser";
 import { routeDestinations } from "@/config/routes";
@@ -66,7 +66,7 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     path: routeDestinations.dashboard,
-    component: DashboardPage,
+    component: AuthorHomePage,
   },
 ];
 

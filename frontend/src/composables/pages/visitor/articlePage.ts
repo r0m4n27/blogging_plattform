@@ -3,8 +3,8 @@ import type { Option } from "@/lib/types";
 import { computed } from "@vue/reactivity";
 import type { Ref } from "vue";
 import { useRoute } from "vue-router";
-import { usePageTitle } from "../head/usePageTitle";
-import { useEndpoint } from "../useEndpoint";
+import { usePageTitle } from "../../head/usePageTitle";
+import { useEndpoint } from "../../useEndpoint";
 
 export interface ArticlePageState {
   article: Ref<Option<Article>>;

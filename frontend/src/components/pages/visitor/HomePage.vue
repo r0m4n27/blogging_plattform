@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ArticleSummaryList from "@/components/summary/article/ArticleSummaryList.vue";
-import VisitorPageLayout from "@/components/layout/VisitorPageLayout.vue";
-import { useHomePageState } from "@/composables/pages/useHomePageState";
+import VisitorPageLayout from "../layout/VisitorPageLayout.vue";
+import { useHomePageState } from "@/composables/pages/visitor/homePage";
 
 const { blogTitle, articles } = useHomePageState();
 </script>

@@ -11,7 +11,7 @@ import { routeDestinations } from "@/config/routes";
 import { computed } from "@vue/reactivity";
 import type { ComputedRef } from "vue";
 import type { RouteLocationRaw } from "vue-router";
-import { useUser } from "./useUser";
+import { useUser } from "../../useUser";
 
 export interface VisitorPageLayoutState {
   footerLinks: ComputedRef<FooterLink[]>;

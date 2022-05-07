@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import VisitorPageLayout from "@/components/layout/VisitorPageLayout.vue";
+import VisitorPageLayout from "../layout/VisitorPageLayout.vue";
 import ArticleSummaryList from "@/components/summary/article/ArticleSummaryList.vue";
-import { useCategoryPageState } from "@/composables/pages/useCategoryPageState";
+import { useCategoryPageState } from "@/composables/pages/visitor/categoryPage";
 
 const { title, articles } = useCategoryPageState();
 </script>

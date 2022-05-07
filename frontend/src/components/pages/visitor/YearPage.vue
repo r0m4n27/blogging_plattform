@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import VisitorPageLayout from "@/components/layout/VisitorPageLayout.vue";
+import VisitorPageLayout from "../layout/VisitorPageLayout.vue";
 import ArticleSummaryList from "@/components/summary/article/ArticleSummaryList.vue";
-import { useYearPageState } from "@/composables/pages/useYearPageState";
+import { useYearPageState } from "@/composables/pages/visitor/yearPage";
 
 const { title, articles } = useYearPageState();
 </script>

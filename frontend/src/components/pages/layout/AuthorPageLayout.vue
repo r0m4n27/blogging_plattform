@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { Responsive } from "@/lib/responsive";
 import type { ContainerSize } from "@/styling/props/containerProps";
-import { useAuthorPageLayoutState } from "@/composables/useAuthorPageLayoutState";
-import BaseLayout from "./BaseLayout.vue";
+import { useAuthorPageLayoutState } from "@/composables/pages/layout/authorPageLayout";
+import BaseLayout from "@/components/layout/BaseLayout.vue";
 
 interface AuthorPageLayoutProps {
   containerSize?: Responsive<ContainerSize>;

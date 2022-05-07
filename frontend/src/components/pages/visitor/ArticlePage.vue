@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import VisitorPageLayout from "@/components/layout/VisitorPageLayout.vue";
+import VisitorPageLayout from "../layout/VisitorPageLayout.vue";
 import BlogArticle from "@/components/article/BlogArticle.vue";
-import { useArticlePageState } from "@/composables/pages/useArticlePageState";
+import { useArticlePageState } from "@/composables/pages/visitor/articlePage";
 
 const { article } = useArticlePageState();
 </script>
