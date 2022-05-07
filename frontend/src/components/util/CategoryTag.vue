@@ -5,13 +5,13 @@ import type { Category } from "@/api/category";
 import VCenter from "@/components/base/layout/VCenter.vue";
 import VLink from "../base/VLink.vue";
 import { computed } from "vue";
-import { createCategoryDestination } from "@/lib/router";
 import type { CategoryTagSize } from "@/config/components/categoryTag";
 import { type Responsive, mapResponsiveFromConfig } from "@/lib/responsive";
 import {
   categoryTagButtonConfig,
   categoryTagTextConfig,
 } from "@/config/components/categoryTag";
+import { visitorRoutes } from "@/lib/router/visitor";
 
 interface SummaryTagProps {
   category: Category;
@@ -23,7 +23,7 @@ const props = withDefaults(defineProps<SummaryTagProps>(), {
 });
 
 const categoryDestination = computed(() =>
-  createCategoryDestination(props.category)
+  visitorRoutes.category.createRoute(props.category)
 );
 
 const buttonProps = computed(() => {
