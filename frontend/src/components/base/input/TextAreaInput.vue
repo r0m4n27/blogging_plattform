@@ -62,7 +62,7 @@ const inputModel = computed({
   <VBox v-bind="props" is="div">
     <textarea
       :class="createTextInputCss(props)"
-      :style="{ width: '100%', height: '100%' }"
+      :style="{ width: '100%', height: '100%', resize: 'none' }"
       v-model="inputModel"
     />
   </VBox>

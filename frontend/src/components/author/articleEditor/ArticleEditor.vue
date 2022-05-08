@@ -43,7 +43,7 @@ const { title, summary, content, performAction } = useArticleEditorState(
       label="Summary"
       v-model:input-value="summary"
       width="full"
-      :height="40"
+      :height="36"
     />
     <TextAreaInputField
       label="Content"
