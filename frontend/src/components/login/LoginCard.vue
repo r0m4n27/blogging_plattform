@@ -28,7 +28,7 @@ const login = () => emit("login", username.value, password.value);
 
 <template>
   <VCard :width="{ sm: 'full', md: 'md' }" :padding="contentSpacingConfig.md">
-    <VColumn :gap="contentSpacingConfig.sm" align="start">
+    <VColumn :gap="contentSpacingConfig.sm" align="start" is="form">
       <VColumn width="full">
         <VHeading is="h1" size="xl">Login</VHeading>
       </VColumn>

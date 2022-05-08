@@ -55,6 +55,7 @@ const inputModel = computed({
 
     <TextAreaInput
       width="full"
+      height="full"
       :input-type="inputType"
       v-model:input-value="inputModel"
     />
