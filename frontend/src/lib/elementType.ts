@@ -1,4 +1,11 @@
-export type ElementType = "div" | "article" | "nav" | "main" | TextElementType;
+export type ElementType =
+  | "div"
+  | "article"
+  | "nav"
+  | "main"
+  | TextElementType
+  | "table"
+  | "td";
 
 export type TextElementType =
   | "span"
