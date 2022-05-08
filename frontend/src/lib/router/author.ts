@@ -1,12 +1,15 @@
+import type { AuthorArticle } from "@/api/article";
+import EditArticlePage from "@/components/pages/author/EditArticlePage.vue";
 import HomePage from "@/components/pages/author/HomePage.vue";
 import NewArticlePage from "@/components/pages/author/NewArticlePage.vue";
 import AuthorPageLayout from "@/components/pages/layout/AuthorPageLayout.vue";
 import type { RouteRecordRaw } from "vue-router";
-import type { RouteDestinationWithoutParams } from "./types";
+import type { RouteDestination, RouteDestinationWithoutParams } from "./types";
 
 export interface AuthorRoutes {
   home: RouteDestinationWithoutParams;
   newArticle: RouteDestinationWithoutParams;
+  editArticle: RouteDestination<AuthorArticle>;
 }
 
 const createAuthorRoute = (otherPath: string) => `/author/${otherPath}`;
@@ -25,6 +28,12 @@ export const authorRoutes: AuthorRoutes = {
       return createAuthorRoute("articles/new");
     },
     component: NewArticlePage,
+  },
+  editArticle: {
+    path: "articles/:id",
+    component: EditArticlePage,
+    createRoute: (data: AuthorArticle) =>
+      createAuthorRoute(`articles/${data.id}`),
   },
 };
 

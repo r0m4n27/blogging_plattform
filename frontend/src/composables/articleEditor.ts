@@ -15,7 +15,7 @@ export interface ArticleEditorState {
 interface ArticleEditorEmits {
   (e: "newArticle", payload: NewArticlePayload): void;
   (e: "updateArticle", article: AuthorArticle): void;
-  (e: "deleteArticle", article: AuthorArticle): void;
+  (e: "deleteArticle"): void;
 }
 
 export const useArticleEditorState = (
@@ -72,7 +72,7 @@ export const useArticleEditorState = (
       if (action !== "delete") {
         updateArticle(action);
       } else {
-        emit("deleteArticle", article);
+        emit("deleteArticle");
       }
     }
   };

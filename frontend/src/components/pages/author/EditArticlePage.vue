@@ -1,0 +1,15 @@
+<script setup lang="ts">
+import { useEditArticlePage } from "@/composables/pages/author/editArticlePage";
+import ArticleEditor from "../../author/articleEditor/ArticleEditor.vue";
+
+const { article, deleteArticle, updateArticle } = useEditArticlePage();
+</script>
+
+<template>
+  <ArticleEditor
+    v-if="article !== undefined"
+    :article="article"
+    @delete-article="deleteArticle"
+    @update-article="updateArticle"
+  />
+</template>

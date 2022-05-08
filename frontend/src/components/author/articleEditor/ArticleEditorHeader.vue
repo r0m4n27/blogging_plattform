@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import VRow from "@/components/base/layout/VRow.vue";
-import type { EditorAction, EditorType } from "./types";
+import type { EditorAction } from "./types";
 import VHeading from "../../base/text/VHeading.vue";
 import { computed } from "vue";
 import ArticleEditorAction from "./ArticleEditorAction.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
+import type { AuthorArticle } from "@/api/article";
 
 interface ArticleEditorHeaderProps {
-  editorType: EditorType;
+  article?: AuthorArticle;
 }
 
 interface ArticleEditorHeaderEmits {
@@ -18,16 +19,17 @@ const props = defineProps<ArticleEditorHeaderProps>();
 const emit = defineEmits<ArticleEditorHeaderEmits>();
 
 const title = computed(() =>
-  props.editorType === "new" ? "New Article" : "Edit Article"
+  props.article === undefined ? "New Article" : "Edit Article"
 );
 
-const actionTypes = computed<[EditorAction, EditorAction]>(() => {
-  if (props.editorType === "new") {
+const actions = computed<EditorAction[]>(() => {
+  if (props.article === undefined) {
     return ["draft", "publish"];
-  } else if (props.editorType === "draft") {
-    return ["delete", "publish"];
   } else {
-    return ["delete", "draft"];
+    const actions: EditorAction[] = ["delete", "save"];
+    actions.push(props.article.published ? "draft" : "publish");
+
+    return actions;
   }
 });
 </script>
@@ -39,12 +41,10 @@ const actionTypes = computed<[EditorAction, EditorAction]>(() => {
 
     <VRow :gap="{ sm: contentSpacingConfig.xs, md: contentSpacingConfig.sm }">
       <ArticleEditorAction
-        :action-type="actionTypes[0]"
-        @click="emit('action', actionTypes[0])"
-      />
-      <ArticleEditorAction
-        :action-type="actionTypes[1]"
-        @click="emit('action', actionTypes[1])"
+        v-for="action in actions"
+        :key="action"
+        :action-type="action"
+        @click="emit('action', action)"
       />
     </VRow>
   </VRow>

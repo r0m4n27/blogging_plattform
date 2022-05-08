@@ -6,5 +6,5 @@ const { publishArticle } = useNewArticleState();
 </script>
 
 <template>
-  <ArticleEditor editor-type="new" @new-article="publishArticle" />
+  <ArticleEditor @new-article="publishArticle" />
 </template>
