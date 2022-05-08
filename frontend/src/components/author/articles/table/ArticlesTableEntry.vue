@@ -7,16 +7,21 @@ import { contentColorConfig } from "@/config/content/color";
 import VLink from "../../../base/VLink.vue";
 import { authorRoutes } from "@/lib/router/author";
 import ArticleStatus from "../ArticleStatus.vue";
+import { computed } from "vue";
 
 interface ArticlesTableEntryProps {
   article: AuthorArticle;
 }
-defineProps<ArticlesTableEntryProps>();
+const props = defineProps<ArticlesTableEntryProps>();
+
+const editRoute = computed(() =>
+  authorRoutes.editArticle.createRoute(props.article)
+);
 </script>
 <template>
   <VTableRow>
     <VTableData>
-      <VLink :to="authorRoutes.home.route">
+      <VLink :to="editRoute">
         <VText
           size="md"
           weight="medium"
@@ -28,7 +33,7 @@ defineProps<ArticlesTableEntryProps>();
       </VLink>
     </VTableData>
     <VTableData>
-      <VLink :to="authorRoutes.home.route">
+      <VLink :to="editRoute">
         <ArticleStatus :article="article" />
       </VLink>
     </VTableData>

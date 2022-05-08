@@ -4,19 +4,36 @@ import VHeading from "../base/text/VHeading.vue";
 import TextInput from "../base/input/TextInput.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import type { InputType } from "@/styling/props/textInputProps";
-import { computed } from "vue";
+import { computed, type PropType } from "vue";
+import type { TextElementType } from "@/lib/elementType";
+import { systemProps } from "@/styling/props/systemProps";
 
-interface LoginFieldProps {
-  label: string;
-  inputType?: InputType;
-  inputValue: string;
-}
+// The creation of a BaseInputField would be possible
+// but there would be still to many duplication.
+// So it is omitted here
 
 interface LoginFieldEmits {
   (e: "update:inputValue", newValue: string): void;
 }
 
-const props = defineProps<LoginFieldProps>();
+const props = defineProps({
+  label: {
+    type: String as PropType<string>,
+    required: true,
+  },
+  inputType: {
+    type: String as PropType<InputType>,
+  },
+  inputValue: {
+    type: String as PropType<string>,
+    required: true,
+  },
+  isHeading: {
+    type: String as PropType<TextElementType>,
+    default: "h2",
+  },
+  ...systemProps,
+});
 
 const emit = defineEmits<LoginFieldEmits>();
 
@@ -31,8 +48,8 @@ const inputModel = computed({
 </script>
 
 <template>
-  <VColumn :gap="contentSpacingConfig.xs" align="start" width="full">
-    <VHeading is="h2" size="sm">
+  <VColumn :gap="contentSpacingConfig.xs" align="start" v-bind="props">
+    <VHeading :is="isHeading" size="sm">
       {{ label }}
     </VHeading>
 

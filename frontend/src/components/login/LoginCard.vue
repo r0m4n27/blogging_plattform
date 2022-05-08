@@ -2,7 +2,7 @@
 import VCard from "../base/layout/VCard.vue";
 import VColumn from "../base/layout/VColumn.vue";
 import VHeading from "../base/text/VHeading.vue";
-import LoginField from "./LoginField.vue";
+import TextInputField from "../input/TextInputField.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import TextButton from "../base/button/TextButton.vue";
 import { getColor } from "@/config/theme/colors";
@@ -28,16 +28,21 @@ const login = () => emit("login", username.value, password.value);
 
 <template>
   <VCard :width="{ sm: 'full', md: 'md' }" :padding="contentSpacingConfig.md">
-    <VColumn :gap="contentSpacingConfig.sm" align="start">
+    <VColumn :gap="contentSpacingConfig.sm" align="start" is="form">
       <VColumn width="full">
         <VHeading is="h1" size="xl">Login</VHeading>
       </VColumn>
 
-      <LoginField label="Username" v-model:input-value="username" />
-      <LoginField
+      <TextInputField
+        label="Username"
+        v-model:input-value="username"
+        width="full"
+      />
+      <TextInputField
         label="Password"
         input-type="password"
         v-model:input-value="password"
+        width="full"
       />
 
       <VText

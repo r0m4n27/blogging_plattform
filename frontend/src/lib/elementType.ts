@@ -5,7 +5,8 @@ export type ElementType =
   | "main"
   | TextElementType
   | "table"
-  | "td";
+  | "td"
+  | "form";
 
 export type TextElementType =
   | "span"
