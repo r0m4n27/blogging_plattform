@@ -5,21 +5,27 @@ import type { EditorType } from "./types";
 import ArticleEditorHeader from "./ArticleEditorHeader.vue";
 import VContainer from "../../base/layout/VContainer.vue";
 import TextInputField from "../../input/TextInputField.vue";
-import { ref } from "vue";
 import TextAreaInputField from "../../input/TextAreaInputField.vue";
+import { useArticleEditorState } from "@/composables/articleEditor";
+import type { AuthorArticle, NewArticlePayload } from "@/api/article";
 
 interface ArticleEditorProps {
   editorType: EditorType;
-  startTitleValue?: string;
-  startSummaryValue?: string;
-  startContentValue?: string;
+  article?: AuthorArticle;
+}
+interface ArticleEditorEmits {
+  (e: "newArticle", payload: NewArticlePayload): void;
+  (e: "updateArticle", article: AuthorArticle): void;
+  (e: "deleteArticle", article: AuthorArticle): void;
 }
 
 const props = defineProps<ArticleEditorProps>();
+const emit = defineEmits<ArticleEditorEmits>();
 
-const title = ref(props.startTitleValue ?? "");
-const summary = ref(props.startSummaryValue ?? "");
-const content = ref(props.startContentValue ?? "");
+const { title, summary, content, performAction } = useArticleEditorState(
+  emit,
+  props.article
+);
 </script>
 
 <template>
@@ -31,7 +37,10 @@ const content = ref(props.startContentValue ?? "");
       width="full"
       is="form"
     >
-      <ArticleEditorHeader :editorType="editorType" />
+      <ArticleEditorHeader
+        :editorType="editorType"
+        @action="(action) => performAction(action)"
+      />
 
       <TextInputField label="Title" v-model:input-value="title" width="full" />
       <TextAreaInputField

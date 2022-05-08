@@ -1,3 +1,3 @@
 export type EditorType = "new" | "draft" | "publish";
 
-export type ActionType = "publish" | "draft" | "delete";
+export type EditorAction = "publish" | "draft" | "delete" | "save";

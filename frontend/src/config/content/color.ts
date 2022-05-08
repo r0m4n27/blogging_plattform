@@ -99,6 +99,18 @@ export const redButtonBg: Color = {
   },
 };
 
+export const blueButtonFg = coloredButtonFg;
+export const blueButtonBg: Color = {
+  default: {
+    light: getColor("blue", 400),
+    dark: getColor("blue", 300),
+  },
+  hover: {
+    light: getColor("blue", 500),
+    dark: getColor("blue", 200),
+  },
+};
+
 // Config
 
 export const contentColorConfig = {

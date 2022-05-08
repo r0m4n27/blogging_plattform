@@ -38,7 +38,7 @@ const props = defineProps({
   <!-- Can't use VBox since 'is' doesn't work every time
   and reacts very weird to comments in the setup script
   -->
-  <button :class="createSystemPropsCss(props)">
+  <button :class="createSystemPropsCss(props)" type="button">
     <slot />
   </button>
 </template>

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import NewArticleEditor from "@/components/author/articleEditor/NewArticleEditor.vue";
 import { useNewArticleState } from "@/composables/pages/author/newArticlePage";
+import ArticleEditor from "../../author/articleEditor/ArticleEditor.vue";
 
 const { publishArticle } = useNewArticleState();
 </script>
 
 <template>
-  <NewArticleEditor />
+  <ArticleEditor editor-type="new" @new-article="publishArticle" />
 </template>
