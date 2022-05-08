@@ -53,11 +53,12 @@ const buttonBorder: Color = {
   dark: getColor("blue", 300),
 };
 
-export const greenButtonFg: Color = {
+const coloredButtonFg: Color = {
   light: getColor("white"),
-  dark: getColor("gray", 700),
+  dark: getColor("gray", 800),
 };
 
+export const greenButtonFg = coloredButtonFg;
 export const greenButtonBg: Color = {
   default: {
     light: getColor("green", 400),
@@ -66,6 +67,18 @@ export const greenButtonBg: Color = {
   hover: {
     light: getColor("green", 500),
     dark: getColor("green", 200),
+  },
+};
+
+export const orangeButtonFg = coloredButtonFg;
+export const orangeButtonBg: Color = {
+  default: {
+    light: getColor("orange", 400),
+    dark: getColor("orange", 300),
+  },
+  hover: {
+    light: getColor("orange", 500),
+    dark: getColor("orange", 200),
   },
 };
 

@@ -2,11 +2,11 @@
 import ArticlesListHeader from "./ArticlesListHeader.vue";
 import VColumn from "@/components/base/layout/VColumn.vue";
 import { defaultContentSpacing } from "@/config/content/spacing";
-import type { Article } from "@/api/article";
+import type { AuthorArticle } from "@/api/article";
 import ArticlesTable from "./table/ArticlesTable.vue";
 
 interface ArticlesListProps {
-  articles: Article[];
+  articles: AuthorArticle[];
 }
 
 defineProps<ArticlesListProps>();

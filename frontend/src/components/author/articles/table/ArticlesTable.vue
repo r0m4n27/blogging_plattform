@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Article } from "@/api/article";
+import type { AuthorArticle } from "@/api/article";
 import VCard from "../../../base/layout/VCard.vue";
 import VTable from "../../../base/table/VTable.vue";
 import VTableBody from "../../../base/table/VTableBody.vue";
@@ -7,7 +7,7 @@ import ArticlesTableHead from "./ArticlesTableHead.vue";
 import ArticlesTableEntry from "./ArticlesTableEntry.vue";
 
 interface ArticlesListTableProps {
-  articles: Article[];
+  articles: AuthorArticle[];
 }
 
 defineProps<ArticlesListTableProps>();

@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import type { Article } from "@/api/article";
+import type { AuthorArticle } from "@/api/article";
 import VTableRow from "@/components/base/table/VTableRow.vue";
 import VTableData from "@/components/base/table/VTableData.vue";
 import VText from "../../../base/text/VText.vue";
 import { contentColorConfig } from "@/config/content/color";
 import VLink from "../../../base/VLink.vue";
 import { authorRoutes } from "@/lib/router/author";
+import ArticleStatus from "../ArticleStatus.vue";
 
 interface ArticlesTableEntryProps {
-  article: Article;
+  article: AuthorArticle;
 }
 defineProps<ArticlesTableEntryProps>();
 </script>
@@ -27,7 +28,9 @@ defineProps<ArticlesTableEntryProps>();
       </VLink>
     </VTableData>
     <VTableData>
-      <VLink :to="authorRoutes.home.route"> DRAFT </VLink>
+      <VLink :to="authorRoutes.home.route">
+        <ArticleStatus :article="article" />
+      </VLink>
     </VTableData>
   </VTableRow>
 </template>
