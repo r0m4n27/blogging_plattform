@@ -11,7 +11,7 @@ import { greenButtonBg, greenButtonFg } from "@/config/content/color";
   <VRow justify="space-between" width="full">
     <VHeading size="lg" is="h1"> Articles </VHeading>
 
-    <VLink :to="authorRoutes.home.route">
+    <VLink :to="authorRoutes.newArticle.route">
       <TextButton
         label="New Article"
         :show-border="false"

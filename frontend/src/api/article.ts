@@ -13,6 +13,8 @@ export interface AuthorArticle extends Article {
   published: boolean;
 }
 
+export type NewArticlePayload = Omit<AuthorArticle, "id" | "year">;
+
 export const mockArticle: AuthorArticle = {
   id: "1",
   year: 2021,
@@ -108,4 +110,16 @@ export const fetchArticle = async (id: string): Promise<Article> => {
 
 export const fetchAuthorArticles = async (): Promise<AuthorArticle[]> => {
   return mockArticles;
+};
+
+export const publishArticle = async (
+  payload: NewArticlePayload
+): Promise<void> => {
+  const id = "3";
+  const year = 2022;
+  mockArticles.push({
+    ...payload,
+    id,
+    year,
+  });
 };
