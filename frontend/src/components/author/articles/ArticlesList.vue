@@ -2,10 +2,19 @@
 import ArticlesListHeader from "./ArticlesListHeader.vue";
 import VColumn from "@/components/base/layout/VColumn.vue";
 import { defaultContentSpacing } from "@/config/content/spacing";
+import type { Article } from "@/api/article";
+import ArticlesTable from "./table/ArticlesTable.vue";
+
+interface ArticlesListProps {
+  articles: Article[];
+}
+
+defineProps<ArticlesListProps>();
 </script>
 
 <template>
   <VColumn :padding="defaultContentSpacing" :gap="defaultContentSpacing">
     <ArticlesListHeader />
+    <ArticlesTable :articles="articles" />
   </VColumn>
 </template>

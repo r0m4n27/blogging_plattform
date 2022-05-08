@@ -53,6 +53,24 @@ const buttonBorder: Color = {
   dark: getColor("blue", 300),
 };
 
+export const greenButtonFg: Color = {
+  light: getColor("white"),
+  dark: getColor("gray", 700),
+};
+
+export const greenButtonBg: Color = {
+  default: {
+    light: getColor("green", 400),
+    dark: getColor("green", 300),
+  },
+  hover: {
+    light: getColor("green", 500),
+    dark: getColor("green", 200),
+  },
+};
+
+// Config
+
 export const contentColorConfig = {
   fg: defaultFg,
   fgWithHover: {
