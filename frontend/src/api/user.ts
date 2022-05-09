@@ -14,3 +14,7 @@ export const login = async (
 
   return undefined;
 };
+
+export const updatePassword = async (newPassword: string): Promise<void> => {
+  return;
+};
