@@ -1,4 +1,5 @@
 import type { NavigationDestination } from "@/components/navigationBar/navDestination";
+import { authorRoutes } from "@/lib/router/author";
 import { visitorRoutes } from "@/lib/router/visitor";
 
 // Import cycle has to be broken
@@ -13,4 +14,9 @@ export const createVisitorNavBarDestinations = (): NavigationDestination[] => [
   },
 ];
 
-export const createAuthorNavBarDestinations = (): NavigationDestination[] => [];
+export const createAuthorNavBarDestinations = (): NavigationDestination[] => [
+  {
+    label: "Settings",
+    to: authorRoutes.settings.path,
+  },
+];
