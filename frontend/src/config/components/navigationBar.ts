@@ -16,6 +16,10 @@ export const createVisitorNavBarDestinations = (): NavigationDestination[] => [
 
 export const createAuthorNavBarDestinations = (): NavigationDestination[] => [
   {
+    label: "Categories",
+    to: authorRoutes.categories.path,
+  },
+  {
     label: "Settings",
     to: authorRoutes.settings.path,
   },

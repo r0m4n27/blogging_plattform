@@ -6,12 +6,14 @@ import AuthorPageLayout from "@/components/pages/layout/AuthorPageLayout.vue";
 import type { RouteRecordRaw } from "vue-router";
 import type { RouteDestination, RouteDestinationWithoutParams } from "./types";
 import SettingsPage from "@/components/pages/shared/SettingsPage.vue";
+import CategoriesPage from "@/components/pages/author/CategoriesPage.vue";
 
 export interface AuthorRoutes {
   home: RouteDestinationWithoutParams;
   newArticle: RouteDestinationWithoutParams;
   editArticle: RouteDestination<AuthorArticle>;
   settings: RouteDestinationWithoutParams;
+  categories: RouteDestinationWithoutParams;
 }
 
 const createAuthorRoute = (otherPath: string) => `/author/${otherPath}`;
@@ -42,6 +44,13 @@ export const authorRoutes: AuthorRoutes = {
     component: SettingsPage,
     get route() {
       return createAuthorRoute("settings");
+    },
+  },
+  categories: {
+    path: "categories",
+    component: CategoriesPage,
+    get route() {
+      return createAuthorRoute("categories");
     },
   },
 };
