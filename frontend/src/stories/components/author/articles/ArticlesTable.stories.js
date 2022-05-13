@@ -1,17 +1,17 @@
-import ArticlesList from "../../../../components/author/articles/ArticlesList.vue";
+import ArticlesTable from "../../../../components/author/articles/ArticlesTable.vue";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
 import { mockArticles } from "../../../data/article";
 
 export default {
-  component: ArticlesList,
+  component: ArticlesTable,
 };
 
 const Template = (args) => ({
-  components: { ArticlesList },
+  components: { ArticlesTable },
   setup() {
     return { args };
   },
-  template: `<ArticlesList v-bind="args" />`,
+  template: `<ArticlesTable v-bind="args" />`,
 });
 
 export const Primary = Template.bind({});
