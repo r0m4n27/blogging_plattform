@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import VTableRow from "@/components/base/table/VTableRow.vue";
 import VTableData from "@/components/base/table/VTableData.vue";
-import VText from "../../../base/text/VText.vue";
 import {
-  contentColorConfig,
   orangeButtonBg,
   orangeButtonFg,
   redButtonBg,
@@ -11,8 +9,9 @@ import {
 } from "@/config/content/color";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import type { Category } from "@/api/category";
-import VRow from "../../../base/layout/VRow.vue";
-import TagButton from "../../../base/button/TagButton.vue";
+import VRow from "../../base/layout/VRow.vue";
+import TagButton from "../../base/button/TagButton.vue";
+import VTableTextEntry from "../../base/table/VTableTextEntry.vue";
 
 interface CategoriesTableEntryProps {
   category: Category;
@@ -22,14 +21,7 @@ defineProps<CategoriesTableEntryProps>();
 <template>
   <VTableRow>
     <VTableData>
-      <VText
-        size="md"
-        weight="medium"
-        :max-lines="1"
-        :color="contentColorConfig.mutedFg"
-      >
-        {{ category.name }}
-      </VText>
+      <VTableTextEntry :label="category.name" />
     </VTableData>
     <VTableData>
       <VRow :gap="contentSpacingConfig.xs">

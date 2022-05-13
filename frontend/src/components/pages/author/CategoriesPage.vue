@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import CategoriesList from "@/components/author/categories/CategoriesList.vue";
+import CategoriesTable from "@/components/author/categories/CategoriesTable.vue";
 import { useCategoriesPageState } from "@/composables/pages/author/categoriesPage";
 
 const { categories } = useCategoriesPageState();
 </script>
 
 <template>
-  <CategoriesList :categories="categories" />
+  <CategoriesTable :categories="categories" />
 </template>
