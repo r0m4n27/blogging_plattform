@@ -21,7 +21,7 @@ export const useYearPageState = (): YearPageState => {
   const articlesFetcher = computed(
     () => async () => fetchArticles("year", parseInt(year.value))
   );
-  const articles = useEndpoint(articlesFetcher, []);
+  const { value: articles } = useEndpoint(articlesFetcher, []);
 
   usePageTitle(year);
 

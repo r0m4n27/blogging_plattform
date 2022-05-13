@@ -32,7 +32,7 @@ export const useEditArticlePage = (): EditArticlePageState => {
     () => () => fetchAuthorArticle(params.value.id)
   );
 
-  const article = useEndpoint(articleFetcher);
+  const { value: article } = useEndpoint(articleFetcher);
 
   const deleteArticle = async () => {
     if (article.value !== undefined) {

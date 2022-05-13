@@ -16,7 +16,7 @@ export const useHomePageState = (): HomePageState => {
   const siteConfig = useSiteConfig();
   const { blogTitle } = storeToRefs(siteConfig);
 
-  const articles = useEndpoint(fetchArticles, []);
+  const { value: articles } = useEndpoint(fetchArticles, []);
 
   return {
     blogTitle,

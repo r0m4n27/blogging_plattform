@@ -20,7 +20,7 @@ export const useArticlePageState = (): ArticlePageState => {
 
   const articleFetcher = computed(() => () => fetchArticle(params.value.id));
 
-  const article = useEndpoint(articleFetcher);
+  const { value: article } = useEndpoint(articleFetcher);
   const articleTitle = computed(() => article.value?.title ?? "");
 
   usePageTitle(articleTitle);

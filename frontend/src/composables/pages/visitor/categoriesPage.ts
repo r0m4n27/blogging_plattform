@@ -12,7 +12,7 @@ export interface CategoriesPageState {
 export const useCategoriesPageState = (): CategoriesPageState => {
   usePageTitle("Categories");
 
-  const categories = useEndpoint(fetchCategories, []);
+  const { value: categories } = useEndpoint(fetchCategories, []);
   const categoriesCollections = computed(() =>
     categories.value.map(categoryToCollection)
   );
