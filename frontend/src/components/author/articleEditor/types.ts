@@ -1,6 +1,1 @@
-export type EditorAction =
-  | "publish"
-  | "draft"
-  | "delete"
-  | "save"
-  | "categories";
+export type EditorAction = "publish" | "draft" | "delete" | "save";

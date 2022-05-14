@@ -11,9 +11,11 @@ import {
   deleteArticle as deleteArticleInternal,
   updateArticle as updateArticleInternal,
 } from "@/api/article";
+import { fetchCategories, type Category } from "@/api/category";
 
 export interface EditArticlePageState {
   article: Ref<Option<AuthorArticle>>;
+  existingCategories: Ref<Category[]>;
   deleteArticle: () => Promise<void>;
   updateArticle: (newArticle: AuthorArticle) => Promise<void>;
 }
@@ -34,6 +36,8 @@ export const useEditArticlePage = (): EditArticlePageState => {
 
   const { value: article } = useEndpoint(articleFetcher);
 
+  const { value: existingCategories } = useEndpoint(fetchCategories, []);
+
   const deleteArticle = async () => {
     if (article.value !== undefined) {
       await deleteArticleInternal(article.value);
@@ -47,6 +51,7 @@ export const useEditArticlePage = (): EditArticlePageState => {
 
   return {
     article,
+    existingCategories,
     deleteArticle,
     updateArticle,
   };

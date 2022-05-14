@@ -2,13 +2,15 @@
 import { useEditArticlePage } from "@/composables/pages/author/editArticlePage";
 import ArticleEditor from "../../author/articleEditor/ArticleEditor.vue";
 
-const { article, deleteArticle, updateArticle } = useEditArticlePage();
+const { article, deleteArticle, updateArticle, existingCategories } =
+  useEditArticlePage();
 </script>
 
 <template>
   <ArticleEditor
     v-if="article !== undefined"
     :article="article"
+    :existing-categories="existingCategories"
     @delete-article="deleteArticle"
     @update-article="updateArticle"
   />
