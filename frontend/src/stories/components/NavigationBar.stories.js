@@ -1,5 +1,5 @@
 import NavigationBar from "@/components/navigationBar/NavigationBar.vue";
-import logo from "@/static/logo_sample.png";
+import { createVisitorNavBarDestinations } from "@/config/components/navigationBar";
 
 export default {
   component: NavigationBar,
@@ -17,5 +17,6 @@ export const Primary = Template.bind({});
 
 Primary.args = {
   title: "My AWESOME Website",
-  logoUrl: logo,
+  logoUrl: "/logo_sample.png",
+  destinations: createVisitorNavBarDestinations(),
 };

@@ -7,13 +7,14 @@
     "preview": "vite preview --port 5050",
     "typecheck": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "storybook": "start-storybook -p 6060",
+    "storybook": "start-storybook -p 6060 --host localhost",
     "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@emotion/css": "^11.9.0",
     "@vueuse/head": "^0.7.6",
     "lucide-vue-next": "^0.19.0",
+    "object.values": "^1.1.5",
     "pinia": "^2.0.13",
     "ress": "^5.0.2",
     "vue": "^3.2.31",

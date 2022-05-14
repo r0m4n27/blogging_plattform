@@ -2,37 +2,45 @@
 import LeftNavBarPart from "./LeftNavBarPart.vue";
 import RightNavBarPart from "./RightNavBarPart.vue";
 import MobileNavMenu from "./MobileNavMenu.vue";
-import NavBarDivider from "./NavBarDivider.vue";
 import VRow from "../base/layout/VRow.vue";
 import VContainer from "../base/layout/VContainer.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import VBox from "../base/layout/VBox.vue";
 import { useNavBarState } from "@/composables/useNavBarState";
+import ContentDivider from "../util/ContentDivider.vue";
+import type { NavigationDestination } from "./navDestination";
+import type { RouteLocationRaw } from "vue-router";
 
 interface NavBarProps {
   title: string;
   logoUrl: string;
+  destinations: NavigationDestination[];
+  headingDestination: RouteLocationRaw;
 }
 
 defineProps<NavBarProps>();
 
-const { menuExpanded, toggleMenu, destinations } = useNavBarState();
+const { menuExpanded, toggleMenu } = useNavBarState();
 </script>
 
 <template>
   <VBox width="full" is="nav">
     <VContainer :padding="contentSpacingConfig.xs" size="lg">
       <VRow justify="space-between">
-        <LeftNavBarPart :title="title" :logo-url="logoUrl" />
+        <LeftNavBarPart
+          :title="title"
+          :logo-url="logoUrl"
+          :heading-destination="headingDestination"
+        />
         <RightNavBarPart
-          :onMenuClick="toggleMenu"
+          @menu-click="toggleMenu"
           :menu-expanded="menuExpanded"
           :destinations="destinations"
         />
       </VRow>
     </VContainer>
 
-    <NavBarDivider />
+    <ContentDivider />
     <MobileNavMenu v-if="menuExpanded" :destinations="destinations" />
   </VBox>
 </template>

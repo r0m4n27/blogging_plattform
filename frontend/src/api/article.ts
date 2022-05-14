@@ -9,7 +9,13 @@ export interface Article {
   categories: Category[];
 }
 
-export const mockArticle = {
+export interface AuthorArticle extends Article {
+  published: boolean;
+}
+
+export type NewArticlePayload = Omit<AuthorArticle, "id" | "year">;
+
+export const mockArticle: AuthorArticle = {
   id: "1",
   year: 2021,
   title: "Why Next.js is the most AWESOME Framework!",
@@ -31,10 +37,11 @@ export const mockArticle = {
     consetetur sadipscing elitr, sed diam nonumy eirmod tempor
     invidunt ut labore et dolore magna aliquyam erat,
     sed diam voluptua.`,
+  published: true,
   categories: [jsCategory, programmingCategory],
 };
 
-export const secondMockArticle = {
+export const secondMockArticle: AuthorArticle = {
   id: "2",
   year: 2022,
   title: "Some interesting title",
@@ -56,10 +63,11 @@ export const secondMockArticle = {
     consetetur sadipscing elitr, sed diam nonumy eirmod tempor
     invidunt ut labore et dolore magna aliquyam erat,
     sed diam voluptua.`,
+  published: false,
   categories: [jsCategory],
 };
 
-const mockArticles: Article[] = Array(5).fill(mockArticle);
+let mockArticles: AuthorArticle[] = Array(5).fill(mockArticle);
 mockArticles.push(secondMockArticle);
 
 export async function fetchArticles(
@@ -98,4 +106,38 @@ export async function fetchArticles(
 
 export const fetchArticle = async (id: string): Promise<Article> => {
   return mockArticles.find((article) => article.id === id) as Article;
+};
+
+export const fetchAuthorArticles = async (): Promise<AuthorArticle[]> => {
+  return mockArticles;
+};
+
+export const fetchAuthorArticle = async (
+  id: string
+): Promise<AuthorArticle> => {
+  return mockArticles.find((article) => article.id === id) as AuthorArticle;
+};
+
+export const publishArticle = async (
+  payload: NewArticlePayload
+): Promise<void> => {
+  const id = "3";
+  const year = 2022;
+  mockArticles.push({
+    ...payload,
+    id,
+    year,
+  });
+};
+
+export const updateArticle = async (article: AuthorArticle): Promise<void> => {
+  const foundArticle = mockArticles.find(
+    (a) => a.id === article.id
+  ) as AuthorArticle;
+
+  Object.assign(foundArticle, article);
+};
+
+export const deleteArticle = async (article: AuthorArticle): Promise<void> => {
+  mockArticles = mockArticles.filter((a) => a.id !== article.id);
 };

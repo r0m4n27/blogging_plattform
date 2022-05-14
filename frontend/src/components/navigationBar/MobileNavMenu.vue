@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import NavBarDivider from "./NavBarDivider.vue";
 import VColumn from "../base/layout/VColumn.vue";
 import VBox from "../base/layout/VBox.vue";
 import VHeading from "../base/text/VHeading.vue";
@@ -7,6 +6,7 @@ import type { NavigationDestination } from "./navDestination";
 import VLink from "../base/VLink.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import { contentColorConfig } from "@/config/content/color";
+import ContentDivider from "../util/ContentDivider.vue";
 
 interface MobileNavMenuProps {
   destinations: NavigationDestination[];
@@ -35,6 +35,6 @@ defineProps<MobileNavMenuProps>();
       </VLink>
     </VColumn>
 
-    <NavBarDivider />
+    <ContentDivider />
   </VBox>
 </template>
