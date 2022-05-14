@@ -34,7 +34,7 @@ export const useArticleEditorState = (
       title: title.value,
       summary: summary.value,
       content: content.value,
-      categories: [],
+      categories: categories.value,
       published: type === "publish",
     };
 
@@ -61,6 +61,7 @@ export const useArticleEditorState = (
       title: title.value,
       summary: summary.value,
       content: content.value,
+      categories: categories.value,
     };
 
     emit("updateArticle", newArticle);

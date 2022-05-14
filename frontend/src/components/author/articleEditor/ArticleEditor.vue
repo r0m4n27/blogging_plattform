@@ -7,6 +7,7 @@ import TextAreaInputField from "../../input/TextAreaInputField.vue";
 import { useArticleEditorState } from "@/composables/articleEditor";
 import type { AuthorArticle, NewArticlePayload } from "@/api/article";
 import type { Category } from "@/api/category";
+import CategoriesInput from "./categories/CategoriesInput.vue";
 
 interface ArticleEditorProps {
   existingCategories: Category[];
@@ -39,6 +40,11 @@ const { title, summary, content, performAction, categories } =
     />
 
     <TextInputField label="Title" v-model:input-value="title" width="full" />
+
+    <CategoriesInput
+      :existing-categories="existingCategories"
+      v-model:selected-categories="categories"
+    />
 
     <TextAreaInputField
       label="Summary"
