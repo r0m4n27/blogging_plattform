@@ -46,8 +46,8 @@ const positiveButtonFg = computed(
 <template>
   <VCard
     :padding="contentSpacingConfig.md"
-    width="md"
     :background-color="globalContentConfig.backgroundColor"
+    :width="{ sm: 'sm', md: 'md' }"
   >
     <VColumn :gap="defaultContentSpacing" align="start">
       <VHeading size="lg" is="h2"> {{ title }} </VHeading>
