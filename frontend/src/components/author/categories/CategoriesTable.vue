@@ -4,15 +4,26 @@ import ActionableTableLayout from "../../layout/ActionableTableLayout.vue";
 import CategoriesTableEntry from "./CategoriesTableEntry.vue";
 import VTableHeader from "@/components/base/table/VTableHeader.vue";
 
-interface CategoriesListProps {
+interface CategoriesTableProps {
   categories: Category[];
 }
 
-defineProps<CategoriesListProps>();
+interface CategoriesTableEmits {
+  (e: "createCategory"): void;
+  (e: "renameCategory", category: Category): void;
+  (e: "deleteCategory", category: Category): void;
+}
+
+defineProps<CategoriesTableProps>();
+const emit = defineEmits<CategoriesTableEmits>();
 </script>
 
 <template>
-  <ActionableTableLayout add-button-label="New Category" title="Categories">
+  <ActionableTableLayout
+    add-button-label="New Category"
+    title="Categories"
+    @add-button-click="emit('createCategory')"
+  >
     <template #head>
       <VTableHeader label="TITLE" width="full" />
       <VTableHeader label="ACTIONS" alignment="center" />
@@ -22,6 +33,8 @@ defineProps<CategoriesListProps>();
         v-for="category in categories"
         :key="category.id"
         :category="category"
+        @delete-category="(c) => emit('deleteCategory', c)"
+        @rename-category="(c) => emit('renameCategory', c)"
       />
     </template>
   </ActionableTableLayout>

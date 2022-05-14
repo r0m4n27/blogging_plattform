@@ -16,7 +16,14 @@ import VTableTextEntry from "../../base/table/VTableTextEntry.vue";
 interface CategoriesTableEntryProps {
   category: Category;
 }
-defineProps<CategoriesTableEntryProps>();
+
+interface CategoriesTableEntryEmits {
+  (e: "renameCategory", category: Category): void;
+  (e: "deleteCategory", category: Category): void;
+}
+
+const props = defineProps<CategoriesTableEntryProps>();
+const emit = defineEmits<CategoriesTableEntryEmits>();
 </script>
 <template>
   <VTableRow>
@@ -30,6 +37,7 @@ defineProps<CategoriesTableEntryProps>();
           :background-color="orangeButtonBg"
           :color="orangeButtonFg"
           :show-border="false"
+          @click="emit('renameCategory', props.category)"
         />
 
         <TagButton
@@ -37,6 +45,7 @@ defineProps<CategoriesTableEntryProps>();
           :background-color="redButtonBg"
           :color="redButtonFg"
           :show-border="false"
+          @click="emit('deleteCategory', props.category)"
         />
       </VRow>
     </VTableData>

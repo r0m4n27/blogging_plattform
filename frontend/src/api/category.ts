@@ -29,3 +29,22 @@ export const fetchCategory = async (id: string): Promise<Category> => {
 export const deleteCategory = async (category: Category): Promise<void> => {
   mockCategories = mockCategories.filter((c) => c.id !== category.id);
 };
+
+export const createCategory = async (name: string): Promise<void> => {
+  const id = "3";
+  mockCategories = [
+    ...mockCategories,
+    {
+      id,
+      name,
+      articleCount: 0,
+    },
+  ];
+};
+
+export const updateCategory = async (category: Category): Promise<void> => {
+  mockCategories = [
+    ...mockCategories.filter((c) => c.id !== category.id),
+    category,
+  ];
+};
