@@ -20,5 +20,5 @@ export interface RouteDestination<T> {
 
 export interface RouteDestinationWithoutParams
   extends Omit<RouteDestination<undefined>, "createRoute"> {
-  get route(): string;
+  route: string;
 }
