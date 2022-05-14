@@ -13,7 +13,7 @@ interface ArticlesListProps {
 defineProps<ArticlesListProps>();
 const router = useRouter();
 const routeToNewArticle = () => {
-  router.push(authorRoutes.newArticle.path);
+  router.push(authorRoutes.newArticle.route);
 };
 </script>
 
