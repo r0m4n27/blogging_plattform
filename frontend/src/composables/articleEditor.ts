@@ -1,10 +1,12 @@
 import type { AuthorArticle, NewArticlePayload } from "@/api/article";
+import type { Category } from "@/api/category";
 import type { EditorAction } from "@/components/author/articleEditor/types";
 import { ref, type Ref } from "vue";
 
 export interface ArticleEditorState {
   title: Ref<string>;
   summary: Ref<string>;
+  categories: Ref<Category[]>;
   content: Ref<string>;
 
   performAction: (action: EditorAction) => void;
@@ -25,13 +27,14 @@ export const useArticleEditorState = (
   const title = ref(article?.title ?? "");
   const summary = ref(article?.summary ?? "");
   const content = ref(article?.content ?? "");
+  const categories = ref(article?.categories ?? []);
 
   const createNewArticle = (type: "publish" | "draft") => {
     const payload: NewArticlePayload = {
       title: title.value,
       summary: summary.value,
       content: content.value,
-      categories: [],
+      categories: categories.value,
       published: type === "publish",
     };
 
@@ -58,6 +61,7 @@ export const useArticleEditorState = (
       title: title.value,
       summary: summary.value,
       content: content.value,
+      categories: categories.value,
     };
 
     emit("updateArticle", newArticle);
@@ -81,6 +85,7 @@ export const useArticleEditorState = (
     title,
     summary,
     content,
+    categories,
     performAction,
   };
 };
