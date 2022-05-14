@@ -9,7 +9,7 @@ können und so eine Onlinepräsenz über einen Blog für sich erstellen können.
 
 Siehe [Anforderungen](./docs/anforderungen.md)
 
-### Technologie Stack
+## Technologie Stack
 
 Als Datenbank wird in diesem Projekt PostgreSQL verwendet, da jedoch zu zweit an diesem Projekt gearbeitet wird,
 wird diese indirekt über einen ORM angesprochen.
@@ -19,6 +19,7 @@ Um bestimmte Endpoints nur dem Betreiber zugänglich zu machen, werden Bearer To
 
 #### Frontend
 
+- Design in [Figma](https://www.figma.com/file/c3UmnmRKhvv52DWA9BWkQx/Blogging-Plattform)
 - Verwendung von `Vue`
 - Falls nötig [Pinia](https://pinia.vuejs.org/) als state management library
 - Es wurde gedacht `Chakra UI` als Komponentenbibliothek zu verwenden
