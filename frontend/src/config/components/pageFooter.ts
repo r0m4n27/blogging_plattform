@@ -10,7 +10,7 @@ export const createContactLink = (): FooterLink => ({
 
 export const createLoginLink = (): FooterLink => ({
   label: "Login",
-  destination: visitorRoutes.login.path,
+  destination: visitorRoutes.login.route,
   isExternal: false,
 });
 

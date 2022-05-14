@@ -31,17 +31,13 @@ const createVisitorRoute = (otherPath: string) => `/${otherPath}`;
 export const visitorRoutes: VisitorRoutes = {
   home: {
     path: "",
-    get route() {
-      return createVisitorRoute("");
-    },
+    route: createVisitorRoute(""),
     component: HomePage,
   },
 
   archive: {
     path: "archive",
-    get route() {
-      return createVisitorRoute("archive");
-    },
+    route: createVisitorRoute("archive"),
     component: ArchivePage,
   },
   year: {
@@ -52,9 +48,7 @@ export const visitorRoutes: VisitorRoutes = {
 
   categories: {
     path: "categories",
-    get route() {
-      return createVisitorRoute("categories");
-    },
+    route: createVisitorRoute("categories"),
     component: CategoriesPage,
   },
   category: {
@@ -72,9 +66,7 @@ export const visitorRoutes: VisitorRoutes = {
 
   login: {
     path: "login",
-    get route() {
-      return createVisitorRoute("login");
-    },
+    route: createVisitorRoute("login"),
     component: LoginPage,
   },
 };

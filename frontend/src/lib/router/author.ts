@@ -21,16 +21,12 @@ const createAuthorRoute = (otherPath: string) => `/author/${otherPath}`;
 export const authorRoutes: AuthorRoutes = {
   home: {
     path: "",
-    get route() {
-      return createAuthorRoute("");
-    },
+    route: createAuthorRoute(""),
     component: HomePage,
   },
   newArticle: {
     path: "articles/new",
-    get route() {
-      return createAuthorRoute("articles/new");
-    },
+    route: createAuthorRoute("articles/new"),
     component: NewArticlePage,
   },
   editArticle: {
@@ -42,16 +38,12 @@ export const authorRoutes: AuthorRoutes = {
   settings: {
     path: "settings",
     component: SettingsPage,
-    get route() {
-      return createAuthorRoute("settings");
-    },
+    route: createAuthorRoute("settings"),
   },
   categories: {
     path: "categories",
     component: CategoriesPage,
-    get route() {
-      return createAuthorRoute("categories");
-    },
+    route: createAuthorRoute("categories"),
   },
 };
 
