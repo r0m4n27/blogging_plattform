@@ -10,7 +10,7 @@ export interface HomePageState {
 export const useHomePageState = (): HomePageState => {
   usePageTitle("Articles");
 
-  const articles = useEndpoint(fetchAuthorArticles, []);
+  const { value: articles } = useEndpoint(fetchAuthorArticles, []);
 
   return {
     articles,

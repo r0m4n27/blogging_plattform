@@ -21,12 +21,12 @@ export const useCategoryPageState = (): CategoryPageState => {
   const categoryFetcher = computed(
     () => async () => fetchCategory(params.value.id)
   );
-  const category = useEndpoint(categoryFetcher);
+  const { value: category } = useEndpoint(categoryFetcher);
 
   const articlesFetcher = computed(
     () => async () => fetchArticles("category", params.value.id)
   );
-  const articles = useEndpoint(articlesFetcher, []);
+  const { value: articles } = useEndpoint(articlesFetcher, []);
 
   const title = computed(() => category.value?.name ?? "");
 

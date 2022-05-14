@@ -1,21 +1,15 @@
 <script setup lang="ts">
-import VButton from "../base/button/VButton.vue";
-import VText from "../base/text/VText.vue";
 import type { Category } from "@/api/category";
-import VCenter from "@/components/base/layout/VCenter.vue";
 import VLink from "../base/VLink.vue";
 import { computed } from "vue";
-import type { CategoryTagSize } from "@/config/components/categoryTag";
-import { type Responsive, mapResponsiveFromConfig } from "@/lib/responsive";
-import {
-  categoryTagButtonConfig,
-  categoryTagTextConfig,
-} from "@/config/components/categoryTag";
+import type { Responsive } from "@/lib/responsive";
 import { visitorRoutes } from "@/lib/router/visitor";
+import TagButton from "../base/button/TagButton.vue";
+import type { TagButtonSize } from "@/styling/props/tagButton";
 
 interface SummaryTagProps {
   category: Category;
-  size?: Responsive<CategoryTagSize>;
+  size?: Responsive<TagButtonSize>;
 }
 
 const props = withDefaults(defineProps<SummaryTagProps>(), {
@@ -25,46 +19,10 @@ const props = withDefaults(defineProps<SummaryTagProps>(), {
 const categoryDestination = computed(() =>
   visitorRoutes.category.createRoute(props.category)
 );
-
-const buttonProps = computed(() => {
-  const height = mapResponsiveFromConfig(
-    props.size,
-    categoryTagButtonConfig.height
-  );
-
-  const padding = mapResponsiveFromConfig(
-    props.size,
-    categoryTagButtonConfig.padding
-  );
-
-  return {
-    height,
-    padding,
-  };
-});
-
-const textProps = computed(() => {
-  const size = mapResponsiveFromConfig(props.size, categoryTagTextConfig.size);
-  const lineHeight = mapResponsiveFromConfig(
-    props.size,
-    categoryTagTextConfig.lineHeight
-  );
-
-  return {
-    size,
-    lineHeight,
-  };
-});
 </script>
 
 <template>
   <VLink :to="categoryDestination">
-    <VButton v-bind="buttonProps">
-      <VCenter>
-        <VText is="span" weight="medium" v-bind="textProps">
-          {{ category.name }}
-        </VText>
-      </VCenter>
-    </VButton>
+    <TagButton :size="size" :label="category.name" />
   </VLink>
 </template>

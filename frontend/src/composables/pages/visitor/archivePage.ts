@@ -12,7 +12,7 @@ export interface ArchivePageState {
 export const useArchivePageState = (): ArchivePageState => {
   usePageTitle("Archive");
 
-  const years = useEndpoint(fetchYears, []);
+  const { value: years } = useEndpoint(fetchYears, []);
 
   const yearsCollections = computed(() => years.value.map(yearToCollection));
 

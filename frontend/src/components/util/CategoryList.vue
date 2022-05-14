@@ -7,11 +7,11 @@ import CategoryTag from "./CategoryTag.vue";
 import VRow from "@/components/base/layout/VRow.vue";
 import type { Responsive } from "@/lib/responsive";
 import type { Spacing } from "@/styling/spacing";
-import type { CategoryTagSize } from "@/config/components/categoryTag";
+import type { TagButtonSize } from "@/styling/props/tagButton";
 
 const props = defineProps({
   size: {
-    type: [String, Object] as PropType<Responsive<CategoryTagSize>>,
+    type: [String, Object] as PropType<Responsive<TagButtonSize>>,
     default: "sm",
   },
   categories: {

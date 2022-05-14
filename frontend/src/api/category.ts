@@ -15,7 +15,7 @@ export const jsCategory: Category = {
   name: "Javascript",
   articleCount: 5,
 };
-const mockCategories: Category[] = Array(3).fill(programmingCategory);
+let mockCategories: Category[] = Array(3).fill(programmingCategory);
 mockCategories.push(jsCategory);
 
 export const fetchCategories = async (): Promise<Category[]> => {
@@ -24,4 +24,27 @@ export const fetchCategories = async (): Promise<Category[]> => {
 
 export const fetchCategory = async (id: string): Promise<Category> => {
   return mockCategories.find((category) => category.id === id) as Category;
+};
+
+export const deleteCategory = async (category: Category): Promise<void> => {
+  mockCategories = mockCategories.filter((c) => c.id !== category.id);
+};
+
+export const createCategory = async (name: string): Promise<void> => {
+  const id = "3";
+  mockCategories = [
+    ...mockCategories,
+    {
+      id,
+      name,
+      articleCount: 0,
+    },
+  ];
+};
+
+export const updateCategory = async (category: Category): Promise<void> => {
+  mockCategories = [
+    ...mockCategories.filter((c) => c.id !== category.id),
+    category,
+  ];
 };

@@ -19,7 +19,7 @@ export interface UseSiteConfigState {
 export const useSiteConfig = defineStore<string, UseSiteConfigState>(
   piniaKeysConfig.siteConfig,
   () => {
-    const fetcher = useEndpoint(fetchSiteConfig, {
+    const { value: fetcher } = useEndpoint(fetchSiteConfig, {
       blogTitle: "",
       logoUrl: "/logo_transparent.png",
       iconUrl: "/favicon.ico",

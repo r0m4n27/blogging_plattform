@@ -1,22 +1,21 @@
-import ArticlesList from "../../../../components/author/articles/ArticlesList.vue";
+import EditCategoryDialog from "../../../../components/author/categories/EditCategoryDialog.vue";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
-import { mockArticles } from "../../../data/article";
 
 export default {
-  component: ArticlesList,
+  component: EditCategoryDialog,
 };
 
 const Template = (args) => ({
-  components: { ArticlesList },
+  components: { EditCategoryDialog },
   setup() {
     return { args };
   },
-  template: `<ArticlesList v-bind="args" />`,
+  template: `<EditCategoryDialog v-bind="args" />`,
 });
 
 export const Primary = Template.bind({});
 
 Primary.decorators = [createContainerDecorator("lg")];
 Primary.args = {
-  articles: mockArticles,
+  initialName: "Test",
 };
