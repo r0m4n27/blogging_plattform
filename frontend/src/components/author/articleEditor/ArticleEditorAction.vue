@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import IconButton from "@/components/base/button/IconButton.vue";
-import { Archive, Upload, Trash2, Save } from "lucide-vue-next";
+import { Archive, Upload, Trash2, Save, Tag } from "lucide-vue-next";
 import { computed } from "vue";
 import {
   greenButtonBg,
@@ -39,6 +39,12 @@ const iconProps = computed(() => {
     case "save":
       return {
         icon: Save,
+        color: darkColoredButtonFg,
+        backgroundColor: blueButtonBg,
+      };
+    case "categories":
+      return {
+        icon: Tag,
         color: darkColoredButtonFg,
         backgroundColor: blueButtonBg,
       };

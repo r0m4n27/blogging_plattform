@@ -6,6 +6,7 @@ import TextInputField from "../../input/TextInputField.vue";
 import TextAreaInputField from "../../input/TextAreaInputField.vue";
 import { useArticleEditorState } from "@/composables/articleEditor";
 import type { AuthorArticle, NewArticlePayload } from "@/api/article";
+import CategoriesList from "./CategoriesList.vue";
 
 interface ArticleEditorProps {
   article?: AuthorArticle;
@@ -19,10 +20,8 @@ interface ArticleEditorEmits {
 const props = defineProps<ArticleEditorProps>();
 const emit = defineEmits<ArticleEditorEmits>();
 
-const { title, summary, content, performAction } = useArticleEditorState(
-  emit,
-  props.article
-);
+const { title, summary, content, performAction, categories } =
+  useArticleEditorState(emit, props.article);
 </script>
 
 <template>
@@ -39,6 +38,9 @@ const { title, summary, content, performAction } = useArticleEditorState(
     />
 
     <TextInputField label="Title" v-model:input-value="title" width="full" />
+
+    <CategoriesList :categories="categories" />
+
     <TextAreaInputField
       label="Summary"
       v-model:input-value="summary"

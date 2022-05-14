@@ -24,9 +24,9 @@ const title = computed(() =>
 
 const actions = computed<EditorAction[]>(() => {
   if (props.article === undefined) {
-    return ["draft", "publish"];
+    return ["categories", "draft", "publish"];
   } else {
-    const actions: EditorAction[] = ["delete", "save"];
+    const actions: EditorAction[] = ["delete", "categories", "save"];
     actions.push(props.article.published ? "draft" : "publish");
 
     return actions;
