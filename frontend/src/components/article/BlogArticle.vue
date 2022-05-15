@@ -4,7 +4,7 @@ import type { Article } from "@/api/article";
 import VHeading from "../base/text/VHeading.vue";
 import { defaultContentSpacing } from "@/config/content/spacing";
 import CategoryList from "../util/CategoryList.vue";
-import { NewArticleContent } from "./NewArticleContent";
+import { NewArticleContent } from "./content/NewArticleContent";
 
 interface BlogArticleProps {
   article: Article;

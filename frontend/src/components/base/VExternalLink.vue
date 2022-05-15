@@ -4,10 +4,13 @@ import type { Responsive } from "@/lib/responsive";
 import type { Color } from "@/styling/color";
 import { createSystemPropsCss } from "@/styling/props/systemProps";
 import { systemProps } from "@/styling/props/systemProps";
-import type { PropType } from "vue";
+import { createTextPropsCss, textProps } from "@/styling/props/textProps";
+import { cx } from "@emotion/css";
+import { computed, type PropType } from "vue";
 
 const props = defineProps({
   ...systemProps,
+  ...textProps,
   href: {
     type: String as PropType<string>,
     required: true,
@@ -19,10 +22,14 @@ const props = defineProps({
     default: globalContentConfig.color,
   },
 });
+
+const className = computed(() =>
+  cx(createSystemPropsCss(props), createTextPropsCss(props))
+);
 </script>
 
 <template>
-  <a :href="props.href" :class="createSystemPropsCss(props)">
+  <a :href="props.href" :class="className">
     <slot />
   </a>
 </template>

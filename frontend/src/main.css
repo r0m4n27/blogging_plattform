@@ -6,7 +6,7 @@ body {
 }
 
 a, a:hover, a:active, a:visited, a:focus, a:-webkit-any-link {
-  text-decoration: none !important;
+  text-decoration: none;
 }
 
 #app {

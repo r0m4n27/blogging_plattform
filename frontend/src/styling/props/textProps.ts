@@ -19,6 +19,7 @@ import {
   wordWrapWriter,
   alignmentWriter,
   maxLinesWriter,
+  underlineWriter,
 } from "../text";
 import type { TextElementType } from "@/lib/elementType";
 
@@ -48,6 +49,11 @@ export const textProps = {
 
   maxLines: {
     type: [Object, Number] as PropType<Responsive<number>>,
+  },
+
+  underline: {
+    type: [Object, Boolean] as PropType<Responsive<boolean>>,
+    default: false,
   },
 
   is: {
@@ -94,6 +100,7 @@ export const createTextPropsCss = (props: TextProps): string => {
   );
 
   writeResponsivePropToStyle(style, "wordWrap", wordWrapWriter, props.wordWrap);
+  writeResponsivePropToStyle(style, "", underlineWriter, props.underline);
 
   if (props.maxLines !== undefined) {
     style["display"] = "-webkit-box";

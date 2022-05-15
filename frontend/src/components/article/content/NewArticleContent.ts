@@ -1,9 +1,15 @@
-import { h, type VNode } from "vue";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import rehypeSanitize from "rehype-sanitize";
-import { toH, type CreateElementLike } from "hast-to-hyperscript";
+import { toH } from "hast-to-hyperscript";
+import {
+  createContentComponentRenderer,
+  type ContentComponentRecord,
+} from "./renderer";
+import { otherComponents } from "./otherComponents";
+import { headingComponents, textComponents } from "./textComponents";
+import type { VNode } from "vue";
 
 interface NewArticleContentProps {
   content: string;
@@ -24,9 +30,13 @@ export const NewArticleContent = ({
 
   const htmlNode = processor.runSync(processor.parse(vFile), vFile);
 
-  return toH(articleRenderer, htmlNode);
+  return toH(renderer, htmlNode);
 };
 
-const articleRenderer: CreateElementLike = (name, attributes, children) => {
-  return h(name, attributes, children);
+const componentMap: ContentComponentRecord = {
+  ...otherComponents,
+  ...headingComponents,
+  ...textComponents,
 };
+
+const renderer = createContentComponentRenderer(componentMap);

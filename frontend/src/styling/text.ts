@@ -1,3 +1,5 @@
+import { useTheme } from "@/composables/useTheme";
+import { contentColorConfig } from "@/config/content/color";
 import {
   fontWeights,
   letterSpacings,
@@ -5,6 +7,7 @@ import {
   fonts,
   fontSizes,
 } from "@/config/theme/text";
+import type { CSSObject } from "@emotion/css";
 import { createRecordWriter, createValueWriter } from "./writer";
 
 export type FontFamily = keyof typeof fonts;
@@ -29,3 +32,21 @@ export type WordWrap = "normal" | "break-word";
 export const wordWrapWriter = createValueWriter<WordWrap>();
 
 export const maxLinesWriter = createValueWriter<number>();
+
+// NOTE: This is a bit of a hack
+// But the global css sets the decoration to node
+// so an !important has to be added
+export const underlineWriter = (
+  style: CSSObject,
+  _: keyof CSSObject,
+  value: boolean
+) => {
+  if (value) {
+    const theme = useTheme();
+    const responsiveColor = contentColorConfig.fg;
+    const color = theme.darkMode ? responsiveColor.dark : responsiveColor.light;
+
+    style["textDecoration"] = "underline !important";
+    style["textDecorationColor"] = color;
+  }
+};

@@ -17,4 +17,7 @@ export type TextElementType =
   | "h4"
   | "h5"
   | "h6"
-  | "button";
+  | "button"
+  | "em"
+  | "strong"
+  | "code";
