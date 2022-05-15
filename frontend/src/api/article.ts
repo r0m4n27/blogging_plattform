@@ -15,6 +15,7 @@ export interface AuthorArticle extends Article {
 
 export type NewArticlePayload = Omit<AuthorArticle, "id" | "year">;
 
+// Remove indentation with the split, trim, join combination
 export const mockArticle: AuthorArticle = {
   id: "1",
   year: 2021,
@@ -22,12 +23,11 @@ export const mockArticle: AuthorArticle = {
   summary: `Lorem ipsum dolor sit amet,
     consetetur sadipscing elitr, sed diam nonumy eirmod tempor
     invidunt ut labore et dolore magna aliquyam erat,
-    sed diam voluptua.`,
-  content: `Lorem ipsum dolor sit amet,
-    consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-    invidunt ut labore et dolore magna aliquyam erat,
-    sed diam voluptua.
-
+    sed diam voluptua.`
+    .split("\n")
+    .map((s) => s.trim())
+    .join("\n"),
+  content: `
     Lorem ipsum dolor sit amet,
     consetetur sadipscing elitr, sed diam nonumy eirmod tempor
     invidunt ut labore et dolore magna aliquyam erat,
@@ -36,7 +36,15 @@ export const mockArticle: AuthorArticle = {
     Lorem ipsum dolor sit amet,
     consetetur sadipscing elitr, sed diam nonumy eirmod tempor
     invidunt ut labore et dolore magna aliquyam erat,
-    sed diam voluptua.`,
+    sed diam voluptua.
+
+    Lorem ipsum dolor sit amet,
+    consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+    invidunt ut labore et dolore magna aliquyam erat,
+    sed diam voluptua.`
+    .split("\n")
+    .map((s) => s.trim())
+    .join("\n"),
   published: true,
   categories: [jsCategory, programmingCategory],
 };
@@ -48,21 +56,37 @@ export const secondMockArticle: AuthorArticle = {
   summary: `Lorem ipsum dolor sit amet,
     consetetur sadipscing elitr, sed diam nonumy eirmod tempor
     invidunt ut labore et dolore magna aliquyam erat,
-    sed diam voluptua.`,
-  content: `Lorem ipsum dolor sit amet,
-    consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-    invidunt ut labore et dolore magna aliquyam erat,
-    sed diam voluptua.
+    sed diam voluptua.`
+    .split("\n")
+    .map((s) => s.trim())
+    .join("\n"),
+  content: `
+    ## Das ist ein Test
+    Hier stehen tolle _sachen_ **die** man so machen kann.
+    Auch \`code\` ist erlaubt.
+
+    ## More text
 
     Lorem ipsum dolor sit amet,
     consetetur sadipscing elitr, sed diam nonumy eirmod tempor
     invidunt ut labore et dolore magna aliquyam erat,
     sed diam voluptua.
 
-    Lorem ipsum dolor sit amet,
-    consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-    invidunt ut labore et dolore magna aliquyam erat,
-    sed diam voluptua.`,
+    Even more
+
+    ## Lists
+    - Test
+    - More
+    - [ ] test
+
+    ## Links
+    There is a [Link](https://kowa.hs-augsburg.de/webprog/praktikum/) to something.
+
+    ![](https://commons.wikimedia.org/wiki/File:Vue.js_Logo_2.svg)
+  `
+    .split("\n")
+    .map((s) => s.trim())
+    .join("\n"),
   published: false,
   categories: [jsCategory],
 };
