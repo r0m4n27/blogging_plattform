@@ -77,12 +77,14 @@ export const secondMockArticle: AuthorArticle = {
     ## Lists
     - Test
     - More
-    - [ ] test
+    - test
+        - 1
+        - 2
 
     ## Links
     There is a [Link](https://kowa.hs-augsburg.de/webprog/praktikum/) to something.
 
-    ![](https://commons.wikimedia.org/wiki/File:Vue.js_Logo_2.svg)
+    Images don't work because of CORS.
   `
     .split("\n")
     .map((s) => s.trim())
