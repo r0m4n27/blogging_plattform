@@ -7,16 +7,27 @@ import "vue-router";
 import { useUser } from "@/composables/useUser";
 import { visitorRootRoute, visitorRoutes } from "./visitor";
 import { authorRootRoute } from "./author";
+import { adminRootRoute } from "./admin";
 
 export const createRouter = (): Router => {
-  const routes = [authorRootRoute, visitorRootRoute];
+  const routes = [authorRootRoute, visitorRootRoute, adminRootRoute];
 
   const router = createRouterInternal({
     history: createWebHistory(),
     routes,
   });
 
-  // Don't allow logged in user to access LoginPage
+  setupLoginPageGuard(router);
+  setupNotAuthorizedGuard(router);
+
+  return router;
+};
+
+// Don't allow logged in user to access LoginPage
+//
+// If they navigate from another page to the login just don't allow it
+// If the site is loaded from the login page redirect to the home page
+const setupLoginPageGuard = (router: Router) => {
   router.beforeEach((to, from) => {
     const user = useUser();
 
@@ -37,18 +48,30 @@ export const createRouter = (): Router => {
       }
     }
   });
+};
 
-  // Redirect to login on unauthorized access
+// Redirect on unauthorized access
+// If the user is not logged in redirect to the login
+// If the user is logged in but the wrong type redirect to the home page
+const setupNotAuthorizedGuard = (router: Router) => {
   router.beforeEach((to) => {
     const user = useUser();
+    const requiredUserType = to.meta.requiredUserType;
 
-    if ((to.meta.requiredAuth ?? false) && user.value === undefined) {
-      return {
-        path: visitorRoutes.login.route,
-        replace: true,
-      };
+    if (requiredUserType !== undefined) {
+      if (user.value === undefined) {
+        return {
+          path: visitorRoutes.login.route,
+          replace: true,
+        };
+      } else {
+        if (user.value?.type !== requiredUserType) {
+          return {
+            path: visitorRoutes.home.route,
+            replace: true,
+          };
+        }
+      }
     }
   });
-
-  return router;
 };

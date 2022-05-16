@@ -1,10 +1,11 @@
+import type { UserType } from "@/api/user";
 import type { Component } from "vue";
 import type { RouteMeta } from "vue-router";
 
 declare module "vue-router" {
   interface RouteMeta {
-    // If the value is not set it is interpreted as false
-    requiredAuth?: boolean;
+    // Type of user that can access the page
+    requiredUserType?: UserType;
   }
 }
 

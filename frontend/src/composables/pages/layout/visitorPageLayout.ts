@@ -2,8 +2,9 @@ import type { FooterLink } from "@/components/footer/footerLink";
 import type { NavigationDestination } from "@/components/navigationBar/navDestination";
 import { createVisitorNavBarDestinations } from "@/config/components/navigationBar";
 import {
+  createAdminDashboardLink,
+  createAuthorDashboardLink,
   createContactLink,
-  createDashboardLink,
   createLoginLink,
   createLogoutLink,
 } from "@/config/components/pageFooter";
@@ -33,7 +34,11 @@ export const useVisitorPageLayoutState = (): VisitorPageLayoutState => {
         ...createLogoutLink(),
         onClick: () => user.logout(),
       };
-      destinations.push(logoutWithAction, createDashboardLink());
+      if (user.value.type === "author") {
+        destinations.push(logoutWithAction, createAuthorDashboardLink());
+      } else {
+        destinations.push(logoutWithAction, createAdminDashboardLink());
+      }
     }
 
     return destinations;

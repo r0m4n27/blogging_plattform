@@ -1,4 +1,5 @@
 import type { FooterLink } from "@/components/footer/footerLink";
+import { adminRoutes } from "@/lib/router/admin";
 import { authorRoutes } from "@/lib/router/author";
 import { visitorRoutes } from "@/lib/router/visitor";
 
@@ -20,9 +21,15 @@ export const createLogoutLink = (): FooterLink => ({
   isExternal: false,
 });
 
-export const createDashboardLink = (): FooterLink => ({
+export const createAuthorDashboardLink = (): FooterLink => ({
   label: "Dashboard",
   destination: authorRoutes.home.route,
+  isExternal: false,
+});
+
+export const createAdminDashboardLink = (): FooterLink => ({
+  label: "Dashboard",
+  destination: adminRoutes.home.route,
   isExternal: false,
 });
 
