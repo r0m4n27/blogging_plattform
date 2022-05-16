@@ -52,7 +52,7 @@ export const mockArticle: AuthorArticle = {
 export const secondMockArticle: AuthorArticle = {
   id: "2",
   year: 2022,
-  title: "Some interesting title",
+  title: "Markdown TEST",
   summary: `Lorem ipsum dolor sit amet,
     consetetur sadipscing elitr, sed diam nonumy eirmod tempor
     invidunt ut labore et dolore magna aliquyam erat,
@@ -89,12 +89,19 @@ export const secondMockArticle: AuthorArticle = {
     .split("\n")
     .map((s) => s.trim())
     .join("\n"),
-  published: false,
+  published: true,
   categories: [jsCategory],
 };
 
 let mockArticles: AuthorArticle[] = Array(5).fill(mockArticle);
 mockArticles.push(secondMockArticle);
+
+mockArticles = mockArticles.map((article, index) => {
+  return {
+    ...article,
+    id: `${index}`,
+  };
+});
 
 export async function fetchArticles(
   filterType: "category",
@@ -112,7 +119,8 @@ export async function fetchArticles(
   filterType?: "category" | "year",
   filterId?: number | string
 ): Promise<Article[]> {
-  if (filterType === undefined) return mockArticles;
+  if (filterType === undefined)
+    return mockArticles.filter((article) => article.published);
 
   // SAFETY: If filterType is not undefined
   // than the filterId is also not undefined
@@ -120,13 +128,17 @@ export async function fetchArticles(
     const categoryId = filterId as string;
 
     return mockArticles.filter((article) => {
+      if (!article.published) return false;
+
       const categoryIds = article.categories.map((c) => c.id);
       return categoryIds.includes(categoryId);
     });
   } else {
     const year = filterId as number;
 
-    return mockArticles.filter((article) => article.year === year);
+    return mockArticles.filter(
+      (article) => article.year === year && article.published
+    );
   }
 }
 
@@ -147,11 +159,11 @@ export const fetchAuthorArticle = async (
 export const publishArticle = async (
   payload: NewArticlePayload
 ): Promise<void> => {
-  const id = "3";
+  const nextId = mockArticles.slice(-1).pop()?.id as string;
   const year = 2022;
   mockArticles.push({
     ...payload,
-    id,
+    id: `${parseInt(nextId) + 1}`,
     year,
   });
 };
