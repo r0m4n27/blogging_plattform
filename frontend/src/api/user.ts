@@ -35,12 +35,19 @@ export const login = async (
   username: string,
   password: string
 ): Promise<Option<User>> => {
-  return {
-    token: `${username}:${password}`,
-    type: "admin",
-  };
-
-  return undefined;
+  if (username === "admin" && password === "admin") {
+    return {
+      token: "123",
+      type: "admin",
+    };
+  } else if (username === "author" && password === "author") {
+    return {
+      token: "123",
+      type: "author",
+    };
+  } else {
+    return undefined;
+  }
 };
 
 export const updatePassword = async (newPassword: string): Promise<void> => {

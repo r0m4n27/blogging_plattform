@@ -17,6 +17,12 @@ export const jsCategory: Category = {
 };
 let mockCategories: Category[] = Array(3).fill(programmingCategory);
 mockCategories.push(jsCategory);
+mockCategories = mockCategories.map((category, index) => {
+  return {
+    ...category,
+    id: `${index}`,
+  };
+});
 
 export const fetchCategories = async (): Promise<Category[]> => {
   return mockCategories;
@@ -31,11 +37,11 @@ export const deleteCategory = async (category: Category): Promise<void> => {
 };
 
 export const createCategory = async (name: string): Promise<void> => {
-  const id = "3";
+  const nextId = mockCategories.slice(-1).pop()?.id as string;
   mockCategories = [
     ...mockCategories,
     {
-      id,
+      id: `${parseInt(nextId) + 1}`,
       name,
       articleCount: 0,
     },
