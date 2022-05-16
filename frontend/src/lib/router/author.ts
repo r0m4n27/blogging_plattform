@@ -52,6 +52,6 @@ export const authorRootRoute: RouteRecordRaw = {
   component: AuthorPageLayout,
   children: Object.values(authorRoutes),
   meta: {
-    requiredAuth: true,
+    requiredUserType: "author",
   },
 };
