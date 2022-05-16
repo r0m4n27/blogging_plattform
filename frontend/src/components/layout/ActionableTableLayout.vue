@@ -9,7 +9,7 @@ import VColumn from "../base/layout/VColumn.vue";
 
 interface ActionableTableLayoutProps {
   title: string;
-  addButtonLabel: string;
+  addButtonLabel?: string;
 }
 
 interface ActionableTableLayoutEmits {
@@ -27,6 +27,7 @@ const emit = defineEmits<ActionableTableLayoutEmits>();
       <VHeading size="lg" is="h1"> {{ title }} </VHeading>
 
       <TextButton
+        v-if="addButtonLabel !== undefined"
         :label="addButtonLabel"
         :show-border="false"
         :background-color="greenButtonBg"
