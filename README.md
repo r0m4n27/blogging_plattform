@@ -5,6 +5,16 @@ immer beliebter werden, soll in diesem Projekt ein CMS für eine Blogging-Plattf
 erstellt werden. Diese Plattform sollte ein Benutzer bei sich selbst hosten
 können und so eine Onlinepräsenz über einen Blog für sich erstellen können.
 
+## Links
+
+- [Figma](https://www.figma.com/file/c3UmnmRKhvv52DWA9BWkQx/Blogging-Plattform)
+- [Webapp](https://blogging-plattform.fly.dev)
+  - In der Webapp werden zurzeit nur mockdaten verwenden die in memory leben
+  - und so nach jeden Neustart neu geladen werden
+  - Accounts (Username, Password):
+    - Admin: `admin`, `admin`
+    - Author: `author`, `author`
+
 ## Anforderungen
 
 Siehe [Anforderungen](./docs/anforderungen.md)
@@ -17,7 +27,7 @@ wird diese indirekt über einen ORM angesprochen.
 Das Backend wird mit Hilfe des Frameworks `Express` (JS) geschrieben. Als ORM wird vermutlich `Prisma` eingesetzt.
 Um bestimmte Endpoints nur dem Betreiber zugänglich zu machen, werden Bearer Tokens im `Authorization` Header verwendet.
 
-#### Frontend
+### Frontend
 
 - Design in [Figma](https://www.figma.com/file/c3UmnmRKhvv52DWA9BWkQx/Blogging-Plattform)
 - Verwendung von `Vue`
@@ -27,3 +37,8 @@ Um bestimmte Endpoints nur dem Betreiber zugänglich zu machen, werden Bearer To
 - Das Design in Figma wurde mit den Komponenten von `Chakra` erstellt
 - Diese wurden jedoch selbst nachgebaut und die theming werte von `Chakra` übernommen
 - Zur Hilfe wurde [Emotion](https://emotion.sh/docs/introduction) verwendet
+
+### Deployment
+
+- Die Site wird auf [Fly.io](https://fly.io) gehostet
+- [LINK](https://blogging-plattform.fly.dev)
