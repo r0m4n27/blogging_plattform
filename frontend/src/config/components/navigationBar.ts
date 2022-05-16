@@ -29,6 +29,6 @@ export const createAuthorNavBarDestinations = (): NavigationDestination[] => [
 export const createAdminNavBarDestinations = (): NavigationDestination[] => [
   {
     label: "Settings",
-    to: adminRoutes.home.route,
+    to: adminRoutes.settings.route,
   },
 ];
