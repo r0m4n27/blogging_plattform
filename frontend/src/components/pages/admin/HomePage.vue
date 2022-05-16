@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import ArticlesTable from "@/components/author/articles/ArticlesTable.vue";
-import { useHomePageState } from "@/composables/pages/author/homePage";
+import UsersTable from "../../admin/users/UsersTable.vue";
+import { useHomePageState } from "@/composables/pages/admin/homePage";
 
-const { articles } = useHomePageState();
+const { users, deleteUser } = useHomePageState();
 </script>
 
 <template>
-  <ArticlesTable :articles="articles" />
+  <UsersTable :users="users" @delete-user="deleteUser" />
 </template>
