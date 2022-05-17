@@ -1,5 +1,5 @@
 import { updatePassword as updatePasswordInternal } from "@/api/user";
-import { usePageTitle } from "@/composables/head/usePageTitle";
+import { usePageTitle } from "@/composables/head/pageTitle";
 import { ref, type Ref } from "vue";
 
 export interface SettingsPageState {

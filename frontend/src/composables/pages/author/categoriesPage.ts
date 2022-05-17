@@ -1,6 +1,6 @@
 import { fetchCategories, type Category } from "@/api/category";
 import { ref, type Ref } from "vue";
-import { usePageTitle } from "../../head/usePageTitle";
+import { usePageTitle } from "../../head/pageTitle";
 import { useEndpoint } from "../../useEndpoint";
 import {
   deleteCategory as deleteCategoryInternal,

@@ -4,7 +4,7 @@ import type { Option } from "@/lib/types";
 import { computed } from "@vue/reactivity";
 import type { Ref } from "vue";
 import type { RouteParams } from "vue-router";
-import { usePageTitle } from "../../head/usePageTitle";
+import { usePageTitle } from "../../head/pageTitle";
 import { useEndpoint } from "../../useEndpoint";
 
 export interface ArticlePageState {

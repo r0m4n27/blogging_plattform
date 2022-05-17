@@ -1,6 +1,6 @@
 import { fetchAuthorArticles, type AuthorArticle } from "@/api/article";
 import type { Ref } from "vue";
-import { usePageTitle } from "../../head/usePageTitle";
+import { usePageTitle } from "../../head/pageTitle";
 import { useEndpoint } from "../../useEndpoint";
 
 export interface HomePageState {

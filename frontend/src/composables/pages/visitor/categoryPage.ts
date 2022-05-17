@@ -3,7 +3,7 @@ import { fetchCategory } from "@/api/category";
 import { useRouteParams } from "@/composables/routeParams";
 import { computed, type ComputedRef, type Ref } from "vue";
 import type { RouteParams } from "vue-router";
-import { usePageTitle } from "../../head/usePageTitle";
+import { usePageTitle } from "../../head/pageTitle";
 import { useEndpoint } from "../../useEndpoint";
 
 export interface CategoryPageState {

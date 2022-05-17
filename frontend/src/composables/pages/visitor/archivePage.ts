@@ -2,7 +2,7 @@ import { fetchYears } from "@/api/year";
 import type { Collection } from "@/components/visitor/summary/collection/collection";
 import { yearToCollection } from "@/lib/collection";
 import { computed, type ComputedRef } from "vue";
-import { usePageTitle } from "../../head/usePageTitle";
+import { usePageTitle } from "../../head/pageTitle";
 import { useEndpoint } from "../../useEndpoint";
 
 export interface ArchivePageState {
