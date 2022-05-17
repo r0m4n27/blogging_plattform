@@ -2,7 +2,7 @@
 import VCard from "@/components/base/layout/VCard.vue";
 import VColumn from "@/components/base/layout/VColumn.vue";
 import VHeading from "@/components/base/text/VHeading.vue";
-import TextInputField from "@/components/input/TextInputField.vue";
+import TextInputField from "@/components/common/input/TextInputField.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import TextButton from "@/components/base/button/TextButton.vue";
 import { getColor } from "@/config/theme/colors";

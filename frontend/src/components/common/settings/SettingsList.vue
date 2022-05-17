@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import VCenter from "../base/layout/VCenter.vue";
+import VCenter from "@/components/base/layout/VCenter.vue";
 import UpdatePassword from "./UpdatePassword.vue";
 
 interface SettingsListProps {

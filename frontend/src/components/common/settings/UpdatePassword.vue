@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import VCard from "../base/layout/VCard.vue";
-import VColumn from "../base/layout/VColumn.vue";
-import TextInputField from "../input/TextInputField.vue";
-import TextButton from "../base/button/TextButton.vue";
-import VText from "../base/text/VText.vue";
-import VHeading from "../base/text/VHeading.vue";
+import VCard from "@/components/base/layout/VCard.vue";
+import VColumn from "@/components/base/layout/VColumn.vue";
+import TextInputField from "@/components/common/input/TextInputField.vue";
+import TextButton from "@/components/base/button/TextButton.vue";
+import VText from "@/components/base/text/VText.vue";
+import VHeading from "@/components/base/text/VHeading.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
-import { useUpdatePasswordState } from "@/composables/components/settings/updatePassword";
+import { useUpdatePasswordState } from "@/composables/common/updatePassword";
 import { getColor } from "@/config/theme/colors";
 import { greenButtonFg, greenButtonBg } from "@/config/content/color";
 

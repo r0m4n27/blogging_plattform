@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SettingsList from "@/components/settings/SettingsList.vue";
+import SettingsList from "@/components/common/settings/SettingsList.vue";
 import { useSettingsPageState } from "@/composables/pages/shared/settingsPage";
 
 const { passwordUpdated, updatePassword } = useSettingsPageState();

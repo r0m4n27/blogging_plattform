@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { Category } from "@/api/category";
-import VLink from "../base/VLink.vue";
+import VLink from "@/components/base/VLink.vue";
 import { computed } from "vue";
 import type { Responsive } from "@/lib/responsive";
 import { visitorRoutes } from "@/lib/router/visitor";
-import TagButton from "../base/button/TagButton.vue";
+import TagButton from "@/components/base/button/TagButton.vue";
 import type { TagButtonSize } from "@/styling/props/tagButton";
 
 interface SummaryTagProps {

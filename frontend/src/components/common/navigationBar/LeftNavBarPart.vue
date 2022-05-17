@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import VRow from "../base/layout/VRow.vue";
-import VHeading from "../base/text/VHeading.vue";
-import VImage from "../base/VImage.vue";
-import VLink from "../base/VLink.vue";
+import VRow from "@/components/base/layout/VRow.vue";
+import VHeading from "@/components/base/text/VHeading.vue";
+import VImage from "@/components/base/VImage.vue";
+import VLink from "@/components/base/VLink.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import type { RouteLocationRaw } from "vue-router";
 

@@ -1,4 +1,4 @@
-import type { FooterLink } from "@/components/footer/footerLink";
+import type { FooterLink } from "@/components/common/footer/footerLink";
 import { adminRoutes } from "@/lib/router/admin";
 import { authorRoutes } from "@/lib/router/author";
 import { visitorRoutes } from "@/lib/router/visitor";

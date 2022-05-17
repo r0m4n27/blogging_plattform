@@ -1,4 +1,4 @@
-import PageFooter from "@/components/footer/PageFooter.vue";
+import PageFooter from "@/components/common/footer/PageFooter.vue";
 import {
   createContactLink,
   createLoginLink,

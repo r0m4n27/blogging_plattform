@@ -1,4 +1,4 @@
-import CategoryList from "@/components/util/CategoryList.vue";
+import CategoryList from "@/components/visitor/util/CategoryList.vue";
 import { mockCategories } from "@/stories/data/category";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
 import { cardDecorator } from "@/stories/decorators/cardDecorator";

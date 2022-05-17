@@ -2,12 +2,12 @@
 import LeftNavBarPart from "./LeftNavBarPart.vue";
 import RightNavBarPart from "./RightNavBarPart.vue";
 import MobileNavMenu from "./MobileNavMenu.vue";
-import VRow from "../base/layout/VRow.vue";
-import VContainer from "../base/layout/VContainer.vue";
+import VRow from "@/components/base/layout/VRow.vue";
+import VContainer from "@/components/base/layout/VContainer.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
-import VBox from "../base/layout/VBox.vue";
-import { useNavBarState } from "@/composables/useNavBarState";
-import ContentDivider from "../util/ContentDivider.vue";
+import VBox from "@/components/base/layout/VBox.vue";
+import { useNavBarState } from "@/composables/common/navBar";
+import ContentDivider from "@/components/common/util/ContentDivider.vue";
 import type { NavigationDestination } from "./navDestination";
 import type { RouteLocationRaw } from "vue-router";
 

@@ -1,4 +1,4 @@
-import CategoryTag from "@/components/util/CategoryTag.vue";
+import CategoryTag from "@/components/visitor/util/CategoryTag.vue";
 import { jsCategory } from "@/stories/data/category";
 
 export default {

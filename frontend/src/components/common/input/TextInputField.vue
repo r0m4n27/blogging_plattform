@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import VColumn from "@/components/base/layout/VColumn.vue";
-import VHeading from "../base/text/VHeading.vue";
-import TextAreaInput from "../base/input/TextAreaInput.vue";
+import VHeading from "@/components/base/text/VHeading.vue";
+import TextInput from "@/components/base/input/TextInput.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import type { InputType } from "@/styling/props/textInputProps";
 import { computed, type PropType } from "vue";
@@ -53,9 +53,8 @@ const inputModel = computed({
       {{ label }}
     </VHeading>
 
-    <TextAreaInput
+    <TextInput
       width="full"
-      height="full"
       :input-type="inputType"
       v-model:input-value="inputModel"
     />

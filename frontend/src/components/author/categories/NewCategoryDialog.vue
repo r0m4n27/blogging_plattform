@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TextInputField from "../../input/TextInputField.vue";
+import TextInputField from "@/components/common/input/TextInputField.vue";
 import { ref } from "vue";
 import SimpleDialogLayout from "../../layout/SimpleDialogLayout.vue";
 

@@ -1,4 +1,4 @@
-import NavigationBar from "@/components/navigationBar/NavigationBar.vue";
+import NavigationBar from "@/components/common/navigationBar/NavigationBar.vue";
 import { createVisitorNavBarDestinations } from "@/config/components/navigationBar";
 
 export default {

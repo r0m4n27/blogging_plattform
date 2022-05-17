@@ -1,4 +1,4 @@
-import SettingsList from "../../components/settings/SettingsList.vue";
+import SettingsList from "@/components/common/settings/SettingsList.vue";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
 
 export default {

@@ -2,7 +2,7 @@
 import { useTheme } from "@/composables/useTheme";
 import { Moon, Sun } from "lucide-vue-next";
 import { computed } from "vue";
-import IconButton from "../base/button/IconButton.vue";
+import IconButton from "@/components/base/button/IconButton.vue";
 import { getColor } from "@/config/theme/colors";
 
 const theme = useTheme();
