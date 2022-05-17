@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import VColumn from "../base/layout/VColumn.vue";
+import VColumn from "@/components/base/layout/VColumn.vue";
 import NavigationBar from "@/components/common/navigationBar/NavigationBar.vue";
-import VContainer from "../base/layout/VContainer.vue";
+import VContainer from "@/components/base/layout/VContainer.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import PageFooter from "@/components/common/footer/PageFooter.vue";
 import { useSiteConfig } from "@/composables/useSiteConfig";

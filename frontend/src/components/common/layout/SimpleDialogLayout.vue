@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import VCard from "../base/layout/VCard.vue";
+import VCard from "@/components/base/layout/VCard.vue";
 import {
   contentSpacingConfig,
   defaultContentSpacing,
 } from "@/config/content/spacing";
 import { globalContentConfig } from "@/config/content/global";
-import VColumn from "../base/layout/VColumn.vue";
-import VHeading from "../base/text/VHeading.vue";
-import VRow from "../base/layout/VRow.vue";
-import TextButton from "../base/button/TextButton.vue";
+import VColumn from "@/components/base/layout/VColumn.vue";
+import VHeading from "@/components/base/text/VHeading.vue";
+import VRow from "@/components/base/layout/VRow.vue";
+import TextButton from "@/components/base/button/TextButton.vue";
 import type { Responsive } from "@/lib/responsive";
 import type { Color } from "@/styling/color";
 import {

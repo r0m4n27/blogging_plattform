@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BaseLayout from "@/components/layout/BaseLayout.vue";
+import BasePageLayout from "@/components/common/layout/BasePageLayout.vue";
 import { RouterView } from "vue-router";
 import { useAdminPageLayoutState } from "@/composables/pages/layout/adminPageLayout";
 
@@ -8,11 +8,11 @@ const { footerLinks, navBarDestinations, headingDestination } =
 </script>
 
 <template>
-  <BaseLayout
+  <BasePageLayout
     :nav-bar-destinations="navBarDestinations"
     :footer-links="footerLinks"
     :heading-destination="headingDestination"
   >
     <RouterView />
-  </BaseLayout>
+  </BasePageLayout>
 </template>
