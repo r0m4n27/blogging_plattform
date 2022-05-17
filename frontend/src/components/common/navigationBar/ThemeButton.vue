@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useTheme } from "@/composables/useTheme";
+import { useTheme } from "@/composables/store/theme";
 import { Moon, Sun } from "lucide-vue-next";
 import { computed } from "vue";
 import IconButton from "@/components/base/button/IconButton.vue";

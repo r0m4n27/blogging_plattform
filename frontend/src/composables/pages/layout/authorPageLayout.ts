@@ -7,7 +7,7 @@ import {
 } from "@/config/components/pageFooter";
 import { authorRoutes } from "@/lib/router/author";
 import type { RouteLocationRaw } from "vue-router";
-import { useUser } from "@/composables/useUser";
+import { useUser } from "@/composables/store/user";
 
 export interface VisitorPageLayoutState {
   footerLinks: FooterLink[];

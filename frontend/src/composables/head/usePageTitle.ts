@@ -1,7 +1,7 @@
 import type { MaybeRef } from "@/lib/types";
 import { useHead, type HeadObject } from "@vueuse/head";
 import { ref, computed } from "vue";
-import { useSiteConfig } from "../useSiteConfig";
+import { useSiteConfig } from "@/composables/store/siteConfig";
 
 export const usePageTitle = (titlePrefix?: MaybeRef<string>) => {
   const siteConfig = useSiteConfig();

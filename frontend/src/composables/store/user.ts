@@ -4,7 +4,7 @@ import { piniaKeysConfig } from "@/config/pinia";
 import type { Option } from "@/lib/types";
 import { defineStore } from "pinia";
 import type { Ref } from "vue";
-import { useLocalStorage } from "./useLocalStorage";
+import { useLocalStorage } from "../useLocalStorage";
 import { useEmptyStore } from "./emptyStore";
 import { visitorRoutes } from "@/lib/router/visitor";
 

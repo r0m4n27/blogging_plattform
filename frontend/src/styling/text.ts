@@ -1,4 +1,4 @@
-import { useTheme } from "@/composables/useTheme";
+import { useTheme } from "@/composables/store/theme";
 import { contentColorConfig } from "@/config/content/color";
 import {
   fontWeights,

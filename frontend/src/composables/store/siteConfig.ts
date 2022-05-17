@@ -2,7 +2,7 @@ import { fetchSiteConfig } from "@/api/siteConfig";
 import { piniaKeysConfig } from "@/config/pinia";
 import { defineStore } from "pinia";
 import type { ComputedRef } from "vue";
-import { useEndpoint } from "./useEndpoint";
+import { useEndpoint } from "../useEndpoint";
 import { computed } from "@vue/reactivity";
 
 export interface UseSiteConfigState {

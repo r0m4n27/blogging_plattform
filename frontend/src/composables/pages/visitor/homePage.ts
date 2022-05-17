@@ -3,7 +3,7 @@ import { storeToRefs } from "pinia";
 import type { Ref } from "vue";
 import { usePageTitle } from "../../head/usePageTitle";
 import { useEndpoint } from "../../useEndpoint";
-import { useSiteConfig } from "../../useSiteConfig";
+import { useSiteConfig } from "../../store/siteConfig";
 
 export interface HomePageState {
   blogTitle: Ref<string>;

@@ -4,7 +4,7 @@ import NavigationBar from "@/components/common/navigationBar/NavigationBar.vue";
 import VContainer from "@/components/base/layout/VContainer.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import PageFooter from "@/components/common/footer/PageFooter.vue";
-import { useSiteConfig } from "@/composables/useSiteConfig";
+import { useSiteConfig } from "@/composables/store/siteConfig";
 import { storeToRefs } from "pinia";
 import type { NavigationDestination } from "@/components/common/navigationBar/navDestination";
 import type { FooterLink } from "@/components/common/footer/footerLink";
