@@ -1,12 +1,12 @@
 import type { FooterLink } from "@/components/common/footer/footerLink";
 import type { NavigationDestination } from "@/components/common/navigationBar/navDestination";
-import { createVisitorNavBarDestinations } from "@/config/components/navigationBar";
+import { visitorNavBarDestinations } from "@/config/components/navigationBar";
 import {
-  createAdminDashboardLink,
-  createAuthorDashboardLink,
-  createContactLink,
-  createLoginLink,
-  createLogoutLink,
+  adminDashboardLink,
+  authorDashboardLink,
+  contactLink,
+  loginLink,
+  logoutLink,
 } from "@/config/components/pageFooter";
 import { visitorRoutes } from "@/lib/router/visitor";
 import { computed } from "@vue/reactivity";
@@ -25,26 +25,26 @@ export const useVisitorPageLayoutState = (): VisitorPageLayoutState => {
 
   const footerLinks = computed(() => {
     const destinations: FooterLink[] = [];
-    destinations.push(createContactLink());
+    destinations.push(contactLink);
 
     if (user.value === undefined) {
-      destinations.push(createLoginLink());
+      destinations.push(loginLink);
     } else {
       const logoutWithAction = {
-        ...createLogoutLink(),
+        ...logoutLink,
         onClick: () => user.logout(),
       };
       if (user.value.type === "author") {
-        destinations.push(logoutWithAction, createAuthorDashboardLink());
+        destinations.push(logoutWithAction, authorDashboardLink);
       } else {
-        destinations.push(logoutWithAction, createAdminDashboardLink());
+        destinations.push(logoutWithAction, adminDashboardLink);
       }
     }
 
     return destinations;
   });
 
-  const navBarDestinations = createVisitorNavBarDestinations();
+  const navBarDestinations = visitorNavBarDestinations;
   const headingDestination = visitorRoutes.home.route;
 
   return {

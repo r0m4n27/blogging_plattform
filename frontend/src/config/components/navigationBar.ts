@@ -3,8 +3,7 @@ import { adminRoutes } from "@/lib/router/admin";
 import { authorRoutes } from "@/lib/router/author";
 import { visitorRoutes } from "@/lib/router/visitor";
 
-// Import cycle has to be broken
-export const createVisitorNavBarDestinations = (): NavigationDestination[] => [
+export const visitorNavBarDestinations: NavigationDestination[] = [
   {
     label: "Categories",
     to: visitorRoutes.categories.route,
@@ -15,7 +14,7 @@ export const createVisitorNavBarDestinations = (): NavigationDestination[] => [
   },
 ];
 
-export const createAuthorNavBarDestinations = (): NavigationDestination[] => [
+export const authorNavBarDestinations: NavigationDestination[] = [
   {
     label: "Categories",
     to: authorRoutes.categories.route,
@@ -26,7 +25,7 @@ export const createAuthorNavBarDestinations = (): NavigationDestination[] => [
   },
 ];
 
-export const createAdminNavBarDestinations = (): NavigationDestination[] => [
+export const adminNavBarDestinations: NavigationDestination[] = [
   {
     label: "Settings",
     to: adminRoutes.settings.route,

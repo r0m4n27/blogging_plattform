@@ -4,7 +4,7 @@ import type { Article } from "@/api/article";
 import VHeading from "@/components/base/text/VHeading.vue";
 import { defaultContentSpacing } from "@/config/content/spacing";
 import CategoryList from "@/components/visitor/util/CategoryList.vue";
-import { NewArticleContent } from "./content/NewArticleContent";
+import ArticleContent from "./content/ArticleContent.vue";
 
 interface BlogArticleProps {
   article: Article;
@@ -28,6 +28,6 @@ defineProps<BlogArticleProps>();
       :size="{ sm: 'sm', md: 'md' }"
     />
 
-    <NewArticleContent :content="article.content" />
+    <ArticleContent :content="article.content" />
   </VColumn>
 </template>

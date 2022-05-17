@@ -1,8 +1,5 @@
 import type { RouteDestinationWithoutParams } from "./types";
-import HomePage from "@/components/pages/admin/HomePage.vue";
 import type { RouteRecordRaw } from "vue-router";
-import AdminPageLayout from "@/components/pages/layout/AdminPageLayout.vue";
-import SettingsPage from "@/components/pages/shared/SettingsPage.vue";
 
 export interface AdminRoutes {
   home: RouteDestinationWithoutParams;
@@ -15,18 +12,18 @@ export const adminRoutes: AdminRoutes = {
   home: {
     path: "",
     route: createAdminRoute(""),
-    component: HomePage,
+    component: () => import("@/components/pages/admin/HomePage.vue"),
   },
   settings: {
     path: "settings",
     route: createAdminRoute("settings"),
-    component: SettingsPage,
+    component: () => import("@/components/pages/shared/SettingsPage.vue"),
   },
 };
 
 export const adminRootRoute: RouteRecordRaw = {
   path: "/admin",
-  component: AdminPageLayout,
+  component: () => import("@/components/pages/layout/AuthorPageLayout.vue"),
   children: Object.values(adminRoutes),
   meta: {
     requiredUserType: "admin",
