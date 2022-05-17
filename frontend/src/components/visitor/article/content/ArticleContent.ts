@@ -16,9 +16,7 @@ interface NewArticleContentProps {
 }
 
 // Parsing taken from: https://github.com/remarkjs/react-markdown/blob/main/lib/react-markdown.js
-export const NewArticleContent = ({
-  content,
-}: NewArticleContentProps): VNode => {
+export const ArticleContent = ({ content }: NewArticleContentProps): VNode => {
   const processor = unified()
     .use(remarkParse)
     .use(remarkRehype)
@@ -27,7 +25,6 @@ export const NewArticleContent = ({
   const vFile = {
     value: content,
   };
-
   const htmlNode = processor.runSync(processor.parse(vFile), vFile);
 
   return toH(renderer, htmlNode);
