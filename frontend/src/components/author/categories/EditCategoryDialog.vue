@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import TextInputField from "../../input/TextInputField.vue";
+import TextInputField from "@/components/common/input/TextInputField.vue";
 import { ref } from "vue";
-import SimpleDialogLayout from "../../layout/SimpleDialogLayout.vue";
+import SimpleDialogLayout from "@/components/common/layout/SimpleDialogLayout.vue";
 import { orangeButtonBg, orangeButtonFg } from "@/config/content/color";
 
 interface EditCategoryDialogProps {

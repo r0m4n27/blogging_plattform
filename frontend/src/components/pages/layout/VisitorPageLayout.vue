@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useVisitorPageLayoutState } from "@/composables/pages/layout/visitorPageLayout";
-import BaseLayout from "@/components/layout/BaseLayout.vue";
+import BasePageLayout from "@/components/common/layout/BasePageLayout.vue";
 import { RouterView } from "vue-router";
 
 const { footerLinks, navBarDestinations, headingDestination } =
@@ -8,11 +8,11 @@ const { footerLinks, navBarDestinations, headingDestination } =
 </script>
 
 <template>
-  <BaseLayout
+  <BasePageLayout
     :nav-bar-destinations="navBarDestinations"
     :footer-links="footerLinks"
     :heading-destination="headingDestination"
   >
     <RouterView />
-  </BaseLayout>
+  </BasePageLayout>
 </template>

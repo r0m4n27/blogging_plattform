@@ -1,5 +1,5 @@
-import type { FooterLink } from "@/components/footer/footerLink";
-import type { NavigationDestination } from "@/components/navigationBar/navDestination";
+import type { FooterLink } from "@/components/common/footer/footerLink";
+import type { NavigationDestination } from "@/components/common/navigationBar/navDestination";
 import { createAdminNavBarDestinations } from "@/config/components/navigationBar";
 import {
   createBlogLink,
@@ -7,7 +7,7 @@ import {
 } from "@/config/components/pageFooter";
 import { adminRoutes } from "@/lib/router/admin";
 import type { RouteLocationRaw } from "vue-router";
-import { useUser } from "../../useUser";
+import { useUser } from "@/composables/store/user";
 
 export interface AdminPageLayoutState {
   footerLinks: FooterLink[];

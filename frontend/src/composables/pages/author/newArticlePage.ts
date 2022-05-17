@@ -1,11 +1,11 @@
 import type { NewArticlePayload } from "@/api/article";
 import { authorRoutes } from "@/lib/router/author";
 import { useRouter } from "vue-router";
-import { usePageTitle } from "../../head/usePageTitle";
+import { usePageTitle } from "../../head/pageTitle";
 import { publishArticle as publishArticleInternal } from "@/api/article";
 import type { Ref } from "vue";
 import { fetchCategories, type Category } from "@/api/category";
-import { useEndpoint } from "@/composables/useEndpoint";
+import { useEndpoint } from "@/composables/util/endpoint";
 
 export interface NewArticleState {
   existingCategories: Ref<Category[]>;

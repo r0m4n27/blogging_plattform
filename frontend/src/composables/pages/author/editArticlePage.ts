@@ -1,9 +1,9 @@
 import { fetchAuthorArticle, type AuthorArticle } from "@/api/article";
 import type { Option } from "@/lib/types";
-import { usePageTitle } from "@/composables/head/usePageTitle";
-import { useRouteParams } from "@/composables/routeParams";
+import { usePageTitle } from "@/composables/head/pageTitle";
+import { useRouteParams } from "@/composables/util/routeParams";
 import { computed } from "@vue/reactivity";
-import { useEndpoint } from "@/composables/useEndpoint";
+import { useEndpoint } from "@/composables/util/endpoint";
 import type { Ref } from "vue";
 import { useRouter } from "vue-router";
 import { authorRoutes } from "@/lib/router/author";

@@ -1,10 +1,10 @@
 import { fetchArticles, type Article } from "@/api/article";
 import { fetchCategory } from "@/api/category";
-import { useRouteParams } from "@/composables/routeParams";
+import { useRouteParams } from "@/composables/util/routeParams";
 import { computed, type ComputedRef, type Ref } from "vue";
 import type { RouteParams } from "vue-router";
-import { usePageTitle } from "../../head/usePageTitle";
-import { useEndpoint } from "../../useEndpoint";
+import { usePageTitle } from "../../head/pageTitle";
+import { useEndpoint } from "../../util/endpoint";
 
 export interface CategoryPageState {
   title: ComputedRef<string>;

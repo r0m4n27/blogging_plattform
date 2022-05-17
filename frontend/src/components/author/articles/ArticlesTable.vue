@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { AuthorArticle } from "@/api/article";
-import ActionableTableLayout from "../../layout/ActionableTableLayout.vue";
+import ActionableTableLayout from "@/components/common/layout/ActionableTableLayout.vue";
 import VTableHeader from "@/components/base/table/VTableHeader.vue";
 import ArticlesTableEntry from "./ArticlesTableEntry.vue";
 import { useRouter } from "vue-router";

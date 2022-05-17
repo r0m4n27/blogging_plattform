@@ -4,7 +4,7 @@ import {
   type Router,
 } from "vue-router";
 import "vue-router";
-import { useUser } from "@/composables/useUser";
+import { useUser } from "@/composables/store/user";
 import { visitorRootRoute, visitorRoutes } from "./visitor";
 import { authorRootRoute } from "./author";
 import { adminRootRoute } from "./admin";

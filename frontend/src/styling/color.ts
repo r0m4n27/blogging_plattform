@@ -1,4 +1,4 @@
-import { useTheme } from "@/composables/useTheme";
+import { useTheme } from "@/composables/store/theme";
 import type { CSSObject } from "@emotion/css";
 
 export type Color = LightAndDarkColor | ColorWithState;

@@ -1,4 +1,4 @@
-import type { NavigationDestination } from "@/components/navigationBar/navDestination";
+import type { NavigationDestination } from "@/components/common/navigationBar/navDestination";
 import { adminRoutes } from "@/lib/router/admin";
 import { authorRoutes } from "@/lib/router/author";
 import { visitorRoutes } from "@/lib/router/visitor";

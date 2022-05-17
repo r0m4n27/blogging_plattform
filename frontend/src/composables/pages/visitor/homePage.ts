@@ -1,9 +1,9 @@
 import { fetchArticles, type Article } from "@/api/article";
 import { storeToRefs } from "pinia";
 import type { Ref } from "vue";
-import { usePageTitle } from "../../head/usePageTitle";
-import { useEndpoint } from "../../useEndpoint";
-import { useSiteConfig } from "../../useSiteConfig";
+import { usePageTitle } from "../../head/pageTitle";
+import { useEndpoint } from "../../util/endpoint";
+import { useSiteConfig } from "../../store/siteConfig";
 
 export interface HomePageState {
   blogTitle: Ref<string>;

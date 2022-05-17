@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ArticleSummaryList from "@/components/summary/article/ArticleSummaryList.vue";
+import ArticleSummaryList from "@/components/visitor/summary/article/ArticleSummaryList.vue";
 import { useYearPageState } from "@/composables/pages/visitor/yearPage";
 
 const { title, articles } = useYearPageState();

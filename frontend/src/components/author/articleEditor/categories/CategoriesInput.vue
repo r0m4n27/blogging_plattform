@@ -6,7 +6,7 @@ import VColumn from "@/components/base/layout/VColumn.vue";
 import VHeading from "@/components/base/text/VHeading.vue";
 import CategoriesInputList from "./CategoriesInputList.vue";
 import VBox from "../../../base/layout/VBox.vue";
-import { useCategoriesInputState } from "@/composables/components/articleEditor/categoriesInput";
+import { useCategoriesInputState } from "@/composables/author/articleEditor/categoriesInput";
 import { toRefs } from "vue";
 
 interface CategoriesInputProps {
