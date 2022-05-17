@@ -1,11 +1,11 @@
 import { fetchArticle, type Article } from "@/api/article";
-import { useRouteParams } from "@/composables/routeParams";
+import { useRouteParams } from "@/composables/util/routeParams";
 import type { Option } from "@/lib/types";
 import { computed } from "@vue/reactivity";
 import type { Ref } from "vue";
 import type { RouteParams } from "vue-router";
 import { usePageTitle } from "../../head/pageTitle";
-import { useEndpoint } from "../../useEndpoint";
+import { useEndpoint } from "../../util/endpoint";
 
 export interface ArticlePageState {
   article: Ref<Option<Article>>;

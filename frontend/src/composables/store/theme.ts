@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import type { Ref } from "vue";
 import { localStorageKeys } from "../../config/localStorage";
 import { piniaKeysConfig } from "@/config/pinia";
-import { useLocalStorage } from "../useLocalStorage";
+import { useLocalStorage } from "../util/localStorage";
 
 export interface Theme {
   darkMode: Ref<boolean>;

@@ -1,7 +1,7 @@
 import type { AdminUser } from "@/api/user";
 import { usePageTitle } from "@/composables/head/pageTitle";
 import { fetchAdminUsers, deleteUser as deleteUserInternal } from "@/api/user";
-import { useEndpoint } from "@/composables/useEndpoint";
+import { useEndpoint } from "@/composables/util/endpoint";
 import { computed, type ComputedRef, type Ref } from "vue";
 
 export interface HomePageState {

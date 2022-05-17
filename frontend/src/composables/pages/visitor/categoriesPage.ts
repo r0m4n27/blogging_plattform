@@ -3,7 +3,7 @@ import type { Collection } from "@/components/visitor/summary/collection/collect
 import { categoryToCollection } from "@/lib/collection";
 import { computed, type ComputedRef } from "vue";
 import { usePageTitle } from "../../head/pageTitle";
-import { useEndpoint } from "../../useEndpoint";
+import { useEndpoint } from "../../util/endpoint";
 
 export interface CategoriesPageState {
   categoriesCollections: ComputedRef<Collection[]>;
