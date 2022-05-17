@@ -19,4 +19,5 @@ Primary.args = {
   title: "My AWESOME Website",
   logoUrl: "/logo_sample.png",
   destinations: createVisitorNavBarDestinations(),
+  headingDestination: "",
 };
