@@ -3,38 +3,38 @@ import { adminRoutes } from "@/lib/router/admin";
 import { authorRoutes } from "@/lib/router/author";
 import { visitorRoutes } from "@/lib/router/visitor";
 
-export const createContactLink = (): FooterLink => ({
+export const contactLink: FooterLink = {
   label: "Contact",
   destination: "mailto:roman.kolesnikov@hs-augsburg.de",
   isExternal: true,
-});
+};
 
-export const createLoginLink = (): FooterLink => ({
+export const loginLink: FooterLink = {
   label: "Login",
   destination: visitorRoutes.login.route,
   isExternal: false,
-});
+};
 
-export const createLogoutLink = (): FooterLink => ({
+export const logoutLink: FooterLink = {
   label: "Logout",
   destination: "#",
   isExternal: false,
-});
+};
 
-export const createAuthorDashboardLink = (): FooterLink => ({
+export const authorDashboardLink: FooterLink = {
   label: "Dashboard",
   destination: authorRoutes.home.route,
   isExternal: false,
-});
+};
 
-export const createAdminDashboardLink = (): FooterLink => ({
+export const adminDashboardLink: FooterLink = {
   label: "Dashboard",
   destination: adminRoutes.home.route,
   isExternal: false,
-});
+};
 
-export const createBlogLink = (): FooterLink => ({
+export const blogLink: FooterLink = {
   label: "Blog",
   destination: visitorRoutes.home.route,
   isExternal: false,
-});
+};
