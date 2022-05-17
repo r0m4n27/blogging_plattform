@@ -4,7 +4,7 @@ import { defaultContentSpacing } from "@/config/content/spacing";
 import ArticleEditorHeader from "./ArticleEditorHeader.vue";
 import TextInputField from "@/components/common/input/TextInputField.vue";
 import TextAreaInputField from "@/components/common/input/TextAreaInputField.vue";
-import { useArticleEditorState } from "@/composables/articleEditor";
+import { useArticleEditorState } from "@/composables/author/articleEditor/articleEditor";
 import type { AuthorArticle, NewArticlePayload } from "@/api/article";
 import type { Category } from "@/api/category";
 import CategoriesInput from "./categories/CategoriesInput.vue";
