@@ -11,7 +11,7 @@ export const programmingCategory: Category = {
 };
 
 export const jsCategory: Category = {
-  id: "2",
+  id: "3",
   name: "Javascript",
   articleCount: 5,
 };
