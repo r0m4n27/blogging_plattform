@@ -1,6 +1,6 @@
-import CollectionSummaryCard from "@/components/summary/collection/CollectionSummaryCard.vue";
+import CollectionSummaryCard from "@/components/visitor/summary/collection/CollectionSummaryCard.vue";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
-import { mockCollection } from "../../../data/collection";
+import { mockCollection } from "@/stories/data/collection";
 
 export default {
   component: CollectionSummaryCard,

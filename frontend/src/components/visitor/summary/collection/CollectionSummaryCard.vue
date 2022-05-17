@@ -4,7 +4,7 @@ import VColumn from "@/components/base/layout/VColumn.vue";
 import VHeading from "@/components/base/text/VHeading.vue";
 import VText from "@/components/base/text/VText.vue";
 import type { Collection } from "./collection";
-import VLink from "../../base/VLink.vue";
+import VLink from "@/components/base/VLink.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import { contentColorConfig } from "@/config/content/color";
 

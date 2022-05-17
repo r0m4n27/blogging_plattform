@@ -1,6 +1,6 @@
-import CollectionSummaryList from "@/components/summary/collection/CollectionSummaryList.vue";
+import CollectionSummaryList from "@/components/visitor/summary/collection/CollectionSummaryList.vue";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
-import { mockCollections } from "../../../data/collection";
+import { mockCollections } from "@/stories/data/collection";
 
 export default {
   component: CollectionSummaryList,

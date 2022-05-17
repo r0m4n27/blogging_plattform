@@ -1,5 +1,5 @@
 import { fetchYears } from "@/api/year";
-import type { Collection } from "@/components/summary/collection/collection";
+import type { Collection } from "@/components/visitor/summary/collection/collection";
 import { yearToCollection } from "@/lib/collection";
 import { computed, type ComputedRef } from "vue";
 import { usePageTitle } from "../../head/usePageTitle";

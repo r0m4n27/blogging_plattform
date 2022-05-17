@@ -7,7 +7,7 @@ import VCard from "@/components/base/layout/VCard.vue";
 import VLink from "@/components/base/VLink.vue";
 import { computed } from "@vue/reactivity";
 import { contentSpacingConfig } from "@/config/content/spacing";
-import CategoryList from "../../util/CategoryList.vue";
+import CategoryList from "@/components/util/CategoryList.vue";
 import { contentColorConfig } from "@/config/content/color";
 import { visitorRoutes } from "@/lib/router/visitor";
 

@@ -1,6 +1,6 @@
-import BlogArticle from "@/components/article/BlogArticle.vue";
+import BlogArticle from "@/components/visitor/article/BlogArticle.vue";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
-import { mockArticle } from "../../data/article";
+import { mockArticle } from "@/stories/data/article";
 
 export default {
   component: BlogArticle,

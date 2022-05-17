@@ -2,7 +2,7 @@
 import VColumn from "@/components/base/layout/VColumn.vue";
 import VText from "@/components/base/text/VText.vue";
 import { computed } from "vue";
-import VBox from "../base/layout/VBox.vue";
+import VBox from "@/components/base/layout/VBox.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
 
 // This component in the future would parse the content

@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import VCard from "../base/layout/VCard.vue";
-import VColumn from "../base/layout/VColumn.vue";
-import VHeading from "../base/text/VHeading.vue";
-import TextInputField from "../input/TextInputField.vue";
+import VCard from "@/components/base/layout/VCard.vue";
+import VColumn from "@/components/base/layout/VColumn.vue";
+import VHeading from "@/components/base/text/VHeading.vue";
+import TextInputField from "@/components/input/TextInputField.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
-import TextButton from "../base/button/TextButton.vue";
+import TextButton from "@/components/base/button/TextButton.vue";
 import { getColor } from "@/config/theme/colors";
 import { ref } from "vue";
-import VText from "../base/text/VText.vue";
+import VText from "@/components/base/text/VText.vue";
 
 interface LoginCardProps {
   showError: boolean;

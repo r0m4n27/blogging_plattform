@@ -1,4 +1,4 @@
-import ArticleSummaryCard from "@/components/summary/article/ArticleSummaryCard.vue";
+import ArticleSummaryCard from "@/components/visitor/summary/article/ArticleSummaryCard.vue";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
 import { mockArticle } from "@/stories/data/article";
 

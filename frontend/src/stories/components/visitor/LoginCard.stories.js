@@ -1,4 +1,4 @@
-import LoginCard from "@/components/login/LoginCard.vue";
+import LoginCard from "@/components/visitor/login/LoginCard.vue";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
 
 export default {

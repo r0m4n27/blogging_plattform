@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import VColumn from "@/components/base/layout/VColumn.vue";
 import type { Article } from "@/api/article";
-import VHeading from "../base/text/VHeading.vue";
+import VHeading from "@/components/base/text/VHeading.vue";
 import { defaultContentSpacing } from "@/config/content/spacing";
-import CategoryList from "../util/CategoryList.vue";
+import CategoryList from "@/components/util/CategoryList.vue";
 import { NewArticleContent } from "./content/NewArticleContent";
 
 interface BlogArticleProps {
