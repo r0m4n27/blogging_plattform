@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon",
+    "prebuild": "npm run lint",
+    "build": "tsc -p tsconfig.json",
+    "build:watch": "tsc -w -p tsconfig.json",
+    "build:release": "npm run clean && tsc -p tsconfig.release.json",
+    "lint": "eslint . --ext .ts"
+  },
+  "dependencies": {
+    "tslib": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.35",
+    "@typescript-eslint/eslint-plugin": "^5.26.0",
+    "@typescript-eslint/parser": "^5.26.0",
+    "eslint": "^8.16.0",
+    "eslint-config-prettier": "~8.5",
+    "nodemon": "^2.0.16",
+    "prettier": "^2.6.2",
+    "ts-node": "^10.8.0",
+    "tsutils": "~3.21",
+    "typescript": "~4.6"
+  }
+}
