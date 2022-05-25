@@ -7,7 +7,7 @@ export const createAllowOnlyOneAdmin =
     if (
       params.model === "User" &&
       (params.action === "create" || params.action === "createMany") &&
-      params.args.role === "ADMIN"
+      params.args.data.role === "ADMIN"
     ) {
       const rowCount = await client.user.count({
         where: {
@@ -27,10 +27,10 @@ export const hashUserPassword: Prisma.Middleware = async (params, next) => {
   if (
     params.model === "User" &&
     ["create", "createMany", "update", "updateMany"].includes(params.action) &&
-    params.args.password !== undefined
+    params.args.data.password !== undefined
   ) {
-    const hashedPassword = await hash(params.args.password);
-    params.args.password = hashedPassword;
+    const hashedPassword = await hash(params.args.data.password);
+    params.args.data.password = hashedPassword;
   }
 
   return next(params);
