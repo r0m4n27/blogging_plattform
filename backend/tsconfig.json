@@ -1,17 +1,23 @@
 {
   "compilerOptions": {
+    // Modules
+    "module": "commonjs",
     "target": "ES2020",
-    "module": "ES2020",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
     "lib": [
       "ES2020"
     ],
-    "moduleResolution": "node",
+    // General
+    "outDir": "dist",
     "rootDir": "src",
-    "outDir": "build",
+    "sourceMap": true,
+    // Helper
     "allowSyntheticDefaultImports": true,
     "importHelpers": true,
     "alwaysStrict": true,
-    "sourceMap": true,
+    "strict": true,
+    // Syntax
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
@@ -19,10 +25,14 @@
     "noUnusedParameters": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "strictNullChecks": true
-  },
-  "ts-node": {
-    "esm": true
+    "strictNullChecks": true,
+    // Paths
+    "baseUrl": "src/",
+    "paths": {
+      "@/*": [
+        "*"
+      ]
+    }
   },
   "include": [
     "src/**/*"

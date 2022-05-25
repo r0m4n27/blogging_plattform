@@ -3,5 +3,5 @@
     "src"
   ],
   "ext": "ts,json",
-  "exec": "ts-node ./src/main.ts"
+  "exec": "npm run start"
 }
