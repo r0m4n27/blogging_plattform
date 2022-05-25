@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { createSystemPropsCss, systemProps } from "@/styling/props/systemProps";
-import type { PropType } from "vue";
+import { computed, type PropType } from "vue";
 
 const props = defineProps({
   ...systemProps,
@@ -11,7 +11,15 @@ const props = defineProps({
   alt: {
     type: String as PropType<string>,
   },
+  isBase64: {
+    type: Boolean as PropType<boolean>,
+    default: false,
+  },
 });
+
+const src = computed(() =>
+  props.isBase64 ? `data:image/png;base64,${props.src}` : props.src
+);
 </script>
 
 <template>
