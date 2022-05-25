@@ -3,6 +3,8 @@ import { Server } from "@/server";
 import "dotenv/config";
 import { AuthController } from "./auth/auth.controller";
 import { AuthRouter } from "./auth/auth.router";
+import { RegisterCodeController } from "./registerCode/registerCode.controller";
+import { RegisterCodeRouter } from "./registerCode/registerCode.router";
 import { SiteConfigController } from "./siteConfig/siteConfig.controller";
 import { SiteConfigRouter } from "./siteConfig/siteConfig.router";
 
@@ -17,6 +19,14 @@ const main = async () => {
     process.env.ADMIN_REGISTER_CODE ?? "",
   );
   const authRouter = new AuthRouter(authController);
+
+  const registerCodeController = new RegisterCodeController(client);
+  const registerCodeRouter = new RegisterCodeRouter(
+    registerCodeController,
+    client,
+    process.env.JWT_SECRET ?? "",
+  );
+
   try {
     const server = new Server(
       {
@@ -24,6 +34,7 @@ const main = async () => {
       },
       router,
       authRouter,
+      registerCodeRouter,
     );
     server.start();
   } finally {
