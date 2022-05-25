@@ -11,6 +11,7 @@
     "lint": "eslint . --ext .ts"
   },
   "dependencies": {
+    "@prisma/client": "^3.14.0",
     "tslib": "^2.4.0"
   },
   "devDependencies": {
@@ -21,6 +22,7 @@
     "eslint-config-prettier": "~8.5",
     "nodemon": "^2.0.16",
     "prettier": "^2.6.2",
+    "prisma": "^3.14.0",
     "ts-node": "^10.8.0",
     "tsutils": "~3.21",
     "typescript": "~4.6"
