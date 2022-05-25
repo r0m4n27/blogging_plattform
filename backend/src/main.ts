@@ -14,6 +14,7 @@ const main = async () => {
   const authController = new AuthController(
     client,
     process.env.JWT_SECRET ?? "",
+    process.env.ADMIN_REGISTER_CODE ?? "",
   );
   const authRouter = new AuthRouter(authController);
   try {

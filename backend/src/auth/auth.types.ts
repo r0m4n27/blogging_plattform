@@ -1,7 +1,7 @@
 import { UserRole } from "@prisma/client";
 import { z } from "zod";
 
-export interface LoginResponse {
+export interface AuthResponse {
   token: string;
   role: UserRole;
 }
@@ -17,3 +17,11 @@ export const loginPayloadSchema = z.object({
 });
 
 export type LoginPayload = z.infer<typeof loginPayloadSchema>;
+
+export const registerPayloadSchema = loginPayloadSchema.and(
+  z.object({
+    registerCode: z.string(),
+  }),
+);
+
+export type RegisterPayload = z.infer<typeof registerPayloadSchema>;

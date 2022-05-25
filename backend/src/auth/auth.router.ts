@@ -2,7 +2,7 @@ import { validateBody } from "@/common/express/middleware";
 import { SiteRouter } from "@/common/siteRouter";
 import { Router } from "express";
 import { AuthController } from "./auth.controller";
-import { loginPayloadSchema } from "./auth.types";
+import { loginPayloadSchema, registerPayloadSchema } from "./auth.types";
 
 export class AuthRouter implements SiteRouter {
   readonly router: Router;
@@ -15,6 +15,11 @@ export class AuthRouter implements SiteRouter {
       "/login",
       validateBody(loginPayloadSchema),
       controller.login,
+    );
+    this.router.post(
+      "/register",
+      validateBody(registerPayloadSchema),
+      controller.register,
     );
   }
 }

@@ -28,3 +28,7 @@ enum UserRole {
   ADMIN
   AUTHOR
 }
+
+model RegisterCode {
+  id String @id @default(uuid()) @db.Uuid
+}
