@@ -31,7 +31,7 @@ export const useRootHead = () => {
     link: [
       {
         rel: "icon",
-        href: siteConfig.iconUrl,
+        href: `data:image/x-icon;base64,${siteConfig.iconUrl}`,
       },
     ],
   }));

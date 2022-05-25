@@ -1,9 +1,9 @@
-import { fetchSiteConfig } from "@/api/siteConfig";
 import { piniaKeysConfig } from "@/config/pinia";
 import { defineStore } from "pinia";
 import type { ComputedRef } from "vue";
-import { useEndpoint } from "../util/endpoint";
+import { useGet } from "../util/endpoint";
 import { computed } from "@vue/reactivity";
+import type { SiteConfig } from "@/lib/apiTypes";
 
 export interface UseSiteConfigState {
   blogTitle: ComputedRef<string>;
@@ -19,16 +19,16 @@ export interface UseSiteConfigState {
 export const useSiteConfig = defineStore<string, UseSiteConfigState>(
   piniaKeysConfig.siteConfig,
   () => {
-    const { value: fetcher } = useEndpoint(fetchSiteConfig, {
+    const { value: fetcher } = useGet<SiteConfig>("api/siteConfig", {
       blogTitle: "",
-      logoUrl: "/logo_transparent.png",
-      iconUrl: "/favicon.ico",
+      logo: "",
+      icon: "",
     });
 
     return {
       blogTitle: computed(() => fetcher.value.blogTitle),
-      logoUrl: computed(() => fetcher.value.logoUrl),
-      iconUrl: computed(() => fetcher.value.iconUrl),
+      logoUrl: computed(() => fetcher.value.logo),
+      iconUrl: computed(() => fetcher.value.icon),
     };
   }
 );
