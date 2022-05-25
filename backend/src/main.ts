@@ -1,23 +1,18 @@
 import { createPrismaClient } from "@/database";
-
-const client = createPrismaClient();
+import { Server } from "@/server";
+import "dotenv/config";
 
 const main = async () => {
-  const siteConfig = await client.siteConfig.create({
-    data: {
-      blogTitle: "My AWESOME Blog Title",
-      logo: Buffer.from("Test"),
-      logoIcon: Buffer.from("TEST"),
-    },
-  });
-  console.log(siteConfig);
-  await client.siteConfig.create({
-    data: {
-      blogTitle: "My AWESOME Blog Title",
-      logo: Buffer.from("Test"),
-      logoIcon: Buffer.from("TEST"),
-    },
-  });
+  const client = createPrismaClient();
+
+  try {
+    const server = new Server({
+      port: parseInt(process.env.SERVER_PORT ?? "4000"),
+    });
+    server.start();
+  } finally {
+    client.$disconnect();
+  }
 };
 
-main().finally(() => client.$disconnect());
+main();
