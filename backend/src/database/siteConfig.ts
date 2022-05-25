@@ -9,7 +9,7 @@ export const createAllowOnlyOneSiteConfigRow =
       (params.action === "create" || params.action === "createMany")
     ) {
       const rowCount = await client.siteConfig.count();
-      if (rowCount != 0) {
+      if (rowCount !== 0) {
         throw new Error("Row in SiteConfig already exists");
       }
     }
