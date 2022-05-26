@@ -1,4 +1,5 @@
 import { AuthController } from "@/controller/AuthController";
+import { AuthorArticleController } from "@/controller/AuthorArticleController";
 import { AuthorCategoryController } from "@/controller/AuthorCategoryController";
 import { RegisterCodeController } from "@/controller/RegisterCodeController";
 import { SiteConfigController } from "@/controller/SiteConfigController";
@@ -11,6 +12,7 @@ export class ControllerModule {
   readonly siteConfigController: SiteConfigController;
   readonly userController: UserController;
   readonly authorCategoryController: AuthorCategoryController;
+  readonly authorArticleController: AuthorArticleController;
 
   constructor(services: ServiceModule) {
     this.authController = new AuthController(services.authService);
@@ -24,6 +26,9 @@ export class ControllerModule {
     );
     this.userController = new UserController(services.databaseService);
     this.authorCategoryController = new AuthorCategoryController(
+      services.databaseService,
+    );
+    this.authorArticleController = new AuthorArticleController(
       services.databaseService,
     );
   }
