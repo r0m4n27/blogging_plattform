@@ -22,6 +22,10 @@ model User {
   username String   @unique
   password String
   role     UserRole @default(AUTHOR)
+
+  // NOTE: We don't actuall the referece but otherwise
+  // prisma creates a constrained 1-1 relation
+  articles Article[]
 }
 
 enum UserRole {
@@ -31,4 +35,30 @@ enum UserRole {
 
 model RegisterCode {
   id String @id @default(uuid()) @db.Uuid
+}
+
+// NOTE: Prisma can work with implicit many-to-many relationships
+// So an extra model doesn't need to be created
+// https://www.prisma.io/docs/concepts/components/prisma-schema/relations/many-to-many-relations#implicit-many-to-many-relations
+
+model Category {
+  id   String @id @default(uuid()) @db.Uuid
+  name String
+
+  articles Article[]
+}
+
+model Article {
+  id String @id @default(uuid()) @db.Uuid
+
+  title   String
+  summary String
+  content String
+
+  year Int
+
+  categories Category[]
+
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String @db.Uuid
 }

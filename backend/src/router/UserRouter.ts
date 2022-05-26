@@ -31,7 +31,7 @@ export class UserRouter implements SiteRouter {
     this.router.patch(
       "/me",
       authMiddleware.userGuard(),
-      commonMiddleware.validateBody(updateUserSchema),
+      commonMiddleware.validateBody(updateUserSchema.partial()),
       userController.updateCurrentUser,
     );
   }

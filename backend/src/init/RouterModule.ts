@@ -1,4 +1,6 @@
 import { SiteRouter } from "@/common/siteRouter";
+import { AuthorArticleRouter } from "@/router/AuthorArticleRouter";
+import { AuthorCategoryRouter } from "@/router/AuthorCategoryRouter";
 import { AuthRouter } from "@/router/AuthRouter";
 import { RegisterCodeRouter } from "@/router/RegisterCodeRouter";
 import { SiteConfigRouter } from "@/router/SiteConfigRouter";
@@ -11,6 +13,8 @@ export class RouterModule {
   private readonly registerCodeRouter: RegisterCodeRouter;
   private readonly siteConfigRouter: SiteConfigRouter;
   private readonly userRouter: UserRouter;
+  private readonly authorCategoryRouter: AuthorCategoryRouter;
+  private readonly authorArticleRouter: AuthorArticleRouter;
 
   constructor(controllers: ControllerModule, middleware: MiddlewareModule) {
     this.authRouter = new AuthRouter(
@@ -34,6 +38,17 @@ export class RouterModule {
       middleware.authMiddleware,
       middleware.commonMiddleware,
     );
+    this.authorCategoryRouter = new AuthorCategoryRouter(
+      controllers.authorCategoryController,
+      middleware.commonMiddleware,
+      middleware.authMiddleware,
+    );
+
+    this.authorArticleRouter = new AuthorArticleRouter(
+      controllers.authorArticleController,
+      middleware.commonMiddleware,
+      middleware.authMiddleware,
+    );
   }
 
   get routers(): SiteRouter[] {
@@ -42,6 +57,8 @@ export class RouterModule {
       this.registerCodeRouter,
       this.siteConfigRouter,
       this.userRouter,
+      this.authorCategoryRouter,
+      this.authorArticleRouter,
     ];
   }
 }
