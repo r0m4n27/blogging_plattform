@@ -1,4 +1,5 @@
-import { UserRole } from "@prisma/client";
+import { RequestWithBody } from "@/common/express";
+import { User, UserRole } from "@prisma/client";
 import { z } from "zod";
 
 export interface AuthResponse {
@@ -25,3 +26,9 @@ export const registerPayloadSchema = loginPayloadSchema.and(
 );
 
 export type RegisterPayload = z.infer<typeof registerPayloadSchema>;
+
+export interface RequestWithUser<T> extends RequestWithBody<T> {
+  injected: {
+    user: User;
+  };
+}
