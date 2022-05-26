@@ -22,6 +22,10 @@ model User {
   username String   @unique
   password String
   role     UserRole @default(AUTHOR)
+
+  // NOTE: We don't actuall the referece but otherwise
+  // prisma creates a constrained 1-1 relation
+  articles Article[]
 }
 
 enum UserRole {
@@ -51,7 +55,10 @@ model Article {
   summary String
   content String
 
-  year String
+  year Int
 
   categories Category[]
+
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String @db.Uuid
 }
