@@ -1,4 +1,4 @@
-import { LoginToken } from "@/auth/auth.types";
+import { LoginToken } from "@/model/authModels";
 import { PrismaClient, UserRole } from "@prisma/client";
 import { NextFunction, Request, Response } from "express";
 import { z } from "zod";

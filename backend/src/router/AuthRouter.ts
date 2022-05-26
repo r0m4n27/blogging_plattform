@@ -1,8 +1,8 @@
 import { validateBody } from "@/common/express/middleware";
 import { SiteRouter } from "@/common/siteRouter";
+import { AuthController } from "@/controller/AuthController";
+import { loginPayloadSchema, registerPayloadSchema } from "@/model/authModels";
 import { Router } from "express";
-import { AuthController } from "./auth.controller";
-import { loginPayloadSchema, registerPayloadSchema } from "./auth.types";
 
 export class AuthRouter implements SiteRouter {
   readonly router: Router;

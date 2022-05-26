@@ -4,15 +4,16 @@ import {
   ResponseWithError,
 } from "@/common/express";
 import { sign } from "@/common/jwt";
-import { PrismaClient, UserRole } from "@prisma/client";
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
-import { verify } from "argon2";
 import {
-  LoginPayload,
   AuthResponse,
+  LoginPayload,
   LoginToken,
   RegisterPayload,
-} from "./auth.types";
+} from "@/model/authModels";
+import { DatabaseService } from "@/service/database/DatabaseService";
+import { UserRole } from "@prisma/client";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
+import { verify } from "argon2";
 
 export class AuthController {
   // Give just a simple generic response
@@ -21,7 +22,7 @@ export class AuthController {
   private readonly usernameExistsText = "Username is already taken!";
 
   constructor(
-    private readonly prisma: PrismaClient,
+    private readonly database: DatabaseService,
     private readonly jwtSecret: string,
     // With the provided register code an admin can be created
     private readonly adminRegisterCode: string,
@@ -33,7 +34,7 @@ export class AuthController {
   ) => {
     const { username, password } = req.body;
 
-    const dbUser = await this.prisma.user.findUnique({
+    const dbUser = await this.database.user.findUnique({
       where: {
         username,
       },
@@ -57,12 +58,14 @@ export class AuthController {
     const { username, password, registerCode } = req.body;
 
     if (registerCode !== this.adminRegisterCode) {
-      const registerCodes = (await this.prisma.registerCode.findMany()).map(
+      const registerCodes = (await this.database.registerCode.findMany()).map(
         (code) => code.id,
       );
 
       if (registerCodes.includes(registerCode)) {
-        await this.prisma.registerCode.delete({ where: { id: registerCode } });
+        await this.database.registerCode.delete({
+          where: { id: registerCode },
+        });
       } else {
         return createErrorResponse(res, this.cantFindCodeText);
       }
@@ -72,7 +75,7 @@ export class AuthController {
       registerCode === this.adminRegisterCode ? "ADMIN" : "AUTHOR";
 
     try {
-      await this.prisma.user.create({
+      await this.database.user.create({
         data: {
           username,
           role,
