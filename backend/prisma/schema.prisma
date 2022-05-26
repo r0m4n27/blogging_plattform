@@ -16,3 +16,19 @@ model SiteConfig {
   logo      Bytes
   icon      Bytes
 }
+
+model User {
+  id       String   @id @default(uuid()) @db.Uuid
+  username String   @unique
+  password String
+  role     UserRole @default(AUTHOR)
+}
+
+enum UserRole {
+  ADMIN
+  AUTHOR
+}
+
+model RegisterCode {
+  id String @id @default(uuid()) @db.Uuid
+}
