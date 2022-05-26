@@ -5,7 +5,7 @@ import {
   verify as verifyInternal,
 } from "jsonwebtoken";
 
-export const sign = (
+export const signJwt = (
   payload: object,
   secretOrPrivateKey: string,
   options: SignOptions,
@@ -21,7 +21,7 @@ export const sign = (
   );
 };
 
-export const verify = <T extends JwtPayload>(
+export const verifyJwt = <T extends JwtPayload>(
   token: string,
   secretOrPrivateKey: string,
 ): Promise<T> => {

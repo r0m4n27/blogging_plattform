@@ -11,9 +11,9 @@ const main = async () => {
   const prismaClient = new PrismaClient();
   try {
     const environment = new EnvironmentModule();
-    const services = new ServiceModule(prismaClient);
-    const controllers = new ControllerModule(services, environment);
-    const middleware = new MiddlewareModule(services, environment);
+    const services = new ServiceModule(prismaClient, environment);
+    const controllers = new ControllerModule(services);
+    const middleware = new MiddlewareModule(services);
     const routers = new RouterModule(controllers, middleware);
 
     const server = new Server(environment.serverConfig, ...routers.routers);

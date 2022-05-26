@@ -1,15 +1,10 @@
 import { createErrorResponse } from "@/common/express";
-import { verify } from "@/common/jwt";
-import { LoginToken } from "@/model/authModels";
-import { DatabaseService } from "@/service/database";
+import { AuthService } from "@/service/AuthService";
 import { UserRole } from "@prisma/client";
 import { NextFunction, Request, Response } from "express";
 
 export class AuthMiddleware {
-  constructor(
-    private readonly database: DatabaseService,
-    private readonly jwtSecret: string,
-  ) {}
+  constructor(private readonly auth: AuthService) {}
 
   userGuard =
     (userRole: UserRole) =>
@@ -22,7 +17,7 @@ export class AuthMiddleware {
       if (token === undefined)
         return createErrorResponse(res, "Authorization header malformed");
 
-      const verified = await this.verifyRoleAndExistingUser(userRole, token);
+      const verified = await this.auth.verifyLoggedInUser(token, userRole);
 
       if (verified) {
         next();
@@ -39,26 +34,5 @@ export class AuthMiddleware {
       return undefined;
 
     return bearer.at(1);
-  };
-
-  private verifyRoleAndExistingUser = async (
-    userRole: UserRole,
-    token: string,
-  ): Promise<boolean> => {
-    try {
-      const loginToken = await verify<LoginToken>(token, this.jwtSecret);
-      // Check if the user has the correct role
-      if (userRole !== loginToken.role) return false;
-
-      // Check if the user was not deleted
-      const user = await this.database.user.findUnique({
-        where: { username: loginToken.username },
-      });
-
-      return user !== undefined;
-    } catch (e) {
-      // Catch verify
-      return false;
-    }
   };
 }

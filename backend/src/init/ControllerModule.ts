@@ -1,7 +1,6 @@
 import { AuthController } from "@/controller/AuthController";
 import { RegisterCodeController } from "@/controller/RegisterCodeController";
 import { SiteConfigController } from "@/controller/SiteConfigController";
-import { EnvironmentModule } from "./EnvironmentModule";
 import { ServiceModule } from "./ServiceModule";
 
 export class ControllerModule {
@@ -9,12 +8,8 @@ export class ControllerModule {
   readonly registerCodeController: RegisterCodeController;
   readonly siteConfigController: SiteConfigController;
 
-  constructor(services: ServiceModule, environment: EnvironmentModule) {
-    this.authController = new AuthController(
-      services.databaseService,
-      environment.jwtSecret,
-      environment.adminRegisterCode,
-    );
+  constructor(services: ServiceModule) {
+    this.authController = new AuthController(services.authService);
 
     this.registerCodeController = new RegisterCodeController(
       services.databaseService,
