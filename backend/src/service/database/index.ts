@@ -32,4 +32,12 @@ export class DatabaseService {
   get registerCode() {
     return this.client.registerCode;
   }
+
+  get category() {
+    return this.client.category;
+  }
+
+  get article() {
+    return this.client.article;
+  }
 }
