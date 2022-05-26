@@ -2,7 +2,7 @@ import { SiteRouter } from "@/common/siteRouter";
 import { AuthorCategoryController } from "@/controller/AuthorCategoryController";
 import { AuthMiddleware } from "@/middleware/AuthMiddleware";
 import { CommonMiddleware } from "@/middleware/CommonMiddleware";
-import { categorySchema } from "@/model/authorCategoriesModels";
+import { categorySchema } from "@/model/authorCategoryModels";
 import { Router } from "express";
 
 export class AuthorCategoryRouter implements SiteRouter {
