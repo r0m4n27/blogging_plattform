@@ -58,9 +58,11 @@ export class AuthService {
       });
 
       // Delete register code only when registration was successful
-      await this.database.registerCode.delete({
-        where: { id: registerCode },
-      });
+      if (registerCode !== this.adminRegisterCode) {
+        await this.database.registerCode.delete({
+          where: { id: registerCode },
+        });
+      }
 
       return await this.createAuthResponse(user);
     } catch (e) {
