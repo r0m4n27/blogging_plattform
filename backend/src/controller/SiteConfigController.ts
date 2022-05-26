@@ -3,22 +3,22 @@ import {
   RequestWithBody,
   ResponseWithError,
 } from "@/common/express";
-import { PrismaClient } from "@prisma/client";
-import { Request } from "express";
 import {
   SiteConfigModel,
   siteConfigModelFromDb,
   siteConfigModelToDb,
-} from "./siteConfig.types";
+} from "@/model/siteConfigModels";
+import { DatabaseService } from "@/service/database";
+import { Request } from "express";
 
 export class SiteConfigController {
   private readonly siteNotInitializedMessage = "Site is not initialized!";
   private readonly siteAlreadyInitializedMessage = "Site is not initialized!";
 
-  constructor(private readonly prisma: PrismaClient) {}
+  constructor(private readonly database: DatabaseService) {}
 
   read = async (_: Request, res: ResponseWithError<SiteConfigModel>) => {
-    const siteConfig = await this.prisma.siteConfig.findFirst();
+    const siteConfig = await this.database.siteConfig.findFirst();
 
     if (siteConfig === null) {
       createErrorResponse(res, this.siteNotInitializedMessage);
@@ -31,12 +31,12 @@ export class SiteConfigController {
     req: RequestWithBody<SiteConfigModel>,
     res: ResponseWithError<SiteConfigModel>,
   ) => {
-    const configCount = await this.prisma.siteConfig.count();
+    const configCount = await this.database.siteConfig.count();
     if (configCount !== 0) {
       return createErrorResponse(res, this.siteAlreadyInitializedMessage);
     }
 
-    await this.prisma.siteConfig.create({
+    await this.database.siteConfig.create({
       data: siteConfigModelToDb(req.body),
     });
 
@@ -47,12 +47,12 @@ export class SiteConfigController {
     req: RequestWithBody<Partial<SiteConfigModel>>,
     res: ResponseWithError<SiteConfigModel>,
   ) => {
-    const configCount = await this.prisma.siteConfig.count();
+    const configCount = await this.database.siteConfig.count();
     if (configCount === 0) {
       return createErrorResponse(res, this.siteNotInitializedMessage);
     }
 
-    const siteConfig = await this.prisma.siteConfig.update({
+    const siteConfig = await this.database.siteConfig.update({
       where: {
         id: 1,
       },

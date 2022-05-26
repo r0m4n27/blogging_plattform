@@ -1,18 +1,18 @@
 import { ResponseWithError } from "@/common/express";
-import { PrismaClient } from "@prisma/client";
+import { DatabaseService } from "@/service/database";
 import { Request } from "express";
 
 export class RegisterCodeController {
-  constructor(private readonly prisma: PrismaClient) {}
+  constructor(private readonly database: DatabaseService) {}
 
   listAll = async (_: Request, res: ResponseWithError<string[]>) => {
-    const codes = await this.prisma.registerCode.findMany();
+    const codes = await this.database.registerCode.findMany();
 
     res.json(codes.map((code) => code.id));
   };
 
   create = async (_: Request, res: ResponseWithError<string>) => {
-    const code = await this.prisma.registerCode.create({ data: {} });
+    const code = await this.database.registerCode.create({ data: {} });
     res.json(code.id);
   };
 
@@ -21,7 +21,7 @@ export class RegisterCodeController {
     res: ResponseWithError<Record<string, never>>,
   ) => {
     const id = req.params["id"];
-    await this.prisma.registerCode.delete({ where: { id } });
+    await this.database.registerCode.delete({ where: { id } });
 
     res.json({});
   };

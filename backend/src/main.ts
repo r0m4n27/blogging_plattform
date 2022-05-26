@@ -1,44 +1,25 @@
-import { createPrismaClient } from "@/database";
 import { Server } from "@/server";
+import { PrismaClient } from "@prisma/client";
 import "dotenv/config";
-import { AuthController } from "./auth/auth.controller";
-import { AuthRouter } from "./auth/auth.router";
-import { RegisterCodeController } from "./registerCode/registerCode.controller";
-import { RegisterCodeRouter } from "./registerCode/registerCode.router";
-import { SiteConfigController } from "./siteConfig/siteConfig.controller";
-import { SiteConfigRouter } from "./siteConfig/siteConfig.router";
+import { ControllerModule } from "./init/ControllerModule";
+import { EnvironmentModule } from "./init/EnvironmentModule";
+import { MiddlewareModule } from "./init/MiddlewareModule";
+import { RouterModule } from "./init/RouterModule";
+import { ServiceModule } from "./init/ServiceModule";
 
 const main = async () => {
-  const client = createPrismaClient();
-  const controller = new SiteConfigController(client);
-  const router = new SiteConfigRouter(controller);
-
-  const authController = new AuthController(
-    client,
-    process.env.JWT_SECRET ?? "",
-    process.env.ADMIN_REGISTER_CODE ?? "",
-  );
-  const authRouter = new AuthRouter(authController);
-
-  const registerCodeController = new RegisterCodeController(client);
-  const registerCodeRouter = new RegisterCodeRouter(
-    registerCodeController,
-    client,
-    process.env.JWT_SECRET ?? "",
-  );
-
+  const prismaClient = new PrismaClient();
   try {
-    const server = new Server(
-      {
-        port: parseInt(process.env.SERVER_PORT ?? "4000"),
-      },
-      router,
-      authRouter,
-      registerCodeRouter,
-    );
+    const environment = new EnvironmentModule();
+    const services = new ServiceModule(prismaClient, environment);
+    const controllers = new ControllerModule(services);
+    const middleware = new MiddlewareModule(services);
+    const routers = new RouterModule(controllers, middleware);
+
+    const server = new Server(environment.serverConfig, ...routers.routers);
     server.start();
   } finally {
-    client.$disconnect();
+    prismaClient.$disconnect();
   }
 };
 
