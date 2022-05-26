@@ -47,7 +47,7 @@ export class UserController {
   };
 
   updateCurrentUser = async (
-    req: RequestWithBody<UpdateUserSchema>,
+    req: RequestWithBody<Partial<UpdateUserSchema>>,
     res: ResponseWithError<FullUserResponse>,
   ) => {
     // This has to be done, otherwise typescript doesn't like the typing in the router
