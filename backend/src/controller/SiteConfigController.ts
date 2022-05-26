@@ -8,7 +8,7 @@ import {
   siteConfigModelFromDb,
   siteConfigModelToDb,
 } from "@/model/siteConfigModels";
-import { DatabaseService } from "@/service/database/DatabaseService";
+import { DatabaseService } from "@/service/database";
 import { Request } from "express";
 
 export class SiteConfigController {

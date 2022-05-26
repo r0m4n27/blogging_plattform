@@ -10,7 +10,7 @@ import {
   LoginToken,
   RegisterPayload,
 } from "@/model/authModels";
-import { DatabaseService } from "@/service/database/DatabaseService";
+import { DatabaseService } from "@/service/database";
 import { UserRole } from "@prisma/client";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import { verify } from "argon2";

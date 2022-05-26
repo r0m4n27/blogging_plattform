@@ -1,5 +1,5 @@
 import { ResponseWithError } from "@/common/express";
-import { DatabaseService } from "@/service/database/DatabaseService";
+import { DatabaseService } from "@/service/database";
 import { Request } from "express";
 
 export class RegisterCodeController {

@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { DatabaseService } from "@/service/database/DatabaseService";
+import { DatabaseService } from "@/service/database";
 
 export class ServiceModule {
   readonly databaseService: DatabaseService;

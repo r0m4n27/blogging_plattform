@@ -1,7 +1,7 @@
 import { createErrorResponse } from "@/common/express";
 import { verify } from "@/common/jwt";
 import { LoginToken } from "@/model/authModels";
-import { DatabaseService } from "@/service/database/DatabaseService";
+import { DatabaseService } from "@/service/database";
 import { UserRole } from "@prisma/client";
 import { NextFunction, Request, Response } from "express";
 
