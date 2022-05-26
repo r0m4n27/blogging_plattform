@@ -58,9 +58,11 @@ export class AuthService {
       });
 
       // Delete register code only when registration was successful
-      await this.database.registerCode.delete({
-        where: { id: registerCode },
-      });
+      if (registerCode !== this.adminRegisterCode) {
+        await this.database.registerCode.delete({
+          where: { id: registerCode },
+        });
+      }
 
       return await this.createAuthResponse(user);
     } catch (e) {
@@ -87,23 +89,26 @@ export class AuthService {
 
   verifyLoggedInUser = async (
     rawToken: string,
-    userRole: UserRole,
-  ): Promise<boolean> => {
+    userRole?: UserRole,
+  ): Promise<User | undefined> => {
     try {
       const loginToken = await verifyJwt<LoginToken>(rawToken, this.jwtSecret);
 
       // Check if the user has the correct role
-      if (userRole !== loginToken.role) return false;
+      // If no role is provided allow every role
+      if (userRole !== undefined && userRole !== loginToken.role)
+        return undefined;
 
       // Check if the user was not deleted
-      const user = await this.database.user.findUnique({
-        where: { username: loginToken.username },
-      });
+      const user =
+        (await this.database.user.findUnique({
+          where: { username: loginToken.username },
+        })) ?? undefined;
 
-      return user !== undefined;
+      return user;
     } catch (e) {
       // Catch jwt verification error
-      return false;
+      return undefined;
     }
   };
 }

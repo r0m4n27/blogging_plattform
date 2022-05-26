@@ -1,6 +1,14 @@
+import { User } from "@prisma/client";
 import { Request, Response } from "express";
 import { ParamsDictionary, Query } from "express-serve-static-core";
 
+declare module "express-serve-static-core" {
+  interface Request {
+    injected: {
+      user?: User;
+    };
+  }
+}
 export interface ErrorResponse {
   message: string;
 }

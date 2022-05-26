@@ -7,7 +7,7 @@ export class AuthMiddleware {
   constructor(private readonly auth: AuthService) {}
 
   userGuard =
-    (userRole: UserRole) =>
+    (userRole?: UserRole) =>
     async (req: Request, res: Response, next: NextFunction) => {
       const headerValue = req.headers["authorization"];
       if (headerValue === undefined)
@@ -17,9 +17,10 @@ export class AuthMiddleware {
       if (token === undefined)
         return createErrorResponse(res, "Authorization header malformed");
 
-      const verified = await this.auth.verifyLoggedInUser(token, userRole);
+      const user = await this.auth.verifyLoggedInUser(token, userRole);
 
-      if (verified) {
+      if (user !== undefined) {
+        req.injected.user = user;
         next();
       } else {
         return createErrorResponse(res, "Unauthorized", 401);
