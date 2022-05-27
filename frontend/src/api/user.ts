@@ -37,7 +37,7 @@ export const login = async (
   password: string
 ): Promise<Option<User>> => {
   try {
-    return await fetchPost("api/auth/login", {
+    return await fetchPost("/api/auth/login", {
       username: username.trim(),
       password,
     });

@@ -7,4 +7,4 @@ export interface SiteConfig {
 }
 
 export const getSiteConfig = async () =>
-  await fetchGet<SiteConfig>("api/siteConfig");
+  await fetchGet<SiteConfig>("/api/siteConfig");
