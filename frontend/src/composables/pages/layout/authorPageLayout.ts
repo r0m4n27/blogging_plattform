@@ -1,13 +1,10 @@
-import type { FooterLink } from "@/components/footer/footerLink";
-import type { NavigationDestination } from "@/components/navigationBar/navDestination";
-import { createAuthorNavBarDestinations } from "@/config/components/navigationBar";
-import {
-  createBlogLink,
-  createLogoutLink,
-} from "@/config/components/pageFooter";
+import type { FooterLink } from "@/components/common/footer/footerLink";
+import type { NavigationDestination } from "@/components/common/navigationBar/navDestination";
+import { authorNavBarDestinations } from "@/config/components/navigationBar";
+import { blogLink, logoutLink } from "@/config/components/pageFooter";
 import { authorRoutes } from "@/lib/router/author";
 import type { RouteLocationRaw } from "vue-router";
-import { useUser } from "../../useUser";
+import { useUser } from "@/composables/store/user";
 
 export interface VisitorPageLayoutState {
   footerLinks: FooterLink[];
@@ -19,12 +16,12 @@ export const useAuthorPageLayoutState = (): VisitorPageLayoutState => {
   const user = useUser();
 
   const logoutWithAction = {
-    ...createLogoutLink(),
+    ...logoutLink,
     onClick: () => user.logout(),
   };
-  const footerLinks = [logoutWithAction, createBlogLink()];
+  const footerLinks = [logoutWithAction, blogLink];
 
-  const navBarDestinations = createAuthorNavBarDestinations();
+  const navBarDestinations = authorNavBarDestinations;
   const headingDestination = authorRoutes.home.route;
 
   return {

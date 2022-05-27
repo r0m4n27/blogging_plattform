@@ -1,6 +1,6 @@
 import type { Category } from "@/api/category";
 import type { Year } from "@/api/year";
-import type { Collection } from "@/components/summary/collection/collection";
+import type { Collection } from "@/components/visitor/summary/collection/collection";
 import { visitorRoutes } from "./router/visitor";
 
 export const categoryToCollection = (category: Category): Collection => ({
@@ -10,7 +10,7 @@ export const categoryToCollection = (category: Category): Collection => ({
 });
 
 export const yearToCollection = (year: Year): Collection => ({
-  name: year.value.toString(),
+  name: year.year.toString(),
   articleCount: year.articleCount,
   destination: visitorRoutes.year.createRoute(year),
 });

@@ -1,9 +1,9 @@
-import { fetchAuthorArticle, type AuthorArticle } from "@/api/article";
+import { getAuthorArticle, type AuthorArticle } from "@/api/article";
 import type { Option } from "@/lib/types";
-import { usePageTitle } from "@/composables/head/usePageTitle";
-import { useRouteParams } from "@/composables/routeParams";
+import { usePageTitle } from "@/composables/head/pageTitle";
+import { useRouteParams } from "@/composables/util/routeParams";
 import { computed } from "@vue/reactivity";
-import { useEndpoint } from "@/composables/useEndpoint";
+import { useEndpoint } from "@/composables/util/endpoint";
 import type { Ref } from "vue";
 import { useRouter } from "vue-router";
 import { authorRoutes } from "@/lib/router/author";
@@ -11,11 +11,12 @@ import {
   deleteArticle as deleteArticleInternal,
   updateArticle as updateArticleInternal,
 } from "@/api/article";
-import { fetchCategories, type Category } from "@/api/category";
+import { getAuthorCategories, type AuthorCategory } from "@/api/category";
+import { useUser } from "@/composables/store/user";
 
 export interface EditArticlePageState {
   article: Ref<Option<AuthorArticle>>;
-  existingCategories: Ref<Category[]>;
+  existingCategories: Ref<AuthorCategory[]>;
   deleteArticle: () => Promise<void>;
   updateArticle: (newArticle: AuthorArticle) => Promise<void>;
 }
@@ -28,24 +29,28 @@ export const useEditArticlePage = (): EditArticlePageState => {
   usePageTitle("Edit Article");
 
   const router = useRouter();
+  const user = useUser();
 
   const params = useRouteParams<EditArticlePageParams>();
   const articleFetcher = computed(
-    () => () => fetchAuthorArticle(params.value.id)
+    () => () => getAuthorArticle(user.unsafeValue.token, params.value.id)
   );
 
   const { value: article } = useEndpoint(articleFetcher);
 
-  const { value: existingCategories } = useEndpoint(fetchCategories, []);
+  const categoriesFetcher = computed(
+    () => () => getAuthorCategories(user.unsafeValue.token)
+  );
+  const { value: existingCategories } = useEndpoint(categoriesFetcher, []);
 
   const deleteArticle = async () => {
     if (article.value !== undefined) {
-      await deleteArticleInternal(article.value);
+      await deleteArticleInternal(user.unsafeValue.token, article.value);
       router.replace(authorRoutes.home.route);
     }
   };
   const updateArticle = async (newArticle: AuthorArticle) => {
-    await updateArticleInternal(newArticle);
+    await updateArticleInternal(user.unsafeValue.token, newArticle);
     router.replace(authorRoutes.home.route);
   };
 

@@ -22,7 +22,7 @@ const emit = defineEmits<UsersTableEntryPropsEmits>();
 <template>
   <VTableRow>
     <VTableData>
-      <VTableTextEntry :label="user.name" />
+      <VTableTextEntry :label="user.username" />
     </VTableData>
     <VTableData>
       <VRow :gap="contentSpacingConfig.xs">

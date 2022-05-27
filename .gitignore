@@ -1,3 +1,9 @@
+#######
+# ALL #
+#######
+
+.env
+
 ############
 # FRONTEND #
 ############
@@ -32,3 +38,40 @@ frontend/*.ntvs*
 frontend/*.njsproj
 frontend/*.sln
 frontend/*.sw?
+
+# Sample data
+
+frontend/logo_sample.png
+frontend/icon_sample.ico
+
+###########
+# Backend #
+###########
+
+# Logs
+backend/logs
+backend/*.log
+backend/npm-debug.log*
+backend/yarn-debug.log*
+backend/yarn-error.log*
+backend/pnpm-debug.log*
+backend/lerna-debug.log*
+
+backend/node_modules
+backend/dist
+backend/dist-ssr
+backend/coverage
+backend/*.local
+
+backend/cypress/videos/
+backend/cypress/screenshots/
+
+# Editor directories and files
+backend/.vscode/*
+backend/!.vscode/extensions.json
+backend/.idea
+backend/*.suo
+backend/*.ntvs*
+backend/*.njsproj
+backend/*.sln
+backend/*.sw?

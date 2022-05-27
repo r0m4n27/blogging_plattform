@@ -1,18 +1,18 @@
-import type { FooterLink } from "@/components/footer/footerLink";
-import type { NavigationDestination } from "@/components/navigationBar/navDestination";
-import { createVisitorNavBarDestinations } from "@/config/components/navigationBar";
+import type { FooterLink } from "@/components/common/footer/footerLink";
+import type { NavigationDestination } from "@/components/common/navigationBar/navDestination";
+import { visitorNavBarDestinations } from "@/config/components/navigationBar";
 import {
-  createAdminDashboardLink,
-  createAuthorDashboardLink,
-  createContactLink,
-  createLoginLink,
-  createLogoutLink,
+  adminDashboardLink,
+  authorDashboardLink,
+  contactLink,
+  loginLink,
+  logoutLink,
 } from "@/config/components/pageFooter";
 import { visitorRoutes } from "@/lib/router/visitor";
 import { computed } from "@vue/reactivity";
 import type { ComputedRef } from "vue";
 import type { RouteLocationRaw } from "vue-router";
-import { useUser } from "../../useUser";
+import { useUser } from "@/composables/store/user";
 
 export interface VisitorPageLayoutState {
   footerLinks: ComputedRef<FooterLink[]>;
@@ -25,26 +25,26 @@ export const useVisitorPageLayoutState = (): VisitorPageLayoutState => {
 
   const footerLinks = computed(() => {
     const destinations: FooterLink[] = [];
-    destinations.push(createContactLink());
+    destinations.push(contactLink);
 
     if (user.value === undefined) {
-      destinations.push(createLoginLink());
+      destinations.push(loginLink);
     } else {
       const logoutWithAction = {
-        ...createLogoutLink(),
+        ...logoutLink,
         onClick: () => user.logout(),
       };
-      if (user.value.type === "author") {
-        destinations.push(logoutWithAction, createAuthorDashboardLink());
+      if (user.value.role === "AUTHOR") {
+        destinations.push(logoutWithAction, authorDashboardLink);
       } else {
-        destinations.push(logoutWithAction, createAdminDashboardLink());
+        destinations.push(logoutWithAction, adminDashboardLink);
       }
     }
 
     return destinations;
   });
 
-  const navBarDestinations = createVisitorNavBarDestinations();
+  const navBarDestinations = visitorNavBarDestinations;
   const headingDestination = visitorRoutes.home.route;
 
   return {

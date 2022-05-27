@@ -4,7 +4,7 @@ import { createTextPropsCss } from "@/styling/props/textProps";
 import { css, cx } from "@emotion/css";
 import { useHead, type HeadObject } from "@vueuse/head";
 import { computed } from "vue";
-import { useSiteConfig } from "../useSiteConfig";
+import { useSiteConfig } from "@/composables/store/siteConfig";
 
 // Sets all the necessary attributes the the head
 // (and also body) for every page
@@ -31,7 +31,7 @@ export const useRootHead = () => {
     link: [
       {
         rel: "icon",
-        href: siteConfig.iconUrl,
+        href: `data:image/x-icon;base64,${siteConfig.iconUrl}`,
       },
     ],
   }));

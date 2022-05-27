@@ -1,56 +1,22 @@
-import type { Option } from "@/lib/types";
-
-export type UserType = "author" | "admin";
-
-export interface User {
-  token: string;
-  type: UserType;
-}
+import { deleteWithToken, getWithToken, patchWithToken } from "@/lib/fetch";
 
 export interface AdminUser {
   id: string;
-  name: string;
+  username: string;
 }
 
-let mockAdminUsers: AdminUser[] = [
-  {
-    id: "1",
-    name: "test1",
-  },
-  {
-    id: "2",
-    name: "test2",
-  },
-  {
-    id: "3",
-    name: "test3",
-  },
-  {
-    id: "4",
-    name: "test4",
-  },
-];
+const usersBase = "/api/users";
 
-export const login = async (
-  username: string,
-  password: string
-): Promise<Option<User>> => {
-  return {
-    token: `${username}:${password}`,
-    type: "admin",
-  };
+export const updatePassword = async (
+  newPassword: string,
+  token: string
+): Promise<void> =>
+  patchWithToken(`${usersBase}/me`, token, { password: newPassword });
 
-  return undefined;
-};
+export const getAdminUsers = async (token: string): Promise<AdminUser[]> =>
+  getWithToken(usersBase, token);
 
-export const updatePassword = async (newPassword: string): Promise<void> => {
-  return;
-};
-
-export const fetchAdminUsers = async (): Promise<AdminUser[]> => {
-  return mockAdminUsers;
-};
-
-export const deleteUser = async (user: AdminUser): Promise<void> => {
-  mockAdminUsers = mockAdminUsers.filter((u) => u.id !== user.id);
-};
+export const deleteUser = async (
+  token: string,
+  user: AdminUser
+): Promise<unknown> => deleteWithToken(`${usersBase}/${user.id}`, token);

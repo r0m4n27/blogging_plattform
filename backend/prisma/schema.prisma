@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model SiteConfig {
+  // Create simple id for keeping only one entry
+  //
+  // A middleware should be used to let only one row be in this table
+  id        Int    @id @default(1)
+  blogTitle String
+  logo      Bytes
+  icon      Bytes
+}
+
+model User {
+  id       String   @id @default(uuid()) @db.Uuid
+  username String   @unique
+  password String
+  role     UserRole @default(AUTHOR)
+
+  // NOTE: We don't actuall the referece but otherwise
+  // prisma creates a constrained 1-1 relation
+  articles Article[]
+}
+
+enum UserRole {
+  ADMIN
+  AUTHOR
+}
+
+model RegisterCode {
+  id String @id @default(uuid()) @db.Uuid
+}
+
+// NOTE: Prisma can work with implicit many-to-many relationships
+// So an extra model doesn't need to be created
+// https://www.prisma.io/docs/concepts/components/prisma-schema/relations/many-to-many-relations#implicit-many-to-many-relations
+
+model Category {
+  id   String @id @default(uuid()) @db.Uuid
+  name String
+
+  articles Article[]
+}
+
+model Article {
+  id String @id @default(uuid()) @db.Uuid
+
+  title   String
+  summary String
+  content String
+
+  year      Int
+  published Boolean
+
+  categories Category[]
+
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String @db.Uuid
+}
