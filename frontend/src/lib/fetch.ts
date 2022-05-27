@@ -1,12 +1,19 @@
 const fetchValue = async <T, B>(
   url: string,
   method: string,
-  requestBody?: B
+  requestBody?: B,
+  token?: string
 ): Promise<T> => {
   const body = requestBody ? JSON.stringify(requestBody) : undefined;
-  const headers = requestBody
-    ? { "Content-Type": "application/json" }
-    : undefined;
+  const headers: Record<string, string> = {};
+
+  if (requestBody !== undefined) {
+    headers["Content-Type"] = "application/json";
+  }
+
+  if (token != undefined) {
+    headers["Authorization"] = `Bearer ${token}`;
+  }
 
   const response = await fetch(url, { method, body, headers });
 
@@ -17,8 +24,22 @@ const fetchValue = async <T, B>(
   }
 };
 
-export const fetchGet = async <T>(url: string): Promise<T> =>
-  fetchValue(url, "GET");
+export const get = async <T>(url: string): Promise<T> =>
+  fetchValue(url, "GET", undefined, undefined);
 
-export const fetchPost = async <T, B>(url: string, body: B) =>
-  fetchValue<T, B>(url, "POST", body);
+export const getWithToken = async <T>(url: string, token: string): Promise<T> =>
+  fetchValue(url, "GET", undefined, token);
+
+export const post = async <T, B>(url: string, body: B) =>
+  fetchValue<T, B>(url, "POST", body, undefined);
+
+export const postWithToken = async <T, B>(
+  url: string,
+  token: string,
+  body: B
+) => fetchValue<T, B>(url, "POST", body, token);
+
+export const deleteWithToken = async <T>(
+  url: string,
+  token: string
+): Promise<T> => fetchValue(url, "DELETE", undefined, token);

@@ -1,4 +1,4 @@
-import { fetchPost } from "@/lib/fetch";
+import { post } from "@/lib/fetch";
 import type { Option } from "@/lib/types";
 
 export type UserRole = "AUTHOR" | "ADMIN";
@@ -37,7 +37,7 @@ export const login = async (
   password: string
 ): Promise<Option<User>> => {
   try {
-    return await fetchPost("/api/auth/login", {
+    return await post("/api/auth/login", {
       username: username.trim(),
       password,
     });

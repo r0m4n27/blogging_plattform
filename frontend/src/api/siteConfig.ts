@@ -1,4 +1,4 @@
-import { fetchGet } from "@/lib/fetch";
+import { get } from "@/lib/fetch";
 
 export interface SiteConfig {
   blogTitle: string;
@@ -7,4 +7,4 @@ export interface SiteConfig {
 }
 
 export const getSiteConfig = async () =>
-  await fetchGet<SiteConfig>("/api/siteConfig");
+  await get<SiteConfig>("/api/siteConfig");
