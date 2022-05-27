@@ -1,5 +1,5 @@
 import { getArticles, type Article } from "@/api/article";
-import { fetchCategory } from "@/api/category";
+import { getCategory } from "@/api/category";
 import { useRouteParams } from "@/composables/util/routeParams";
 import { computed, type ComputedRef, type Ref } from "vue";
 import type { RouteParams } from "vue-router";
@@ -18,7 +18,7 @@ interface CategoryRouteParams extends RouteParams {
 export const useCategoryPageState = (): CategoryPageState => {
   const params = useRouteParams<CategoryRouteParams>();
 
-  const categoryFetcher = computed(() => () => fetchCategory(params.value.id));
+  const categoryFetcher = computed(() => () => getCategory(params.value.id));
   const { value: category } = useEndpoint(categoryFetcher);
 
   const articlesFetcher = computed(

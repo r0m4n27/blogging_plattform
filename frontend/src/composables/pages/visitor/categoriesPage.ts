@@ -1,4 +1,4 @@
-import { fetchCategories } from "@/api/category";
+import { getCategories } from "@/api/category";
 import type { Collection } from "@/components/visitor/summary/collection/collection";
 import { categoryToCollection } from "@/lib/collection";
 import { computed, type ComputedRef } from "vue";
@@ -12,7 +12,7 @@ export interface CategoriesPageState {
 export const useCategoriesPageState = (): CategoriesPageState => {
   usePageTitle("Categories");
 
-  const { value: categories } = useEndpoint(fetchCategories, []);
+  const { value: categories } = useEndpoint(getCategories, []);
   const categoriesCollections = computed(() =>
     categories.value.map(categoryToCollection)
   );

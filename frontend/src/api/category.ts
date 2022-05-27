@@ -1,5 +1,6 @@
 import {
   deleteWithToken,
+  get,
   getWithToken,
   patchWithToken,
   postWithToken,
@@ -17,33 +18,12 @@ type CreateCategoryPayload = {
   name: string;
 };
 
-export const programmingCategory: Category = {
-  id: "1",
-  name: "Programming",
-  articleCount: 10,
-};
+const categoryBase = "/api/categories";
 
-export const jsCategory: Category = {
-  id: "3",
-  name: "Javascript",
-  articleCount: 5,
-};
-let mockCategories: Category[] = Array(3).fill(programmingCategory);
-mockCategories.push(jsCategory);
-mockCategories = mockCategories.map((category, index) => {
-  return {
-    ...category,
-    id: `${index}`,
-  };
-});
+export const getCategories = () => get<Category[]>(categoryBase);
 
-export const fetchCategories = async (): Promise<Category[]> => {
-  return mockCategories;
-};
-
-export const fetchCategory = async (id: string): Promise<Category> => {
-  return mockCategories.find((category) => category.id === id) as Category;
-};
+export const getCategory = (id: string) =>
+  get<Category>(`${categoryBase}/${id}`);
 
 const authorCategoryBase = "/api/author/categories";
 
