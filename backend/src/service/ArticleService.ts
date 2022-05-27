@@ -14,19 +14,19 @@ export class ArticleService {
 
   readAllAsVisitor = async () =>
     await this.database.article.findMany({
-      where: { draft: false },
+      where: { published: true },
       include: { categories: true },
     });
 
   readAllByCategoryAsVisitor = async (categoryId: string) =>
     await this.database.article.findMany({
-      where: { draft: false, categories: { some: { id: categoryId } } },
+      where: { published: true, categories: { some: { id: categoryId } } },
       include: { categories: true },
     });
 
   readAllByYearAsVisitor = async (year: number) =>
     await this.database.article.findMany({
-      where: { draft: false, year },
+      where: { published: true, year },
       include: { categories: true },
     });
 
@@ -34,7 +34,7 @@ export class ArticleService {
     await this.database.article.groupBy({
       by: ["year"],
       _count: true,
-      where: { draft: false },
+      where: { published: true },
     });
 
   readSingle = async (id: string) =>
@@ -42,7 +42,7 @@ export class ArticleService {
 
   readSingleAsVisitor = async (id: string) =>
     await this.database.article.findFirst({
-      where: { id, draft: false },
+      where: { id, published: true },
       include: { categories: true },
     });
 

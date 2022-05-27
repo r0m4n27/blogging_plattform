@@ -11,7 +11,7 @@ export const articleResponseFromDb = (article: Article): ArticleResponse => ({
   content: article.content,
 
   year: article.year,
-  draft: article.draft,
+  published: article.published,
 });
 
 const categoriesIdsSchema = z.array(z.object({ id: z.string() }));
@@ -22,7 +22,7 @@ export const articleSchema = z.object({
   content: z.string(),
 
   year: z.number().int(),
-  draft: z.boolean(),
+  published: z.boolean(),
 
   categories: z.array(z.object({ id: z.string() })),
 });
