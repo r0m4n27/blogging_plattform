@@ -1,6 +1,6 @@
 import type { AdminUser } from "@/api/user";
 import { usePageTitle } from "@/composables/head/pageTitle";
-import { fetchAdminUsers, deleteUser as deleteUserInternal } from "@/api/user";
+import { getAdminUsers, deleteUser as deleteUserInternal } from "@/api/user";
 import { useEndpoint } from "@/composables/util/endpoint";
 import { computed, type ComputedRef, type Ref } from "vue";
 import { useUser } from "@/composables/store/user";
@@ -23,20 +23,18 @@ export const useHomePageState = (): HomePageState => {
   usePageTitle("Users");
 
   const user = useUser();
-  const { value: users, refetch: refetchUsers } = useEndpoint(
-    fetchAdminUsers,
-    []
+  const usersFetcher = computed(
+    () => () => getAdminUsers(user.unsafeValue.token)
   );
+  const { value: users, refetch: refetchUsers } = useEndpoint(usersFetcher, []);
 
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const codesFetcher = computed(() => () => {
-    console.log(user.unsafeValue.token);
-    return getRegisterCodes(user.unsafeValue.token);
-  });
+  const codesFetcher = computed(
+    () => () => getRegisterCodes(user.unsafeValue.token)
+  );
   const { value: codes, refetch: refetchCodes } = useEndpoint(codesFetcher, []);
 
-  const deleteUser = computed(() => async (user: AdminUser) => {
-    await deleteUserInternal(user);
+  const deleteUser = computed(() => async (userToDelete: AdminUser) => {
+    await deleteUserInternal(user.unsafeValue.token, userToDelete);
     refetchUsers.value();
   });
 

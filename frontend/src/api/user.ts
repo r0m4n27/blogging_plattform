@@ -1,4 +1,4 @@
-import { post } from "@/lib/fetch";
+import { deleteWithToken, getWithToken, post } from "@/lib/fetch";
 import type { Option } from "@/lib/types";
 
 export type UserRole = "AUTHOR" | "ADMIN";
@@ -10,27 +10,8 @@ export interface User {
 
 export interface AdminUser {
   id: string;
-  name: string;
+  username: string;
 }
-
-let mockAdminUsers: AdminUser[] = [
-  {
-    id: "1",
-    name: "test1",
-  },
-  {
-    id: "2",
-    name: "test2",
-  },
-  {
-    id: "3",
-    name: "test3",
-  },
-  {
-    id: "4",
-    name: "test4",
-  },
-];
 
 export const login = async (
   username: string,
@@ -50,10 +31,10 @@ export const updatePassword = async (newPassword: string): Promise<void> => {
   return;
 };
 
-export const fetchAdminUsers = async (): Promise<AdminUser[]> => {
-  return mockAdminUsers;
-};
+export const getAdminUsers = async (token: string): Promise<AdminUser[]> =>
+  getWithToken("/api/users", token);
 
-export const deleteUser = async (user: AdminUser): Promise<void> => {
-  mockAdminUsers = mockAdminUsers.filter((u) => u.id !== user.id);
-};
+export const deleteUser = async (
+  token: string,
+  user: AdminUser
+): Promise<unknown> => deleteWithToken(`/api/users/${user.id}`, token);
