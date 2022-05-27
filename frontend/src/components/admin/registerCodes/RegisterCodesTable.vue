@@ -18,7 +18,7 @@ const emit = defineEmits<RegisterCodesTableEmits>();
 
 <template>
   <ActionableTableLayout
-    title="Codes"
+    title="Register Codes"
     add-button-label="New CODE"
     @add-button-click="emit('newCode')"
   >
