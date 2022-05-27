@@ -1,7 +1,6 @@
 import { getArticles, type Article } from "@/api/article";
 import { fetchCategory } from "@/api/category";
 import { useRouteParams } from "@/composables/util/routeParams";
-import { createPromise } from "@/lib/promise";
 import { computed, type ComputedRef, type Ref } from "vue";
 import type { RouteParams } from "vue-router";
 import { usePageTitle } from "../../head/pageTitle";
@@ -19,22 +18,12 @@ interface CategoryRouteParams extends RouteParams {
 export const useCategoryPageState = (): CategoryPageState => {
   const params = useRouteParams<CategoryRouteParams>();
 
-  const categoryFetcher = computed(() => () => {
-    if (params.value.id !== undefined) {
-      return fetchCategory(params.value.id);
-    } else {
-      return createPromise(undefined);
-    }
-  });
+  const categoryFetcher = computed(() => () => fetchCategory(params.value.id));
   const { value: category } = useEndpoint(categoryFetcher);
 
-  const articlesFetcher = computed(() => () => {
-    if (params.value.id !== undefined) {
-      return getArticles("category", params.value.id);
-    } else {
-      return createPromise([]);
-    }
-  });
+  const articlesFetcher = computed(
+    () => () => getArticles("category", params.value.id)
+  );
   const { value: articles } = useEndpoint(articlesFetcher, []);
 
   const title = computed(() => category.value?.name ?? "");

@@ -13,7 +13,6 @@ import {
 } from "@/api/article";
 import { getAuthorCategories, type AuthorCategory } from "@/api/category";
 import { useUser } from "@/composables/store/user";
-import { createPromise } from "@/lib/promise";
 
 export interface EditArticlePageState {
   article: Ref<Option<AuthorArticle>>;
@@ -33,13 +32,9 @@ export const useEditArticlePage = (): EditArticlePageState => {
   const user = useUser();
 
   const params = useRouteParams<EditArticlePageParams>();
-  const articleFetcher = computed(() => () => {
-    if (params.value.id !== undefined) {
-      return getAuthorArticle(user.unsafeValue.token, params.value.id);
-    } else {
-      return createPromise(undefined);
-    }
-  });
+  const articleFetcher = computed(
+    () => () => getAuthorArticle(user.unsafeValue.token, params.value.id)
+  );
 
   const { value: article } = useEndpoint(articleFetcher);
 
