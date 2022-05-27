@@ -5,6 +5,7 @@ import { AuthRouter } from "@/router/AuthRouter";
 import { RegisterCodeRouter } from "@/router/RegisterCodeRouter";
 import { SiteConfigRouter } from "@/router/SiteConfigRouter";
 import { UserRouter } from "@/router/UserRouter";
+import { VisitorRouter } from "@/router/VisitorRouter";
 import { ControllerModule } from "./ControllerModule";
 import { MiddlewareModule } from "./MiddlewareModule";
 
@@ -15,6 +16,7 @@ export class RouterModule {
   private readonly userRouter: UserRouter;
   private readonly authorCategoryRouter: AuthorCategoryRouter;
   private readonly authorArticleRouter: AuthorArticleRouter;
+  private readonly visitorRouter: VisitorRouter;
 
   constructor(controllers: ControllerModule, middleware: MiddlewareModule) {
     this.authRouter = new AuthRouter(
@@ -49,6 +51,8 @@ export class RouterModule {
       middleware.commonMiddleware,
       middleware.authMiddleware,
     );
+
+    this.visitorRouter = new VisitorRouter(controllers.visitorController);
   }
 
   get routers(): SiteRouter[] {
@@ -59,6 +63,7 @@ export class RouterModule {
       this.userRouter,
       this.authorCategoryRouter,
       this.authorArticleRouter,
+      this.visitorRouter,
     ];
   }
 }

@@ -8,25 +8,22 @@ import {
   ArticleModel,
   ArticleResponse,
   articleResponseFromDb,
-  CategoriesIdsModel,
 } from "@/model/authorArticleModels";
-import { DatabaseService } from "@/service/database";
-import { Category } from "@prisma/client";
+import { ArticleService } from "@/service/ArticleService";
 import { Request } from "express";
 
 export class AuthorArticleController {
   private readonly articleNotFoundText = "Article not found!";
 
-  constructor(private readonly database: DatabaseService) {}
+  constructor(private readonly articles: ArticleService) {}
 
   readAll = async (req: Request, res: ResponseWithError<ArticleResponse[]>) => {
     const requestWithUser = req as RequestWithUser<unknown>;
-    const { id: authorId } = requestWithUser.injected.user;
 
     // Excluding only one item from the selection doesn't work so 'articleResponseFromDb' is used
-    const articles = await this.database.article.findMany({
-      where: { authorId },
-    });
+    const articles = await this.articles.readAllByUser(
+      requestWithUser.injected.user,
+    );
 
     res.json(articles.map(articleResponseFromDb));
   };
@@ -35,9 +32,7 @@ export class AuthorArticleController {
     req: Request,
     res: ResponseWithError<ArticleResponse>,
   ) => {
-    const id = req.params["id"];
-
-    const article = await this.database.article.findUnique({ where: { id } });
+    const article = await this.articles.readSingle(req.params["id"]);
 
     if (article !== null) {
       res.json(articleResponseFromDb(article));
@@ -51,20 +46,10 @@ export class AuthorArticleController {
     res: ResponseWithError<ArticleResponse>,
   ) => {
     const requestWithUser = req as RequestWithUser<unknown>;
-    const { id: authorId } = requestWithUser.injected.user;
-    const { categories: categoriesIds, ...restBody } = req.body;
-
-    const categories = await this.findCategories(categoriesIds);
-
-    const article = await this.database.article.create({
-      data: {
-        ...restBody,
-        authorId,
-        categories: {
-          connect: categories,
-        },
-      },
-    });
+    const article = await this.articles.create(
+      req.body,
+      requestWithUser.injected.user,
+    );
 
     res.json(articleResponseFromDb(article));
   };
@@ -73,23 +58,10 @@ export class AuthorArticleController {
     req: RequestWithBody<Partial<ArticleModel>>,
     res: ResponseWithError<ArticleResponse>,
   ) => {
-    const id = req.params["id"];
-
-    const { categories: categoryIds, ...bodyRest } = req.body;
-
-    const categories = await this.findCategories(categoryIds);
-
-    const updatedArticle = await this.database.article.update({
-      data: {
-        ...bodyRest,
-        categories: {
-          connect: categories,
-        },
-      },
-      where: {
-        id,
-      },
-    });
+    const updatedArticle = await this.articles.update(
+      req.params["id"],
+      req.body,
+    );
 
     res.json(articleResponseFromDb(updatedArticle));
   };
@@ -98,28 +70,8 @@ export class AuthorArticleController {
     req: Request,
     res: ResponseWithError<Record<string, never>>,
   ) => {
-    const id = req.params["id"];
-
-    await this.database.article.delete({
-      where: { id },
-    });
+    await this.articles.delete(req.params["id"]);
 
     res.json({});
-  };
-
-  private findCategories = async (
-    categories?: CategoriesIdsModel,
-  ): Promise<Category[]> => {
-    if (categories === undefined) return [];
-
-    const foundCategories = await this.database.category.findMany({
-      where: {
-        id: {
-          in: categories.map((category) => category.id),
-        },
-      },
-    });
-
-    return foundCategories;
   };
 }

@@ -19,7 +19,7 @@ const main = async () => {
     const server = new Server(environment.serverConfig, ...routers.routers);
     server.start();
   } finally {
-    prismaClient.$disconnect();
+    await prismaClient.$disconnect();
   }
 };
 

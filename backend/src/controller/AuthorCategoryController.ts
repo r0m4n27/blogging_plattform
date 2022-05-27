@@ -1,37 +1,26 @@
 import { RequestWithBody, ResponseWithError } from "@/common/express";
 import { CategoryModel } from "@/model/authorCategoryModels";
-import { DatabaseService } from "@/service/database";
+import { CategoryService } from "@/service/CategoryService";
 import { Category } from "@prisma/client";
 import { Request } from "express";
 
 export class AuthorCategoryController {
-  constructor(private readonly databaseService: DatabaseService) {}
+  constructor(private readonly categories: CategoryService) {}
 
   // Every Author has the same categories
-  readAll = async (_: Request, res: ResponseWithError<Category[]>) => {
-    const categories = await this.databaseService.category.findMany();
-
-    res.json(categories);
-  };
+  readAll = async (_: Request, res: ResponseWithError<Category[]>) =>
+    res.json(await this.categories.readAll());
 
   createCategory = async (
     req: RequestWithBody<CategoryModel>,
     res: ResponseWithError<Category>,
-  ) => {
-    const category = await this.databaseService.category.create({
-      data: req.body,
-    });
-
-    res.json(category);
-  };
+  ) => res.json(await this.categories.create(req.body));
 
   deleteCategory = async (
     req: Request,
     res: ResponseWithError<Record<string, never>>,
   ) => {
-    const id = req.params["id"];
-
-    await this.databaseService.category.delete({ where: { id } });
+    await this.categories.deleteById(req.params["id"]);
 
     res.json({});
   };
@@ -40,14 +29,10 @@ export class AuthorCategoryController {
     req: RequestWithBody<Partial<CategoryModel>>,
     res: ResponseWithError<Category>,
   ) => {
-    const id = req.params["id"];
-
-    const updatedCategory = await this.databaseService.category.update({
-      data: req.body,
-      where: {
-        id,
-      },
-    });
+    const updatedCategory = await this.categories.updateById(
+      req.params["id"],
+      req.body,
+    );
 
     res.json(updatedCategory);
   };
