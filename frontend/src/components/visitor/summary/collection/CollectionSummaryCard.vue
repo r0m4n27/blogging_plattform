@@ -7,12 +7,21 @@ import type { Collection } from "./collection";
 import VLink from "@/components/base/VLink.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import { contentColorConfig } from "@/config/content/color";
+import { computed } from "@vue/reactivity";
 
 interface CollectionSummaryCardProps {
   collection: Collection;
 }
 
-defineProps<CollectionSummaryCardProps>();
+const props = defineProps<CollectionSummaryCardProps>();
+
+const articleCountEnding = computed(() => {
+  if (props.collection.articleCount === 1) {
+    return "Article";
+  } else {
+    return "Articles";
+  }
+});
 </script>
 
 <template>
@@ -29,7 +38,7 @@ defineProps<CollectionSummaryCardProps>();
       </VLink>
 
       <VText is="p" size="md">
-        {{ `${collection.articleCount} Articles` }}
+        {{ `${collection.articleCount} ${articleCountEnding}` }}
       </VText>
     </VColumn>
   </VCard>

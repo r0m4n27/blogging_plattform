@@ -35,7 +35,7 @@ export const visitorRoutes: VisitorRoutes = {
   },
   year: {
     path: "archive/:id",
-    createRoute: (data: Year) => createVisitorRoute(`archive/${data.value}`),
+    createRoute: (data: Year) => createVisitorRoute(`archive/${data.year}`),
     component: () => import("@/components/pages/visitor/YearPage.vue"),
   },
 
