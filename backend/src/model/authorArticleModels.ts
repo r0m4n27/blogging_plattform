@@ -21,7 +21,6 @@ export const articleSchema = z.object({
   summary: z.string(),
   content: z.string(),
 
-  year: z.number().int(),
   published: z.boolean(),
 
   categories: z.array(z.object({ id: z.string() })),

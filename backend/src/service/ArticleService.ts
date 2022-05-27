@@ -50,15 +50,19 @@ export class ArticleService {
     const { categories: categoriesIds, ...restModel } = model;
 
     const categories = await this.categories.readByCategoryIds(categoriesIds);
+    const year = new Date().getFullYear();
 
     return await this.database.article.create({
       data: {
         ...restModel,
+        year,
         author: {
-          connect: author,
+          connect: { id: author.id },
         },
         categories: {
-          connect: categories,
+          connect: categories.map((c) => ({
+            id: c.id,
+          })),
         },
       },
     });
@@ -76,7 +80,9 @@ export class ArticleService {
       data: {
         ...restModel,
         categories: {
-          connect: categories,
+          connect: categories.map((c) => ({
+            id: c.id,
+          })),
         },
       },
       where: {
