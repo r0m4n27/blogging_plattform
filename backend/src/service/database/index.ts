@@ -40,8 +40,4 @@ export class DatabaseService {
   get article() {
     return this.client.article;
   }
-
-  get year() {
-    return this.client.year;
-  }
 }
