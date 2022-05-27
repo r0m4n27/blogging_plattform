@@ -48,6 +48,11 @@ model Category {
   articles Article[]
 }
 
+model Year {
+  value    Int       @id
+  articles Article[]
+}
+
 model Article {
   id String @id @default(uuid()) @db.Uuid
 
@@ -55,11 +60,13 @@ model Article {
   summary String
   content String
 
-  year  Int
   draft Boolean
 
   categories Category[]
 
   author   User   @relation(fields: [authorId], references: [id])
   authorId String @db.Uuid
+
+  year Int
+  Year Year? @relation(fields: [year], references: [value])
 }
