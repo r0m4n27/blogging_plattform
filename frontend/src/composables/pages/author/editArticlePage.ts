@@ -1,4 +1,4 @@
-import { fetchAuthorArticle, type AuthorArticle } from "@/api/article";
+import { getAuthorArticle, type AuthorArticle } from "@/api/article";
 import type { Option } from "@/lib/types";
 import { usePageTitle } from "@/composables/head/pageTitle";
 import { useRouteParams } from "@/composables/util/routeParams";
@@ -12,6 +12,8 @@ import {
   updateArticle as updateArticleInternal,
 } from "@/api/article";
 import { fetchCategories, type Category } from "@/api/category";
+import { useUser } from "@/composables/store/user";
+import { createPromise } from "@/lib/promise";
 
 export interface EditArticlePageState {
   article: Ref<Option<AuthorArticle>>;
@@ -28,11 +30,16 @@ export const useEditArticlePage = (): EditArticlePageState => {
   usePageTitle("Edit Article");
 
   const router = useRouter();
+  const user = useUser();
 
   const params = useRouteParams<EditArticlePageParams>();
-  const articleFetcher = computed(
-    () => () => fetchAuthorArticle(params.value.id)
-  );
+  const articleFetcher = computed(() => () => {
+    if (params.value.id !== undefined) {
+      return getAuthorArticle(user.unsafeValue.token, params.value.id);
+    } else {
+      return createPromise(undefined);
+    }
+  });
 
   const { value: article } = useEndpoint(articleFetcher);
 
@@ -40,12 +47,12 @@ export const useEditArticlePage = (): EditArticlePageState => {
 
   const deleteArticle = async () => {
     if (article.value !== undefined) {
-      await deleteArticleInternal(article.value);
+      await deleteArticleInternal(user.unsafeValue.token, article.value);
       router.replace(authorRoutes.home.route);
     }
   };
   const updateArticle = async (newArticle: AuthorArticle) => {
-    await updateArticleInternal(newArticle);
+    await updateArticleInternal(user.unsafeValue.token, newArticle);
     router.replace(authorRoutes.home.route);
   };
 

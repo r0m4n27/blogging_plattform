@@ -1,5 +1,6 @@
-import { fetchAuthorArticles, type AuthorArticle } from "@/api/article";
-import type { Ref } from "vue";
+import { getAuthorArticles, type AuthorArticle } from "@/api/article";
+import { useUser } from "@/composables/store/user";
+import { computed, type Ref } from "vue";
 import { usePageTitle } from "../../head/pageTitle";
 import { useEndpoint } from "../../util/endpoint";
 
@@ -10,7 +11,11 @@ export interface HomePageState {
 export const useHomePageState = (): HomePageState => {
   usePageTitle("Articles");
 
-  const { value: articles } = useEndpoint(fetchAuthorArticles, []);
+  const user = useUser();
+  const articlesFetcher = computed(
+    () => () => getAuthorArticles(user.unsafeValue.token)
+  );
+  const { value: articles } = useEndpoint(articlesFetcher, []);
 
   return {
     articles,

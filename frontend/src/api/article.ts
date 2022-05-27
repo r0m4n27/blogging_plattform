@@ -1,3 +1,9 @@
+import {
+  deleteWithToken,
+  getWithToken,
+  patchWithToken,
+  postWithToken,
+} from "@/lib/fetch";
 import { jsCategory, programmingCategory, type Category } from "./category";
 
 export interface Article {
@@ -146,36 +152,27 @@ export const fetchArticle = async (id: string): Promise<Article> => {
   return mockArticles.find((article) => article.id === id) as Article;
 };
 
-export const fetchAuthorArticles = async (): Promise<AuthorArticle[]> => {
-  return mockArticles;
+const authorArticlesBase = "/api/author/articles";
+
+export const getAuthorArticles = (token: string) =>
+  getWithToken<AuthorArticle[]>(authorArticlesBase, token);
+
+export const getAuthorArticle = (token: string, id: string) =>
+  getWithToken<AuthorArticle>(`${authorArticlesBase}/${id}`, token);
+
+export const publishArticle = (token: string, payload: NewArticlePayload) =>
+  postWithToken(authorArticlesBase, token, payload);
+
+export const updateArticle = (
+  token: string,
+  article: AuthorArticle
+): Promise<unknown> => {
+  // Year needs to be extracted otherwise it will be put into the db
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { id, year: _, ...payload } = article;
+
+  return patchWithToken(`${authorArticlesBase}/${id}`, token, payload);
 };
 
-export const fetchAuthorArticle = async (
-  id: string
-): Promise<AuthorArticle> => {
-  return mockArticles.find((article) => article.id === id) as AuthorArticle;
-};
-
-export const publishArticle = async (
-  payload: NewArticlePayload
-): Promise<void> => {
-  const nextId = mockArticles.slice(-1).pop()?.id as string;
-  const year = 2022;
-  mockArticles.push({
-    ...payload,
-    id: `${parseInt(nextId) + 1}`,
-    year,
-  });
-};
-
-export const updateArticle = async (article: AuthorArticle): Promise<void> => {
-  const foundArticle = mockArticles.find(
-    (a) => a.id === article.id
-  ) as AuthorArticle;
-
-  Object.assign(foundArticle, article);
-};
-
-export const deleteArticle = async (article: AuthorArticle): Promise<void> => {
-  mockArticles = mockArticles.filter((a) => a.id !== article.id);
-};
+export const deleteArticle = (token: string, article: AuthorArticle) =>
+  deleteWithToken(`${authorArticlesBase}/${article.id}`, token);
