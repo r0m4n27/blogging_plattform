@@ -28,6 +28,16 @@ export class CategoryService {
       },
     });
 
+  readSingleWithArticleCount = async (id: string) =>
+    await this.database.category.findUnique({
+      include: {
+        _count: {
+          select: { articles: true },
+        },
+      },
+      where: { id },
+    });
+
   create = async (model: CategoryModel) =>
     await this.database.category.create({ data: model });
 

@@ -36,7 +36,7 @@ export interface VisitorCategoryResponse extends Category {
   articleCount: number;
 }
 
-export const visitorCategoriesFromDb = (
+export const visitorCategoryFromDb = (
   category: CategoryWithCount,
 ): VisitorCategoryResponse => ({
   id: category.id,

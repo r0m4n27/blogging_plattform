@@ -14,5 +14,6 @@ export class VisitorRouter implements SiteRouter {
 
     this.router.get("/archive", controller.readArchive);
     this.router.get("/categories", controller.readCategories);
+    this.router.get("/categories/:id", controller.readCategory);
   }
 }
