@@ -39,6 +39,11 @@ frontend/*.njsproj
 frontend/*.sln
 frontend/*.sw?
 
+# Sample data
+
+frontend/logo_sample.png
+frontend/icon_sample.ico
+
 ###########
 # Backend #
 ###########

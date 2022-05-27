@@ -1,20 +1,23 @@
-import LoginCard from "@/components/visitor/login/LoginCard.vue";
+import RegisterCard from "@/components/visitor/auth/RegisterCard.vue";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
 
 export default {
-  component: LoginCard,
+  component: RegisterCard,
 };
 
 const Template = (args) => ({
-  components: { LoginCard },
+  components: { RegisterCard },
   setup() {
     return { args };
   },
-  template: `<LoginCard v-bind='args'/>`,
+  template: `<RegisterCard v-bind='args'/>`,
 });
 
 export const Primary = Template.bind({});
 Primary.decorators = [createContainerDecorator("lg")];
+Primary.args = {
+  showError: false,
+};
 
 export const Error = Template.bind({});
 Error.decorators = [createContainerDecorator("lg")];
