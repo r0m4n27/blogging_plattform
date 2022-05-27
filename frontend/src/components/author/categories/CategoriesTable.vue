@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import type { Category } from "@/api/category";
+import type { AuthorCategory } from "@/api/category";
 import ActionableTableLayout from "@/components/common/layout/ActionableTableLayout.vue";
 import CategoriesTableEntry from "./CategoriesTableEntry.vue";
 import VTableHeader from "@/components/base/table/VTableHeader.vue";
 
 interface CategoriesTableProps {
-  categories: Category[];
+  categories: AuthorCategory[];
 }
 
 interface CategoriesTableEmits {
   (e: "createCategory"): void;
-  (e: "renameCategory", category: Category): void;
-  (e: "deleteCategory", category: Category): void;
+  (e: "renameCategory", category: AuthorCategory): void;
+  (e: "deleteCategory", category: AuthorCategory): void;
 }
 
 defineProps<CategoriesTableProps>();

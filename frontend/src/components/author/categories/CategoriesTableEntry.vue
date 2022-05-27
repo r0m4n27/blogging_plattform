@@ -8,18 +8,18 @@ import {
   redButtonFg,
 } from "@/config/content/color";
 import { contentSpacingConfig } from "@/config/content/spacing";
-import type { Category } from "@/api/category";
+import type { AuthorCategory } from "@/api/category";
 import VRow from "../../base/layout/VRow.vue";
 import TagButton from "../../base/button/TagButton.vue";
 import VTableTextEntry from "../../base/table/VTableTextEntry.vue";
 
 interface CategoriesTableEntryProps {
-  category: Category;
+  category: AuthorCategory;
 }
 
 interface CategoriesTableEntryEmits {
-  (e: "renameCategory", category: Category): void;
-  (e: "deleteCategory", category: Category): void;
+  (e: "renameCategory", category: AuthorCategory): void;
+  (e: "deleteCategory", category: AuthorCategory): void;
 }
 
 const props = defineProps<CategoriesTableEntryProps>();

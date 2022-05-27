@@ -11,13 +11,13 @@ import {
   deleteArticle as deleteArticleInternal,
   updateArticle as updateArticleInternal,
 } from "@/api/article";
-import { fetchCategories, type Category } from "@/api/category";
+import { getAuthorCategories, type AuthorCategory } from "@/api/category";
 import { useUser } from "@/composables/store/user";
 import { createPromise } from "@/lib/promise";
 
 export interface EditArticlePageState {
   article: Ref<Option<AuthorArticle>>;
-  existingCategories: Ref<Category[]>;
+  existingCategories: Ref<AuthorCategory[]>;
   deleteArticle: () => Promise<void>;
   updateArticle: (newArticle: AuthorArticle) => Promise<void>;
 }
@@ -43,7 +43,10 @@ export const useEditArticlePage = (): EditArticlePageState => {
 
   const { value: article } = useEndpoint(articleFetcher);
 
-  const { value: existingCategories } = useEndpoint(fetchCategories, []);
+  const categoriesFetcher = computed(
+    () => () => getAuthorCategories(user.unsafeValue.token)
+  );
+  const { value: existingCategories } = useEndpoint(categoriesFetcher, []);
 
   const deleteArticle = async () => {
     if (article.value !== undefined) {
