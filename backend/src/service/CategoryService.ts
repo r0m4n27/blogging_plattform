@@ -19,6 +19,15 @@ export class CategoryService {
     });
   };
 
+  readAllWithArticleCount = async () =>
+    await this.database.category.findMany({
+      include: {
+        _count: {
+          select: { articles: true },
+        },
+      },
+    });
+
   create = async (model: CategoryModel) =>
     await this.database.category.create({ data: model });
 
