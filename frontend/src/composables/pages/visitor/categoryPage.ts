@@ -1,4 +1,4 @@
-import { fetchArticles, type Article } from "@/api/article";
+import { getArticles, type Article } from "@/api/article";
 import { fetchCategory } from "@/api/category";
 import { useRouteParams } from "@/composables/util/routeParams";
 import { createPromise } from "@/lib/promise";
@@ -30,7 +30,7 @@ export const useCategoryPageState = (): CategoryPageState => {
 
   const articlesFetcher = computed(() => () => {
     if (params.value.id !== undefined) {
-      return fetchArticles("category", params.value.id);
+      return getArticles("category", params.value.id);
     } else {
       return createPromise([]);
     }

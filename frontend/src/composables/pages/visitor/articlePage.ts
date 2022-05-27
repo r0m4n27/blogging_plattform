@@ -1,4 +1,4 @@
-import { fetchArticle, type Article } from "@/api/article";
+import { getArticle, type Article } from "@/api/article";
 import { useRouteParams } from "@/composables/util/routeParams";
 import { createPromise } from "@/lib/promise";
 import type { Option } from "@/lib/types";
@@ -21,7 +21,7 @@ export const useArticlePageState = (): ArticlePageState => {
 
   const articleFetcher = computed(() => () => {
     if (params.value.id !== undefined) {
-      return fetchArticle(params.value.id);
+      return getArticle(params.value.id);
     } else {
       return createPromise(undefined);
     }

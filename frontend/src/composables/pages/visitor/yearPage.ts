@@ -1,4 +1,4 @@
-import { fetchArticles, type Article } from "@/api/article";
+import { getArticles, type Article } from "@/api/article";
 import { useRouteParams } from "@/composables/util/routeParams";
 import { createPromise } from "@/lib/promise";
 import { computed, type ComputedRef, type Ref } from "vue";
@@ -21,7 +21,7 @@ export const useYearPageState = (): YearPageState => {
 
   const articlesFetcher = computed(() => () => {
     if (year.value !== undefined) {
-      return fetchArticles("year", parseInt(year.value));
+      return getArticles("year", parseInt(year.value));
     } else {
       return createPromise([]);
     }
