@@ -34,7 +34,7 @@ export const useVisitorPageLayoutState = (): VisitorPageLayoutState => {
         ...logoutLink,
         onClick: () => user.logout(),
       };
-      if (user.value.type === "author") {
+      if (user.value.role === "AUTHOR") {
         destinations.push(logoutWithAction, authorDashboardLink);
       } else {
         destinations.push(logoutWithAction, adminDashboardLink);

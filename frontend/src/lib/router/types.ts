@@ -1,11 +1,11 @@
-import type { UserType } from "@/api/user";
+import type { UserRole } from "@/api/user";
 import type { Component } from "vue";
 import type { RouteMeta } from "vue-router";
 
 declare module "vue-router" {
   interface RouteMeta {
     // Type of user that can access the page
-    requiredUserType?: UserType;
+    requiredUserRole?: UserRole;
   }
 }
 

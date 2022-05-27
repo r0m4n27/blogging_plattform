@@ -56,7 +56,7 @@ const setupLoginPageGuard = (router: Router) => {
 const setupNotAuthorizedGuard = (router: Router) => {
   router.beforeEach((to) => {
     const user = useUser();
-    const requiredUserType = to.meta.requiredUserType;
+    const requiredUserType = to.meta.requiredUserRole;
 
     if (requiredUserType !== undefined) {
       if (user.value === undefined) {
@@ -65,7 +65,7 @@ const setupNotAuthorizedGuard = (router: Router) => {
           replace: true,
         };
       } else {
-        if (user.value?.type !== requiredUserType) {
+        if (user.value?.role !== requiredUserType) {
           return {
             path: visitorRoutes.home.route,
             replace: true,

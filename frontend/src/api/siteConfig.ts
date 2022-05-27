@@ -6,4 +6,5 @@ export interface SiteConfig {
   icon: string;
 }
 
-export const getSiteConfig = async () => fetchGet<SiteConfig>("api/siteConfig");
+export const getSiteConfig = async () =>
+  await fetchGet<SiteConfig>("api/siteConfig");

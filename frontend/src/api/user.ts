@@ -1,10 +1,11 @@
+import { fetchPost } from "@/lib/fetch";
 import type { Option } from "@/lib/types";
 
-export type UserType = "author" | "admin";
+export type UserRole = "AUTHOR" | "ADMIN";
 
 export interface User {
   token: string;
-  type: UserType;
+  role: UserRole;
 }
 
 export interface AdminUser {
@@ -35,17 +36,12 @@ export const login = async (
   username: string,
   password: string
 ): Promise<Option<User>> => {
-  if (username === "admin" && password === "admin") {
-    return {
-      token: "123",
-      type: "admin",
-    };
-  } else if (username === "author" && password === "author") {
-    return {
-      token: "123",
-      type: "author",
-    };
-  } else {
+  try {
+    return await fetchPost("api/auth/login", {
+      username: username.trim(),
+      password,
+    });
+  } catch (e) {
     return undefined;
   }
 };
