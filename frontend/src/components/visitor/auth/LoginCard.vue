@@ -47,6 +47,16 @@ const login = () => emit("login", username.value, password.value);
         width="full"
       />
 
+      <VText
+        :color="{
+          light: getColor('red', 400),
+          dark: getColor('red', 400),
+        }"
+        v-if="showError"
+      >
+        Password does not match!
+      </VText>
+
       <VLink :to="visitorRoutes.register.route">
         <VText
           :color="{
@@ -57,16 +67,6 @@ const login = () => emit("login", username.value, password.value);
           No Account? Register now
         </VText>
       </VLink>
-
-      <VText
-        :color="{
-          light: getColor('red', 400),
-          dark: getColor('red', 400),
-        }"
-        v-if="showError"
-      >
-        Password does not match!
-      </VText>
 
       <TextButton
         @click="login"
