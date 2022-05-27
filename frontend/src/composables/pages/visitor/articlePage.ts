@@ -1,5 +1,6 @@
 import { fetchArticle, type Article } from "@/api/article";
 import { useRouteParams } from "@/composables/util/routeParams";
+import { createPromise } from "@/lib/promise";
 import type { Option } from "@/lib/types";
 import { computed } from "@vue/reactivity";
 import type { Ref } from "vue";
@@ -18,7 +19,13 @@ interface ArticleRouteParams extends RouteParams {
 export const useArticlePageState = (): ArticlePageState => {
   const params = useRouteParams<ArticleRouteParams>();
 
-  const articleFetcher = computed(() => () => fetchArticle(params.value.id));
+  const articleFetcher = computed(() => () => {
+    if (params.value.id !== undefined) {
+      return fetchArticle(params.value.id);
+    } else {
+      return createPromise(undefined);
+    }
+  });
 
   const { value: article } = useEndpoint(articleFetcher);
   const articleTitle = computed(() => article.value?.title ?? "");
