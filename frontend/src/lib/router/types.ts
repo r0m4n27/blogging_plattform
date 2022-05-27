@@ -1,4 +1,4 @@
-import type { UserRole } from "@/api/user";
+import type { UserRole } from "@/api/auth";
 import type { Component } from "vue";
 import type { RouteMeta } from "vue-router";
 

@@ -1,4 +1,4 @@
-import { type User, login as loginUser } from "@/api/user";
+import { type User, login as loginUser } from "@/api/auth";
 import { localStorageKeys } from "@/config/localStorage";
 import { piniaKeysConfig } from "@/config/pinia";
 import type { Option } from "@/lib/types";

@@ -1,36 +1,9 @@
-import {
-  deleteWithToken,
-  getWithToken,
-  patchWithToken,
-  post,
-} from "@/lib/fetch";
-import type { Option } from "@/lib/types";
-
-export type UserRole = "AUTHOR" | "ADMIN";
-
-export interface User {
-  token: string;
-  role: UserRole;
-}
+import { deleteWithToken, getWithToken, patchWithToken } from "@/lib/fetch";
 
 export interface AdminUser {
   id: string;
   username: string;
 }
-
-export const login = async (
-  username: string,
-  password: string
-): Promise<Option<User>> => {
-  try {
-    return await post("/api/auth/login", {
-      username: username.trim(),
-      password,
-    });
-  } catch (e) {
-    return undefined;
-  }
-};
 
 const usersBase = "/api/users";
 
