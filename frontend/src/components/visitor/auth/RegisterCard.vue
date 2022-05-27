@@ -14,7 +14,12 @@ interface LoginCardProps {
 }
 
 interface LoginCardsEmits {
-  (e: "login", username: string, password: string): void;
+  (
+    e: "register",
+    username: string,
+    password: string,
+    registerCode: string
+  ): void;
 }
 
 defineProps<LoginCardProps>();
@@ -22,15 +27,17 @@ const emit = defineEmits<LoginCardsEmits>();
 
 const username = ref("");
 const password = ref("");
+const registerCode = ref("");
 
-const login = () => emit("login", username.value, password.value);
+const login = () =>
+  emit("register", username.value, password.value, registerCode.value);
 </script>
 
 <template>
   <VCard :width="{ sm: 'sm', md: 'md' }" :padding="contentSpacingConfig.md">
     <VColumn :gap="contentSpacingConfig.sm" align="start" is="form">
       <VColumn width="full">
-        <VHeading is="h1" size="xl">Login</VHeading>
+        <VHeading is="h1" size="xl">Register</VHeading>
       </VColumn>
 
       <TextInputField
@@ -42,6 +49,11 @@ const login = () => emit("login", username.value, password.value);
         label="Password"
         input-type="password"
         v-model:input-value="password"
+        width="full"
+      />
+      <TextInputField
+        label="Register Code"
+        v-model:input-value="registerCode"
         width="full"
       />
 
@@ -57,7 +69,7 @@ const login = () => emit("login", username.value, password.value);
 
       <TextButton
         @click="login"
-        label="Login"
+        label="Register"
         width="full"
         :show-border="false"
         :background-color="{

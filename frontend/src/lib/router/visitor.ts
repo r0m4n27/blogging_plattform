@@ -16,6 +16,7 @@ export interface VisitorRoutes {
   article: RouteDestination<Article>;
 
   login: RouteDestinationWithoutParams;
+  register: RouteDestinationWithoutParams;
 }
 
 const createVisitorRoute = (otherPath: string) => `/${otherPath}`;
@@ -60,6 +61,11 @@ export const visitorRoutes: VisitorRoutes = {
     path: "login",
     route: createVisitorRoute("login"),
     component: () => import("@/components/pages/visitor/LoginPage.vue"),
+  },
+  register: {
+    path: "register",
+    route: createVisitorRoute("register"),
+    component: () => import("@/components/pages/visitor/RegisterPage.vue"),
   },
 };
 

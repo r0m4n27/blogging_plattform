@@ -17,17 +17,18 @@ export const createRouter = (): Router => {
     routes,
   });
 
-  setupLoginPageGuard(router);
+  setupPageBlocker(router, visitorRoutes.login.route);
+  setupPageBlocker(router, visitorRoutes.register.route);
   setupNotAuthorizedGuard(router);
 
   return router;
 };
 
-// Don't allow logged in user to access LoginPage
+// Don't allow logged in users to access a certain page
 //
-// If they navigate from another page to the login just don't allow it
-// If the site is loaded from the login page redirect to the home page
-const setupLoginPageGuard = (router: Router) => {
+// If they navigate from another page to the page just don't allow it
+// If the site is loaded from the page redirect to the home page
+const setupPageBlocker = (router: Router, path: string) => {
   router.beforeEach((to, from) => {
     const user = useUser();
 
@@ -35,16 +36,13 @@ const setupLoginPageGuard = (router: Router) => {
       // The previous path is also "/" when the user
       // loads the route directly
       // and this has to be handled separately
-      if (
-        from.path === visitorRoutes.home.route &&
-        to.path === visitorRoutes.login.route
-      ) {
+      if (from.path === visitorRoutes.home.route && to.path === path) {
         return {
           path: "/",
           replace: true,
         };
       } else {
-        return to.path !== visitorRoutes.login.route;
+        return to.path !== path;
       }
     }
   });

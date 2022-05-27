@@ -1,4 +1,8 @@
-import { type User, login as loginUser } from "@/api/auth";
+import {
+  type User,
+  login as loginUser,
+  register as registerUser,
+} from "@/api/auth";
 import { localStorageKeys } from "@/config/localStorage";
 import { piniaKeysConfig } from "@/config/pinia";
 import type { Option } from "@/lib/types";
@@ -15,6 +19,11 @@ export interface UserState {
 
   // Return true if the user was successfully logged in
   login: (username: string, password: string) => Promise<boolean>;
+  register: (
+    username: string,
+    password: string,
+    registerCode: string
+  ) => Promise<boolean>;
   logout: () => void;
 }
 
@@ -36,6 +45,17 @@ export const useUser = defineStore<string, UserState>(
       return newUser !== undefined;
     };
 
+    const register = async (
+      username: string,
+      password: string,
+      registerCode: string
+    ) => {
+      const newUser = await registerUser(username, password, registerCode);
+      user.value = newUser;
+
+      return newUser !== undefined;
+    };
+
     // Remove the user and also just redirect to the home page
     // to not create a weird state
     const logout = () => {
@@ -49,6 +69,7 @@ export const useUser = defineStore<string, UserState>(
       unsafeValue,
       login,
       logout,
+      register,
     };
   }
 );

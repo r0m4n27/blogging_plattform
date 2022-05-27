@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import LoginCard from "@/components/visitor/login/LoginCard.vue";
+import LoginCard from "@/components/visitor/auth/LoginCard.vue";
 import VCenter from "../../base/layout/VCenter.vue";
 import { useLoginPageState } from "@/composables/pages/visitor/loginPage";
 
