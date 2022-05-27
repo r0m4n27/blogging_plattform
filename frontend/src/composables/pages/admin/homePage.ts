@@ -22,21 +22,20 @@ export interface HomePageState {
 export const useHomePageState = (): HomePageState => {
   usePageTitle("Users");
 
+  const { users, deleteUser } = useUsersInteractions();
+
+  const { codes, createCode, deleteCode } = useSiteConfigInteractions();
+
+  return { users, deleteUser, codes, deleteCode, createCode };
+};
+
+const useSiteConfigInteractions = () => {
   const user = useUser();
-  const usersFetcher = computed(
-    () => () => getAdminUsers(user.unsafeValue.token)
-  );
-  const { value: users, refetch: refetchUsers } = useEndpoint(usersFetcher, []);
 
   const codesFetcher = computed(
     () => () => getRegisterCodes(user.unsafeValue.token)
   );
   const { value: codes, refetch: refetchCodes } = useEndpoint(codesFetcher, []);
-
-  const deleteUser = computed(() => async (userToDelete: AdminUser) => {
-    await deleteUserInternal(user.unsafeValue.token, userToDelete);
-    refetchUsers.value();
-  });
 
   const deleteCode = computed(() => async (registerCode: string) => {
     await deleteRegisterCode(registerCode, user.unsafeValue.token);
@@ -48,5 +47,24 @@ export const useHomePageState = (): HomePageState => {
     refetchCodes.value();
   });
 
-  return { users, deleteUser, codes, deleteCode, createCode };
+  return {
+    codes,
+    deleteCode,
+    createCode,
+  };
+};
+
+const useUsersInteractions = () => {
+  const user = useUser();
+  const usersFetcher = computed(
+    () => () => getAdminUsers(user.unsafeValue.token)
+  );
+  const { value: users, refetch: refetchUsers } = useEndpoint(usersFetcher, []);
+
+  const deleteUser = computed(() => async (userToDelete: AdminUser) => {
+    await deleteUserInternal(user.unsafeValue.token, userToDelete);
+    refetchUsers.value();
+  });
+
+  return { users, deleteUser };
 };
