@@ -20,6 +20,7 @@ export class AuthMiddleware {
       const user = await this.auth.verifyLoggedInUser(token, userRole);
 
       if (user !== undefined) {
+        req.injected ??= {};
         req.injected.user = user;
         next();
       } else {

@@ -1,18 +1,29 @@
-import { type User, login as loginUser } from "@/api/user";
+import {
+  type User,
+  login as loginUser,
+  register as registerUser,
+} from "@/api/auth";
 import { localStorageKeys } from "@/config/localStorage";
 import { piniaKeysConfig } from "@/config/pinia";
 import type { Option } from "@/lib/types";
 import { defineStore } from "pinia";
-import type { Ref } from "vue";
+import { computed, type ComputedRef, type Ref } from "vue";
 import { useLocalStorage } from "../util/localStorage";
 import { useEmptyStore } from "./emptyStore";
 import { visitorRoutes } from "@/lib/router/visitor";
 
 export interface UserState {
   value: Ref<Option<User>>;
+  // Use when it is certain that the user is logged in
+  unsafeValue: ComputedRef<User>;
 
   // Return true if the user was successfully logged in
   login: (username: string, password: string) => Promise<boolean>;
+  register: (
+    username: string,
+    password: string,
+    registerCode: string
+  ) => Promise<boolean>;
   logout: () => void;
 }
 
@@ -23,8 +34,23 @@ export const useUser = defineStore<string, UserState>(
 
     const user = useLocalStorage<string, User>(localStorageKeys.user);
 
+    // See comment in the interface
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const unsafeValue = computed(() => user.value!);
+
     const login = async (username: string, password: string) => {
       const newUser = await loginUser(username, password);
+      user.value = newUser;
+
+      return newUser !== undefined;
+    };
+
+    const register = async (
+      username: string,
+      password: string,
+      registerCode: string
+    ) => {
+      const newUser = await registerUser(username, password, registerCode);
       user.value = newUser;
 
       return newUser !== undefined;
@@ -40,8 +66,10 @@ export const useUser = defineStore<string, UserState>(
 
     return {
       value: user,
+      unsafeValue,
       login,
       logout,
+      register,
     };
   }
 );

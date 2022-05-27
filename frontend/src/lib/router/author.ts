@@ -46,6 +46,6 @@ export const authorRootRoute: RouteRecordRaw = {
   component: () => import("@/components/pages/layout/AuthorPageLayout.vue"),
   children: Object.values(authorRoutes),
   meta: {
-    requiredUserType: "author",
+    requiredUserRole: "AUTHOR",
   },
 };

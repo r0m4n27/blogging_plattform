@@ -4,7 +4,7 @@ import {
   VisitorArchiveResponse,
   visitorArticleFromDb,
   VisitorArticleResponse,
-  visitorCategoriesFromDb,
+  visitorCategoryFromDb,
   VisitorCategoryResponse,
 } from "@/model/visitorModels";
 import { ArticleService } from "@/service/ArticleService";
@@ -13,6 +13,7 @@ import { Request } from "express";
 
 export class VisitorController {
   private readonly articleNotFoundText = "Article not found!";
+  private readonly categoryNotFoundText = "Category not found!";
 
   constructor(
     private readonly articles: ArticleService,
@@ -75,6 +76,21 @@ export class VisitorController {
   ) => {
     const categories = await this.categories.readAllWithArticleCount();
 
-    res.json(categories.map(visitorCategoriesFromDb));
+    res.json(categories.map(visitorCategoryFromDb));
+  };
+
+  readCategory = async (
+    req: Request,
+    res: ResponseWithError<VisitorCategoryResponse>,
+  ) => {
+    const category = await this.categories.readSingleWithArticleCount(
+      req.params["id"],
+    );
+
+    if (category !== null) {
+      res.json(visitorCategoryFromDb(category));
+    } else {
+      createErrorResponse(res, this.categoryNotFoundText, 404);
+    }
   };
 }

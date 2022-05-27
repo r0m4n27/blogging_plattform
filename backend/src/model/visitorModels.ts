@@ -4,7 +4,7 @@ export type ArticleWithCategories = Article & { categories: Category[] };
 
 export type VisitorArticleResponse = Omit<
   ArticleWithCategories,
-  "authorId" | "draft"
+  "authorId" | "published"
 >;
 
 export const visitorArticleFromDb = (
@@ -36,7 +36,7 @@ export interface VisitorCategoryResponse extends Category {
   articleCount: number;
 }
 
-export const visitorCategoriesFromDb = (
+export const visitorCategoryFromDb = (
   category: CategoryWithCount,
 ): VisitorCategoryResponse => ({
   id: category.id,

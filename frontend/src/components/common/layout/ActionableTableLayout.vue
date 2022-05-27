@@ -22,7 +22,11 @@ const emit = defineEmits<ActionableTableLayoutEmits>();
 </script>
 
 <template>
-  <VColumn :padding="defaultContentSpacing" :gap="defaultContentSpacing">
+  <VColumn
+    :padding="defaultContentSpacing"
+    :gap="defaultContentSpacing"
+    width="full"
+  >
     <VRow justify="space-between" width="full">
       <VHeading size="lg" is="h1"> {{ title }} </VHeading>
 

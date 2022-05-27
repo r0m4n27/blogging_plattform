@@ -1,4 +1,4 @@
-import { fetchArticles, type Article } from "@/api/article";
+import { getArticles, type Article } from "@/api/article";
 import { useRouteParams } from "@/composables/util/routeParams";
 import { computed, type ComputedRef, type Ref } from "vue";
 import type { RouteParams } from "vue-router";
@@ -19,14 +19,15 @@ export const useYearPageState = (): YearPageState => {
   const year = computed(() => params.value.id);
 
   const articlesFetcher = computed(
-    () => async () => fetchArticles("year", parseInt(year.value))
+    () => () => getArticles("year", parseInt(year.value))
   );
   const { value: articles } = useEndpoint(articlesFetcher, []);
+  const yearTitle = computed(() => (year.value ? year.value : ""));
 
-  usePageTitle(year);
+  usePageTitle(yearTitle);
 
   return {
-    title: year,
+    title: yearTitle,
     articles,
   };
 };

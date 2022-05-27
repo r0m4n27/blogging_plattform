@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import CategoriesInputHead from "./CategoriesInputHead.vue";
-import type { Category } from "@/api/category";
+import type { AuthorCategory } from "@/api/category";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import VColumn from "@/components/base/layout/VColumn.vue";
 import VHeading from "@/components/base/text/VHeading.vue";
@@ -10,12 +10,12 @@ import { useCategoriesInputState } from "@/composables/author/articleEditor/cate
 import { toRefs } from "vue";
 
 interface CategoriesInputProps {
-  selectedCategories: Category[];
-  existingCategories: Category[];
+  selectedCategories: AuthorCategory[];
+  existingCategories: AuthorCategory[];
 }
 
 interface CategoriesInputEmits {
-  (e: "update:selectedCategories", newValue: Category[]): void;
+  (e: "update:selectedCategories", newValue: AuthorCategory[]): void;
 }
 
 const props = defineProps<CategoriesInputProps>();

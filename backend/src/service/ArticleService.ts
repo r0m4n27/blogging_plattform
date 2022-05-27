@@ -14,19 +14,19 @@ export class ArticleService {
 
   readAllAsVisitor = async () =>
     await this.database.article.findMany({
-      where: { draft: false },
+      where: { published: true },
       include: { categories: true },
     });
 
   readAllByCategoryAsVisitor = async (categoryId: string) =>
     await this.database.article.findMany({
-      where: { draft: false, categories: { some: { id: categoryId } } },
+      where: { published: true, categories: { some: { id: categoryId } } },
       include: { categories: true },
     });
 
   readAllByYearAsVisitor = async (year: number) =>
     await this.database.article.findMany({
-      where: { draft: false, year },
+      where: { published: true, year },
       include: { categories: true },
     });
 
@@ -34,7 +34,7 @@ export class ArticleService {
     await this.database.article.groupBy({
       by: ["year"],
       _count: true,
-      where: { draft: false },
+      where: { published: true },
     });
 
   readSingle = async (id: string) =>
@@ -42,7 +42,7 @@ export class ArticleService {
 
   readSingleAsVisitor = async (id: string) =>
     await this.database.article.findFirst({
-      where: { id, draft: false },
+      where: { id, published: true },
       include: { categories: true },
     });
 
@@ -50,15 +50,19 @@ export class ArticleService {
     const { categories: categoriesIds, ...restModel } = model;
 
     const categories = await this.categories.readByCategoryIds(categoriesIds);
+    const year = new Date().getFullYear();
 
     return await this.database.article.create({
       data: {
         ...restModel,
+        year,
         author: {
-          connect: author,
+          connect: { id: author.id },
         },
         categories: {
-          connect: categories,
+          connect: categories.map((c) => ({
+            id: c.id,
+          })),
         },
       },
     });
@@ -76,7 +80,9 @@ export class ArticleService {
       data: {
         ...restModel,
         categories: {
-          connect: categories,
+          connect: categories.map((c) => ({
+            id: c.id,
+          })),
         },
       },
       where: {

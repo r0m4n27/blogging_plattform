@@ -23,9 +23,9 @@ export const adminRoutes: AdminRoutes = {
 
 export const adminRootRoute: RouteRecordRaw = {
   path: "/admin",
-  component: () => import("@/components/pages/layout/AuthorPageLayout.vue"),
+  component: () => import("@/components/pages/layout/AdminPageLayout.vue"),
   children: Object.values(adminRoutes),
   meta: {
-    requiredUserType: "admin",
+    requiredUserRole: "ADMIN",
   },
 };

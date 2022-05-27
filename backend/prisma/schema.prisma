@@ -55,8 +55,8 @@ model Article {
   summary String
   content String
 
-  year  Int
-  draft Boolean
+  year      Int
+  published Boolean
 
   categories Category[]
 

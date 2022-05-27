@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Category } from "@/api/category";
+import type { AuthorCategory } from "@/api/category";
 import VColumn from "@/components/base/layout/VColumn.vue";
 import { contentColorConfig } from "@/config/content/color";
 import { globalContentConfig } from "@/config/content/global";
@@ -7,11 +7,11 @@ import VText from "../../../base/text/VText.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
 
 interface CategoriesInputListProps {
-  availableCategories: Category[];
+  availableCategories: AuthorCategory[];
 }
 
 interface CategoriesInputListEmits {
-  (e: "selectCategory", category: Category): void;
+  (e: "selectCategory", category: AuthorCategory): void;
 }
 
 defineProps<CategoriesInputListProps>();

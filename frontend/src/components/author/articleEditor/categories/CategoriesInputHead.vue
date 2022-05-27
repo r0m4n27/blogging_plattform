@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import TagButton from "@/components/base/button/TagButton.vue";
-import type { Category } from "@/api/category";
+import type { AuthorCategory } from "@/api/category";
 import { contentSpacingConfig } from "@/config/content/spacing";
 import { contentColorConfig } from "@/config/content/color";
 import VRow from "../../../base/layout/VRow.vue";
@@ -11,12 +11,12 @@ import { computed } from "vue";
 interface CategoriesInputHeadProps {
   showListing: boolean;
   availableCategoriesSize: number;
-  selectedCategories: Category[];
+  selectedCategories: AuthorCategory[];
 }
 
 interface CategoriesInputHeadEmits {
   (e: "update:showListing", newValue: boolean): void;
-  (e: "removeCategory", category: Category): void;
+  (e: "removeCategory", category: AuthorCategory): void;
 }
 
 const props = defineProps<CategoriesInputHeadProps>();

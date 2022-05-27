@@ -10,7 +10,7 @@ export const categoryToCollection = (category: Category): Collection => ({
 });
 
 export const yearToCollection = (year: Year): Collection => ({
-  name: year.value.toString(),
+  name: year.year.toString(),
   articleCount: year.articleCount,
   destination: visitorRoutes.year.createRoute(year),
 });
