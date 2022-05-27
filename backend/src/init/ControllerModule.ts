@@ -26,10 +26,10 @@ export class ControllerModule {
     );
     this.userController = new UserController(services.databaseService);
     this.authorCategoryController = new AuthorCategoryController(
-      services.databaseService,
+      services.categoryService,
     );
     this.authorArticleController = new AuthorArticleController(
-      services.databaseService,
+      services.articleService,
     );
   }
 }
