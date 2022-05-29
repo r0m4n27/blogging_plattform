@@ -3,6 +3,9 @@
 #######
 
 .env
+.vscode
+node_modules/
+.turbo
 
 ############
 # FRONTEND #
