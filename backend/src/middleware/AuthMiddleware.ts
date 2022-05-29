@@ -1,36 +1,12 @@
-import { createErrorResponse } from "@/common/express";
 import { HttpException, Req } from "@/common/router/types";
 import { ReqWithUser } from "@/model/authModels";
 import { AuthService } from "@/service/AuthService";
 import { UserRole } from "@prisma/client";
-import { NextFunction, Request, Response } from "express";
 
 export class AuthMiddleware {
   constructor(private readonly auth: AuthService) {}
 
   userGuard =
-    (userRole?: UserRole) =>
-    async (req: Request, res: Response, next: NextFunction) => {
-      const headerValue = req.headers["authorization"];
-      if (headerValue === undefined)
-        return createErrorResponse(res, "Token not provided!", 401);
-
-      const token = this.verifyHeader(headerValue);
-      if (token === undefined)
-        return createErrorResponse(res, "Authorization header malformed");
-
-      const user = await this.auth.verifyLoggedInUser(token, userRole);
-
-      if (user !== undefined) {
-        req.injected ??= {};
-        req.injected.user = user;
-        next();
-      } else {
-        return createErrorResponse(res, "Unauthorized", 401);
-      }
-    };
-
-  userGuardNew =
     (userRole?: UserRole) =>
     async (req: Req): Promise<ReqWithUser> => {
       const headerValue = req.actualRequest.headers["authorization"];

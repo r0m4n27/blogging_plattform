@@ -13,12 +13,12 @@ export class AuthRouter implements SiteRouter {
     this.router = Router();
 
     Route.post("/login")
-      .use(commonMiddleware.validateBodyNew(loginPayloadSchema))
+      .use(commonMiddleware.validateBody(loginPayloadSchema))
       .handle(controller.login)
       .apply(this.router);
 
     Route.post("/register")
-      .use(commonMiddleware.validateBodyNew(registerPayloadSchema))
+      .use(commonMiddleware.validateBody(registerPayloadSchema))
       .handle(controller.register)
       .apply(this.router);
   }

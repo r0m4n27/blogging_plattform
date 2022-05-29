@@ -19,19 +19,19 @@ export class UserRouter implements SiteRouter {
     this.router = Router();
 
     Route.get("/")
-      .use(authMiddleware.userGuardNew("ADMIN"))
+      .use(authMiddleware.userGuard("ADMIN"))
       .handle(userController.readAllExceptAdmin)
       .apply(this.router);
 
     Route.delete("/:id")
-      .use(authMiddleware.userGuardNew("ADMIN"))
+      .use(authMiddleware.userGuard("ADMIN"))
       .use(commonMiddleware.validateParams(idParamsSchema))
       .handle(userController.deleteUser)
       .apply(this.router);
 
     Route.patch("/me")
-      .use(authMiddleware.userGuardNew())
-      .use(commonMiddleware.validateBodyNew(updateUserSchema.partial()))
+      .use(authMiddleware.userGuard())
+      .use(commonMiddleware.validateBody(updateUserSchema.partial()))
       .handle(userController.updateCurrentUser)
       .apply(this.router);
   }

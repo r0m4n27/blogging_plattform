@@ -20,14 +20,14 @@ export class SiteConfigRouter implements SiteRouter {
     Route.get("/").handle(controller.read).apply(this.router);
 
     Route.post("/")
-      .use(authMiddleware.userGuardNew("ADMIN"))
-      .use(commonMiddleware.validateBodyNew(siteConfigSchema))
+      .use(authMiddleware.userGuard("ADMIN"))
+      .use(commonMiddleware.validateBody(siteConfigSchema))
       .handle(controller.initialize)
       .apply(this.router);
 
     Route.patch("/")
-      .use(authMiddleware.userGuardNew("ADMIN"))
-      .use(commonMiddleware.validateBodyNew(siteConfigSchema.partial()))
+      .use(authMiddleware.userGuard("ADMIN"))
+      .use(commonMiddleware.validateBody(siteConfigSchema.partial()))
       .handle(controller.update)
       .apply(this.router);
   }

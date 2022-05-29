@@ -19,25 +19,25 @@ export class AuthorCategoryRouter implements SiteRouter {
     this.router = Router();
 
     Route.get("/")
-      .use(authMiddleware.userGuardNew("AUTHOR"))
+      .use(authMiddleware.userGuard("AUTHOR"))
       .handle(controller.readAll)
       .apply(this.router);
 
     Route.post("/")
-      .use(authMiddleware.userGuardNew("AUTHOR"))
-      .use(commonMiddleware.validateBodyNew(categorySchema))
+      .use(authMiddleware.userGuard("AUTHOR"))
+      .use(commonMiddleware.validateBody(categorySchema))
       .handle(controller.createCategory)
       .apply(this.router);
 
     Route.patch("/:id")
-      .use(authMiddleware.userGuardNew("AUTHOR"))
+      .use(authMiddleware.userGuard("AUTHOR"))
       .use(commonMiddleware.validateParams(idParamsSchema))
-      .use(commonMiddleware.validateBodyNew(categorySchema.partial()))
+      .use(commonMiddleware.validateBody(categorySchema.partial()))
       .handle(controller.updateCategory)
       .apply(this.router);
 
     Route.delete("/:id")
-      .use(authMiddleware.userGuardNew("AUTHOR"))
+      .use(authMiddleware.userGuard("AUTHOR"))
       .use(commonMiddleware.validateParams(idParamsSchema))
       .handle(controller.deleteCategory)
       .apply(this.router);

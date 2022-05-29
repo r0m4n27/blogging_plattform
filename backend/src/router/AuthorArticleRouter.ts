@@ -19,32 +19,32 @@ export class AuthorArticleRouter implements SiteRouter {
     this.router = Router();
 
     Route.get("/")
-      .use(authMiddleware.userGuardNew("AUTHOR"))
+      .use(authMiddleware.userGuard("AUTHOR"))
       .handle(controller.readAll)
       .apply(this.router);
 
     Route.get("/:id")
-      .use(authMiddleware.userGuardNew("AUTHOR"))
+      .use(authMiddleware.userGuard("AUTHOR"))
       .use(commonMiddleware.validateParams(idParamsSchema))
       .handle(controller.readSingle)
       .apply(this.router);
 
     Route.post("/")
-      .use(authMiddleware.userGuardNew("AUTHOR"))
-      .use(commonMiddleware.validateBodyNew(articleSchema))
+      .use(authMiddleware.userGuard("AUTHOR"))
+      .use(commonMiddleware.validateBody(articleSchema))
       .handle(controller.create)
       .apply(this.router);
 
     Route.delete("/:id")
-      .use(authMiddleware.userGuardNew("AUTHOR"))
+      .use(authMiddleware.userGuard("AUTHOR"))
       .use(commonMiddleware.validateParams(idParamsSchema))
       .handle(controller.delete)
       .apply(this.router);
 
     Route.patch("/:id")
-      .use(authMiddleware.userGuardNew("AUTHOR"))
+      .use(authMiddleware.userGuard("AUTHOR"))
       .use(commonMiddleware.validateParams(idParamsSchema))
-      .use(commonMiddleware.validateBodyNew(articleSchema.partial()))
+      .use(commonMiddleware.validateBody(articleSchema.partial()))
       .handle(controller.update)
       .apply(this.router);
   }

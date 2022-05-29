@@ -18,12 +18,12 @@ export class RegisterCodeRouter implements SiteRouter {
     this.router = Router();
 
     Route.get("/")
-      .use(authMiddleware.userGuardNew("ADMIN"))
+      .use(authMiddleware.userGuard("ADMIN"))
       .handle(controller.listAll)
       .apply(this.router);
 
     Route.post("/")
-      .use(authMiddleware.userGuardNew("ADMIN"))
+      .use(authMiddleware.userGuard("ADMIN"))
       .handle(controller.create)
       .apply(this.router);
 

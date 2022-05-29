@@ -1,22 +1,8 @@
-import { createErrorResponse } from "@/common/express";
 import { HttpException, Req } from "@/common/router/types";
-import { NextFunction, Request, Response } from "express";
 import { z } from "zod";
 
 export class CommonMiddleware {
-  readonly validateBody =
-    <T>(schema: z.ZodSchema<T>) =>
-    async (req: Request, res: Response, next: NextFunction) => {
-      const result = await schema.safeParseAsync(req.body);
-
-      if (!result.success) {
-        return createErrorResponse(res, "Malformed body!");
-      } else {
-        next();
-      }
-    };
-
-  validateBodyNew =
+  validateBody =
     <B extends z.ZodTypeAny>(schema: B) =>
     async <P, Q, E>(
       req: Req<unknown, P, Q, E>,
