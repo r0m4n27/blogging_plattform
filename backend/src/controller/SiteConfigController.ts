@@ -1,3 +1,4 @@
+import { siteConfigErrorMessage } from "@/common/errorMessages";
 import { HttpException, Req } from "@/common/router/types";
 import {
   SiteConfigModel,
@@ -7,16 +8,13 @@ import {
 import { DatabaseService } from "@/service/database";
 
 export class SiteConfigController {
-  private readonly siteNotInitializedMessage = "Site is not initialized!";
-  private readonly siteAlreadyInitializedMessage = "Site is not initialized!";
-
   constructor(private readonly database: DatabaseService) {}
 
   read = async (): Promise<SiteConfigModel> => {
     const siteConfig = await this.database.siteConfig.findFirst();
 
     if (siteConfig === null) {
-      throw new HttpException(this.siteNotInitializedMessage);
+      throw new HttpException(siteConfigErrorMessage.siteNotInitialized);
     } else {
       return siteConfigModelFromDb(siteConfig);
     }
@@ -25,7 +23,7 @@ export class SiteConfigController {
   initialize = async (req: Req<SiteConfigModel>): Promise<SiteConfigModel> => {
     const configCount = await this.database.siteConfig.count();
     if (configCount !== 0) {
-      throw new HttpException(this.siteAlreadyInitializedMessage);
+      throw new HttpException(siteConfigErrorMessage.siteAlreadyInitialized);
     }
 
     await this.database.siteConfig.create({
@@ -40,7 +38,7 @@ export class SiteConfigController {
   ): Promise<SiteConfigModel> => {
     const configCount = await this.database.siteConfig.count();
     if (configCount === 0) {
-      throw new HttpException(this.siteNotInitializedMessage);
+      throw new HttpException(siteConfigErrorMessage.siteNotInitialized);
     }
 
     const siteConfig = await this.database.siteConfig.update({

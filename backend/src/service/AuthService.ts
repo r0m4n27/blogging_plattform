@@ -5,13 +5,9 @@ import { DatabaseService } from "./database";
 import { verify as verifyPassword } from "argon2";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import { HttpException } from "@/common/router/types";
+import { authErrorMessages } from "@/common/errorMessages";
 
 export class AuthService {
-  // Give just a simple generic response
-  private readonly badLoginText = "Password does not match!";
-  private readonly cantFindCodeText = "Can't find register code!";
-  private readonly usernameExistsText = "Username is already taken!";
-
   constructor(
     private readonly database: DatabaseService,
     private readonly jwtSecret: string,
@@ -20,12 +16,12 @@ export class AuthService {
 
   login = async (username: string, password: string): Promise<AuthResponse> => {
     const user = await this.database.user.findUnique({ where: { username } });
-    if (user === null) throw new HttpException(this.badLoginText);
+    if (user === null) throw new HttpException(authErrorMessages.badLogin);
 
     if (await verifyPassword(user.password, password)) {
       return await this.createAuthResponse(user);
     } else {
-      throw new HttpException(this.badLoginText);
+      throw new HttpException(authErrorMessages.badLogin);
     }
   };
 
@@ -41,7 +37,7 @@ export class AuthService {
       );
 
       if (!registerCodes.includes(registerCode))
-        throw new HttpException(this.cantFindCodeText);
+        throw new HttpException(authErrorMessages.cantFindCode);
     }
 
     const role: UserRole =
@@ -67,7 +63,7 @@ export class AuthService {
     } catch (e) {
       // Catch error when username is already taken
       if (e instanceof PrismaClientKnownRequestError) {
-        throw new HttpException(this.usernameExistsText);
+        throw new HttpException(authErrorMessages.usernameExists);
       } else {
         throw e;
       }
