@@ -14,8 +14,6 @@ export interface Req<
   Query = unknown,
   Extras = unknown,
 > {
-  readonly type: "request";
-
   readonly body: Body;
   readonly params: Params;
   readonly query: Query;
@@ -25,14 +23,10 @@ export interface Req<
   readonly actualRequest: Request;
 }
 
-export interface Res<Body = unknown> {
-  readonly type: "response";
-  readonly body: Body;
-  readonly status: number;
-}
-
-export type MiddlewareResponse<NextReq extends Req> = Promise<NextReq | Res>;
-
 export type Middleware<PrevRequest extends Req, NextReq extends Req> = (
   res: PrevRequest,
-) => MiddlewareResponse<NextReq>;
+) => Promise<NextReq>;
+
+export class HttpException {
+  constructor(readonly message: string, readonly status: number = 400) {}
+}

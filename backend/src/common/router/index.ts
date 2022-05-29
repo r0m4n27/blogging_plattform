@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response, Router } from "express";
-import { Middleware, Req, Res, RouteMethod } from "./types";
+import { HttpException, Middleware, Req, RouteMethod } from "./types";
 
 // The typesafety is provided with the router itself
 // rather than the list of middleware
@@ -32,7 +32,7 @@ type AnyReq = Req<any, any, any, any>;
 // be applied since we then can't determine the typesafety of the requests anymore
 export class Route<PrevRequest extends Req, HandlerCheck = never> {
   private readonly middlewareList: UnknownMiddleware[];
-  private routeHandler: undefined | ((req: PrevRequest) => Promise<Res>);
+  private routeHandler: undefined | ((req: PrevRequest) => Promise<unknown>);
 
   constructor(
     private readonly path: string,
@@ -56,7 +56,7 @@ export class Route<PrevRequest extends Req, HandlerCheck = never> {
   };
 
   handle = (
-    handlerFunction: (req: PrevRequest) => Promise<Res>,
+    handlerFunction: (req: PrevRequest) => Promise<unknown>,
   ): Route<never> => {
     this.routeHandler = handlerFunction;
 
@@ -77,8 +77,6 @@ export class Route<PrevRequest extends Req, HandlerCheck = never> {
     next: NextFunction,
   ): Promise<void> => {
     let previousRequest: AnyReq = {
-      type: "request",
-
       body: req.body,
       params: req.params,
       query: req.query,
@@ -88,12 +86,10 @@ export class Route<PrevRequest extends Req, HandlerCheck = never> {
     };
 
     for (const middleware of this.middlewareList) {
-      const result = await middleware(previousRequest);
-      if (result.type === "request") {
-        previousRequest = result;
-      } else {
-        res.status(result.status).json(result.body);
-        return;
+      try {
+        previousRequest = await middleware(previousRequest);
+      } catch (e) {
+        return this.handleError(res, e);
       }
     }
 
@@ -111,17 +107,29 @@ export class Route<PrevRequest extends Req, HandlerCheck = never> {
     if (this.routeHandler === undefined)
       throw new Error("Route Handler was not set!");
 
-    const result = await this.routeHandler({
-      type: "request",
+    try {
+      const result = await this.routeHandler({
+        body: req.body,
+        params: req.params,
+        query: req.query,
+        extras: req.extras,
 
-      body: req.body,
-      params: req.params,
-      query: req.query,
-      extras: req.extras,
+        actualRequest: req,
+      } as PrevRequest);
 
-      actualRequest: req,
-    } as PrevRequest);
+      res.json(result);
+    } catch (e) {
+      return this.handleError(res, e);
+    }
+  };
 
-    res.status(result.status).json(result.body);
+  private handleError = (res: Response, e: unknown): void => {
+    if (e instanceof HttpException) {
+      res.status(e.status).json({
+        message: e.message,
+      });
+    } else {
+      throw e;
+    }
   };
 }
