@@ -1,15 +1,14 @@
 {
-  "name": "blogging-plattform",
+  "name": "@blog/frontend",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "start:watch": "concurrently --kill-others \"vite\" \"npm run storybook\"",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview --port 8080",
     "serve-prod": "vite preview --port 8080 --host",
     "typecheck": "vue-tsc --noEmit",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "storybook": "start-storybook -p 6060 --host localhost",
-    "build-storybook": "build-storybook"
+    "lint": "eslint ./src --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
+    "storybook": "start-storybook -p 6060 --host localhost"
   },
   "dependencies": {
     "@emotion/css": "^11.9.0",
@@ -41,6 +40,7 @@
     "@vue/eslint-config-typescript": "^10.0.0",
     "@vue/tsconfig": "^0.1.3",
     "babel-loader": "^8.2.4",
+    "concurrently": "^7.2.1",
     "eslint": "^8.5.0",
     "eslint-plugin-storybook": "^0.5.11",
     "eslint-plugin-vue": "^8.2.0",
