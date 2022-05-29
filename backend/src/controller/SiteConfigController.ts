@@ -1,15 +1,10 @@
-import {
-  createErrorResponse,
-  RequestWithBody,
-  ResponseWithError,
-} from "@/common/express";
+import { HttpException, Req } from "@/common/router/types";
 import {
   SiteConfigModel,
   siteConfigModelFromDb,
   siteConfigModelToDb,
 } from "@/model/siteConfigModels";
 import { DatabaseService } from "@/service/database";
-import { Request } from "express";
 
 export class SiteConfigController {
   private readonly siteNotInitializedMessage = "Site is not initialized!";
@@ -17,39 +12,35 @@ export class SiteConfigController {
 
   constructor(private readonly database: DatabaseService) {}
 
-  read = async (_: Request, res: ResponseWithError<SiteConfigModel>) => {
+  read = async (): Promise<SiteConfigModel> => {
     const siteConfig = await this.database.siteConfig.findFirst();
 
     if (siteConfig === null) {
-      createErrorResponse(res, this.siteNotInitializedMessage);
+      throw new HttpException(this.siteNotInitializedMessage);
     } else {
-      res.json(siteConfigModelFromDb(siteConfig));
+      return siteConfigModelFromDb(siteConfig);
     }
   };
 
-  initialize = async (
-    req: RequestWithBody<SiteConfigModel>,
-    res: ResponseWithError<SiteConfigModel>,
-  ) => {
+  initialize = async (req: Req<SiteConfigModel>): Promise<SiteConfigModel> => {
     const configCount = await this.database.siteConfig.count();
     if (configCount !== 0) {
-      return createErrorResponse(res, this.siteAlreadyInitializedMessage);
+      throw new HttpException(this.siteAlreadyInitializedMessage);
     }
 
     await this.database.siteConfig.create({
       data: siteConfigModelToDb(req.body),
     });
 
-    res.json(req.body);
+    return req.body;
   };
 
   update = async (
-    req: RequestWithBody<Partial<SiteConfigModel>>,
-    res: ResponseWithError<SiteConfigModel>,
-  ) => {
+    req: Req<Partial<SiteConfigModel>>,
+  ): Promise<SiteConfigModel> => {
     const configCount = await this.database.siteConfig.count();
     if (configCount === 0) {
-      return createErrorResponse(res, this.siteNotInitializedMessage);
+      throw new HttpException(this.siteNotInitializedMessage);
     }
 
     const siteConfig = await this.database.siteConfig.update({
@@ -59,6 +50,6 @@ export class SiteConfigController {
       data: siteConfigModelToDb(req.body),
     });
 
-    res.json(siteConfigModelFromDb(siteConfig));
+    return siteConfigModelFromDb(siteConfig);
   };
 }

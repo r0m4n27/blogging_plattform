@@ -1,3 +1,4 @@
+import { Route } from "@/common/router";
 import { SiteRouter } from "@/common/siteRouter";
 import { SiteConfigController } from "@/controller/SiteConfigController";
 import { AuthMiddleware } from "@/middleware/AuthMiddleware";
@@ -16,18 +17,18 @@ export class SiteConfigRouter implements SiteRouter {
   ) {
     this.router = Router();
 
-    this.router.get("/", controller.read);
-    this.router.post(
-      "/",
-      authMiddleware.userGuard("ADMIN"),
-      commonMiddleware.validateBody(siteConfigSchema),
-      controller.initialize,
-    );
-    this.router.patch(
-      "/",
-      authMiddleware.userGuard("ADMIN"),
-      commonMiddleware.validateBody(siteConfigSchema.partial()),
-      controller.update,
-    );
+    Route.get("/").handle(controller.read).apply(this.router);
+
+    Route.post("/")
+      .use(authMiddleware.userGuardNew("ADMIN"))
+      .use(commonMiddleware.validateBodyNew(siteConfigSchema))
+      .handle(controller.initialize)
+      .apply(this.router);
+
+    Route.patch("/")
+      .use(authMiddleware.userGuardNew("ADMIN"))
+      .use(commonMiddleware.validateBodyNew(siteConfigSchema.partial()))
+      .handle(controller.update)
+      .apply(this.router);
   }
 }
