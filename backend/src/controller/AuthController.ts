@@ -1,8 +1,4 @@
-import {
-  createErrorResponse,
-  RequestWithBody,
-  ResponseWithError,
-} from "@/common/express";
+import { HttpException, Req } from "@/common/router/types";
 import {
   AuthResponse,
   LoginPayload,
@@ -13,24 +9,18 @@ import { AuthService } from "@/service/AuthService";
 export class AuthController {
   constructor(private readonly auth: AuthService) {}
 
-  login = async (
-    req: RequestWithBody<LoginPayload>,
-    res: ResponseWithError<AuthResponse>,
-  ) => {
+  login = async (req: Req<LoginPayload>): Promise<AuthResponse> => {
     const { username, password } = req.body;
 
     const authResponse = await this.auth.login(username, password);
     if (typeof authResponse === "object") {
-      return res.json(authResponse);
+      return authResponse;
     } else {
-      return createErrorResponse(res, authResponse);
+      throw new HttpException(authResponse);
     }
   };
 
-  register = async (
-    req: RequestWithBody<RegisterPayload>,
-    res: ResponseWithError<AuthResponse>,
-  ) => {
+  register = async (req: Req<RegisterPayload>): Promise<AuthResponse> => {
     const { username, password, registerCode } = req.body;
 
     const authResponse = await this.auth.register(
@@ -40,9 +30,9 @@ export class AuthController {
     );
 
     if (typeof authResponse === "object") {
-      return res.json(authResponse);
+      return authResponse;
     } else {
-      return createErrorResponse(res, authResponse);
+      throw new HttpException(authResponse);
     }
   };
 }

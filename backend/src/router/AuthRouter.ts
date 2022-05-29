@@ -1,3 +1,4 @@
+import { Route } from "@/common/router";
 import { SiteRouter } from "@/common/siteRouter";
 import { AuthController } from "@/controller/AuthController";
 import { CommonMiddleware } from "@/middleware/CommonMiddleware";
@@ -11,15 +12,14 @@ export class AuthRouter implements SiteRouter {
   constructor(controller: AuthController, commonMiddleware: CommonMiddleware) {
     this.router = Router();
 
-    this.router.post(
-      "/login",
-      commonMiddleware.validateBody(loginPayloadSchema),
-      controller.login,
-    );
-    this.router.post(
-      "/register",
-      commonMiddleware.validateBody(registerPayloadSchema),
-      controller.register,
-    );
+    Route.post("/login")
+      .use(commonMiddleware.validateBodyNew(loginPayloadSchema))
+      .handle(controller.login)
+      .apply(this.router);
+
+    Route.post("/register")
+      .use(commonMiddleware.validateBodyNew(registerPayloadSchema))
+      .handle(controller.register)
+      .apply(this.router);
   }
 }

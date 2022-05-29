@@ -1,6 +1,9 @@
+import { Route } from "@/common/router";
 import { SiteRouter } from "@/common/siteRouter";
 import { RegisterCodeController } from "@/controller/RegisterCodeController";
 import { AuthMiddleware } from "@/middleware/AuthMiddleware";
+import { CommonMiddleware } from "@/middleware/CommonMiddleware";
+import { idParamsSchema } from "@/model/commonModels";
 import { Router } from "express";
 
 export class RegisterCodeRouter implements SiteRouter {
@@ -10,17 +13,23 @@ export class RegisterCodeRouter implements SiteRouter {
   constructor(
     controller: RegisterCodeController,
     authMiddleware: AuthMiddleware,
+    commonMiddleware: CommonMiddleware,
   ) {
     this.router = Router();
 
-    this.router.get("/", authMiddleware.userGuard("ADMIN"), controller.listAll);
+    Route.get("/")
+      .use(authMiddleware.userGuardNew("ADMIN"))
+      .handle(controller.listAll)
+      .apply(this.router);
 
-    this.router.post("/", authMiddleware.userGuard("ADMIN"), controller.create);
+    Route.post("/")
+      .use(authMiddleware.userGuardNew("ADMIN"))
+      .handle(controller.create)
+      .apply(this.router);
 
-    this.router.delete(
-      "/:id",
-      authMiddleware.userGuard("ADMIN"),
-      controller.delete,
-    );
+    Route.delete("/:id")
+      .use(commonMiddleware.validateParams(idParamsSchema))
+      .handle(controller.delete)
+      .apply(this.router);
   }
 }
