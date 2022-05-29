@@ -8,6 +8,8 @@ type UnknownMiddleware = Middleware<any, any>;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyReq = Req<any, any, any, any>;
 
+export type ConfiguredRoute = Route<never, true>;
+
 // Idea for this is inspired by: https://github.com/akheron/typera
 //
 // The route works a bit different that the the middleware in express
@@ -24,13 +26,13 @@ type AnyReq = Req<any, any, any, any>;
 // middleware in the route
 // When the 'use' function is called, the PrevRequest type is changed accordingly
 //
-// There is also the generic Parameter 'HandlerCheck' it is used to determine
+// There is also the generic Parameter 'Configured' it is used to determine
 // wether the handle function was called. With this the apply function
 // is only called when a handler was configured
 //
 // Also after calling the handle function the function no new middleware can
 // be applied since we then can't determine the typesafety of the requests anymore
-export class Route<PrevRequest extends Req, HandlerCheck = never> {
+export class Route<PrevRequest extends Req, Configured = false> {
   private readonly middlewareList: UnknownMiddleware[];
   private routeHandler: undefined | ((req: PrevRequest) => Promise<unknown>);
 
@@ -52,7 +54,7 @@ export class Route<PrevRequest extends Req, HandlerCheck = never> {
   ): Route<NextRequest, never> => {
     this.middlewareList.push(middleware);
 
-    return this as unknown as Route<NextRequest>;
+    return this as unknown as Route<NextRequest, false>;
   };
 
   handle = (
@@ -63,7 +65,7 @@ export class Route<PrevRequest extends Req, HandlerCheck = never> {
     return this as unknown as Route<never, true>;
   };
 
-  apply = (expressRouter: HandlerCheck extends never ? never : Router) => {
+  apply = (expressRouter: Configured extends true ? Router : never) => {
     expressRouter[this.method](
       this.path,
       this.expressMiddlewareHandler,

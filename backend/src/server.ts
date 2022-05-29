@@ -1,4 +1,4 @@
-import { Express } from "express";
+import { Express, Router } from "express";
 import express from "express";
 import morgan from "morgan";
 import { SiteRouter } from "./common/siteRouter";
@@ -18,8 +18,12 @@ export class Server {
     this.app.use(express.json());
     this.app.use(morgan("short"));
 
-    routers.forEach((router) => {
-      this.app.use(router.path, router.router);
+    routers.forEach((siteRouter) => {
+      const router = Router();
+      siteRouter.routes.forEach((route) => {
+        route.apply(router);
+      });
+      this.app.use(siteRouter.path, router);
     });
   }
 

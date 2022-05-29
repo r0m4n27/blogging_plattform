@@ -1,34 +1,36 @@
-import { Route } from "@/common/router";
+import { ConfiguredRoute, Route } from "@/common/router";
 import { SiteRouter } from "@/common/siteRouter";
 import { SiteConfigController } from "@/controller/SiteConfigController";
 import { AuthMiddleware } from "@/middleware/AuthMiddleware";
 import { CommonMiddleware } from "@/middleware/CommonMiddleware";
 import { siteConfigSchema } from "@/model/siteConfigModels";
-import { Router } from "express";
 
 export class SiteConfigRouter implements SiteRouter {
-  readonly router: Router;
   readonly path: string = "/siteConfig";
+
+  private readonly readRoute: ConfiguredRoute;
+  private readonly initRoute: ConfiguredRoute;
+  private readonly updateRoute: ConfiguredRoute;
 
   constructor(
     controller: SiteConfigController,
     commonMiddleware: CommonMiddleware,
     authMiddleware: AuthMiddleware,
   ) {
-    this.router = Router();
+    this.readRoute = Route.get("/").handle(controller.read);
 
-    Route.get("/").handle(controller.read).apply(this.router);
-
-    Route.post("/")
+    this.initRoute = Route.post("/")
       .use(authMiddleware.userGuard("ADMIN"))
       .use(commonMiddleware.validateBody(siteConfigSchema))
-      .handle(controller.initialize)
-      .apply(this.router);
+      .handle(controller.initialize);
 
-    Route.patch("/")
+    this.updateRoute = Route.patch("/")
       .use(authMiddleware.userGuard("ADMIN"))
       .use(commonMiddleware.validateBody(siteConfigSchema.partial()))
-      .handle(controller.update)
-      .apply(this.router);
+      .handle(controller.update);
+  }
+
+  get routes() {
+    return [this.readRoute, this.initRoute, this.updateRoute];
   }
 }

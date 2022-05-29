@@ -1,35 +1,36 @@
-import { Route } from "@/common/router";
+import { ConfiguredRoute, Route } from "@/common/router";
 import { SiteRouter } from "@/common/siteRouter";
 import { RegisterCodeController } from "@/controller/RegisterCodeController";
 import { AuthMiddleware } from "@/middleware/AuthMiddleware";
 import { CommonMiddleware } from "@/middleware/CommonMiddleware";
 import { idParamsSchema } from "@/model/commonModels";
-import { Router } from "express";
 
 export class RegisterCodeRouter implements SiteRouter {
-  readonly router: Router;
   readonly path: string = "/auth/registerCodes";
+
+  private readonly readAllRoute: ConfiguredRoute;
+  private readonly createRoute: ConfiguredRoute;
+  private readonly deleteRoute: ConfiguredRoute;
 
   constructor(
     controller: RegisterCodeController,
     authMiddleware: AuthMiddleware,
     commonMiddleware: CommonMiddleware,
   ) {
-    this.router = Router();
-
-    Route.get("/")
+    this.readAllRoute = Route.get("/")
       .use(authMiddleware.userGuard("ADMIN"))
-      .handle(controller.listAll)
-      .apply(this.router);
+      .handle(controller.listAll);
 
-    Route.post("/")
+    this.createRoute = Route.post("/")
       .use(authMiddleware.userGuard("ADMIN"))
-      .handle(controller.create)
-      .apply(this.router);
+      .handle(controller.create);
 
-    Route.delete("/:id")
+    this.deleteRoute = Route.delete("/:id")
       .use(commonMiddleware.validateParams(idParamsSchema))
-      .handle(controller.delete)
-      .apply(this.router);
+      .handle(controller.delete);
+  }
+
+  get routes() {
+    return [this.readAllRoute, this.deleteRoute, this.createRoute];
   }
 }

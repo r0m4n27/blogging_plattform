@@ -1,6 +1,6 @@
-import { Router } from "express";
+import { ConfiguredRoute } from "./router";
 
 export interface SiteRouter {
   readonly path: string;
-  readonly router: Router;
+  readonly routes: ConfiguredRoute[];
 }
