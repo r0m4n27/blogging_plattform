@@ -1,77 +1,54 @@
-import {
-  createErrorResponse,
-  RequestWithBody,
-  ResponseWithError,
-} from "@/common/express";
-import { RequestWithUser } from "@/model/authModels";
+import { HttpException, Req } from "@/common/router/types";
+import { ReqWithUser } from "@/model/authModels";
 import {
   ArticleModel,
   ArticleResponse,
   articleResponseFromDb,
 } from "@/model/authorArticleModels";
+import { IdParamsModel } from "@/model/commonModels";
 import { ArticleService } from "@/service/ArticleService";
-import { Request } from "express";
 
 export class AuthorArticleController {
   private readonly articleNotFoundText = "Article not found!";
 
   constructor(private readonly articles: ArticleService) {}
 
-  readAll = async (req: Request, res: ResponseWithError<ArticleResponse[]>) => {
-    const requestWithUser = req as RequestWithUser<unknown>;
-
+  readAll = async (req: ReqWithUser): Promise<ArticleResponse[]> => {
     // Excluding only one item from the selection doesn't work so 'articleResponseFromDb' is used
-    const articles = await this.articles.readAllByUser(
-      requestWithUser.injected.user,
-    );
+    const articles = await this.articles.readAllByUser(req.extras.user);
 
-    res.json(articles.map(articleResponseFromDb));
+    return articles.map(articleResponseFromDb);
   };
 
   readSingle = async (
-    req: Request,
-    res: ResponseWithError<ArticleResponse>,
-  ) => {
+    req: Req<unknown, IdParamsModel>,
+  ): Promise<ArticleResponse> => {
     const article = await this.articles.readSingle(req.params["id"]);
 
     if (article !== null) {
-      res.json(articleResponseFromDb(article));
+      return articleResponseFromDb(article);
     } else {
-      createErrorResponse(res, this.articleNotFoundText, 404);
+      throw new HttpException(this.articleNotFoundText, 404);
     }
   };
 
-  create = async (
-    req: RequestWithBody<ArticleModel>,
-    res: ResponseWithError<ArticleResponse>,
-  ) => {
-    const requestWithUser = req as RequestWithUser<unknown>;
-    const article = await this.articles.create(
-      req.body,
-      requestWithUser.injected.user,
-    );
+  create = async (req: ReqWithUser<ArticleModel>): Promise<ArticleResponse> => {
+    const article = await this.articles.create(req.body, req.extras.user);
 
-    res.json(articleResponseFromDb(article));
+    return articleResponseFromDb(article);
   };
 
   update = async (
-    req: RequestWithBody<Partial<ArticleModel>>,
-    res: ResponseWithError<ArticleResponse>,
-  ) => {
-    const updatedArticle = await this.articles.update(
-      req.params["id"],
-      req.body,
-    );
+    req: Req<Partial<ArticleModel>, IdParamsModel>,
+  ): Promise<ArticleResponse> => {
+    const updatedArticle = await this.articles.update(req.params.id, req.body);
 
-    res.json(articleResponseFromDb(updatedArticle));
+    return articleResponseFromDb(updatedArticle);
   };
 
-  delete = async (
-    req: Request,
-    res: ResponseWithError<Record<string, never>>,
-  ) => {
-    await this.articles.delete(req.params["id"]);
+  delete = async (req: Req<unknown, IdParamsModel>) => {
+    await this.articles.delete(req.params.id);
 
-    res.json({});
+    return {};
   };
 }

@@ -1,39 +1,32 @@
-import { RequestWithBody, ResponseWithError } from "@/common/express";
+import { Req } from "@/common/router/types";
 import { CategoryModel } from "@/model/authorCategoryModels";
+import { IdParamsModel } from "@/model/commonModels";
 import { CategoryService } from "@/service/CategoryService";
 import { Category } from "@prisma/client";
-import { Request } from "express";
 
 export class AuthorCategoryController {
   constructor(private readonly categories: CategoryService) {}
 
   // Every Author has the same categories
-  readAll = async (_: Request, res: ResponseWithError<Category[]>) =>
-    res.json(await this.categories.readAll());
+  readAll = async (): Promise<Category[]> => await this.categories.readAll();
 
-  createCategory = async (
-    req: RequestWithBody<CategoryModel>,
-    res: ResponseWithError<Category>,
-  ) => res.json(await this.categories.create(req.body));
+  createCategory = async (req: Req<CategoryModel>): Promise<Category> =>
+    await this.categories.create(req.body);
 
-  deleteCategory = async (
-    req: Request,
-    res: ResponseWithError<Record<string, never>>,
-  ) => {
-    await this.categories.deleteById(req.params["id"]);
+  deleteCategory = async (req: Req<unknown, IdParamsModel>) => {
+    await this.categories.deleteById(req.params.id);
 
-    res.json({});
+    return {};
   };
 
   updateCategory = async (
-    req: RequestWithBody<Partial<CategoryModel>>,
-    res: ResponseWithError<Category>,
-  ) => {
+    req: Req<Partial<CategoryModel>, IdParamsModel>,
+  ): Promise<Category> => {
     const updatedCategory = await this.categories.updateById(
-      req.params["id"],
+      req.params.id,
       req.body,
     );
 
-    res.json(updatedCategory);
+    return updatedCategory;
   };
 }

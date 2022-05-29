@@ -1,19 +1,50 @@
+import { ConfiguredRoute, Route } from "@/common/router";
 import { SiteRouter } from "@/common/siteRouter";
 import { VisitorController } from "@/controller/VisitorController";
-import { Router } from "express";
+import { CommonMiddleware } from "@/middleware/CommonMiddleware";
+import { idParamsSchema } from "@/model/commonModels";
+import { readArticlesQuerySchema } from "@/model/visitorModels";
 
 export class VisitorRouter implements SiteRouter {
   readonly path: string = "/";
-  readonly router: Router;
 
-  constructor(controller: VisitorController) {
-    this.router = Router();
+  private readonly readArticlesRoute: ConfiguredRoute;
+  private readonly readSingleArticleRoute: ConfiguredRoute;
+  private readonly readArchiveRoute: ConfiguredRoute;
+  private readonly readCategoriesRoute: ConfiguredRoute;
+  private readonly readSingleCategoryRoute: ConfiguredRoute;
 
-    this.router.get("/articles", controller.readArticles);
-    this.router.get("/articles/:id", controller.readSingleArticle);
+  constructor(
+    controller: VisitorController,
+    commonMiddleware: CommonMiddleware,
+  ) {
+    this.readArticlesRoute = Route.get("/articles")
+      .use(commonMiddleware.validateQuery(readArticlesQuerySchema))
+      .handle(controller.readArticles);
 
-    this.router.get("/archive", controller.readArchive);
-    this.router.get("/categories", controller.readCategories);
-    this.router.get("/categories/:id", controller.readCategory);
+    this.readSingleArticleRoute = Route.get("/articles/:id")
+      .use(commonMiddleware.validateParams(idParamsSchema))
+      .handle(controller.readSingleArticle);
+
+    this.readArchiveRoute = Route.get("/archive").handle(
+      controller.readArchive,
+    );
+
+    this.readCategoriesRoute = Route.get("/categories").handle(
+      controller.readCategories,
+    );
+    this.readSingleCategoryRoute = Route.get("/categories/:id")
+      .use(commonMiddleware.validateParams(idParamsSchema))
+      .handle(controller.readCategory);
+  }
+
+  get routes() {
+    return [
+      this.readArticlesRoute,
+      this.readArchiveRoute,
+      this.readCategoriesRoute,
+      this.readSingleArticleRoute,
+      this.readSingleCategoryRoute,
+    ];
   }
 }

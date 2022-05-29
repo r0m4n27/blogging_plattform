@@ -4,6 +4,7 @@ import { User, UserRole } from "@prisma/client";
 import { DatabaseService } from "./database";
 import { verify as verifyPassword } from "argon2";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
+import { HttpException } from "@/common/router/types";
 
 export class AuthService {
   // Give just a simple generic response
@@ -17,17 +18,14 @@ export class AuthService {
     private readonly adminRegisterCode: string,
   ) {}
 
-  login = async (
-    username: string,
-    password: string,
-  ): Promise<AuthResponse | string> => {
+  login = async (username: string, password: string): Promise<AuthResponse> => {
     const user = await this.database.user.findUnique({ where: { username } });
-    if (user === null) return this.badLoginText;
+    if (user === null) throw new HttpException(this.badLoginText);
 
     if (await verifyPassword(user.password, password)) {
       return await this.createAuthResponse(user);
     } else {
-      return this.badLoginText;
+      throw new HttpException(this.badLoginText);
     }
   };
 
@@ -35,14 +33,15 @@ export class AuthService {
     username: string,
     password: string,
     registerCode: string,
-  ): Promise<AuthResponse | string> => {
+  ): Promise<AuthResponse> => {
     // Check and claim register code
     if (registerCode != this.adminRegisterCode) {
       const registerCodes = (await this.database.registerCode.findMany()).map(
         (code) => code.id,
       );
 
-      if (!registerCodes.includes(registerCode)) return this.cantFindCodeText;
+      if (!registerCodes.includes(registerCode))
+        throw new HttpException(this.cantFindCodeText);
     }
 
     const role: UserRole =
@@ -68,7 +67,7 @@ export class AuthService {
     } catch (e) {
       // Catch error when username is already taken
       if (e instanceof PrismaClientKnownRequestError) {
-        return this.usernameExistsText;
+        throw new HttpException(this.usernameExistsText);
       } else {
         throw e;
       }

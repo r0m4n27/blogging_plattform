@@ -1,28 +1,25 @@
-import { ResponseWithError } from "@/common/express";
+import { Req } from "@/common/router/types";
+import { IdParamsModel } from "@/model/commonModels";
 import { DatabaseService } from "@/service/database";
-import { Request } from "express";
 
 export class RegisterCodeController {
   constructor(private readonly database: DatabaseService) {}
 
-  listAll = async (_: Request, res: ResponseWithError<string[]>) => {
+  listAll = async (): Promise<string[]> => {
     const codes = await this.database.registerCode.findMany();
 
-    res.json(codes.map((code) => code.id));
+    return codes.map((code) => code.id);
   };
 
-  create = async (_: Request, res: ResponseWithError<string>) => {
+  create = async (): Promise<string> => {
     const code = await this.database.registerCode.create({ data: {} });
-    res.json(code.id);
+    return code.id;
   };
 
-  delete = async (
-    req: Request,
-    res: ResponseWithError<Record<string, never>>,
-  ) => {
-    const id = req.params["id"];
+  delete = async (req: Req<unknown, IdParamsModel>) => {
+    const id = req.params.id;
     await this.database.registerCode.delete({ where: { id } });
 
-    res.json({});
+    return {};
   };
 }

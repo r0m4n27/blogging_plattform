@@ -1,4 +1,4 @@
-import { RequestWithBody } from "@/common/express";
+import { Req } from "@/common/router/types";
 import { User, UserRole } from "@prisma/client";
 import { z } from "zod";
 
@@ -27,8 +27,13 @@ export const registerPayloadSchema = loginPayloadSchema.and(
 
 export type RegisterPayload = z.infer<typeof registerPayloadSchema>;
 
-export interface RequestWithUser<T> extends RequestWithBody<T> {
-  injected: {
+export type ReqWithUser<
+  B = unknown,
+  P = unknown,
+  Q = unknown,
+  E = unknown,
+> = Req<B, P, Q, E> & {
+  extras: {
     user: User;
   };
-}
+};

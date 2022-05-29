@@ -27,6 +27,7 @@ export class RouterModule {
     this.registerCodeRouter = new RegisterCodeRouter(
       controllers.registerCodeController,
       middleware.authMiddleware,
+      middleware.commonMiddleware,
     );
 
     this.siteConfigRouter = new SiteConfigRouter(
@@ -52,7 +53,10 @@ export class RouterModule {
       middleware.authMiddleware,
     );
 
-    this.visitorRouter = new VisitorRouter(controllers.visitorController);
+    this.visitorRouter = new VisitorRouter(
+      controllers.visitorController,
+      middleware.commonMiddleware,
+    );
   }
 
   get routers(): SiteRouter[] {

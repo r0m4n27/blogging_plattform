@@ -1,49 +1,58 @@
+import { ConfiguredRoute, Route } from "@/common/router";
 import { SiteRouter } from "@/common/siteRouter";
 import { AuthorArticleController } from "@/controller/AuthorArticleController";
 import { AuthMiddleware } from "@/middleware/AuthMiddleware";
 import { CommonMiddleware } from "@/middleware/CommonMiddleware";
 import { articleSchema } from "@/model/authorArticleModels";
-import { Router } from "express";
+import { idParamsSchema } from "@/model/commonModels";
 
 export class AuthorArticleRouter implements SiteRouter {
   readonly path: string = "/author/articles";
-  readonly router: Router;
+
+  private readonly readAllRoute: ConfiguredRoute;
+  private readonly readSingleRoute: ConfiguredRoute;
+  private readonly createRoute: ConfiguredRoute;
+  private readonly updateRoute: ConfiguredRoute;
+  private readonly deleteRoute: ConfiguredRoute;
 
   constructor(
     controller: AuthorArticleController,
     commonMiddleware: CommonMiddleware,
     authMiddleware: AuthMiddleware,
   ) {
-    this.router = Router();
+    this.readAllRoute = Route.get("/")
+      .use(authMiddleware.userGuard("AUTHOR"))
+      .handle(controller.readAll);
 
-    this.router.get(
-      "/",
-      authMiddleware.userGuard("AUTHOR"),
-      controller.readAll,
-    );
-    this.router.get(
-      "/:id",
-      authMiddleware.userGuard("AUTHOR"),
-      controller.readSingle,
-    );
+    this.readSingleRoute = Route.get("/:id")
+      .use(authMiddleware.userGuard("AUTHOR"))
+      .use(commonMiddleware.validateParams(idParamsSchema))
+      .handle(controller.readSingle);
 
-    this.router.post(
-      "/",
-      authMiddleware.userGuard("AUTHOR"),
-      commonMiddleware.validateBody(articleSchema),
-      controller.create,
-    );
-    this.router.patch(
-      "/:id",
-      authMiddleware.userGuard("AUTHOR"),
-      commonMiddleware.validateBody(articleSchema.partial()),
-      controller.update,
-    );
+    this.createRoute = Route.post("/")
+      .use(authMiddleware.userGuard("AUTHOR"))
+      .use(commonMiddleware.validateBody(articleSchema))
+      .handle(controller.create);
 
-    this.router.delete(
-      "/:id",
-      authMiddleware.userGuard("AUTHOR"),
-      controller.delete,
-    );
+    this.deleteRoute = Route.delete("/:id")
+      .use(authMiddleware.userGuard("AUTHOR"))
+      .use(commonMiddleware.validateParams(idParamsSchema))
+      .handle(controller.delete);
+
+    this.updateRoute = Route.patch("/:id")
+      .use(authMiddleware.userGuard("AUTHOR"))
+      .use(commonMiddleware.validateParams(idParamsSchema))
+      .use(commonMiddleware.validateBody(articleSchema.partial()))
+      .handle(controller.update);
+  }
+
+  get routes() {
+    return [
+      this.readAllRoute,
+      this.readSingleRoute,
+      this.createRoute,
+      this.updateRoute,
+      this.deleteRoute,
+    ];
   }
 }
