@@ -1,3 +1,4 @@
+import { articleErrorMessages } from "@/common/errorMessages";
 import { HttpException, Req } from "@/common/router/types";
 import { ReqWithUser } from "@/model/authModels";
 import {
@@ -9,8 +10,6 @@ import { IdParamsModel } from "@/model/commonModels";
 import { ArticleService } from "@/service/ArticleService";
 
 export class AuthorArticleController {
-  private readonly articleNotFoundText = "Article not found!";
-
   constructor(private readonly articles: ArticleService) {}
 
   readAll = async (req: ReqWithUser): Promise<ArticleResponse[]> => {
@@ -28,7 +27,7 @@ export class AuthorArticleController {
     if (article !== null) {
       return articleResponseFromDb(article);
     } else {
-      throw new HttpException(this.articleNotFoundText, 404);
+      throw new HttpException(articleErrorMessages.articleNotFound, 404);
     }
   };
 

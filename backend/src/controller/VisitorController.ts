@@ -1,3 +1,7 @@
+import {
+  articleErrorMessages,
+  categoryErrorMessages,
+} from "@/common/errorMessages";
 import { HttpException, Req } from "@/common/router/types";
 import { IdParamsModel } from "@/model/commonModels";
 import {
@@ -13,9 +17,6 @@ import { ArticleService } from "@/service/ArticleService";
 import { CategoryService } from "@/service/CategoryService";
 
 export class VisitorController {
-  private readonly articleNotFoundText = "Article not found!";
-  private readonly categoryNotFoundText = "Category not found!";
-
   constructor(
     private readonly articles: ArticleService,
     private readonly categories: CategoryService,
@@ -49,7 +50,7 @@ export class VisitorController {
     if (article !== null) {
       return visitorArticleFromDb(article);
     } else {
-      throw new HttpException(this.articleNotFoundText, 404);
+      throw new HttpException(articleErrorMessages.articleNotFound, 404);
     }
   };
 
@@ -78,7 +79,7 @@ export class VisitorController {
     if (category !== null) {
       return visitorCategoryFromDb(category);
     } else {
-      throw new HttpException(this.categoryNotFoundText, 404);
+      throw new HttpException(categoryErrorMessages.categoryNotFound, 404);
     }
   };
 }
