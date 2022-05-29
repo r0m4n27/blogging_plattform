@@ -1,7 +1,9 @@
+import { Route } from "@/common/router";
 import { SiteRouter } from "@/common/siteRouter";
 import { UserController } from "@/controller/UserController";
 import { AuthMiddleware } from "@/middleware/AuthMiddleware";
 import { CommonMiddleware } from "@/middleware/CommonMiddleware";
+import { idParamsSchema } from "@/model/commonModels";
 import { updateUserSchema } from "@/model/userModels";
 import { Router } from "express";
 
@@ -16,23 +18,21 @@ export class UserRouter implements SiteRouter {
   ) {
     this.router = Router();
 
-    this.router.get(
-      "/",
-      authMiddleware.userGuard("ADMIN"),
-      userController.readAllExceptAdmin,
-    );
+    Route.get("/")
+      .use(authMiddleware.userGuardNew("ADMIN"))
+      .handle(userController.readAllExceptAdmin)
+      .apply(this.router);
 
-    this.router.delete(
-      "/:id",
-      authMiddleware.userGuard("ADMIN"),
-      userController.deleteUser,
-    );
+    Route.delete("/:id")
+      .use(authMiddleware.userGuardNew("ADMIN"))
+      .use(commonMiddleware.validateParams(idParamsSchema))
+      .handle(userController.deleteUser)
+      .apply(this.router);
 
-    this.router.patch(
-      "/me",
-      authMiddleware.userGuard(),
-      commonMiddleware.validateBody(updateUserSchema.partial()),
-      userController.updateCurrentUser,
-    );
+    Route.patch("/me")
+      .use(authMiddleware.userGuardNew())
+      .use(commonMiddleware.validateBodyNew(updateUserSchema.partial()))
+      .handle(userController.updateCurrentUser)
+      .apply(this.router);
   }
 }

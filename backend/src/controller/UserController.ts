@@ -1,20 +1,17 @@
-import { RequestWithBody, ResponseWithError } from "@/common/express";
-import { RequestWithUser } from "@/model/authModels";
+import { Req } from "@/common/router/types";
+import { ReqWithUser } from "@/model/authModels";
+import { IdParamsModel } from "@/model/commonModels";
 import {
   FullUserResponse,
   UpdateUserSchema,
   UserResponse,
 } from "@/model/userModels";
 import { DatabaseService } from "@/service/database";
-import { Request } from "express";
 
 export class UserController {
   constructor(private readonly database: DatabaseService) {}
 
-  readAllExceptAdmin = async (
-    _: Request,
-    res: ResponseWithError<UserResponse[]>,
-  ) => {
+  readAllExceptAdmin = async (): Promise<UserResponse[]> => {
     const users = await this.database.user.findMany({
       where: {
         NOT: {
@@ -23,19 +20,14 @@ export class UserController {
       },
     });
 
-    res.json(
-      users.map((user) => ({
-        id: user.id,
-        username: user.username,
-      })),
-    );
+    return users.map((user) => ({
+      id: user.id,
+      username: user.username,
+    }));
   };
 
-  deleteUser = async (
-    req: Request,
-    res: ResponseWithError<Record<string, never>>,
-  ) => {
-    const id = req.params["id"];
+  deleteUser = async (req: Req<unknown, IdParamsModel>) => {
+    const id = req.params.id;
 
     await this.database.user.delete({
       where: {
@@ -43,16 +35,13 @@ export class UserController {
       },
     });
 
-    res.json({});
+    return {};
   };
 
   updateCurrentUser = async (
-    req: RequestWithBody<Partial<UpdateUserSchema>>,
-    res: ResponseWithError<FullUserResponse>,
-  ) => {
-    // This has to be done, otherwise typescript doesn't like the typing in the router
-    const requestWithUser = req as RequestWithUser<UpdateUserSchema>;
-    const { id } = requestWithUser.injected.user;
+    req: ReqWithUser<Partial<UpdateUserSchema>>,
+  ): Promise<FullUserResponse> => {
+    const id = req.extras.user.id;
 
     const updatedUser = await this.database.user.update({
       data: req.body,
@@ -61,10 +50,10 @@ export class UserController {
       },
     });
 
-    res.json({
+    return {
       id: updatedUser.id,
       username: updatedUser.username,
       role: updatedUser.role,
-    });
+    };
   };
 }
