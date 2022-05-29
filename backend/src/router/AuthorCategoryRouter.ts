@@ -1,8 +1,10 @@
+import { Route } from "@/common/router";
 import { SiteRouter } from "@/common/siteRouter";
 import { AuthorCategoryController } from "@/controller/AuthorCategoryController";
 import { AuthMiddleware } from "@/middleware/AuthMiddleware";
 import { CommonMiddleware } from "@/middleware/CommonMiddleware";
 import { categorySchema } from "@/model/authorCategoryModels";
+import { idParamsSchema } from "@/model/commonModels";
 import { Router } from "express";
 
 export class AuthorCategoryRouter implements SiteRouter {
@@ -16,29 +18,28 @@ export class AuthorCategoryRouter implements SiteRouter {
   ) {
     this.router = Router();
 
-    this.router.get(
-      "/",
-      authMiddleware.userGuard("AUTHOR"),
-      controller.readAll,
-    );
-    this.router.post(
-      "/",
-      authMiddleware.userGuard("AUTHOR"),
-      commonMiddleware.validateBody(categorySchema),
-      controller.createCategory,
-    );
+    Route.get("/")
+      .use(authMiddleware.userGuardNew("AUTHOR"))
+      .handle(controller.readAll)
+      .apply(this.router);
 
-    this.router.patch(
-      "/:id",
-      authMiddleware.userGuard("AUTHOR"),
-      commonMiddleware.validateBody(categorySchema.partial()),
-      controller.updateCategory,
-    );
+    Route.post("/")
+      .use(authMiddleware.userGuardNew("AUTHOR"))
+      .use(commonMiddleware.validateBodyNew(categorySchema))
+      .handle(controller.createCategory)
+      .apply(this.router);
 
-    this.router.delete(
-      "/:id",
-      authMiddleware.userGuard("AUTHOR"),
-      controller.deleteCategory,
-    );
+    Route.patch("/:id")
+      .use(authMiddleware.userGuardNew("AUTHOR"))
+      .use(commonMiddleware.validateParams(idParamsSchema))
+      .use(commonMiddleware.validateBodyNew(categorySchema.partial()))
+      .handle(controller.updateCategory)
+      .apply(this.router);
+
+    Route.delete("/:id")
+      .use(authMiddleware.userGuardNew("AUTHOR"))
+      .use(commonMiddleware.validateParams(idParamsSchema))
+      .handle(controller.deleteCategory)
+      .apply(this.router);
   }
 }

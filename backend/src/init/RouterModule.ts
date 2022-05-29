@@ -27,6 +27,7 @@ export class RouterModule {
     this.registerCodeRouter = new RegisterCodeRouter(
       controllers.registerCodeController,
       middleware.authMiddleware,
+      middleware.commonMiddleware,
     );
 
     this.siteConfigRouter = new SiteConfigRouter(

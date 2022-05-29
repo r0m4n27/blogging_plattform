@@ -1,8 +1,10 @@
+import { Route } from "@/common/router";
 import { SiteRouter } from "@/common/siteRouter";
 import { AuthorArticleController } from "@/controller/AuthorArticleController";
 import { AuthMiddleware } from "@/middleware/AuthMiddleware";
 import { CommonMiddleware } from "@/middleware/CommonMiddleware";
 import { articleSchema } from "@/model/authorArticleModels";
+import { idParamsSchema } from "@/model/commonModels";
 import { Router } from "express";
 
 export class AuthorArticleRouter implements SiteRouter {
@@ -16,34 +18,34 @@ export class AuthorArticleRouter implements SiteRouter {
   ) {
     this.router = Router();
 
-    this.router.get(
-      "/",
-      authMiddleware.userGuard("AUTHOR"),
-      controller.readAll,
-    );
-    this.router.get(
-      "/:id",
-      authMiddleware.userGuard("AUTHOR"),
-      controller.readSingle,
-    );
+    Route.get("/")
+      .use(authMiddleware.userGuardNew("AUTHOR"))
+      .handle(controller.readAll)
+      .apply(this.router);
 
-    this.router.post(
-      "/",
-      authMiddleware.userGuard("AUTHOR"),
-      commonMiddleware.validateBody(articleSchema),
-      controller.create,
-    );
-    this.router.patch(
-      "/:id",
-      authMiddleware.userGuard("AUTHOR"),
-      commonMiddleware.validateBody(articleSchema.partial()),
-      controller.update,
-    );
+    Route.get("/:id")
+      .use(authMiddleware.userGuardNew("AUTHOR"))
+      .use(commonMiddleware.validateParams(idParamsSchema))
+      .handle(controller.readSingle)
+      .apply(this.router);
 
-    this.router.delete(
-      "/:id",
-      authMiddleware.userGuard("AUTHOR"),
-      controller.delete,
-    );
+    Route.post("/")
+      .use(authMiddleware.userGuardNew("AUTHOR"))
+      .use(commonMiddleware.validateBodyNew(articleSchema))
+      .handle(controller.create)
+      .apply(this.router);
+
+    Route.delete("/:id")
+      .use(authMiddleware.userGuardNew("AUTHOR"))
+      .use(commonMiddleware.validateParams(idParamsSchema))
+      .handle(controller.delete)
+      .apply(this.router);
+
+    Route.patch("/:id")
+      .use(authMiddleware.userGuardNew("AUTHOR"))
+      .use(commonMiddleware.validateParams(idParamsSchema))
+      .use(commonMiddleware.validateBodyNew(articleSchema.partial()))
+      .handle(controller.update)
+      .apply(this.router);
   }
 }
