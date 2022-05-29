@@ -1,6 +1,8 @@
-import { createErrorResponse, ResponseWithError } from "@/common/express";
+import { HttpException, Req } from "@/common/router/types";
+import { IdParamsModel } from "@/model/commonModels";
 import {
   ArticleWithCategories,
+  ReadArticlesQueryModel,
   VisitorArchiveResponse,
   visitorArticleFromDb,
   VisitorArticleResponse,
@@ -9,7 +11,6 @@ import {
 } from "@/model/visitorModels";
 import { ArticleService } from "@/service/ArticleService";
 import { CategoryService } from "@/service/CategoryService";
-import { Request } from "express";
 
 export class VisitorController {
   private readonly articleNotFoundText = "Article not found!";
@@ -21,9 +22,8 @@ export class VisitorController {
   ) {}
 
   readArticles = async (
-    req: Request,
-    res: ResponseWithError<VisitorArticleResponse[]>,
-  ) => {
+    req: Req<unknown, unknown, ReadArticlesQueryModel>,
+  ): Promise<VisitorArticleResponse[]> => {
     let articles: ArticleWithCategories[];
 
     const category = req.query["category"];
@@ -33,64 +33,52 @@ export class VisitorController {
         category as string,
       );
     } else if (year !== undefined) {
-      articles = await this.articles.readAllByYearAsVisitor(
-        parseInt(year as string),
-      );
+      articles = await this.articles.readAllByYearAsVisitor(year);
     } else {
       articles = await this.articles.readAllAsVisitor();
     }
 
-    res.json(articles.map(visitorArticleFromDb));
+    return articles.map(visitorArticleFromDb);
   };
 
   readSingleArticle = async (
-    req: Request,
-    res: ResponseWithError<VisitorArticleResponse>,
-  ) => {
-    const article = await this.articles.readSingleAsVisitor(req.params["id"]);
+    req: Req<unknown, IdParamsModel>,
+  ): Promise<VisitorArticleResponse> => {
+    const article = await this.articles.readSingleAsVisitor(req.params.id);
 
     if (article !== null) {
-      res.json(visitorArticleFromDb(article));
+      return visitorArticleFromDb(article);
     } else {
-      createErrorResponse(res, this.articleNotFoundText, 404);
+      throw new HttpException(this.articleNotFoundText, 404);
     }
   };
 
-  readArchive = async (
-    _: Request,
-    res: ResponseWithError<VisitorArchiveResponse[]>,
-  ) => {
+  readArchive = async (): Promise<VisitorArchiveResponse[]> => {
     const years = await this.articles.readCountedByYearAsVisitor();
 
-    res.json(
-      years.map((year) => ({
-        year: year.year,
-        articleCount: year._count,
-      })),
-    );
+    return years.map((year) => ({
+      year: year.year,
+      articleCount: year._count,
+    }));
   };
 
-  readCategories = async (
-    _: Request,
-    res: ResponseWithError<VisitorCategoryResponse[]>,
-  ) => {
+  readCategories = async (): Promise<VisitorCategoryResponse[]> => {
     const categories = await this.categories.readAllWithArticleCount();
 
-    res.json(categories.map(visitorCategoryFromDb));
+    return categories.map(visitorCategoryFromDb);
   };
 
   readCategory = async (
-    req: Request,
-    res: ResponseWithError<VisitorCategoryResponse>,
-  ) => {
+    req: Req<unknown, IdParamsModel>,
+  ): Promise<VisitorCategoryResponse> => {
     const category = await this.categories.readSingleWithArticleCount(
-      req.params["id"],
+      req.params.id,
     );
 
     if (category !== null) {
-      res.json(visitorCategoryFromDb(category));
+      return visitorCategoryFromDb(category);
     } else {
-      createErrorResponse(res, this.categoryNotFoundText, 404);
+      throw new HttpException(this.categoryNotFoundText, 404);
     }
   };
 }

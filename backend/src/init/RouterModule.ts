@@ -52,7 +52,10 @@ export class RouterModule {
       middleware.authMiddleware,
     );
 
-    this.visitorRouter = new VisitorRouter(controllers.visitorController);
+    this.visitorRouter = new VisitorRouter(
+      controllers.visitorController,
+      middleware.commonMiddleware,
+    );
   }
 
   get routers(): SiteRouter[] {

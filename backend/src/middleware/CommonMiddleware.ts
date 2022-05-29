@@ -1,4 +1,5 @@
 import { createErrorResponse } from "@/common/express";
+import { HttpException, Req } from "@/common/router/types";
 import { NextFunction, Request, Response } from "express";
 import { z } from "zod";
 
@@ -12,6 +13,38 @@ export class CommonMiddleware {
         return createErrorResponse(res, "Malformed body!");
       } else {
         next();
+      }
+    };
+
+  validateQuery =
+    <Q extends z.ZodTypeAny>(schema: Q) =>
+    async <B, P, E>(
+      req: Req<B, P, unknown, E>,
+    ): Promise<Req<B, P, z.infer<Q>, E>> => {
+      try {
+        const result = await schema.parseAsync(req.query);
+        return {
+          ...req,
+          query: result,
+        };
+      } catch {
+        throw new HttpException("Malformed body!");
+      }
+    };
+
+  validateParams =
+    <P extends z.ZodTypeAny>(schema: P) =>
+    async <B, Q, E>(
+      req: Req<B, unknown, Q, E>,
+    ): Promise<Req<B, z.infer<P>, Q, E>> => {
+      try {
+        const result = await schema.parseAsync(req.params);
+        return {
+          ...req,
+          params: result,
+        };
+      } catch {
+        throw new HttpException("Malformed body!");
       }
     };
 }

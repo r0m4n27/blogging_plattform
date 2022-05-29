@@ -57,7 +57,7 @@ export class Route<PrevRequest extends Req, HandlerCheck = never> {
 
   handle = (
     handlerFunction: (req: PrevRequest) => Promise<unknown>,
-  ): Route<never> => {
+  ): Route<never, true> => {
     this.routeHandler = handlerFunction;
 
     return this as unknown as Route<never, true>;

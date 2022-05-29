@@ -1,4 +1,6 @@
+import { checkInt } from "@/common/zod";
 import { Article, Category } from "@prisma/client";
+import { z } from "zod";
 
 export type ArticleWithCategories = Article & { categories: Category[] };
 
@@ -43,3 +45,12 @@ export const visitorCategoryFromDb = (
   name: category.name,
   articleCount: category._count.articles,
 });
+
+export const readArticlesQuerySchema = z
+  .object({
+    category: z.string().uuid().optional(),
+    year: z.string().transform(checkInt).optional(),
+  })
+  .strip();
+
+export type ReadArticlesQueryModel = z.infer<typeof readArticlesQuerySchema>;
