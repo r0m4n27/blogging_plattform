@@ -1,4 +1,4 @@
-import { HttpException, Req } from "@/common/router/types";
+import { Req } from "@/common/router/types";
 import {
   AuthResponse,
   LoginPayload,
@@ -12,27 +12,12 @@ export class AuthController {
   login = async (req: Req<LoginPayload>): Promise<AuthResponse> => {
     const { username, password } = req.body;
 
-    const authResponse = await this.auth.login(username, password);
-    if (typeof authResponse === "object") {
-      return authResponse;
-    } else {
-      throw new HttpException(authResponse);
-    }
+    return await this.auth.login(username, password);
   };
 
   register = async (req: Req<RegisterPayload>): Promise<AuthResponse> => {
     const { username, password, registerCode } = req.body;
 
-    const authResponse = await this.auth.register(
-      username,
-      password,
-      registerCode,
-    );
-
-    if (typeof authResponse === "object") {
-      return authResponse;
-    } else {
-      throw new HttpException(authResponse);
-    }
+    return await this.auth.register(username, password, registerCode);
   };
 }
