@@ -17,7 +17,6 @@ defineProps<{
   <VRow :gap="contentSpacingConfig.md">
     <VLink :to="headingDestination">
       <VImage
-        is-base64
         :src="logoUrl"
         border-radius="full"
         :height="12"

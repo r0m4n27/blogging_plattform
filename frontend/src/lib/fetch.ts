@@ -1,3 +1,11 @@
+export interface ErrorMessage {
+  message: string;
+}
+
+export class FetchError {
+  constructor(readonly error: ErrorMessage) {}
+}
+
 const fetchValue = async <T, B>(
   url: string,
   method: string,
@@ -20,7 +28,7 @@ const fetchValue = async <T, B>(
   if (response.ok) {
     return await response.json();
   } else {
-    throw new Error(JSON.stringify(await response.json()));
+    throw new FetchError(await response.json());
   }
 };
 

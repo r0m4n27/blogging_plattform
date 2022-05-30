@@ -20,4 +20,5 @@ export type TextElementType =
   | "button"
   | "em"
   | "strong"
-  | "code";
+  | "code"
+  | "label";

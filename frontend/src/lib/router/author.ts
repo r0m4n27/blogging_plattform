@@ -35,7 +35,7 @@ export const authorRoutes: AuthorRoutes = {
   settings: {
     path: "settings",
     name: "Author/Settings",
-    component: () => import("@/components/pages/shared/SettingsPage.vue"),
+    component: () => import("@/components/pages/author/SettingsPage.vue"),
     route: createAuthorRoute("settings"),
   },
   categories: {

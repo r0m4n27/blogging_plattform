@@ -9,6 +9,10 @@ export interface UseSiteConfigState {
   blogTitle: ComputedRef<string>;
   logoUrl: ComputedRef<string>;
   iconUrl: ComputedRef<string>;
+
+  isInitialized: ComputedRef<boolean>;
+
+  refetch: () => void;
 }
 
 // The site config is used in multiple places
@@ -19,16 +23,54 @@ export interface UseSiteConfigState {
 export const useSiteConfig = defineStore<string, UseSiteConfigState>(
   piniaKeysConfig.siteConfig,
   () => {
-    const { value: fetcher } = useEndpoint(getSiteConfig, {
+    const {
+      value: siteConfig,
+      error,
+      refetch: refetchInternal,
+    } = useEndpoint(getSiteConfig, {
       blogTitle: "",
       logo: "",
       icon: "",
     });
 
+    // Somehow pinia transforms the ComputedRef<() => void>
+    // just to void
+    const refetch = () => {
+      refetchInternal.value();
+    };
+
+    const isInitialized = computed(() => error.value === undefined);
+
+    const blogTitle = computed(() => {
+      if (error.value !== undefined) {
+        return "Initialize Blog!";
+      } else {
+        return siteConfig.value.blogTitle;
+      }
+    });
+
+    const logoUrl = computed(() => {
+      if (siteConfig.value.logo !== "") {
+        return siteConfig.value.logo;
+      } else {
+        return "/logo_transparent.png";
+      }
+    });
+
+    const iconUrl = computed(() => {
+      if (siteConfig.value.icon !== "") {
+        return siteConfig.value.icon;
+      } else {
+        return "/favicon.ico";
+      }
+    });
+
     return {
-      blogTitle: computed(() => fetcher.value.blogTitle),
-      logoUrl: computed(() => fetcher.value.logo),
-      iconUrl: computed(() => fetcher.value.icon),
+      blogTitle,
+      logoUrl,
+      iconUrl,
+      refetch,
+      isInitialized,
     };
   }
 );

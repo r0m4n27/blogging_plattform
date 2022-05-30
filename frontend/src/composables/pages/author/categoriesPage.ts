@@ -13,6 +13,7 @@ import {
 } from "@/api/category";
 import type { Option } from "@/lib/types";
 import { useUser } from "@/composables/store/user";
+import { promise } from "@/lib/promise";
 
 export interface CategoriesPageState {
   categories: Ref<AuthorCategory[]>;
@@ -51,25 +52,29 @@ const useCategoriesPageInteractions = (
   const user = useUser();
 
   const categoriesFetcher = computed(
-    () => () => getAuthorCategories(user.unsafeValue.token)
+    () => () => user.token ? getAuthorCategories(user.token) : promise([])
   );
   const { value: categories, refetch } = useEndpoint(categoriesFetcher, []);
 
   const deleteCategory = async (category: AuthorCategory) => {
-    await deleteCategoryInternal(user.unsafeValue.token, category);
-    refetch.value();
+    if (user.token !== undefined) {
+      await deleteCategoryInternal(user.token, category);
+      refetch.value();
+    }
   };
 
   const createCategory = async (name: string) => {
-    await createCategoryInternal(user.unsafeValue.token, name);
-    showNewCategoryModal.value = false;
-    refetch.value();
+    if (user.token !== undefined) {
+      await createCategoryInternal(user.token, name);
+      showNewCategoryModal.value = false;
+      refetch.value();
+    }
   };
 
   const updateCategory = async (name: string) => {
     const category = categoryToUpdate.value;
-    if (category !== undefined) {
-      await updateCategoryInternal(user.unsafeValue.token, {
+    if (category !== undefined && user.token !== undefined) {
+      await updateCategoryInternal(user.token, {
         ...category,
         name,
       });

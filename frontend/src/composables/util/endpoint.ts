@@ -1,3 +1,4 @@
+import { FetchError, type ErrorMessage } from "@/lib/fetch";
 import type { MaybeRef, Option } from "@/lib/types";
 import {
   computed,
@@ -14,11 +15,13 @@ export function useEndpoint<T>(
 ): {
   value: Ref<UnwrapRef<T> | T>;
   refetch: ComputedRef<() => void>;
+  error: Ref<ErrorMessage | undefined>;
 };
 
 export function useEndpoint<T>(fetcher: MaybeRef<() => Promise<T>>): {
   value: Ref<UnwrapRef<Option<T>> | Option<T>>;
   refetch: ComputedRef<() => void>;
+  error: Ref<ErrorMessage | undefined>;
 };
 
 // Fetch data from the endpoint
@@ -28,11 +31,24 @@ export function useEndpoint<T>(
   initialValue?: MaybeRef<T>
 ) {
   const fetchedValue = ref(initialValue);
+  const errorValue = ref<ErrorMessage | undefined>(undefined);
 
   const actualFetcher = ref(fetcher);
 
   const fetchValue = computed(() => () => {
-    actualFetcher.value().then((data) => (fetchedValue.value = data));
+    actualFetcher
+      .value()
+      .then((data) => {
+        fetchedValue.value = data;
+        errorValue.value = undefined;
+      })
+      .catch((e) => {
+        if (e instanceof FetchError) {
+          errorValue.value = e.error;
+        } else {
+          throw e;
+        }
+      });
   });
 
   watchEffect(() => fetchValue.value());
@@ -40,5 +56,6 @@ export function useEndpoint<T>(
   return {
     value: fetchedValue,
     refetch: fetchValue,
+    error: errorValue,
   };
 }

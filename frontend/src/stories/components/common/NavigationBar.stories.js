@@ -18,7 +18,10 @@ export const Primary = Template.bind({});
 
 Primary.args = {
   title: "My AWESOME Website",
-  logoUrl: logoBase64,
+  logoUrl: {
+    type: "remote",
+    value: logoBase64,
+  },
   destinations: visitorNavBarDestinations,
   headingDestination: "",
 };

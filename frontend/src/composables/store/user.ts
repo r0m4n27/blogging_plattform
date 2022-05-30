@@ -14,8 +14,7 @@ import { visitorRoutes } from "@/lib/router/visitor";
 
 export interface UserState {
   value: Ref<Option<User>>;
-  // Use when it is certain that the user is logged in
-  unsafeValue: ComputedRef<User>;
+  token: ComputedRef<Option<string>>;
 
   // Return true if the user was successfully logged in
   login: (username: string, password: string) => Promise<boolean>;
@@ -33,10 +32,7 @@ export const useUser = defineStore<string, UserState>(
     const emptyStore = useEmptyStore();
 
     const user = useLocalStorage<string, User>(localStorageKeys.user);
-
-    // See comment in the interface
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const unsafeValue = computed(() => user.value!);
+    const token = computed(() => user.value?.token);
 
     const login = async (username: string, password: string) => {
       const newUser = await loginUser(username, password);
@@ -66,7 +62,7 @@ export const useUser = defineStore<string, UserState>(
 
     return {
       value: user,
-      unsafeValue,
+      token,
       login,
       logout,
       register,
