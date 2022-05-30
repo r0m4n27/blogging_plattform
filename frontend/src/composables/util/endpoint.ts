@@ -38,7 +38,10 @@ export function useEndpoint<T>(
   const fetchValue = computed(() => () => {
     actualFetcher
       .value()
-      .then((data) => (fetchedValue.value = data))
+      .then((data) => {
+        fetchedValue.value = data;
+        errorValue.value = undefined;
+      })
       .catch((e) => {
         if (e instanceof FetchError) {
           errorValue.value = e.error;

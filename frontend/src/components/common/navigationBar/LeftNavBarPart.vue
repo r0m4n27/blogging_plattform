@@ -3,26 +3,21 @@ import VRow from "@/components/base/layout/VRow.vue";
 import VHeading from "@/components/base/text/VHeading.vue";
 import VImage from "@/components/base/VImage.vue";
 import VLink from "@/components/base/VLink.vue";
-import type { FetchedImage } from "@/composables/store/siteConfig";
 import { contentSpacingConfig } from "@/config/content/spacing";
-import { computed } from "vue";
 import type { RouteLocationRaw } from "vue-router";
 
-const props = defineProps<{
+defineProps<{
   title: string;
-  logoUrl: FetchedImage;
+  logoUrl: string;
   headingDestination: RouteLocationRaw;
 }>();
-
-const isBase64 = computed(() => props.logoUrl.type === "remote");
 </script>
 
 <template>
   <VRow :gap="contentSpacingConfig.md">
     <VLink :to="headingDestination">
       <VImage
-        :is-base64="isBase64"
-        :src="logoUrl.value"
+        :src="logoUrl"
         border-radius="full"
         :height="12"
         :width="12"

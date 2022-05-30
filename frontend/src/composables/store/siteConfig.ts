@@ -5,15 +5,14 @@ import { computed } from "@vue/reactivity";
 import { useEndpoint } from "../util/endpoint";
 import { getSiteConfig } from "@/api/siteConfig";
 
-export interface FetchedImage {
-  type: "remote" | "local";
-  value: string;
-}
-
 export interface UseSiteConfigState {
   blogTitle: ComputedRef<string>;
-  logoUrl: ComputedRef<FetchedImage>;
-  iconUrl: ComputedRef<FetchedImage>;
+  logoUrl: ComputedRef<string>;
+  iconUrl: ComputedRef<string>;
+
+  isInitialized: ComputedRef<boolean>;
+
+  refetch: () => void;
 }
 
 // The site config is used in multiple places
@@ -24,11 +23,23 @@ export interface UseSiteConfigState {
 export const useSiteConfig = defineStore<string, UseSiteConfigState>(
   piniaKeysConfig.siteConfig,
   () => {
-    const { value: siteConfig, error } = useEndpoint(getSiteConfig, {
+    const {
+      value: siteConfig,
+      error,
+      refetch: refetchInternal,
+    } = useEndpoint(getSiteConfig, {
       blogTitle: "",
       logo: "",
       icon: "",
     });
+
+    // Somehow pinia transforms the ComputedRef<() => void>
+    // just to void
+    const refetch = () => {
+      refetchInternal.value();
+    };
+
+    const isInitialized = computed(() => error.value === undefined);
 
     const blogTitle = computed(() => {
       if (error.value !== undefined) {
@@ -38,31 +49,19 @@ export const useSiteConfig = defineStore<string, UseSiteConfigState>(
       }
     });
 
-    const logoUrl = computed<FetchedImage>(() => {
+    const logoUrl = computed(() => {
       if (siteConfig.value.logo !== "") {
-        return {
-          type: "remote",
-          value: siteConfig.value.logo,
-        };
+        return siteConfig.value.logo;
       } else {
-        return {
-          type: "local",
-          value: "/logo_transparent.png",
-        };
+        return "/logo_transparent.png";
       }
     });
 
-    const iconUrl = computed<FetchedImage>(() => {
+    const iconUrl = computed(() => {
       if (siteConfig.value.icon !== "") {
-        return {
-          type: "remote",
-          value: siteConfig.value.icon,
-        };
+        return siteConfig.value.icon;
       } else {
-        return {
-          type: "local",
-          value: "/favicon.ico",
-        };
+        return "/favicon.ico";
       }
     });
 
@@ -70,6 +69,8 @@ export const useSiteConfig = defineStore<string, UseSiteConfigState>(
       blogTitle,
       logoUrl,
       iconUrl,
+      refetch,
+      isInitialized,
     };
   }
 );
