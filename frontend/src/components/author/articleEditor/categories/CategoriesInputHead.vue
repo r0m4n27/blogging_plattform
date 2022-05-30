@@ -37,6 +37,8 @@ const toggleIcon = computed(() =>
     }"
     width="full"
     justify="space-between"
+    @click="emit('update:showListing', !showListing)"
+    :style="{ cursor: 'pointer' }"
   >
     <VRow :gap="contentSpacingConfig.xs">
       <TagButton
@@ -44,13 +46,12 @@ const toggleIcon = computed(() =>
         :key="category.id"
         :label="category.name"
         :size="{ sm: 'sm', md: 'md' }"
-        @click="emit('removeCategory', category)"
+        @click.stop="emit('removeCategory', category)"
       />
     </VRow>
 
     <IconButton
       v-if="availableCategoriesSize !== 0"
-      @click="emit('update:showListing', !showListing)"
       :show-border="false"
       :padding="{ sm: 0, md: 1 }"
       :icon="toggleIcon"

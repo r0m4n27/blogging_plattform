@@ -5,6 +5,7 @@ import { contentColorConfig } from "@/config/content/color";
 import { globalContentConfig } from "@/config/content/global";
 import VText from "../../../base/text/VText.vue";
 import { contentSpacingConfig } from "@/config/content/spacing";
+import VBox from "../../../base/layout/VBox.vue";
 
 interface CategoriesInputListProps {
   availableCategories: AuthorCategory[];
@@ -19,6 +20,7 @@ const emit = defineEmits<CategoriesInputListEmits>();
 </script>
 <template>
   <VColumn
+    v-if="availableCategories.length !== 0"
     :show-border="true"
     :border-color="contentColorConfig.border"
     border-radius="base"
@@ -26,19 +28,26 @@ const emit = defineEmits<CategoriesInputListEmits>();
     :style="{ zIndex: 10, position: 'absolute' }"
     :background-color="globalContentConfig.backgroundColor"
     align="start"
-    :padding="{ x: contentSpacingConfig.sm, y: contentSpacingConfig.xs }"
     :gap="contentSpacingConfig.xs"
+    :padding="{ x: contentSpacingConfig.sm, y: contentSpacingConfig.xs }"
   >
-    <VText
-      is="button"
+    <VBox
       v-for="category in availableCategories"
       :key="category.id"
+      width="full"
       @click="emit('selectCategory', category)"
-      :color="contentColorConfig.mutedFgWithHover"
-      :size="{ sm: 'md', md: 'lg' }"
-      weight="semibold"
+      is="button"
     >
-      {{ category.name }}
-    </VText>
+      <VText
+        :color="contentColorConfig.mutedFgWithHover"
+        :size="{ sm: 'md', md: 'lg' }"
+        weight="semibold"
+        width="full"
+        align="start"
+        :style="{ display: 'block' }"
+      >
+        {{ category.name }}
+      </VText>
+    </VBox>
   </VColumn>
 </template>
