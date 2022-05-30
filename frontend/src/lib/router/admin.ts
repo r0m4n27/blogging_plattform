@@ -11,11 +11,13 @@ const createAdminRoute = (otherPath: string) => `/admin/${otherPath}`;
 export const adminRoutes: AdminRoutes = {
   home: {
     path: "",
+    name: "Admin/Home",
     route: createAdminRoute(""),
     component: () => import("@/components/pages/admin/HomePage.vue"),
   },
   settings: {
     path: "settings",
+    name: "Admin/Settings",
     route: createAdminRoute("settings"),
     component: () => import("@/components/pages/shared/SettingsPage.vue"),
   },

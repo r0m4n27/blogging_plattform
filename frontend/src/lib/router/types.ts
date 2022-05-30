@@ -12,6 +12,7 @@ declare module "vue-router" {
 // It isn't possible to extend RouteRecordRaw directly
 export interface RouteDestination<T> {
   path: string;
+  name: string;
   createRoute: (params: T) => string;
 
   component: Component;
