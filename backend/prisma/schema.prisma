@@ -13,8 +13,10 @@ model SiteConfig {
   // A middleware should be used to let only one row be in this table
   id        Int    @id @default(1)
   blogTitle String
-  logo      Bytes
-  icon      Bytes
+  // We store the DataUri, which contains the base64 encoded data and also some metada
+  // So binary is not possible
+  logo      String
+  icon      String
 }
 
 model User {

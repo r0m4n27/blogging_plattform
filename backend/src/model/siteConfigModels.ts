@@ -1,19 +1,20 @@
 import { z } from "zod";
-import isBase64 from "validator/lib/isBase64";
 import { SiteConfig } from "@prisma/client";
 
+// Can't check wether logo and icon are correctly encoded
+// https://github.com/validatorjs/validator.js/issues/1972
 export const siteConfigSchema = z.object({
   blogTitle: z.string(),
-  logo: z.string().refine(isBase64),
-  icon: z.string().refine(isBase64),
+  logo: z.string(),
+  icon: z.string(),
 });
 
 export type SiteConfigModel = z.infer<typeof siteConfigSchema>;
 
 export const siteConfigModelFromDb = (config: SiteConfig): SiteConfigModel => ({
   blogTitle: config.blogTitle,
-  logo: config.logo.toString("base64"),
-  icon: config.icon.toString("base64"),
+  logo: config.logo,
+  icon: config.icon,
 });
 
 export function siteConfigModelToDb(
@@ -26,7 +27,7 @@ export function siteConfigModelToDb(
 export function siteConfigModelToDb(model: Partial<SiteConfigModel>) {
   return {
     blogTitle: model.blogTitle,
-    logo: model.logo ? Buffer.from(model.logo, "base64") : undefined,
-    icon: model.icon ? Buffer.from(model.icon, "base64") : undefined,
+    logo: model.logo,
+    icon: model.icon,
   };
 }
