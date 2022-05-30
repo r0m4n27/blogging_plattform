@@ -37,7 +37,6 @@ export default defineConfig({
             ...pageFiles("admin"),
             layoutFile("AdminPageLayout.vue"),
           ],
-          "group-shared": pageFiles("shared"),
         },
       },
     },
