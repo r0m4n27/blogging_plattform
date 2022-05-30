@@ -1,3 +1,5 @@
+import { articleErrorMessages } from "@/common/errorMessages";
+import { handlePrismaNotFound } from "@/common/prisma";
 import { ArticleModel } from "@/model/authorArticleModels";
 import { Article, User } from "@prisma/client";
 import { CategoryService } from "./CategoryService";
@@ -76,21 +78,28 @@ export class ArticleService {
 
     const categories = await this.categories.readByCategoryIds(categoriesIds);
 
-    return await this.database.article.update({
-      data: {
-        ...restModel,
-        categories: {
-          connect: categories.map((c) => ({
-            id: c.id,
-          })),
-        },
+    return await handlePrismaNotFound(
+      articleErrorMessages.articleNotFound,
+      async () => {
+        return await this.database.article.update({
+          data: {
+            ...restModel,
+            categories: {
+              connect: categories.map((c) => ({
+                id: c.id,
+              })),
+            },
+          },
+          where: {
+            id,
+          },
+        });
       },
-      where: {
-        id,
-      },
-    });
+    );
   };
 
   delete = async (id: string) =>
-    await this.database.article.delete({ where: { id } });
+    handlePrismaNotFound(articleErrorMessages.articleNotFound, async () => {
+      return await this.database.article.delete({ where: { id } });
+    });
 }

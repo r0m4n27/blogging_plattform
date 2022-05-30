@@ -1,3 +1,5 @@
+import { authErrorMessages } from "@/common/errorMessages";
+import { HttpException } from "@/common/router/types";
 import { PrismaClient, Prisma } from "@prisma/client";
 import { hash } from "argon2";
 
@@ -15,7 +17,7 @@ export const createAllowOnlyOneAdmin =
         },
       });
       if (rowCount >= 1) {
-        throw new Error("Only one admin can exist!");
+        throw new HttpException(authErrorMessages.noSecondAdmin);
       }
     }
 

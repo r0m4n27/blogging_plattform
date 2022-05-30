@@ -1,3 +1,5 @@
+import { siteConfigErrorMessages } from "@/common/errorMessages";
+import { HttpException } from "@/common/router/types";
 import { PrismaClient, Prisma } from "@prisma/client";
 
 // Allow only one row to be in the SiteConfig table
@@ -10,7 +12,7 @@ export const createAllowOnlyOneSiteConfigRow =
     ) {
       const rowCount = await client.siteConfig.count();
       if (rowCount !== 0) {
-        throw new Error("Row in SiteConfig already exists");
+        throw new HttpException(siteConfigErrorMessages.siteAlreadyInitialized);
       }
     }
 

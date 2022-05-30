@@ -1,3 +1,5 @@
+import { userErrorMessages } from "@/common/errorMessages";
+import { handlePrismaNotFound } from "@/common/prisma";
 import { Req } from "@/common/router/types";
 import { ReqWithUser } from "@/model/authModels";
 import { IdParamsModel } from "@/model/commonModels";
@@ -29,10 +31,12 @@ export class UserController {
   deleteUser = async (req: Req<unknown, IdParamsModel>) => {
     const id = req.params.id;
 
-    await this.database.user.delete({
-      where: {
-        id,
-      },
+    await handlePrismaNotFound(userErrorMessages.userNotFound, async () => {
+      await this.database.user.delete({
+        where: {
+          id,
+        },
+      });
     });
 
     return {};
@@ -43,12 +47,17 @@ export class UserController {
   ): Promise<FullUserResponse> => {
     const id = req.extras.user.id;
 
-    const updatedUser = await this.database.user.update({
-      data: req.body,
-      where: {
-        id,
+    const updatedUser = await handlePrismaNotFound(
+      userErrorMessages.userNotFound,
+      async () => {
+        return await this.database.user.update({
+          data: req.body,
+          where: {
+            id,
+          },
+        });
       },
-    });
+    );
 
     return {
       id: updatedUser.id,

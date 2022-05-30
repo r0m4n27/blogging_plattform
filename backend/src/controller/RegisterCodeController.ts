@@ -1,3 +1,5 @@
+import { registerCodesMessages } from "@/common/errorMessages";
+import { handlePrismaNotFound } from "@/common/prisma";
 import { Req } from "@/common/router/types";
 import { IdParamsModel } from "@/model/commonModels";
 import { DatabaseService } from "@/service/database";
@@ -18,7 +20,13 @@ export class RegisterCodeController {
 
   delete = async (req: Req<unknown, IdParamsModel>) => {
     const id = req.params.id;
-    await this.database.registerCode.delete({ where: { id } });
+
+    await handlePrismaNotFound(
+      registerCodesMessages.registerCodeNotFound,
+      async () => {
+        await this.database.registerCode.delete({ where: { id } });
+      },
+    );
 
     return {};
   };
