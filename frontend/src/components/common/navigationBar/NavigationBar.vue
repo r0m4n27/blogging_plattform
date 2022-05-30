@@ -10,10 +10,11 @@ import { useNavBarState } from "@/composables/common/navBar";
 import ContentDivider from "@/components/common/util/ContentDivider.vue";
 import type { NavigationDestination } from "./navDestination";
 import type { RouteLocationRaw } from "vue-router";
+import type { FetchedImage } from "@/composables/store/siteConfig";
 
 interface NavBarProps {
   title: string;
-  logoUrl: string;
+  logoUrl: FetchedImage;
   destinations: NavigationDestination[];
   headingDestination: RouteLocationRaw;
 }

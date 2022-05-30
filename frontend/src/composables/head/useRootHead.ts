@@ -24,6 +24,14 @@ export const useRootHead = () => {
 
   const siteConfig = useSiteConfig();
 
+  const iconHref = computed(() => {
+    if (siteConfig.iconUrl.type === "local") {
+      return siteConfig.iconUrl.value;
+    } else {
+      return `data:image/x-icon;base64,${siteConfig.iconUrl.value}`;
+    }
+  });
+
   const head = computed<HeadObject>(() => ({
     bodyAttrs: {
       class: className.value,
@@ -31,7 +39,7 @@ export const useRootHead = () => {
     link: [
       {
         rel: "icon",
-        href: `data:image/x-icon;base64,${siteConfig.iconUrl}`,
+        href: iconHref.value,
       },
     ],
   }));

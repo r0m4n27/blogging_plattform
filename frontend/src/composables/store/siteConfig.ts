@@ -5,10 +5,15 @@ import { computed } from "@vue/reactivity";
 import { useEndpoint } from "../util/endpoint";
 import { getSiteConfig } from "@/api/siteConfig";
 
+export interface FetchedImage {
+  type: "remote" | "local";
+  value: string;
+}
+
 export interface UseSiteConfigState {
   blogTitle: ComputedRef<string>;
-  logoUrl: ComputedRef<string>;
-  iconUrl: ComputedRef<string>;
+  logoUrl: ComputedRef<FetchedImage>;
+  iconUrl: ComputedRef<FetchedImage>;
 }
 
 // The site config is used in multiple places
@@ -19,16 +24,52 @@ export interface UseSiteConfigState {
 export const useSiteConfig = defineStore<string, UseSiteConfigState>(
   piniaKeysConfig.siteConfig,
   () => {
-    const { value: fetcher } = useEndpoint(getSiteConfig, {
+    const { value: siteConfig, error } = useEndpoint(getSiteConfig, {
       blogTitle: "",
       logo: "",
       icon: "",
     });
 
+    const blogTitle = computed(() => {
+      if (error.value !== undefined) {
+        return "Initialize Blog!";
+      } else {
+        return siteConfig.value.blogTitle;
+      }
+    });
+
+    const logoUrl = computed<FetchedImage>(() => {
+      if (siteConfig.value.logo !== "") {
+        return {
+          type: "remote",
+          value: siteConfig.value.logo,
+        };
+      } else {
+        return {
+          type: "local",
+          value: "/logo_transparent.png",
+        };
+      }
+    });
+
+    const iconUrl = computed<FetchedImage>(() => {
+      if (siteConfig.value.icon !== "") {
+        return {
+          type: "remote",
+          value: siteConfig.value.icon,
+        };
+      } else {
+        return {
+          type: "local",
+          value: "/favicon.ico",
+        };
+      }
+    });
+
     return {
-      blogTitle: computed(() => fetcher.value.blogTitle),
-      logoUrl: computed(() => fetcher.value.logo),
-      iconUrl: computed(() => fetcher.value.icon),
+      blogTitle,
+      logoUrl,
+      iconUrl,
     };
   }
 );
