@@ -11,7 +11,7 @@ export class CommonMiddleware {
         const result = await schema.parseAsync(req.body);
         return {
           ...req,
-          params: result,
+          body: result,
         };
       } catch {
         throw new HttpException("Malformed body!");
