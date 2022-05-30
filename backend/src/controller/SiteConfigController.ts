@@ -1,4 +1,5 @@
-import { siteConfigErrorMessage } from "@/common/errorMessages";
+import { siteConfigErrorMessages } from "@/common/errorMessages";
+import { handlePrismaNotFound } from "@/common/prisma";
 import { HttpException, Req } from "@/common/router/types";
 import {
   SiteConfigModel,
@@ -14,18 +15,13 @@ export class SiteConfigController {
     const siteConfig = await this.database.siteConfig.findFirst();
 
     if (siteConfig === null) {
-      throw new HttpException(siteConfigErrorMessage.siteNotInitialized);
+      throw new HttpException(siteConfigErrorMessages.siteNotInitialized);
     } else {
       return siteConfigModelFromDb(siteConfig);
     }
   };
 
   initialize = async (req: Req<SiteConfigModel>): Promise<SiteConfigModel> => {
-    const configCount = await this.database.siteConfig.count();
-    if (configCount !== 0) {
-      throw new HttpException(siteConfigErrorMessage.siteAlreadyInitialized);
-    }
-
     await this.database.siteConfig.create({
       data: siteConfigModelToDb(req.body),
     });
@@ -36,17 +32,17 @@ export class SiteConfigController {
   update = async (
     req: Req<Partial<SiteConfigModel>>,
   ): Promise<SiteConfigModel> => {
-    const configCount = await this.database.siteConfig.count();
-    if (configCount === 0) {
-      throw new HttpException(siteConfigErrorMessage.siteNotInitialized);
-    }
-
-    const siteConfig = await this.database.siteConfig.update({
-      where: {
-        id: 1,
+    const siteConfig = await handlePrismaNotFound(
+      siteConfigErrorMessages.siteNotInitialized,
+      async () => {
+        return await this.database.siteConfig.update({
+          where: {
+            id: 1,
+          },
+          data: siteConfigModelToDb(req.body),
+        });
       },
-      data: siteConfigModelToDb(req.body),
-    });
+    );
 
     return siteConfigModelFromDb(siteConfig);
   };
