@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:alpine
+    environment:
+      - PGDATA=/data
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE}
+    volumes:
+      - blogging-plattform_db:/data
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - 8080:80
+
+  backend:
+    build: ./backend
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - JWT_SECRET=${JWT_SECRET}
+      - ADMIN_REGISTER_CODE=${ADMIN_REGISTER_CODE}
+    restart: unless-stopped
+
+volumes:
+  blogging-plattform_db:
