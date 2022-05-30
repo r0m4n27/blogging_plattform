@@ -6,7 +6,7 @@ import { computed, ref, watch, type Ref, type UnwrapRef } from "vue";
 // And since we reactively watch the params this means
 // the api endpoints are called with the wrong values
 //
-// To circumvent it, the watching is stopped when the path is changed
+// To circumvent it, the watching is stopped when the name of the route is changed
 //
 // https://github.com/vuejs/vue-router/issues/3393
 
@@ -14,17 +14,17 @@ export const useRouteParams = <T extends RouteParams>(): Ref<UnwrapRef<T>> => {
   const route = useRoute();
 
   const params = ref(route.params as T);
-  const pathOnEnter = ref(route.path);
+  const nameOnEnter = ref(route.name);
 
   const newRouteValues = computed(() => ({
     params: route.params as T,
-    path: route.path,
+    name: route.name,
   }));
 
   const watchHandle = watch(
     newRouteValues,
     (newValue) => {
-      if (pathOnEnter.value === newValue.path) {
+      if (nameOnEnter.value === newValue.name) {
         params.value = newValue.params;
       } else {
         watchHandle();
