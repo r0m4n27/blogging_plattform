@@ -17,3 +17,11 @@ export const articleErrorMessages = {
 export const categoryErrorMessages = {
   categoryNotFound: "Category not found!",
 } as const;
+
+export const registerCodesMessages = {
+  registerCodeNotFound: "RegisterCode not found!",
+} as const;
+
+export const userErrorMessages = {
+  userNotFound: "User not found!",
+} as const;
