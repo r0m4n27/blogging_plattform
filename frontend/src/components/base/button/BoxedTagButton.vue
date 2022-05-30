@@ -1,31 +1,35 @@
 <script setup lang="ts">
-import VButton from "./VButton.vue";
+import VBox from "../layout/VBox.vue";
 import { computed } from "vue";
 import type { Color } from "@/styling/color";
 import {
   type TagButtonSize,
-  createTagButtonVButtonProps,
+  createTagButtonVBoxProps,
 } from "@/styling/props/tagButton";
 import type { Responsive } from "@/lib/responsive";
 import TagButtonContent from "./TagButtonContent.vue";
+import type { ElementType } from "@/lib/elementType";
+import VCenter from "../layout/VCenter.vue";
 
 interface SummaryTagProps {
   label: string;
   size?: Responsive<TagButtonSize>;
   color?: Responsive<Color>;
+  is?: ElementType;
 }
 
 const props = withDefaults(defineProps<SummaryTagProps>(), {
   size: "sm",
+  is: "div",
 });
 
-const buttonProps = computed(() =>
-  createTagButtonVButtonProps(props.size, props.color)
+const boxProps = computed(() =>
+  createTagButtonVBoxProps(props.size, props.is, props.color)
 );
 </script>
 
 <template>
-  <VButton v-bind="buttonProps" :color="color">
+  <VCenter v-bind="boxProps">
     <TagButtonContent :size="size" :label="label" />
-  </VButton>
+  </VCenter>
 </template>
