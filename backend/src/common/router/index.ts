@@ -51,7 +51,7 @@ export class Route<PrevRequest extends Req, Configured = false> {
 
   use = <NextRequest extends Req>(
     middleware: Middleware<PrevRequest, NextRequest>,
-  ): Route<NextRequest, never> => {
+  ): Route<NextRequest, false> => {
     this.middlewareList.push(middleware);
 
     return this as unknown as Route<NextRequest, false>;
