@@ -7,6 +7,7 @@ import { computed, type ComputedRef, type Ref } from "vue";
 import { getAuthorCategories, type AuthorCategory } from "@/api/category";
 import { useEndpoint } from "@/composables/util/endpoint";
 import { useUser } from "@/composables/store/user";
+import { promise } from "@/lib/promise";
 
 export interface NewArticleState {
   existingCategories: Ref<AuthorCategory[]>;
@@ -20,12 +21,14 @@ export const useNewArticleState = (): NewArticleState => {
   const user = useUser();
 
   const publishArticle = computed(() => async (payload: NewArticlePayload) => {
-    await publishArticleInternal(user.unsafeValue.token, payload);
-    router.replace(authorRoutes.home.route);
+    if (user.token !== undefined) {
+      await publishArticleInternal(user.token, payload);
+      router.replace(authorRoutes.home.route);
+    }
   });
 
   const existingCategoriesFetcher = computed(
-    () => () => getAuthorCategories(user.unsafeValue.token)
+    () => () => user.token ? getAuthorCategories(user.token) : promise([])
   );
   const { value: existingCategories } = useEndpoint(
     existingCategoriesFetcher,

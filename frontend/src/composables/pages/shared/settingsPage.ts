@@ -24,7 +24,9 @@ const useUpdatePassword = (passwordUpdated: Ref<boolean>) => {
   const user = useUser();
 
   return computed(() => async (newPassword: string) => {
-    await updatePasswordInternal(newPassword, user.unsafeValue.token);
-    passwordUpdated.value = true;
+    if (user.token !== undefined) {
+      await updatePasswordInternal(newPassword, user.token);
+      passwordUpdated.value = true;
+    }
   });
 };

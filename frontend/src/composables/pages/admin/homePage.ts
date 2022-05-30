@@ -9,6 +9,7 @@ import {
   deleteRegisterCode,
   createRegisterCode,
 } from "@/api/registerCodes";
+import { promise } from "@/lib/promise";
 
 export interface HomePageState {
   users: Ref<AdminUser[]>;
@@ -33,18 +34,22 @@ const useSiteConfigInteractions = () => {
   const user = useUser();
 
   const codesFetcher = computed(
-    () => () => getRegisterCodes(user.unsafeValue.token)
+    () => () => user.token ? getRegisterCodes(user.token) : promise([])
   );
   const { value: codes, refetch: refetchCodes } = useEndpoint(codesFetcher, []);
 
   const deleteCode = computed(() => async (registerCode: string) => {
-    await deleteRegisterCode(registerCode, user.unsafeValue.token);
-    refetchCodes.value();
+    if (user.token !== undefined) {
+      await deleteRegisterCode(registerCode, user.token);
+      refetchCodes.value();
+    }
   });
 
   const createCode = computed(() => async () => {
-    await createRegisterCode(user.unsafeValue.token);
-    refetchCodes.value();
+    if (user.token !== undefined) {
+      await createRegisterCode(user.token);
+      refetchCodes.value();
+    }
   });
 
   return {
@@ -57,13 +62,15 @@ const useSiteConfigInteractions = () => {
 const useUsersInteractions = () => {
   const user = useUser();
   const usersFetcher = computed(
-    () => () => getAdminUsers(user.unsafeValue.token)
+    () => () => user.token ? getAdminUsers(user.token) : promise([])
   );
   const { value: users, refetch: refetchUsers } = useEndpoint(usersFetcher, []);
 
   const deleteUser = computed(() => async (userToDelete: AdminUser) => {
-    await deleteUserInternal(user.unsafeValue.token, userToDelete);
-    refetchUsers.value();
+    if (user.token !== undefined) {
+      await deleteUserInternal(user.token, userToDelete);
+      refetchUsers.value();
+    }
   });
 
   return { users, deleteUser };
