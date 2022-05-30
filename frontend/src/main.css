@@ -12,3 +12,9 @@ a, a:hover, a:active, a:visited, a:focus, a:-webkit-any-link {
 #app {
   min-height: 100vh;
 }
+
+/* Hide file inputs and create our own item for it
+*/
+input[type="file"] {
+  display: none;
+}
