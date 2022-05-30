@@ -5,16 +5,6 @@ immer beliebter werden, soll in diesem Projekt ein CMS für eine Blogging-Plattf
 erstellt werden. Diese Plattform sollte ein Benutzer bei sich selbst hosten
 können und so eine Onlinepräsenz über einen Blog für sich erstellen können.
 
-## Links
-
-- [Figma](https://www.figma.com/file/c3UmnmRKhvv52DWA9BWkQx/Blogging-Plattform)
-- [Webapp](https://blogging-plattform.fly.dev)
-  - In der Webapp werden zurzeit nur mockdaten verwenden die in memory leben
-  - und so nach jeden Neustart neu geladen werden
-  - Accounts (Username, Password):
-    - Admin: `admin`, `admin`
-    - Author: `author`, `author`
-
 ## Anforderungen
 
 Siehe [Anforderungen](./docs/anforderungen.md)
