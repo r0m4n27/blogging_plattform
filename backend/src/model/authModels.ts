@@ -21,7 +21,7 @@ export type LoginPayload = z.infer<typeof loginPayloadSchema>;
 
 export const registerPayloadSchema = loginPayloadSchema.and(
   z.object({
-    registerCode: z.string(),
+    registerCode: z.string().uuid(),
   }),
 );
 
