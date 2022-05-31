@@ -2,6 +2,8 @@ import { Req } from "@/common/router/types";
 import { User, UserRole } from "@prisma/client";
 import { z } from "zod";
 
+// Return also a role in the auth response
+// Then the used doesn't need to decode the jwt token
 export interface AuthResponse {
   token: string;
   role: UserRole;

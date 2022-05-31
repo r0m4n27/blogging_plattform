@@ -23,7 +23,7 @@ export const articleSchema = z.object({
 
   published: z.boolean(),
 
-  categories: z.array(z.object({ id: z.string() })),
+  categories: categoriesIdsSchema,
 });
 
 export type ArticleModel = z.infer<typeof articleSchema>;
