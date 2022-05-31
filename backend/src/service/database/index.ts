@@ -2,6 +2,8 @@ import { PrismaClient, PrismaPromise } from "@prisma/client";
 import { createAllowOnlyOneSiteConfigRow } from "./siteConfig";
 import { createAllowOnlyOneAdmin, hashUserPassword } from "./user";
 
+// Small wrapper around the prisma client
+// Exposes all queries and also applies the middleware for prisma
 export class DatabaseService {
   private readonly client: PrismaClient;
 
