@@ -7,6 +7,12 @@ export interface ServerConfig {
   port: number;
 }
 
+// Simple wrapper for the express server
+//
+// Uses the json middleware from express
+// And one for simple logging
+//
+// It also applied all Routes from the the SiteRouters
 export class Server {
   private readonly app: Express;
   private readonly port: number;

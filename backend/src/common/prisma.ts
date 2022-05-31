@@ -1,6 +1,8 @@
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import { HttpException } from "./router/types";
 
+// Run the action and if a known prisma exception is thrown
+// Transform it to a HttpException
 const createPrismaErrorHandler = (
   status: number,
   errorCode: string,
