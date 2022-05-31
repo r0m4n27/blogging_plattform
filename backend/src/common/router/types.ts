@@ -8,6 +8,9 @@ declare module "express-serve-static-core" {
 
 export type RouteMethod = "get" | "post" | "delete" | "patch";
 
+// Body, Query, Params are the same as in the express Request
+// Extras could contain additional parameters that are used for the
+// request like the current signed in user
 export interface Req<
   Body = unknown,
   Params = unknown,
