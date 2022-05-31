@@ -6,6 +6,11 @@ import { CommonMiddleware } from "@/middleware/CommonMiddleware";
 import { idParamsSchema } from "@/model/commonModels";
 import { updateUserSchema } from "@/model/userModels";
 
+// The admin can read all users and delete the
+//
+// There is also route for changing the settings
+// for the current logged in user
+// Which can be used by the admin and authors
 export class UserRouter implements SiteRouter {
   readonly path: string = "/users";
 
