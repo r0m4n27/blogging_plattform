@@ -1,5 +1,6 @@
 import { spacingConfig } from "./spacing";
 
+// Taken from: https://chakra-ui.com/docs/styled-system/theming/theme#sizes
 export const sizeConfig = {
   ...spacingConfig,
   max: "max-content",
