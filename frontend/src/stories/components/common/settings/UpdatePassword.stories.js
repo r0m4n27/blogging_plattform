@@ -1,23 +1,26 @@
-import SettingsList from "@/components/common/settings/SettingsList.vue";
+import UpdatePassword from "@/components/common/settings/UpdatePassword.vue";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
 
 export default {
-  component: SettingsList,
+  component: UpdatePassword,
 };
 
 const Template = (args) => ({
-  components: { SettingsList },
+  components: { UpdatePassword },
   setup() {
     return { args };
   },
-  template: `<SettingsList v-bind='args'/>`,
+  template: `<UpdatePassword v-bind='args'/>`,
 });
 
 export const Primary = Template.bind({});
 Primary.decorators = [createContainerDecorator("lg")];
+Primary.args = {
+  showSuccess: false,
+};
 
 export const Updated = Template.bind({});
 Updated.decorators = [createContainerDecorator("lg")];
 Updated.args = {
-  passwordUpdated: true,
+  showSuccess: true,
 };
