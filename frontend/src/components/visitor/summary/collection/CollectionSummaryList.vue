@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import CollectionSummaryCard from "./CollectionSummaryCard.vue";
 import SummaryList from "../SummaryList.vue";
-import type { Collection } from "./collection";
+import type { Collection } from "@/lib/collection";
 
 interface ArticleSummaryListProps {
   title: string;

@@ -5,6 +5,8 @@ import { Article, User } from "@prisma/client";
 import { CategoryService } from "./CategoryService";
 import { DatabaseService } from "./database";
 
+// The articles that are returned for the user
+// also contain the the categories
 export class ArticleService {
   constructor(
     private readonly database: DatabaseService,
@@ -48,6 +50,11 @@ export class ArticleService {
       include: { categories: true },
     });
 
+  // The ArticleModel contains the ids of the categories
+  // Before they are connected to the article they are read by the
+  // CategoriesService. It returns only the valid ids
+  //
+  // Also the year is automatically inserted and can't be manually changed
   create = async (model: ArticleModel, author: User): Promise<Article> => {
     const { categories: categoriesIds, ...restModel } = model;
 

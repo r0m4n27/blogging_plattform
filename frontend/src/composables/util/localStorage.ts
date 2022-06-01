@@ -1,14 +1,6 @@
 import type { MaybeRef, Option } from "@/lib/types";
 import { ref, watchEffect, type Ref, type UnwrapRef } from "vue";
 
-/**
- * Save and load a value from the local storage
- * If no value is found in the local storage the `defaultValue` will be used
- *
- * @param key Key where the item is saved to
- * @param defaultValue Default value when the local storage has no been set
- * @returns Ref to the storage item
- */
 export function useLocalStorage<Key extends string, T>(
   key: Key,
   defaultValue: MaybeRef<T>
@@ -18,6 +10,14 @@ export function useLocalStorage<Key extends string, T>(
   key: Key
 ): Ref<Option<UnwrapRef<T>>>;
 
+/**
+ * Save and load a value from the local storage
+ * If no value is found in the local storage the `defaultValue` will be used
+ *
+ * @param key Key where the item is saved to
+ * @param defaultValue Default value when the local storage has no been set
+ * @returns Ref to the storage item
+ */
 export function useLocalStorage<Key extends string, T>(
   key: Key,
   defaultValue?: MaybeRef<T>

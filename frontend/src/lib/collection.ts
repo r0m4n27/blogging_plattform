@@ -1,7 +1,14 @@
 import type { Category } from "@/api/category";
 import type { Year } from "@/api/year";
-import type { Collection } from "@/components/visitor/summary/collection/collection";
 import { visitorRoutes } from "./router/visitor";
+import type { RouteLocationRaw } from "vue-router";
+
+export interface Collection {
+  name: string;
+  articleCount: number;
+  destination: RouteLocationRaw;
+  replace?: boolean;
+}
 
 export const categoryToCollection = (category: Category): Collection => ({
   name: category.name,

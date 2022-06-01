@@ -5,6 +5,8 @@ import { AuthMiddleware } from "@/middleware/AuthMiddleware";
 import { CommonMiddleware } from "@/middleware/CommonMiddleware";
 import { siteConfigSchema } from "@/model/siteConfigModels";
 
+// The SiteConfig can be read by everyone
+// but only the admin can create and modify it
 export class SiteConfigRouter implements SiteRouter {
   readonly path: string = "/siteConfig";
 

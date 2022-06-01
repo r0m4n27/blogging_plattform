@@ -10,6 +10,9 @@ import { computed, ref, watch, type Ref, type UnwrapRef } from "vue";
 //
 // https://github.com/vuejs/vue-router/issues/3393
 
+// Get the route params reactively, when will change if the same
+// route is entered with different parameters
+// If the route changes the parameters won't be updated
 export const useRouteParams = <T extends RouteParams>(): Ref<UnwrapRef<T>> => {
   const route = useRoute();
 

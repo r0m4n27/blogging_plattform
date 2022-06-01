@@ -1,7 +1,8 @@
 import type { AuthorArticle, NewArticlePayload } from "@/api/article";
 import type { Category } from "@/api/category";
-import type { EditorAction } from "@/components/author/articleEditor/types";
 import { ref, type Ref } from "vue";
+
+export type EditorAction = "publish" | "draft" | "delete" | "save";
 
 export interface ArticleEditorState {
   title: Ref<string>;

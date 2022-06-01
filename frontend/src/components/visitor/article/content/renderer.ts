@@ -11,6 +11,11 @@ export const createContentComponent = <P>(
   componentProps: Partial<P>
 ): [ConcreteComponent<P>, Partial<P>] => [component, componentProps];
 
+// Create a render function that wraps the one from vue
+//
+// If tags the html tag and maps to the ContentComponent.
+// The content component is a component and the additional props
+// to instantiate it
 export const createContentComponentRenderer =
   (componentMap: ContentComponentRecord): CreateElementLike =>
   (name, oldAttrs, children) => {

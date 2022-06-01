@@ -5,6 +5,11 @@ import { CommonMiddleware } from "@/middleware/CommonMiddleware";
 import { idParamsSchema } from "@/model/commonModels";
 import { readArticlesQuerySchema } from "@/model/visitorModels";
 
+// All routes that can be accessed by the visitor
+//
+// Since they contain different endpoints
+// many routers could be created but they would be pretty empty.
+// So every visitor route is bundled here
 export class VisitorRouter implements SiteRouter {
   readonly path: string = "/";
 

@@ -26,6 +26,7 @@ export interface UserState {
   logout: () => void;
 }
 
+// Holds the user that is saved in the local storage
 export const useUser = defineStore<string, UserState>(
   piniaKeysConfig.user,
   () => {

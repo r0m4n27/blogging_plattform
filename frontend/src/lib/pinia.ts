@@ -12,6 +12,9 @@ declare module "pinia" {
 export const createPinia = (router: Router): Pinia => {
   const pinia = createPiniaInternal();
 
+  // Inject the router into pinia
+  // otherwise pinia crashed
+  //
   // Taken from:
   // https://pinia.vuejs.org/core-concepts/plugins.html#adding-new-external-properties
   pinia.use(({ store }) => {

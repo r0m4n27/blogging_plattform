@@ -1,3 +1,4 @@
+// From: https://chakra-ui.com/docs/styled-system/theming/theme#border-radius
 export const borderConfig = {
   none: "0",
   sm: "0.125rem",

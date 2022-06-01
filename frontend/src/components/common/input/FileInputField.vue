@@ -7,7 +7,7 @@ import type { PropType } from "vue";
 import type { TextElementType } from "@/lib/elementType";
 import { systemProps } from "@/styling/props/systemProps";
 
-interface LoginFieldEmits {
+interface FileInputFieldEmits {
   (e: "newFile", file: File): void;
 }
 
@@ -31,7 +31,7 @@ const props = defineProps({
   ...systemProps,
 });
 
-const emit = defineEmits<LoginFieldEmits>();
+const emit = defineEmits<FileInputFieldEmits>();
 </script>
 
 <template>

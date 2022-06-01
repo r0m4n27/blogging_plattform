@@ -9,6 +9,8 @@ import VBox from "../../../base/layout/VBox.vue";
 import { useCategoriesInputState } from "@/composables/author/articleEditor/categoriesInput";
 import { toRefs } from "vue";
 
+// List of categories that is inspired by https://github.com/vueform/multiselect
+
 interface CategoriesInputProps {
   selectedCategories: AuthorCategory[];
   existingCategories: AuthorCategory[];

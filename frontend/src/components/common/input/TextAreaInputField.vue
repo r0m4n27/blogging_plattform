@@ -8,11 +8,7 @@ import { computed, type PropType } from "vue";
 import type { TextElementType } from "@/lib/elementType";
 import { systemProps } from "@/styling/props/systemProps";
 
-// The creation of a BaseInputField would be possible
-// but there would be still to many duplication.
-// So it is omitted here
-
-interface LoginFieldEmits {
+interface TextAreaInputFieldEmits {
   (e: "update:inputValue", newValue: string): void;
 }
 
@@ -35,7 +31,7 @@ const props = defineProps({
   ...systemProps,
 });
 
-const emit = defineEmits<LoginFieldEmits>();
+const emit = defineEmits<TextAreaInputFieldEmits>();
 
 const inputModel = computed({
   get() {

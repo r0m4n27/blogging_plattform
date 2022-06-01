@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import VRow from "@/components/base/layout/VRow.vue";
-import type { EditorAction } from "./types";
+import type { EditorAction } from "@/composables/author/articleEditor/articleEditor";
 import VHeading from "../../base/text/VHeading.vue";
 import { computed } from "vue";
 import ArticleEditorAction from "./ArticleEditorAction.vue";

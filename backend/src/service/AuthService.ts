@@ -14,6 +14,7 @@ export class AuthService {
     private readonly adminRegisterCode: string,
   ) {}
 
+  // Return the jwt token if the username is found and the password is correct
   login = async (username: string, password: string): Promise<AuthResponse> => {
     const user = await this.database.user.findUnique({ where: { username } });
     if (user === null) throw new HttpException(authErrorMessages.badLogin);
@@ -25,6 +26,10 @@ export class AuthService {
     }
   };
 
+  // Create a user if the register code is found
+  // If the admin register code is used and admin is created
+  //
+  // The register code is deleted when the registration is successful
   register = async (
     username: string,
     password: string,
@@ -70,6 +75,7 @@ export class AuthService {
     }
   };
 
+  // To have a simpler frontend API the token only expires in 30 days
   private createAuthResponse = async (user: User): Promise<AuthResponse> => {
     const token: LoginToken = {
       username: user.username,
@@ -82,6 +88,8 @@ export class AuthService {
     };
   };
 
+  // If the userRole is provided only the specified role will pass
+  // otherwise every role will pass
   verifyLoggedInUser = async (
     rawToken: string,
     userRole?: UserRole,

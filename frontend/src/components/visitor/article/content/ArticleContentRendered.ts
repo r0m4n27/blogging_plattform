@@ -11,6 +11,10 @@ export interface ArticleContentRenderedProps {
   content: Root;
 }
 
+// Render the content using the toH function
+// from  hast-to-hyperscript
+// It takes a render function and works with many
+// frameworks. Vue is one of them
 export const ArticleContentRendered = ({
   content,
 }: ArticleContentRenderedProps): VNode => toH(renderer, content);

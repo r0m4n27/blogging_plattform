@@ -9,7 +9,7 @@ import {
   redButtonBg,
   blueButtonBg,
 } from "@/config/content/color";
-import type { EditorAction } from "./types";
+import type { EditorAction } from "@/composables/author/articleEditor/articleEditor";
 
 interface ArticleEditorActionProps {
   actionType: EditorAction;

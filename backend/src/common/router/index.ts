@@ -16,15 +16,16 @@ export type ConfiguredRoute = Route<never, true>;
 // Rather than working on the same request and response object at the same time
 // the middleware in the route transforms the incoming request into another one
 // or returns a response. If the a response is returned the chain is canceled
-// and the response is forwarded to express. If the chain completes tha last request
+// and the response is forwarded to express. If the chain completes the last request
 // is passed the the route handler which returns a response. (and is passed to express)
 //
-// The could be the possible problem that every time a new object for the request ist created
-// from the past one, which could impact the performance.
+// There could be the problem that every Middleware creates a new request
+// which cloud theoretically impact the performance
 //
 // The typesafety is insured by saving the return type of the previous
 // middleware in the route
-// When the 'use' function is called, the PrevRequest type is changed accordingly
+// When the 'use' function is called, the PrevRequest type is changed accordingly.
+// If the route is not used with the fluent api, the types will get wrong.
 //
 // There is also the generic Parameter 'Configured' it is used to determine
 // wether the handle function was called. With this the apply function
@@ -119,7 +120,8 @@ export class Route<PrevRequest extends Req, Configured = false> {
         actualRequest: req,
       } as PrevRequest);
 
-      res.json(result);
+      const status = this.method === "post" ? 201 : 200;
+      res.status(status).json(result);
     } catch (e) {
       return this.handleError(res, e);
     }

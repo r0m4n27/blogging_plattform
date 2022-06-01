@@ -6,6 +6,10 @@ export class FetchError {
   constructor(readonly error: ErrorMessage) {}
 }
 
+// Create a simpler version of the fetch method
+//
+// The functions below inject the method or
+// pass an undefined token
 const fetchValue = async <T, B>(
   url: string,
   method: string,
