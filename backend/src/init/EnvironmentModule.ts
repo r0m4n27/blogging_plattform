@@ -6,6 +6,8 @@ export class EnvironmentModule {
   readonly jwtSecret: string;
   readonly adminRegisterCode: string;
 
+  readonly tokenExpiryIntervall: string;
+
   constructor() {
     const serverPort = parseInt(process.env.SERVER_PORT ?? "4000");
 
@@ -25,6 +27,13 @@ export class EnvironmentModule {
       this.adminRegisterCode = adminRegisterCode;
     } else {
       throw new Error("ADMIN_REGISTER_CODE not set!");
+    }
+
+    const tokenExpiryIntervall = process.env.TOKEN_EXPIRY_INTERVALL;
+    if (tokenExpiryIntervall) {
+      this.tokenExpiryIntervall = tokenExpiryIntervall;
+    } else {
+      throw new Error("TOKEN_EXPIRY_INTERVALL not set!");
     }
   }
 }

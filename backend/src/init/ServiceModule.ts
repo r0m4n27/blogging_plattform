@@ -18,6 +18,7 @@ export class ServiceModule {
       this.databaseService,
       environment.jwtSecret,
       environment.adminRegisterCode,
+      environment.tokenExpiryIntervall,
     );
 
     this.categoryService = new CategoryService(this.databaseService);
