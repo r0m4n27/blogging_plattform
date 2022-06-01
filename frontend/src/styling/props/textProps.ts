@@ -23,6 +23,11 @@ import {
 } from "../text";
 import type { TextElementType } from "@/lib/elementType";
 
+// Props that can be used for anything that resembles text
+//
+// The naming is chosen that they don't clash with the systemProps
+// Except the 'is' which replaces that of the systemProps
+
 export const textProps = {
   family: {
     type: [Object, String] as PropType<Responsive<FontFamily>>,

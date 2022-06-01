@@ -26,6 +26,7 @@ import type { ElementType } from "@/lib/elementType";
 // defintion and you can achieve simple 'inteface extends'
 // by spreading the props
 
+// General properties that could be used by every component
 export const systemProps = {
   padding: {
     type: [Object, String, Number] as PropType<Responsive<Spacing>>,

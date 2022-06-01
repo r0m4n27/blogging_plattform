@@ -9,6 +9,10 @@ import type { Color } from "../color";
 import type { SystemProps } from "./systemProps";
 import type { TextProps } from "./textProps";
 
+// Writers for the TagButtonComponents
+// There is also one for the TagButton that is based
+// on a normal box rather than the VButton
+
 export type TagButtonSize = "sm" | "md";
 
 export const createTagButtonVButtonProps = (

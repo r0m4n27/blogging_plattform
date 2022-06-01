@@ -6,7 +6,7 @@ const smBreakpointQuery = `@media screen and (min-width: ${breakpointsConfig.sm}
 
 // Writes the content of the `ResponsiveProp<T>` into the stylesheet
 //
-// If the item is a `ResponsiveObject<T>` that the sm item will
+// If the item is a `ResponsiveObject<T>` than the sm item will
 // we written normaly into the stylesheet and the md value is written
 // into the `CSSObject` that was created with the `smBreakpointQuery` key
 //
