@@ -9,6 +9,10 @@ import { visitorRootRoute, visitorRoutes } from "./visitor";
 import { authorRootRoute } from "./author";
 import { adminRootRoute } from "./admin";
 
+// Nested routes are used for the different user types
+//
+// The main routes define the metadata is used for the
+// subroutes
 export const createRouter = (): Router => {
   const routes = [authorRootRoute, visitorRootRoute, adminRootRoute];
 

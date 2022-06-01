@@ -3,6 +3,8 @@ import type { Year } from "@/api/year";
 import type { Collection } from "@/components/visitor/summary/collection/collection";
 import { visitorRoutes } from "./router/visitor";
 
+// Used for the SummaryCollection
+
 export const categoryToCollection = (category: Category): Collection => ({
   name: category.name,
   articleCount: category.articleCount,
