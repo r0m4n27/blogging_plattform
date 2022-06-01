@@ -1,16 +1,10 @@
 <script setup lang="ts">
-import VCard from "@/components/base/layout/VCard.vue";
-import VColumn from "@/components/base/layout/VColumn.vue";
 import TextInputField from "@/components/common/input/TextInputField.vue";
-import TextButton from "@/components/base/button/TextButton.vue";
-import VText from "@/components/base/text/VText.vue";
-import VHeading from "@/components/base/text/VHeading.vue";
-import { contentSpacingConfig } from "@/config/content/spacing";
-import { getColor } from "@/config/theme/colors";
 import { greenButtonFg, greenButtonBg } from "@/config/content/color";
 import FileInputField from "@/components/common/input/FileInputField.vue";
 import { useSiteConfigSettings } from "@/composables/common/siteConfigSettings";
 import { computed } from "vue";
+import InputFormLayout from "@/components/common/layout/InputFormLayout.vue";
 
 interface SiteConfigSettingsProps {
   showSuccess: boolean;
@@ -35,59 +29,35 @@ const buttonText = computed(() => (props.isInitialized ? "UPDATE" : "CREATE"));
 const onButtonClickType = computed(() =>
   props.isInitialized ? "update" : "create"
 );
+const successText = computed(() =>
+  props.showSuccess ? "Site config updated!" : undefined
+);
 </script>
 
 <template>
-  <VCard :width="{ sm: 'sm', md: 'md' }" :padding="contentSpacingConfig.md">
-    <VColumn :gap="contentSpacingConfig.sm" align="start" is="form">
-      <VColumn width="full">
-        <VHeading is="h1" size="lg">Site Config</VHeading>
-      </VColumn>
+  <InputFormLayout
+    title="Site Config"
+    :submit-button-label="buttonText"
+    :error-text="error"
+    :success-text="successText"
+    :submit-button-bg-color="greenButtonBg"
+    :submit-button-fg-color="greenButtonFg"
+    @click="onButtonClick(onButtonClickType)"
+  >
+    <TextInputField label="Title" v-model:input-value="title" width="full" />
 
-      <TextInputField label="Title" v-model:input-value="title" width="full" />
+    <FileInputField
+      label="Logo"
+      input-id="logo_upload"
+      accept="image/*"
+      @new-file="setLogo"
+    />
 
-      <FileInputField
-        label="Logo"
-        input-id="logo_upload"
-        accept="image/*"
-        @new-file="setLogo"
-      />
-
-      <FileInputField
-        label="Icon"
-        input-id="icon_upload"
-        accept="image/x-icon"
-        @new-file="setIcon"
-      />
-
-      <VText
-        :color="{
-          light: getColor('red', 400),
-          dark: getColor('red', 400),
-        }"
-        v-if="error !== undefined"
-      >
-        {{ error }}
-      </VText>
-
-      <VText
-        :color="{
-          light: getColor('green', 400),
-          dark: getColor('green', 400),
-        }"
-        v-if="error === undefined && showSuccess"
-      >
-        Site config updated!
-      </VText>
-
-      <TextButton
-        :label="buttonText"
-        width="full"
-        :show-border="false"
-        :background-color="greenButtonBg"
-        :color="greenButtonFg"
-        @click="onButtonClick(onButtonClickType)"
-      />
-    </VColumn>
-  </VCard>
+    <FileInputField
+      label="Icon"
+      input-id="icon_upload"
+      accept="image/x-icon"
+      @new-file="setIcon"
+    />
+  </InputFormLayout>
 </template>
