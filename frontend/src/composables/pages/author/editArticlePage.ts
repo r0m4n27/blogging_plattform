@@ -13,7 +13,6 @@ import {
 } from "@/api/article";
 import { getAuthorCategories, type AuthorCategory } from "@/api/category";
 import { useUser } from "@/composables/store/user";
-import { promise } from "@/lib/promise";
 
 export interface EditArticlePageState {
   article: Ref<Option<AuthorArticle>>;
@@ -34,30 +33,25 @@ export const useEditArticlePage = (): EditArticlePageState => {
 
   const params = useRouteParams<EditArticlePageParams>();
   const articleFetcher = computed(
-    () => () =>
-      user.token
-        ? getAuthorArticle(user.token, params.value.id)
-        : promise(undefined)
+    () => () => user.fetchWithToken(getAuthorArticle(params.value.id))
   );
 
   const { value: article } = useEndpoint(articleFetcher);
 
   const categoriesFetcher = computed(
-    () => () => user.token ? getAuthorCategories(user.token) : promise([])
+    () => () => user.fetchWithToken(getAuthorCategories, [])
   );
   const { value: existingCategories } = useEndpoint(categoriesFetcher, []);
 
   const deleteArticle = async () => {
-    if (article.value !== undefined && user.token !== undefined) {
-      await deleteArticleInternal(user.token, article.value);
+    if (article.value !== undefined) {
+      await user.fetchWithToken(deleteArticleInternal(article.value));
       router.replace(authorRoutes.home.route);
     }
   };
   const updateArticle = async (newArticle: AuthorArticle) => {
-    if (user.token != undefined) {
-      await updateArticleInternal(user.token, newArticle);
-      router.replace(authorRoutes.home.route);
-    }
+    await user.fetchWithToken(updateArticleInternal(newArticle));
+    router.replace(authorRoutes.home.route);
   };
 
   return {

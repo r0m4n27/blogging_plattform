@@ -1,6 +1,5 @@
 import { getAuthorArticles, type AuthorArticle } from "@/api/article";
 import { useUser } from "@/composables/store/user";
-import { promise } from "@/lib/promise";
 import { computed, type Ref } from "vue";
 import { usePageTitle } from "../../head/pageTitle";
 import { useEndpoint } from "../../util/endpoint";
@@ -14,7 +13,7 @@ export const useHomePageState = (): HomePageState => {
 
   const user = useUser();
   const articlesFetcher = computed(
-    () => () => user.token ? getAuthorArticles(user.token) : promise([])
+    () => () => user.fetchWithToken(getAuthorArticles, [])
   );
   const { value: articles } = useEndpoint(articlesFetcher, []);
 

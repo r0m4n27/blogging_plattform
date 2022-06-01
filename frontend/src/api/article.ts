@@ -62,22 +62,21 @@ const authorArticlesBase = "/api/author/articles";
 export const getAuthorArticles = (token: string) =>
   getWithToken<AuthorArticle[]>(authorArticlesBase, token);
 
-export const getAuthorArticle = (token: string, id: string) =>
+export const getAuthorArticle = (id: string) => (token: string) =>
   getWithToken<AuthorArticle>(`${authorArticlesBase}/${id}`, token);
 
-export const publishArticle = (token: string, payload: NewArticlePayload) =>
+export const publishArticle = (payload: NewArticlePayload) => (token: string) =>
   postWithToken(authorArticlesBase, token, payload);
 
-export const updateArticle = (
-  token: string,
-  article: AuthorArticle
-): Promise<unknown> => {
-  // Year needs to be extracted otherwise it will be put into the db
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { id, year: _, ...payload } = article;
+export const updateArticle =
+  (article: AuthorArticle) =>
+  (token: string): Promise<unknown> => {
+    // Year needs to be extracted otherwise it will be put into the db
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { id, year: _, ...payload } = article;
 
-  return patchWithToken(`${authorArticlesBase}/${id}`, token, payload);
-};
+    return patchWithToken(`${authorArticlesBase}/${id}`, token, payload);
+  };
 
-export const deleteArticle = (token: string, article: AuthorArticle) =>
+export const deleteArticle = (article: AuthorArticle) => (token: string) =>
   deleteWithToken(`${authorArticlesBase}/${article.id}`, token);

@@ -12,6 +12,7 @@ export class AuthService {
     private readonly database: DatabaseService,
     private readonly jwtSecret: string,
     private readonly adminRegisterCode: string,
+    private readonly tokenExpiryIntervall: string,
   ) {}
 
   // Return the jwt token if the username is found and the password is correct
@@ -83,7 +84,9 @@ export class AuthService {
     };
 
     return {
-      token: await signJwt(token, this.jwtSecret, { expiresIn: "30d" }),
+      token: await signJwt(token, this.jwtSecret, {
+        expiresIn: this.tokenExpiryIntervall,
+      }),
       role: user.role,
     };
   };

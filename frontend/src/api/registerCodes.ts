@@ -6,8 +6,7 @@ export const getRegisterCodes = (token: string): Promise<string[]> =>
 export const createRegisterCode = (token: string): Promise<string[]> =>
   postWithToken("/api/auth/registerCodes", token, {});
 
-export const deleteRegisterCode = (
-  registerCode: string,
-  token: string
-): Promise<void> =>
-  deleteWithToken(`/api/auth/registerCodes/${registerCode}`, token);
+export const deleteRegisterCode =
+  (registerCode: string) =>
+  (token: string): Promise<void> =>
+    deleteWithToken(`/api/auth/registerCodes/${registerCode}`, token);

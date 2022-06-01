@@ -12,10 +12,8 @@ export const useUpdatePassword = (): UpdatePasswordPageState => {
   const user = useUser();
 
   const updatePassword = computed(() => async (newPassword: string) => {
-    if (user.token !== undefined) {
-      await updatePasswordInternal(newPassword, user.token);
-      passwordUpdated.value = true;
-    }
+    await user.fetchWithToken(updatePasswordInternal(newPassword));
+    passwordUpdated.value = true;
   });
 
   return {
