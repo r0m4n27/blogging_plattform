@@ -63,7 +63,7 @@ export const darkColoredButtonFg: Color = {
   dark: getColor("gray", 800),
 };
 
-export const greenButtonFg = coloredButtonFg;
+export const greenButtonFg: Color = coloredButtonFg;
 export const greenButtonBg: Color = {
   default: {
     light: getColor("green", 400),
