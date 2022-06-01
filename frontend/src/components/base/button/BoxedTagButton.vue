@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import VBox from "../layout/VBox.vue";
 import { computed } from "vue";
 import type { Color } from "@/styling/color";
 import {

@@ -6,6 +6,9 @@ import VBox from "@/components/base/layout/VBox.vue";
 import type { Responsive } from "@/lib/responsive";
 import { defaultContentSpacing } from "@/config/content/spacing";
 
+// Generic summary list layout
+// Where the specific items can be inserted into the slot
+
 interface SummaryListProps {
   title: string;
   showTitleOnDesktop?: boolean;

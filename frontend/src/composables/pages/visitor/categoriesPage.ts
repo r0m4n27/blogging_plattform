@@ -1,5 +1,5 @@
 import { getCategories } from "@/api/category";
-import type { Collection } from "@/components/visitor/summary/collection/collection";
+import type { Collection } from "@/lib/collection";
 import { categoryToCollection } from "@/lib/collection";
 import { computed, type ComputedRef } from "vue";
 import { usePageTitle } from "../../head/pageTitle";

@@ -26,6 +26,8 @@ export function useEndpoint<T>(fetcher: MaybeRef<() => Promise<T>>): {
 
 // Fetch data from the endpoint
 // until the data is fetched provide the initialValue
+//
+// Also when a bad request happens the message will be provided in an error
 export function useEndpoint<T>(
   fetcher: MaybeRef<() => Promise<T>>,
   initialValue?: MaybeRef<T>

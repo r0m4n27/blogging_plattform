@@ -12,7 +12,7 @@ import { systemProps } from "@/styling/props/systemProps";
 // but there would be still to many duplication.
 // So it is omitted here
 
-interface LoginFieldEmits {
+interface TextInputFieldEmits {
   (e: "update:inputValue", newValue: string): void;
 }
 
@@ -35,7 +35,7 @@ const props = defineProps({
   ...systemProps,
 });
 
-const emit = defineEmits<LoginFieldEmits>();
+const emit = defineEmits<TextInputFieldEmits>();
 
 const inputModel = computed({
   get() {
