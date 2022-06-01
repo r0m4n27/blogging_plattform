@@ -9,6 +9,10 @@ import {
   createSiteConfig as createSiteConfigInternal,
 } from "@/api/siteConfig";
 
+// Settings for the siteConfig
+// where it can be either created or updated
+//
+// The creation only works if all parameters are provided
 export interface SiteConfigSettingsPageState {
   initialTitle: ComputedRef<string>;
   isInitialized: ComputedRef<boolean>;

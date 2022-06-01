@@ -16,6 +16,7 @@ export const useLoginPageState = (): LoginPageState => {
   const login = async (username: string, password: string) => {
     const loginStatus = await user.login(username, password);
 
+    // Return the the homepage if the login was successful
     if (loginStatus) {
       router.replace("/");
     } else {
