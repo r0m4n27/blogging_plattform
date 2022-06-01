@@ -30,10 +30,10 @@ const authorCategoryBase = "/api/author/categories";
 export const getAuthorCategories = (token: string) =>
   getWithToken<AuthorCategory[]>(authorCategoryBase, token);
 
-export const deleteCategory = (token: string, category: AuthorCategory) =>
+export const deleteCategory = (category: AuthorCategory) => (token: string) =>
   deleteWithToken(`${authorCategoryBase}/${category.id}`, token);
 
-export const createCategory = (token: string, name: string) =>
+export const createCategory = (name: string) => (token: string) =>
   postWithToken<AuthorCategory, CreateCategoryPayload>(
     authorCategoryBase,
     token,
@@ -42,11 +42,10 @@ export const createCategory = (token: string, name: string) =>
     }
   );
 
-export const updateCategory = (
-  token: string,
-  category: Category
-): Promise<unknown> => {
-  const { id, ...payload } = category;
+export const updateCategory =
+  (category: Category) =>
+  (token: string): Promise<unknown> => {
+    const { id, ...payload } = category;
 
-  return patchWithToken(`${authorCategoryBase}/${id}`, token, payload);
-};
+    return patchWithToken(`${authorCategoryBase}/${id}`, token, payload);
+  };

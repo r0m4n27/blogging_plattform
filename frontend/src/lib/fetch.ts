@@ -3,7 +3,7 @@ export interface ErrorMessage {
 }
 
 export class FetchError {
-  constructor(readonly error: ErrorMessage) {}
+  constructor(readonly error: ErrorMessage, readonly statusCode: number) {}
 }
 
 // Create a simpler version of the fetch method
@@ -29,10 +29,13 @@ const fetchValue = async <T, B>(
 
   const response = await fetch(url, { method, body, headers });
 
+  const responseJson = await response.json();
+  const responseCode = response.status;
+
   if (response.ok) {
-    return await response.json();
+    return await responseJson;
   } else {
-    throw new FetchError(await response.json());
+    throw new FetchError(responseJson, responseCode);
   }
 };
 

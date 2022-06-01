@@ -11,10 +11,9 @@ export type UpdateSiteConfigPayload = Partial<SiteConfig>;
 export const getSiteConfig = async () =>
   await get<SiteConfig>("/api/siteConfig");
 
-export const updateSiteConfig = (
-  token: string,
-  payload: UpdateSiteConfigPayload
-) => patchWithToken("/api/siteConfig", token, payload);
+export const updateSiteConfig =
+  (payload: UpdateSiteConfigPayload) => (token: string) =>
+    patchWithToken("/api/siteConfig", token, payload);
 
-export const createSiteConfig = (token: string, payload: SiteConfig) =>
+export const createSiteConfig = (payload: SiteConfig) => (token: string) =>
   postWithToken("/api/siteConfig", token, payload);

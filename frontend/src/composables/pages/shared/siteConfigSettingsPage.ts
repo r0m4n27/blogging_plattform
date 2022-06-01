@@ -37,24 +37,20 @@ export const useSiteConfigSettingsPage = (): SiteConfigSettingsPageState => {
   const updateSiteConfig = async (title?: string, logo?: File, icon?: File) => {
     const payload = await createSiteConfigPayload(title, logo, icon);
 
-    if (user.token !== undefined) {
-      await updateSiteConfigInternal(user.token, payload);
-      showSuccess.value = true;
-      error.value = undefined;
-      siteConfig.refetch();
-    }
+    await user.fetchWithToken(updateSiteConfigInternal(payload));
+    showSuccess.value = true;
+    error.value = undefined;
+    siteConfig.refetch();
   };
 
   const createSiteConfig = async (title?: string, logo?: File, icon?: File) => {
     if (title !== undefined && logo !== undefined && icon !== undefined) {
       const payload = await createSiteConfigPayload(title, logo, icon);
 
-      if (user.token !== undefined) {
-        await createSiteConfigInternal(user.token, payload);
-        showSuccess.value = true;
-        error.value = undefined;
-        siteConfig.refetch();
-      }
+      await user.fetchWithToken(createSiteConfigInternal(payload));
+      showSuccess.value = true;
+      error.value = undefined;
+      siteConfig.refetch();
     } else {
       error.value = "Not all values were provided!";
       showSuccess.value = false;

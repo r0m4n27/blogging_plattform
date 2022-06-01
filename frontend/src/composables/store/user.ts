@@ -7,14 +7,14 @@ import { localStorageKeys } from "@/config/localStorage";
 import { piniaKeysConfig } from "@/config/pinia";
 import type { Option } from "@/lib/types";
 import { defineStore } from "pinia";
-import { computed, type ComputedRef, type Ref } from "vue";
+import type { Ref } from "vue";
 import { useLocalStorage } from "../util/localStorage";
 import { useEmptyStore } from "./emptyStore";
 import { visitorRoutes } from "@/lib/router/visitor";
+import { FetchError } from "@/lib/fetch";
 
 export interface UserState {
   value: Ref<Option<User>>;
-  token: ComputedRef<Option<string>>;
 
   // Return true if the user was successfully logged in
   login: (username: string, password: string) => Promise<boolean>;
@@ -24,6 +24,14 @@ export interface UserState {
     registerCode: string
   ) => Promise<boolean>;
   logout: () => void;
+
+  fetchWithToken<T>(
+    fetcher: (token: string) => Promise<T>
+  ): Promise<T | undefined>;
+  fetchWithToken<T>(
+    fetcher: (token: string) => Promise<T>,
+    defaultValue: T
+  ): Promise<T>;
 }
 
 // Holds the user that is saved in the local storage
@@ -33,7 +41,6 @@ export const useUser = defineStore<string, UserState>(
     const emptyStore = useEmptyStore();
 
     const user = useLocalStorage<string, User>(localStorageKeys.user);
-    const token = computed(() => user.value?.token);
 
     const login = async (username: string, password: string) => {
       const newUser = await loginUser(username, password);
@@ -61,12 +68,33 @@ export const useUser = defineStore<string, UserState>(
       user.value = undefined;
     };
 
+    const fetchWithToken = async <T>(
+      fetcher: (token: string) => Promise<T>,
+      defaultValue?: T
+    ) => {
+      try {
+        const token = user.value?.token;
+        if (token !== undefined) {
+          return await fetcher(token);
+        } else {
+          return defaultValue;
+        }
+      } catch (e) {
+        if (e instanceof FetchError && e.statusCode === 401) {
+          logout();
+          return defaultValue;
+        } else {
+          throw e;
+        }
+      }
+    };
+
     return {
       value: user,
-      token,
       login,
       logout,
       register,
+      fetchWithToken,
     };
   }
 );
