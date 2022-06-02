@@ -25,11 +25,15 @@ export class Server {
     this.app.use(morgan("short"));
 
     routers.forEach((siteRouter) => {
-      const router = Router();
-      siteRouter.routes.forEach((route) => {
-        route.apply(router);
-      });
-      this.app.use(siteRouter.path, router);
+      if (Array.isArray(siteRouter.routes)) {
+        const router = Router();
+        siteRouter.routes.forEach((route) => {
+          route.apply(router);
+        });
+        this.app.use(siteRouter.path, router);
+      } else {
+        this.app.use(siteRouter.path, siteRouter.routes);
+      }
     });
   }
 
