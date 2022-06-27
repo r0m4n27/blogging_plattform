@@ -59,6 +59,7 @@ model Article {
 
   year      Int
   published Boolean
+  updatedAt DateTime @default(now())
 
   categories Category[]
 
