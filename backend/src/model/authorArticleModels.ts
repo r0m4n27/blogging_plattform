@@ -1,7 +1,7 @@
 import { Article } from "@prisma/client";
 import { z } from "zod";
 
-export type ArticleResponse = Omit<Article, "authorId">;
+export type ArticleResponse = Omit<Article, "authorId" | "updatedAt">;
 
 export const articleResponseFromDb = (article: Article): ArticleResponse => ({
   id: article.id,

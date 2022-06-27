@@ -19,6 +19,7 @@ export class CategoryService {
           in: model.map((category) => category.id),
         },
       },
+      orderBy: { name: "asc" },
     });
   };
 
@@ -29,6 +30,7 @@ export class CategoryService {
           select: { articles: true },
         },
       },
+      orderBy: { name: "asc" },
     });
 
   readSingleWithArticleCount = async (id: string) =>

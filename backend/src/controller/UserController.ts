@@ -20,6 +20,7 @@ export class UserController {
           role: "ADMIN",
         },
       },
+      orderBy: { username: "asc" },
     });
 
     return users.map((user) => ({

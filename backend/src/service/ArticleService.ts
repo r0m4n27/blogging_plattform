@@ -14,24 +14,30 @@ export class ArticleService {
   ) {}
 
   readAllByUser = async (author: User) =>
-    await this.database.article.findMany({ where: { author } });
+    await this.database.article.findMany({
+      where: { author },
+      orderBy: { updatedAt: "desc" },
+    });
 
   readAllAsVisitor = async () =>
     await this.database.article.findMany({
       where: { published: true },
       include: { categories: true },
+      orderBy: { updatedAt: "desc" },
     });
 
   readAllByCategoryAsVisitor = async (categoryId: string) =>
     await this.database.article.findMany({
       where: { published: true, categories: { some: { id: categoryId } } },
       include: { categories: true },
+      orderBy: { updatedAt: "desc" },
     });
 
   readAllByYearAsVisitor = async (year: number) =>
     await this.database.article.findMany({
       where: { published: true, year },
       include: { categories: true },
+      orderBy: { updatedAt: "desc" },
     });
 
   readCountedByYearAsVisitor = async () =>
@@ -39,6 +45,7 @@ export class ArticleService {
       by: ["year"],
       _count: true,
       where: { published: true },
+      orderBy: { year: "desc" },
     });
 
   readSingle = async (id: string) =>
@@ -91,6 +98,7 @@ export class ArticleService {
         return await this.database.article.update({
           data: {
             ...restModel,
+            updatedAt: new Date(),
             categories: {
               connect: categories.map((c) => ({
                 id: c.id,
