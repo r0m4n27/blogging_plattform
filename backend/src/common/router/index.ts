@@ -33,7 +33,6 @@ export type UnconfiguredRoute<PrevRequest extends Req> = Route<
 // The typesafety is insured by saving the return type of the previous
 // middleware in the route
 // When the 'use' function is called, the PrevRequest type is changed accordingly.
-// If the route is not used with the fluent api, the types will get wrong.
 //
 // There is also the generic Parameter 'Configured' it is used to determine
 // wether the handle function was called. With this the apply function
@@ -45,16 +44,12 @@ export type UnconfiguredRoute<PrevRequest extends Req> = Route<
 // ConfiguredType is a guard for applying the handler so ignore that it is not used
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export class Route<PrevRequest extends Req, _Configured = false> {
-  private readonly middlewareList: UnknownMiddleware[];
-  private routeHandler: undefined | UnknownRouteHandler;
-
   constructor(
     private readonly path: string,
     private readonly method: RouteMethod,
-  ) {
-    this.middlewareList = [];
-    this.routeHandler = undefined;
-  }
+    private readonly middlewareList: UnknownMiddleware[] = [],
+    private readonly routeHandler?: UnknownRouteHandler,
+  ) {}
 
   static get = (path: string) => new Route(path, "get");
   static post = (path: string) => new Route(path, "post");
@@ -64,15 +59,21 @@ export class Route<PrevRequest extends Req, _Configured = false> {
   use = <NextRequest extends Req>(
     middleware: Middleware<PrevRequest, NextRequest>,
   ): UnconfiguredRoute<NextRequest> => {
-    this.middlewareList.push(middleware);
-
-    return this as unknown as UnconfiguredRoute<NextRequest>;
+    return new Route(
+      this.path,
+      this.method,
+      [...this.middlewareList, middleware],
+      this.routeHandler,
+    );
   };
 
   handle = (handlerFunction: RouteHandler<PrevRequest>): ConfiguredRoute => {
-    this.routeHandler = handlerFunction as UnknownRouteHandler;
-
-    return this as unknown as ConfiguredRoute;
+    return new Route(
+      this.path,
+      this.method,
+      this.middlewareList,
+      handlerFunction as unknown as UnknownRouteHandler,
+    );
   };
 
   apply = (expressRouter: this extends ConfiguredRoute ? Router : never) => {
