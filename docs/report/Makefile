@@ -55,3 +55,6 @@ clean:
 open: build/dokumentation.pdf
 	open build/dokumentation.pdf
 
+.PHONY: watch
+watch:
+	watchman-make -p 'main.md' 'Makefile' 'metadata.yml' 'latex/*.tex' 'chapters/*.md' -t all
