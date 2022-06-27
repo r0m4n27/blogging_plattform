@@ -33,9 +33,5 @@ export type ReqWithUser<
   B = unknown,
   P = unknown,
   Q = unknown,
-  E = unknown,
-> = Req<B, P, Q, E> & {
-  extras: {
-    user: User;
-  };
-};
+  E extends Record<string, unknown> = Record<string, never>,
+> = Req<B, P, Q, E & { user: User }>;
