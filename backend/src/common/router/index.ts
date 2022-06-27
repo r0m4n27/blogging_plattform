@@ -1,5 +1,11 @@
-import { NextFunction, Request, Response, Router } from "express";
-import { HttpException, Middleware, Req, RouteMethod } from "./types";
+import { Request, Response, Router } from "express";
+import {
+  HttpException,
+  Middleware,
+  Req,
+  RouteHandler,
+  RouteMethod,
+} from "./types";
 
 // The typesafety is provided with the router itself
 // rather than the list of middleware
@@ -7,8 +13,13 @@ import { HttpException, Middleware, Req, RouteMethod } from "./types";
 type UnknownMiddleware = Middleware<any, any>;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyReq = Req<any, any, any, any>;
+type UnknownRouteHandler = RouteHandler<AnyReq>;
 
 export type ConfiguredRoute = Route<never, true>;
+export type UnconfiguredRoute<PrevRequest extends Req> = Route<
+  PrevRequest,
+  false
+>;
 
 // Idea for this is inspired by: https://github.com/akheron/typera
 //
@@ -18,9 +29,6 @@ export type ConfiguredRoute = Route<never, true>;
 // or returns a response. If the a response is returned the chain is canceled
 // and the response is forwarded to express. If the chain completes the last request
 // is passed the the route handler which returns a response. (and is passed to express)
-//
-// There could be the problem that every Middleware creates a new request
-// which cloud theoretically impact the performance
 //
 // The typesafety is insured by saving the return type of the previous
 // middleware in the route
@@ -33,9 +41,12 @@ export type ConfiguredRoute = Route<never, true>;
 //
 // Also after calling the handle function the function no new middleware can
 // be applied since we then can't determine the typesafety of the requests anymore
-export class Route<PrevRequest extends Req, Configured = false> {
+//
+// ConfiguredType is a guard for applying the handler so ignore that it is not used
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export class Route<PrevRequest extends Req, _Configured = false> {
   private readonly middlewareList: UnknownMiddleware[];
-  private routeHandler: undefined | ((req: PrevRequest) => Promise<unknown>);
+  private routeHandler: undefined | UnknownRouteHandler;
 
   constructor(
     private readonly path: string,
@@ -52,73 +63,42 @@ export class Route<PrevRequest extends Req, Configured = false> {
 
   use = <NextRequest extends Req>(
     middleware: Middleware<PrevRequest, NextRequest>,
-  ): Route<NextRequest, false> => {
+  ): UnconfiguredRoute<NextRequest> => {
     this.middlewareList.push(middleware);
 
-    return this as unknown as Route<NextRequest, false>;
+    return this as unknown as UnconfiguredRoute<NextRequest>;
   };
 
-  handle = (
-    handlerFunction: (req: PrevRequest) => Promise<unknown>,
-  ): Route<never, true> => {
-    this.routeHandler = handlerFunction;
+  handle = (handlerFunction: RouteHandler<PrevRequest>): ConfiguredRoute => {
+    this.routeHandler = handlerFunction as UnknownRouteHandler;
 
-    return this as unknown as Route<never, true>;
+    return this as unknown as ConfiguredRoute;
   };
 
-  apply = (expressRouter: Configured extends true ? Router : never) => {
-    expressRouter[this.method](
-      this.path,
-      this.expressMiddlewareHandler,
-      this.expressFinalHandler,
-    );
+  apply = (expressRouter: this extends ConfiguredRoute ? Router : never) => {
+    expressRouter[this.method](this.path, this.expressHandler);
   };
 
-  private expressMiddlewareHandler = async (
+  private expressHandler = async (
     req: Request,
     res: Response,
-    next: NextFunction,
   ): Promise<void> => {
-    let previousRequest: AnyReq = {
-      body: req.body,
-      params: req.params,
-      query: req.query,
-      extras: {},
-
-      actualRequest: req,
-    };
+    const request = Req.fromExpressRequest(req);
 
     for (const middleware of this.middlewareList) {
       try {
-        previousRequest = await middleware(previousRequest);
+        await middleware(request);
       } catch (e) {
         return this.handleError(res, e);
       }
     }
 
-    if (this.middlewareList.length !== 0) {
-      Object.assign(req, previousRequest);
-    }
-
-    next();
-  };
-
-  private expressFinalHandler = async (
-    req: Request,
-    res: Response,
-  ): Promise<void> => {
-    if (this.routeHandler === undefined)
-      throw new Error("Route Handler was not set!");
-
     try {
-      const result = await this.routeHandler({
-        body: req.body,
-        params: req.params,
-        query: req.query,
-        extras: req.extras,
+      if (this.routeHandler === undefined) {
+        throw new Error("RouteHandler is undefined which can't happen");
+      }
 
-        actualRequest: req,
-      } as PrevRequest);
+      const result = await this.routeHandler(request);
 
       const status = this.method === "post" ? 201 : 200;
       res.status(status).json(result);
