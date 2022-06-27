@@ -20,20 +20,7 @@ export class AuthMiddleware {
       const user = await this.auth.verifyLoggedInUser(token, userRole);
 
       if (user !== undefined) {
-        const extras =
-          typeof req.extras === "object"
-            ? {
-                ...req.extras,
-                user,
-              }
-            : {
-                user,
-              };
-
-        return {
-          ...req,
-          extras,
-        };
+        return req.setExtra("user", user);
       } else {
         throw new HttpException("Unauthorized", 401);
       }

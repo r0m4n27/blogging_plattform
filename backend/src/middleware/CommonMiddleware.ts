@@ -12,15 +12,12 @@ type ZodSchema<
 export class CommonMiddleware {
   validateBody =
     <InputBody, OutputBody>(schema: ZodSchema<InputBody, OutputBody>) =>
-    async <P, Q, E>(
+    async <P, Q, E extends Record<string, unknown>>(
       req: Req<unknown, P, Q, E>,
     ): Promise<Req<OutputBody, P, Q, E>> => {
       try {
         const result = await schema.parseAsync(req.body);
-        return {
-          ...req,
-          body: result,
-        };
+        return req.setBody(result);
       } catch {
         throw new HttpException("Malformed body!");
       }
@@ -28,15 +25,12 @@ export class CommonMiddleware {
 
   validateQuery =
     <InputQuery, OutputQuery>(schema: ZodSchema<InputQuery, OutputQuery>) =>
-    async <B, P, E>(
+    async <B, P, E extends Record<string, unknown>>(
       req: Req<B, P, unknown, E>,
     ): Promise<Req<B, P, OutputQuery, E>> => {
       try {
         const result = await schema.parseAsync(req.query);
-        return {
-          ...req,
-          query: result,
-        };
+        return req.setQuery(result);
       } catch {
         throw new HttpException("Malformed query!");
       }
@@ -44,15 +38,12 @@ export class CommonMiddleware {
 
   validateParams =
     <InputParams, OutputParams>(schema: ZodSchema<InputParams, OutputParams>) =>
-    async <B, Q, E>(
+    async <B, Q, E extends Record<string, unknown>>(
       req: Req<B, unknown, Q, E>,
     ): Promise<Req<B, OutputParams, Q, E>> => {
       try {
         const result = await schema.parseAsync(req.params);
-        return {
-          ...req,
-          params: result,
-        };
+        return req.setParams(result);
       } catch {
         throw new HttpException("Malformed params!");
       }
