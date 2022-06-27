@@ -6,7 +6,7 @@ export type ArticleWithCategories = Article & { categories: Category[] };
 
 export type VisitorArticleResponse = Omit<
   ArticleWithCategories,
-  "authorId" | "published"
+  "authorId" | "published" | "updatedAt"
 >;
 
 export const visitorArticleFromDb = (

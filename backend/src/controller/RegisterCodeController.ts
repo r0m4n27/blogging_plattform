@@ -8,7 +8,9 @@ export class RegisterCodeController {
   constructor(private readonly database: DatabaseService) {}
 
   listAll = async (): Promise<string[]> => {
-    const codes = await this.database.registerCode.findMany();
+    const codes = await this.database.registerCode.findMany({
+      orderBy: { id: "asc" },
+    });
 
     return codes.map((code) => code.id);
   };
