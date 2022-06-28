@@ -26,6 +26,7 @@ lang: de
 
 ```{.include}
 chapters/intro.md
+chapters/requirements.md
 chapters/grundlagen.md
 chapters/frontend.md
 chapters/backend.md
