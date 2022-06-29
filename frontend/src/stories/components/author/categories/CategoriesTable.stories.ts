@@ -1,12 +1,13 @@
 import CategoriesTable from "../../../../components/author/categories/CategoriesTable.vue";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
 import { mockCategories } from "../../../data/category";
+import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: CategoriesTable,
-};
+} as Meta<typeof CategoriesTable>;
 
-const Template = (args) => ({
+const Template: StoryFn<typeof CategoriesTable> = (args) => ({
   components: { CategoriesTable },
   setup() {
     return { args };
