@@ -2,12 +2,13 @@ import CategoryList from "@/components/visitor/util/CategoryList.vue";
 import { mockCategories } from "@/stories/data/category";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
 import { cardDecorator } from "@/stories/decorators/cardDecorator";
+import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: CategoryList,
-};
+} as Meta<typeof CategoryList>;
 
-const Template = (args) => ({
+const Template: StoryFn<typeof CategoryList> = (args) => ({
   components: { CategoryList },
   setup() {
     return { args };

@@ -1,12 +1,13 @@
 import ArticlesTable from "../../../../components/author/articles/ArticlesTable.vue";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
 import { mockArticles } from "../../../data/article";
+import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: ArticlesTable,
-};
+} as Meta<typeof ArticlesTable>;
 
-const Template = (args) => ({
+const Template: StoryFn<typeof ArticlesTable> = (args) => ({
   components: { ArticlesTable },
   setup() {
     return { args };

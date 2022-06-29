@@ -1,12 +1,14 @@
 import IconButton from "@/components/base/button/IconButton.vue";
 import { Menu, Moon } from "lucide-vue-next";
 import { getColor } from "@/config/theme/colors";
+import type { Meta, StoryFn } from "@storybook/vue3";
+import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
 
 export default {
   component: IconButton,
-};
+} as Meta<typeof IconButton>;
 
-const Template = (args) => ({
+const Template: StoryFn<typeof IconButton> = (args) => ({
   components: { IconButton, Menu, Moon },
   setup() {
     return { args };
@@ -15,13 +17,13 @@ const Template = (args) => ({
 });
 
 export const Primary = Template.bind({});
-
+Primary.decorators = [createContainerDecorator("md")];
 Primary.args = {
   icon: Menu,
 };
 
 export const Custom = Template.bind({});
-
+Custom.decorators = [createContainerDecorator("md")];
 Custom.args = {
   icon: Moon,
   backgroundColor: {

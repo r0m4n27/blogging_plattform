@@ -1,11 +1,12 @@
 import LoginCard from "@/components/visitor/auth/LoginCard.vue";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
+import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: LoginCard,
-};
+} as Meta<typeof LoginCard>;
 
-const Template = (args) => ({
+const Template: StoryFn<typeof LoginCard> = (args) => ({
   components: { LoginCard },
   setup() {
     return { args };

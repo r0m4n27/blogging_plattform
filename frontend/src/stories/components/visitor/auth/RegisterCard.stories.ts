@@ -1,11 +1,12 @@
 import RegisterCard from "@/components/visitor/auth/RegisterCard.vue";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
+import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: RegisterCard,
-};
+} as Meta<typeof RegisterCard>;
 
-const Template = (args) => ({
+const Template: StoryFn<typeof RegisterCard> = (args) => ({
   components: { RegisterCard },
   setup() {
     return { args };
