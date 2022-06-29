@@ -28,7 +28,8 @@ lang: de
 chapters/intro.md
 chapters/requirements.md
 chapters/grundlagen.md
-chapters/frontend.md
 chapters/backend.md
+chapters/frontend.md
 chapters/fazit.md
+chapters/references.md
 ```
