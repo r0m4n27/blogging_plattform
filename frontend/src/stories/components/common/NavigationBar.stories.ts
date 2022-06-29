@@ -1,12 +1,13 @@
 import NavigationBar from "@/components/common/navigationBar/NavigationBar.vue";
 import { visitorNavBarDestinations } from "@/config/components/navigationBar";
 import { logoBase64 } from "@/stories/data/navigationBar";
+import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: NavigationBar,
-};
+} as Meta<typeof NavigationBar>;
 
-const Template = (args) => ({
+const Template: StoryFn<typeof NavigationBar> = (args) => ({
   components: { NavigationBar },
   setup() {
     return { args };

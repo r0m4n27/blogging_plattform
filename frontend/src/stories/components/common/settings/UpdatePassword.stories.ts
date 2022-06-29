@@ -1,11 +1,12 @@
 import UpdatePassword from "@/components/common/settings/UpdatePassword.vue";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
+import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: UpdatePassword,
-};
+} as Meta<typeof UpdatePassword>;
 
-const Template = (args) => ({
+const Template: StoryFn<typeof UpdatePassword> = (args) => ({
   components: { UpdatePassword },
   setup() {
     return { args };
