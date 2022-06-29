@@ -5,22 +5,23 @@ import { createSystemPropsCss } from "@/styling/props/systemProps";
 import { createTextPropsCss } from "@/styling/props/textProps";
 import { computed } from "vue";
 
+const rootStyle = computed(() =>
+  createSystemPropsCss({
+    padding: 8,
+  })
+);
+
 const className = computed(() =>
   cx(
     createTextPropsCss(globalContentConfig),
-    createSystemPropsCss(globalContentConfig)
+    createSystemPropsCss(globalContentConfig),
+    rootStyle.value
   )
 );
 </script>
 
 <template>
-  <div :class="className" class="root">
+  <div :class="className">
     <slot />
   </div>
 </template>
-
-<style scoped>
-.root {
-  min-height: 100vh;
-}
-</style>

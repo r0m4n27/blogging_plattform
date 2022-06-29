@@ -2,12 +2,13 @@ import ArticleEditor from "../../../components/author/articleEditor/ArticleEdito
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
 import { mockArticle, mockArticleDraft } from "../../data/article";
 import { mockCategories } from "../../data/category";
+import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: ArticleEditor,
-};
+} as Meta<typeof ArticleEditor>;
 
-const Template = (args) => ({
+const Template: StoryFn<typeof ArticleEditor> = (args) => ({
   components: { ArticleEditor },
   setup() {
     return { args };

@@ -1,6 +1,7 @@
 import VCard from "@/components/base/layout/VCard.vue";
+import type { SBDecorator } from "../types";
 
-export const cardDecorator = (story) => ({
+export const cardDecorator: SBDecorator = (story) => ({
   components: { story, VCard },
   template: `
     <VCard :padding='6'>

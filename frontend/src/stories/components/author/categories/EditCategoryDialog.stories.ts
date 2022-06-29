@@ -1,11 +1,12 @@
 import EditCategoryDialog from "../../../../components/author/categories/EditCategoryDialog.vue";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
+import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: EditCategoryDialog,
-};
+} as Meta<typeof EditCategoryDialog>;
 
-const Template = (args) => ({
+const Template: StoryFn<typeof EditCategoryDialog> = (args) => ({
   components: { EditCategoryDialog },
   setup() {
     return { args };

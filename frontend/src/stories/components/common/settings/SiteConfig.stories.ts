@@ -1,11 +1,12 @@
 import SiteConfigSettings from "@/components/common/settings/SiteConfigSettings.vue";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
+import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: SiteConfigSettings,
-};
+} as Meta<typeof SiteConfigSettings>;
 
-const Template = (args) => ({
+const Template: StoryFn<typeof SiteConfigSettings> = (args) => ({
   components: { SiteConfigSettings },
   setup() {
     return { args };
