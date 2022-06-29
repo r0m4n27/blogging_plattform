@@ -10,6 +10,11 @@
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      // storybook breaks vue when used with typescript stories
+      // https://github.com/johnsoncodehk/volar/discussions/592
+      "react": [
+        "./stub"
       ]
     },
     "lib": [
