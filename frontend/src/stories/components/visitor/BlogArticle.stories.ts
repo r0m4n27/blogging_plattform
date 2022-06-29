@@ -1,12 +1,13 @@
 import BlogArticle from "@/components/visitor/article/BlogArticle.vue";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
 import { mockArticle } from "@/stories/data/article";
+import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: BlogArticle,
-};
+} as Meta<typeof BlogArticle>;
 
-const Template = (args) => ({
+const Template: StoryFn<typeof BlogArticle> = (args) => ({
   components: { BlogArticle },
   setup() {
     return { args };

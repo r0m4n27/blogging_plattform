@@ -1,12 +1,13 @@
 import CollectionSummaryList from "@/components/visitor/summary/collection/CollectionSummaryList.vue";
 import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
 import { mockCollections } from "@/stories/data/collection";
+import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: CollectionSummaryList,
-};
+} as Meta<typeof CollectionSummaryList>;
 
-const Template = (args) => ({
+const Template: StoryFn<typeof CollectionSummaryList> = (args) => ({
   components: { CollectionSummaryList },
   setup() {
     return { args };

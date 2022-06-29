@@ -1,11 +1,13 @@
 import CategoryTag from "@/components/visitor/util/CategoryTag.vue";
 import { jsCategory } from "@/stories/data/category";
+import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
+import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: CategoryTag,
-};
+} as Meta<typeof CategoryTag>;
 
-const Template = (args) => ({
+const Template: StoryFn<typeof CategoryTag> = (args) => ({
   components: { CategoryTag },
   setup() {
     return { args };
@@ -14,6 +16,7 @@ const Template = (args) => ({
 });
 
 export const Primary = Template.bind({});
+Primary.decorators = [createContainerDecorator("md")];
 Primary.args = {
   category: jsCategory,
 };
