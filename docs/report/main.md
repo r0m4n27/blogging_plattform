@@ -32,4 +32,5 @@ chapters/backend.md
 chapters/frontend.md
 chapters/fazit.md
 chapters/references.md
+chapters/appendix.md
 ```

@@ -10,6 +10,7 @@ $(shell mkdir -p $(DIRS))
 ##################
 
 CHAPTERS = $(wildcard chapters/*.md)
+ASSETS = $(wildcard assets/*)
 
 TEX_TITLEPAGE = build/latex/titlepage.tex
 TEX_FILES = $(TEX_TITLEPAGE)
@@ -28,7 +29,7 @@ PANDOCFLAGS = \
 .PHONY: all
 all: build/dokumentation.pdf
 
-build/dokumentation.pdf: main.md $(CHAPTERS) Makefile references.bib build/include-files.lua build/ieee.csl $(TEX_FILES)
+build/dokumentation.pdf: main.md $(CHAPTERS) Makefile references.bib build/include-files.lua build/ieee.csl $(TEX_FILES) $(ASSETS)
 	pandoc main.md $(PANDOCFLAGS) -o $@
 
 ###############
@@ -66,4 +67,4 @@ open: build/dokumentation.pdf
 
 .PHONY: watch
 watch:
-	watchman-make -p 'main.md' 'Makefile' 'metadata.yml' 'latex/*.tex' 'chapters/*.md' 'references.bib' -t all
+	watchman-make -p 'main.md' 'Makefile' 'metadata.yml' 'latex/*.tex' 'chapters/*.md' 'references.bib' 'assets/*' -t all
