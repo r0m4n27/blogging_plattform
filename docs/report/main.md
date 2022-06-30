@@ -17,7 +17,7 @@ geometry:
     - bindingoffset=6mm
 
 toc: true
-tocdepth: 3
+toc-depth: 3
 numbersections: true
 
 lang: de
