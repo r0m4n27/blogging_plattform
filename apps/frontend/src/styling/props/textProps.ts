@@ -1,8 +1,8 @@
 import { css, type CSSObject } from "@emotion/css";
 import { writeResponsivePropToStyle } from "../responsive";
-import type { Responsive } from "@/lib/responsive";
+import type { Responsive } from "@blog/frontend/lib/responsive";
 import type { PropType } from "vue";
-import type { TypeFromProps } from "@/lib/typeFromProps";
+import type { TypeFromProps } from "@blog/frontend/lib/typeFromProps";
 import {
   type FontFamily,
   type FontSize,
@@ -21,7 +21,7 @@ import {
   maxLinesWriter,
   underlineWriter,
 } from "../text";
-import type { TextElementType } from "@/lib/elementType";
+import type { TextElementType } from "@blog/frontend/lib/elementType";
 
 // Props that can be used for anything that resembles text
 //
@@ -71,38 +71,18 @@ export type TextProps = TypeFromProps<typeof textProps>;
 
 export const createTextPropsCss = (props: TextProps): string => {
   const style: CSSObject = {};
-  writeResponsivePropToStyle(
-    style,
-    "fontFamily",
-    fontFamilyWriter,
-    props.family
-  );
+  writeResponsivePropToStyle(style, "fontFamily", fontFamilyWriter, props.family);
   writeResponsivePropToStyle(style, "fontSize", fontSizeWriter, props.size);
-  writeResponsivePropToStyle(
-    style,
-    "fontWeight",
-    fontWeightWriter,
-    props.weight
-  );
-  writeResponsivePropToStyle(
-    style,
-    "lineHeight",
-    lineHeightWriter,
-    props.lineHeight
-  );
+  writeResponsivePropToStyle(style, "fontWeight", fontWeightWriter, props.weight);
+  writeResponsivePropToStyle(style, "lineHeight", lineHeightWriter, props.lineHeight);
   writeResponsivePropToStyle(
     style,
     "letterSpacing",
     letterSpacingWriter,
-    props.letterSpacing
+    props.letterSpacing,
   );
 
-  writeResponsivePropToStyle(
-    style,
-    "textAlign",
-    alignmentWriter,
-    props.alignment
-  );
+  writeResponsivePropToStyle(style, "textAlign", alignmentWriter, props.alignment);
 
   writeResponsivePropToStyle(style, "wordWrap", wordWrapWriter, props.wordWrap);
   writeResponsivePropToStyle(style, "", underlineWriter, props.underline);
@@ -115,7 +95,7 @@ export const createTextPropsCss = (props: TextProps): string => {
       style,
       "WebkitLineClamp",
       maxLinesWriter,
-      props.maxLines
+      props.maxLines,
     );
   }
 

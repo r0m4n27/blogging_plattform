@@ -1,4 +1,4 @@
-import type { Responsive } from "@/lib/responsive";
+import type { Responsive } from "@blog/frontend/lib/responsive";
 import { css, type CSSObject } from "@emotion/css";
 import type { ExtractPropTypes, PropType } from "vue";
 import {
@@ -28,7 +28,7 @@ type FlexProps = ExtractPropTypes<typeof flexProps>;
 
 export const createFlexCss = (
   props: FlexProps,
-  flexDirection: "row" | "column"
+  flexDirection: "row" | "column",
 ): string => {
   const style = createGeneralFlexStyle(props);
 
@@ -40,18 +40,13 @@ export const createFlexCss = (
 
 export const createGridCss = (
   props: FlexProps,
-  columns: Responsive<number>
+  columns: Responsive<number>,
 ): string => {
   const style = createGeneralFlexStyle(props);
 
   style["display"] = "grid";
 
-  writeResponsivePropToStyle(
-    style,
-    "gridTemplateColumns",
-    gridColumnsWriter,
-    columns
-  );
+  writeResponsivePropToStyle(style, "gridTemplateColumns", gridColumnsWriter, columns);
 
   return css(style);
 };
@@ -61,19 +56,9 @@ const createGeneralFlexStyle = (props: FlexProps): CSSObject => {
 
   writeResponsivePropToStyle(style, "gap", spacingWriter, props.gap);
 
-  writeResponsivePropToStyle(
-    style,
-    "alignItems",
-    flexAlignmentWriter,
-    props.align
-  );
+  writeResponsivePropToStyle(style, "alignItems", flexAlignmentWriter, props.align);
 
-  writeResponsivePropToStyle(
-    style,
-    "justifyContent",
-    flexJustifyWriter,
-    props.justify
-  );
+  writeResponsivePropToStyle(style, "justifyContent", flexJustifyWriter, props.justify);
 
   return style;
 };

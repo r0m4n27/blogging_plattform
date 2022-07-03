@@ -1,12 +1,12 @@
-import type { NewArticlePayload } from "@/api/article";
-import { authorRoutes } from "@/lib/router/author";
+import type { NewArticlePayload } from "@blog/frontend/api/article";
+import { authorRoutes } from "@blog/frontend/lib/router/author";
 import { useRouter } from "vue-router";
 import { usePageTitle } from "../../head/pageTitle";
-import { publishArticle as publishArticleInternal } from "@/api/article";
+import { publishArticle as publishArticleInternal } from "@blog/frontend/api/article";
 import { computed, type ComputedRef, type Ref } from "vue";
-import { getAuthorCategories, type AuthorCategory } from "@/api/category";
-import { useEndpoint } from "@/composables/util/endpoint";
-import { useUser } from "@/composables/store/user";
+import { getAuthorCategories, type AuthorCategory } from "@blog/frontend/api/category";
+import { useEndpoint } from "@blog/frontend/composables/util/endpoint";
+import { useUser } from "@blog/frontend/composables/store/user";
 
 export interface NewArticleState {
   existingCategories: Ref<AuthorCategory[]>;
@@ -25,12 +25,9 @@ export const useNewArticleState = (): NewArticleState => {
   });
 
   const existingCategoriesFetcher = computed(
-    () => () => user.fetchWithToken(getAuthorCategories, [])
+    () => () => user.fetchWithToken(getAuthorCategories, []),
   );
-  const { value: existingCategories } = useEndpoint(
-    existingCategoriesFetcher,
-    []
-  );
+  const { value: existingCategories } = useEndpoint(existingCategoriesFetcher, []);
 
   return {
     existingCategories,

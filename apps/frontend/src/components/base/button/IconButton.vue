@@ -3,13 +3,13 @@ import type { SVGProps } from "lucide-vue-next";
 import type { FunctionalComponent, PropType } from "vue";
 import VButton from "./VButton.vue";
 import VBox from "../layout/VBox.vue";
-import { systemProps } from "@/styling/props/systemProps";
-import type { Spacing } from "@/styling/spacing";
+import { systemProps } from "@blog/frontend/styling/props/systemProps";
+import type { Spacing } from "@blog/frontend/styling/spacing";
 import {
   fillIconProps,
   createFillIconPropsCss,
-} from "@/styling/props/iconButton";
-import type { Responsive } from "@/lib/responsive";
+} from "@blog/frontend/styling/props/iconButton";
+import type { Responsive } from "@blog/frontend/lib/responsive";
 
 // Type extracted from the lucide icon package
 export type Icon = (props: SVGProps) => FunctionalComponent<SVGProps>;

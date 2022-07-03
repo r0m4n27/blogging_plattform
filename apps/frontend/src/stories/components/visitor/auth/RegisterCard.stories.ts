@@ -1,5 +1,5 @@
-import RegisterCard from "@/components/visitor/auth/RegisterCard.vue";
-import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
+import RegisterCard from "@blog/frontend/components/visitor/auth/RegisterCard.vue";
+import { createContainerDecorator } from "@blog/frontend/stories/decorators/containerDecorator";
 import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {

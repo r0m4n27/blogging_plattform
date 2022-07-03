@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import LoginCard from "@/components/visitor/auth/LoginCard.vue";
+import LoginCard from "@blog/frontend/components/visitor/auth/LoginCard.vue";
 import VCenter from "../../base/layout/VCenter.vue";
-import { useLoginPageState } from "@/composables/pages/visitor/loginPage";
+import { useLoginPageState } from "@blog/frontend/composables/pages/visitor/loginPage";
 
 const { login, showError } = useLoginPageState();
 </script>

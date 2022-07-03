@@ -16,7 +16,7 @@ export interface ResponsiveObject<T> {
 // are returned as another responsive
 export const mapResponsiveFromConfig = <T extends string | number | symbol, R>(
   prop: Responsive<T>,
-  config: Record<T, R>
+  config: Record<T, R>,
 ): Responsive<R> => {
   if ((prop as ResponsiveObject<T>).sm !== undefined) {
     const responsiveObject = prop as ResponsiveObject<T>;

@@ -1,14 +1,17 @@
-import type { AdminUser } from "@/api/user";
-import { usePageTitle } from "@/composables/head/pageTitle";
-import { getAdminUsers, deleteUser as deleteUserInternal } from "@/api/user";
-import { useEndpoint } from "@/composables/util/endpoint";
+import type { AdminUser } from "@blog/frontend/api/user";
+import { usePageTitle } from "@blog/frontend/composables/head/pageTitle";
+import {
+  getAdminUsers,
+  deleteUser as deleteUserInternal,
+} from "@blog/frontend/api/user";
+import { useEndpoint } from "@blog/frontend/composables/util/endpoint";
 import { computed, type ComputedRef, type Ref } from "vue";
-import { useUser } from "@/composables/store/user";
+import { useUser } from "@blog/frontend/composables/store/user";
 import {
   getRegisterCodes,
   deleteRegisterCode,
   createRegisterCode,
-} from "@/api/registerCodes";
+} from "@blog/frontend/api/registerCodes";
 
 export interface HomePageState {
   users: Ref<AdminUser[]>;
@@ -32,9 +35,7 @@ export const useHomePageState = (): HomePageState => {
 const useSiteConfigInteractions = () => {
   const user = useUser();
 
-  const codesFetcher = computed(
-    () => () => user.fetchWithToken(getRegisterCodes, [])
-  );
+  const codesFetcher = computed(() => () => user.fetchWithToken(getRegisterCodes, []));
   const { value: codes, refetch: refetchCodes } = useEndpoint(codesFetcher, []);
 
   const deleteCode = computed(() => async (registerCode: string) => {
@@ -56,9 +57,7 @@ const useSiteConfigInteractions = () => {
 
 const useUsersInteractions = () => {
   const user = useUser();
-  const usersFetcher = computed(
-    () => () => user.fetchWithToken(getAdminUsers, [])
-  );
+  const usersFetcher = computed(() => () => user.fetchWithToken(getAdminUsers, []));
   const { value: users, refetch: refetchUsers } = useEndpoint(usersFetcher, []);
 
   const deleteUser = computed(() => async (userToDelete: AdminUser) => {

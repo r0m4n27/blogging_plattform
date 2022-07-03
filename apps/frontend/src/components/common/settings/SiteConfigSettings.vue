@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import TextInputField from "@/components/common/input/TextInputField.vue";
-import { greenButtonFg, greenButtonBg } from "@/config/content/color";
-import FileInputField from "@/components/common/input/FileInputField.vue";
-import { useSiteConfigSettings } from "@/composables/common/siteConfigSettings";
+import TextInputField from "@blog/frontend/components/common/input/TextInputField.vue";
+import { greenButtonFg, greenButtonBg } from "@blog/frontend/config/content/color";
+import FileInputField from "@blog/frontend/components/common/input/FileInputField.vue";
+import { useSiteConfigSettings } from "@blog/frontend/composables/common/siteConfigSettings";
 import { computed } from "vue";
-import InputFormLayout from "@/components/common/layout/InputFormLayout.vue";
+import InputFormLayout from "@blog/frontend/components/common/layout/InputFormLayout.vue";
 
 interface SiteConfigSettingsProps {
   showSuccess: boolean;
@@ -22,15 +22,13 @@ interface SiteConfigSettingsEmits {
 const emit = defineEmits<SiteConfigSettingsEmits>();
 const { title, setIcon, setLogo, onButtonClick } = useSiteConfigSettings(
   emit,
-  props.initialTitle
+  props.initialTitle,
 );
 
 const buttonText = computed(() => (props.isInitialized ? "UPDATE" : "CREATE"));
-const onButtonClickType = computed(() =>
-  props.isInitialized ? "update" : "create"
-);
+const onButtonClickType = computed(() => (props.isInitialized ? "update" : "create"));
 const successText = computed(() =>
-  props.showSuccess ? "Site config updated!" : undefined
+  props.showSuccess ? "Site config updated!" : undefined,
 );
 </script>
 

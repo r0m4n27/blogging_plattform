@@ -1,4 +1,4 @@
-import { useTheme } from "@/composables/store/theme";
+import { useTheme } from "@blog/frontend/composables/store/theme";
 import type { CSSObject } from "@emotion/css";
 
 export type Color = LightAndDarkColor | ColorWithState;
@@ -20,19 +20,14 @@ interface ColorWithState {
 export const colorWriter = (
   style: CSSObject,
   propertyName: keyof CSSObject,
-  color: Color
+  color: Color,
 ) => {
   const theme = useTheme();
 
   if ((color as ColorWithState).default !== undefined) {
     const colorWithState = color as ColorWithState;
 
-    addColorToStyle(
-      theme.darkMode,
-      style,
-      propertyName,
-      colorWithState.default
-    );
+    addColorToStyle(theme.darkMode, style, propertyName, colorWithState.default);
 
     style["&:hover"] ??= {};
     addColorToStyle(
@@ -42,15 +37,10 @@ export const colorWriter = (
       // contains an object
       style["&:hover"] as CSSObject,
       propertyName,
-      colorWithState.hover
+      colorWithState.hover,
     );
   } else {
-    addColorToStyle(
-      theme.darkMode,
-      style,
-      propertyName,
-      color as LightAndDarkColor
-    );
+    addColorToStyle(theme.darkMode, style, propertyName, color as LightAndDarkColor);
   }
 };
 
@@ -58,5 +48,5 @@ const addColorToStyle = (
   darkMode: boolean,
   style: CSSObject,
   propertyName: keyof CSSObject,
-  prop: LightAndDarkColor
+  prop: LightAndDarkColor,
 ) => (style[propertyName] = darkMode ? prop.dark : prop.light);

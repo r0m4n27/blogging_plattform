@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import ActionableTableLayout from "@/components/common/layout/ActionableTableLayout.vue";
+import ActionableTableLayout from "@blog/frontend/components/common/layout/ActionableTableLayout.vue";
 import UsersTableEntry from "./UsersTableEntry.vue";
-import VTableHeader from "@/components/base/table/VTableHeader.vue";
-import type { AdminUser } from "@/api/user";
+import VTableHeader from "@blog/frontend/components/base/table/VTableHeader.vue";
+import type { AdminUser } from "@blog/frontend/api/user";
 
 interface UsersTableProps {
   users: AdminUser[];

@@ -1,6 +1,6 @@
-import { borderConfig } from "@/config/theme/border";
-import { shadowConfig } from "@/config/theme/shadow";
-import { sizeConfig } from "@/config/theme/size";
+import { borderConfig } from "@blog/frontend/config/theme/border";
+import { shadowConfig } from "@blog/frontend/config/theme/shadow";
+import { sizeConfig } from "@blog/frontend/config/theme/size";
 import type { CSSObject } from "@emotion/css";
 import { createRecordWriter, createValueWriter } from "./writer";
 
@@ -20,7 +20,7 @@ export type Hidden = boolean | "none";
 export const hiddenWriter = (
   style: CSSObject,
   propertyName: keyof CSSObject,
-  value: Hidden
+  value: Hidden,
 ) => {
   if (value !== "none") {
     if (value) {

@@ -1,4 +1,4 @@
-import type { TextProps } from "@/styling/props/textProps";
+import type { TextProps } from "@blog/frontend/styling/props/textProps";
 
 export type HeadingSize =
   | "xs"

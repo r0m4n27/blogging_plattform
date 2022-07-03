@@ -1,7 +1,7 @@
-import type { FooterLink } from "@/components/common/footer/footerLink";
-import { adminRoutes } from "@/lib/router/admin";
-import { authorRoutes } from "@/lib/router/author";
-import { visitorRoutes } from "@/lib/router/visitor";
+import type { FooterLink } from "@blog/frontend/components/common/footer/footerLink";
+import { adminRoutes } from "@blog/frontend/lib/router/admin";
+import { authorRoutes } from "@blog/frontend/lib/router/author";
+import { visitorRoutes } from "@blog/frontend/lib/router/visitor";
 
 export const contactLink: FooterLink = {
   label: "Contact",

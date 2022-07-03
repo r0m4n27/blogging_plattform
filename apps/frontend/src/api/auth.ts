@@ -1,5 +1,5 @@
-import type { Option } from "@/lib/types";
-import { post } from "@/lib/fetch";
+import type { Option } from "@blog/frontend/lib/types";
+import { post } from "@blog/frontend/lib/fetch";
 
 export type UserRole = "AUTHOR" | "ADMIN";
 
@@ -12,7 +12,7 @@ const authBase = "/api/auth";
 
 export const login = async (
   username: string,
-  password: string
+  password: string,
 ): Promise<Option<User>> => {
   try {
     return await post(`${authBase}/login`, {
@@ -27,7 +27,7 @@ export const login = async (
 export const register = async (
   username: string,
   password: string,
-  registerCode: string
+  registerCode: string,
 ): Promise<Option<User>> => {
   try {
     return await post(`${authBase}/register`, {

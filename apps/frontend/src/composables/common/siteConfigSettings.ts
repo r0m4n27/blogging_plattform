@@ -15,7 +15,7 @@ interface SiteConfigSettingsEmits {
 
 export const useSiteConfigSettings = (
   emit: SiteConfigSettingsEmits,
-  initialTitle: string
+  initialTitle: string,
 ): SiteConfigSettingsState => {
   const title = ref(initialTitle);
   const logo = ref<File | undefined>(undefined);

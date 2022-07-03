@@ -1,6 +1,6 @@
-import { contentColorConfig } from "@/config/content/color";
-import type { Responsive } from "@/lib/responsive";
-import type { TypeFromProps } from "@/lib/typeFromProps";
+import { contentColorConfig } from "@blog/frontend/config/content/color";
+import type { Responsive } from "@blog/frontend/lib/responsive";
+import type { TypeFromProps } from "@blog/frontend/lib/typeFromProps";
 import { css, cx } from "@emotion/css";
 import type { CSSObject } from "@emotion/serialize";
 import type { PropType } from "vue";

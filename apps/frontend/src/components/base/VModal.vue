@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import VBox from "./layout/VBox.vue";
-import { getColor } from "@/config/theme/colors";
+import { getColor } from "@blog/frontend/config/theme/colors";
 import { computed, type PropType } from "vue";
-import { systemProps } from "@/styling/props/systemProps";
-import type { Responsive } from "@/lib/responsive";
-import type { Color } from "@/styling/color";
-import type { Spacing } from "@/styling/spacing";
-import { contentSpacingConfig } from "@/config/content/spacing";
+import { systemProps } from "@blog/frontend/styling/props/systemProps";
+import type { Responsive } from "@blog/frontend/lib/responsive";
+import type { Color } from "@blog/frontend/styling/color";
+import type { Spacing } from "@blog/frontend/styling/spacing";
+import { contentSpacingConfig } from "@blog/frontend/config/content/spacing";
 import VRow from "./layout/VRow.vue";
 
 const props = defineProps({

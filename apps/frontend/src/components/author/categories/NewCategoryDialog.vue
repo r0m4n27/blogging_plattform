@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import TextInputField from "@/components/common/input/TextInputField.vue";
+import TextInputField from "@blog/frontend/components/common/input/TextInputField.vue";
 import { ref } from "vue";
-import SimpleDialogLayout from "@/components/common/layout/SimpleDialogLayout.vue";
+import SimpleDialogLayout from "@blog/frontend/components/common/layout/SimpleDialogLayout.vue";
 
 interface NewCategoryDialogEmits {
   (e: "cancel"): void;
@@ -22,10 +22,6 @@ const submitCategory = () => {
     @cancel="emit('cancel')"
     @confirm="submitCategory"
   >
-    <TextInputField
-      label="Name"
-      v-model:input-value="categoryName"
-      width="full"
-    />
+    <TextInputField label="Name" v-model:input-value="categoryName" width="full" />
   </SimpleDialogLayout>
 </template>

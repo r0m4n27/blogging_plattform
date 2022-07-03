@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import VCard from "@/components/base/layout/VCard.vue";
-import VColumn from "@/components/base/layout/VColumn.vue";
-import TextButton from "@/components/base/button/TextButton.vue";
-import VText from "@/components/base/text/VText.vue";
-import VHeading from "@/components/base/text/VHeading.vue";
-import { contentSpacingConfig } from "@/config/content/spacing";
-import { getColor } from "@/config/theme/colors";
-import { blueButtonBg, blueButtonFg } from "@/config/content/color";
+import VCard from "@blog/frontend/components/base/layout/VCard.vue";
+import VColumn from "@blog/frontend/components/base/layout/VColumn.vue";
+import TextButton from "@blog/frontend/components/base/button/TextButton.vue";
+import VText from "@blog/frontend/components/base/text/VText.vue";
+import VHeading from "@blog/frontend/components/base/text/VHeading.vue";
+import { contentSpacingConfig } from "@blog/frontend/config/content/spacing";
+import { getColor } from "@blog/frontend/config/theme/colors";
+import { blueButtonBg, blueButtonFg } from "@blog/frontend/config/content/color";
 import { computed } from "vue";
-import type { Color } from "@/styling/color";
+import type { Color } from "@blog/frontend/styling/color";
 
 // Layout for simple forms that require input
 //
@@ -45,14 +45,14 @@ const additionalInfoColor = computed(() =>
     : {
         light: getColor("green", 400),
         dark: getColor("green", 400),
-      }
+      },
 );
 
 const additionalInfoText = computed(() =>
-  props.errorText ? props.errorText : props.successText ?? ""
+  props.errorText ? props.errorText : props.successText ?? "",
 );
 const showAdditionalText = computed(
-  () => props.errorText !== undefined || props.successText !== undefined
+  () => props.errorText !== undefined || props.successText !== undefined,
 );
 </script>
 <template>

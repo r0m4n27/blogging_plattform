@@ -1,6 +1,6 @@
-import NavigationBar from "@/components/common/navigationBar/NavigationBar.vue";
-import { visitorNavBarDestinations } from "@/config/components/navigationBar";
-import { logoBase64 } from "@/stories/data/navigationBar";
+import NavigationBar from "@blog/frontend/components/common/navigationBar/NavigationBar.vue";
+import { visitorNavBarDestinations } from "@blog/frontend/config/components/navigationBar";
+import { logoBase64 } from "@blog/frontend/stories/data/navigationBar";
 import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {

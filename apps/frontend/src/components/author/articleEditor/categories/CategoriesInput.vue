@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import CategoriesInputHead from "./CategoriesInputHead.vue";
-import type { AuthorCategory } from "@/api/category";
-import { contentSpacingConfig } from "@/config/content/spacing";
-import VColumn from "@/components/base/layout/VColumn.vue";
-import VHeading from "@/components/base/text/VHeading.vue";
+import type { AuthorCategory } from "@blog/frontend/api/category";
+import { contentSpacingConfig } from "@blog/frontend/config/content/spacing";
+import VColumn from "@blog/frontend/components/base/layout/VColumn.vue";
+import VHeading from "@blog/frontend/components/base/text/VHeading.vue";
 import CategoriesInputList from "./CategoriesInputList.vue";
 import VBox from "../../../base/layout/VBox.vue";
-import { useCategoriesInputState } from "@/composables/author/articleEditor/categoriesInput";
+import { useCategoriesInputState } from "@blog/frontend/composables/author/articleEditor/categoriesInput";
 import { toRefs } from "vue";
 
 // List of categories that is inspired by https://github.com/vueform/multiselect

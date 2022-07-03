@@ -1,10 +1,10 @@
-import { globalContentConfig } from "@/config/content/global";
-import { createSystemPropsCss } from "@/styling/props/systemProps";
-import { createTextPropsCss } from "@/styling/props/textProps";
+import { globalContentConfig } from "@blog/frontend/config/content/global";
+import { createSystemPropsCss } from "@blog/frontend/styling/props/systemProps";
+import { createTextPropsCss } from "@blog/frontend/styling/props/textProps";
 import { css, cx } from "@emotion/css";
 import { useHead, type HeadObject } from "@vueuse/head";
 import { computed } from "vue";
-import { useSiteConfig } from "@/composables/store/siteConfig";
+import { useSiteConfig } from "@blog/frontend/composables/store/siteConfig";
 
 // Sets all the necessary attributes the the head
 // (and also body) for every page
@@ -18,8 +18,8 @@ export const useRootHead = () => {
     cx(
       createTextPropsCss(globalContentConfig),
       createSystemPropsCss(globalContentConfig),
-      css(extraStyle)
-    )
+      css(extraStyle),
+    ),
   );
 
   const siteConfig = useSiteConfig();

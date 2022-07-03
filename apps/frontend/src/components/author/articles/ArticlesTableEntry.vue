@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { AuthorArticle } from "@/api/article";
-import VTableRow from "@/components/base/table/VTableRow.vue";
-import VTableData from "@/components/base/table/VTableData.vue";
-import { contentColorConfig } from "@/config/content/color";
+import type { AuthorArticle } from "@blog/frontend/api/article";
+import VTableRow from "@blog/frontend/components/base/table/VTableRow.vue";
+import VTableData from "@blog/frontend/components/base/table/VTableData.vue";
+import { contentColorConfig } from "@blog/frontend/config/content/color";
 import VLink from "../../base/VLink.vue";
-import { authorRoutes } from "@/lib/router/author";
+import { authorRoutes } from "@blog/frontend/lib/router/author";
 import ArticleStatus from "./ArticleStatus.vue";
 import { computed } from "vue";
 import VTableTextEntry from "../../base/table/VTableTextEntry.vue";
@@ -14,9 +14,7 @@ interface ArticlesTableEntryProps {
 }
 const props = defineProps<ArticlesTableEntryProps>();
 
-const editRoute = computed(() =>
-  authorRoutes.editArticle.createRoute(props.article)
-);
+const editRoute = computed(() => authorRoutes.editArticle.createRoute(props.article));
 </script>
 <template>
   <VTableRow>

@@ -1,18 +1,18 @@
-import { getAuthorArticle, type AuthorArticle } from "@/api/article";
-import type { Option } from "@/lib/types";
-import { usePageTitle } from "@/composables/head/pageTitle";
-import { useRouteParams } from "@/composables/util/routeParams";
+import { getAuthorArticle, type AuthorArticle } from "@blog/frontend/api/article";
+import type { Option } from "@blog/frontend/lib/types";
+import { usePageTitle } from "@blog/frontend/composables/head/pageTitle";
+import { useRouteParams } from "@blog/frontend/composables/util/routeParams";
 import { computed } from "@vue/reactivity";
-import { useEndpoint } from "@/composables/util/endpoint";
+import { useEndpoint } from "@blog/frontend/composables/util/endpoint";
 import type { Ref } from "vue";
 import { useRouter } from "vue-router";
-import { authorRoutes } from "@/lib/router/author";
+import { authorRoutes } from "@blog/frontend/lib/router/author";
 import {
   deleteArticle as deleteArticleInternal,
   updateArticle as updateArticleInternal,
-} from "@/api/article";
-import { getAuthorCategories, type AuthorCategory } from "@/api/category";
-import { useUser } from "@/composables/store/user";
+} from "@blog/frontend/api/article";
+import { getAuthorCategories, type AuthorCategory } from "@blog/frontend/api/category";
+import { useUser } from "@blog/frontend/composables/store/user";
 
 export interface EditArticlePageState {
   article: Ref<Option<AuthorArticle>>;
@@ -33,13 +33,13 @@ export const useEditArticlePage = (): EditArticlePageState => {
 
   const params = useRouteParams<EditArticlePageParams>();
   const articleFetcher = computed(
-    () => () => user.fetchWithToken(getAuthorArticle(params.value.id))
+    () => () => user.fetchWithToken(getAuthorArticle(params.value.id)),
   );
 
   const { value: article } = useEndpoint(articleFetcher);
 
   const categoriesFetcher = computed(
-    () => () => user.fetchWithToken(getAuthorCategories, [])
+    () => () => user.fetchWithToken(getAuthorCategories, []),
   );
   const { value: existingCategories } = useEndpoint(categoriesFetcher, []);
 

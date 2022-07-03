@@ -1,5 +1,5 @@
-import type { SystemProps } from "@/styling/props/systemProps";
-import type { TextProps } from "@/styling/props/textProps";
+import type { SystemProps } from "@blog/frontend/styling/props/systemProps";
+import type { TextProps } from "@blog/frontend/styling/props/textProps";
 import { contentColorConfig } from "./color";
 
 // Config vor the global styling values

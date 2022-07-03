@@ -33,7 +33,7 @@ export const useRouteParams = <T extends RouteParams>(): Ref<UnwrapRef<T>> => {
         watchHandle();
       }
     },
-    { immediate: true }
+    { immediate: true },
   );
 
   return params;

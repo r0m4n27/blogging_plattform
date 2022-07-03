@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import TagButton from "@/components/base/button/TagButton.vue";
-import type { AuthorCategory } from "@/api/category";
-import { contentSpacingConfig } from "@/config/content/spacing";
-import { contentColorConfig } from "@/config/content/color";
+import TagButton from "@blog/frontend/components/base/button/TagButton.vue";
+import type { AuthorCategory } from "@blog/frontend/api/category";
+import { contentSpacingConfig } from "@blog/frontend/config/content/spacing";
+import { contentColorConfig } from "@blog/frontend/config/content/color";
 import VRow from "../../../base/layout/VRow.vue";
 import { ChevronDown, ChevronUp } from "lucide-vue-next";
 import IconButton from "../../../base/button/IconButton.vue";
@@ -22,9 +22,7 @@ interface CategoriesInputHeadEmits {
 const props = defineProps<CategoriesInputHeadProps>();
 const emit = defineEmits<CategoriesInputHeadEmits>();
 
-const toggleIcon = computed(() =>
-  props.showListing ? ChevronUp : ChevronDown
-);
+const toggleIcon = computed(() => (props.showListing ? ChevronUp : ChevronDown));
 </script>
 <template>
   <VRow

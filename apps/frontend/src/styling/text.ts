@@ -1,12 +1,12 @@
-import { useTheme } from "@/composables/store/theme";
-import { contentColorConfig } from "@/config/content/color";
+import { useTheme } from "@blog/frontend/composables/store/theme";
+import { contentColorConfig } from "@blog/frontend/config/content/color";
 import {
   fontWeights,
   letterSpacings,
   lineHeights,
   fonts,
   fontSizes,
-} from "@/config/theme/text";
+} from "@blog/frontend/config/theme/text";
 import type { CSSObject } from "@emotion/css";
 import { createRecordWriter, createValueWriter } from "./writer";
 
@@ -39,7 +39,7 @@ export const maxLinesWriter = createValueWriter<number>();
 export const underlineWriter = (
   style: CSSObject,
   _: keyof CSSObject,
-  value: boolean
+  value: boolean,
 ) => {
   if (value) {
     const theme = useTheme();

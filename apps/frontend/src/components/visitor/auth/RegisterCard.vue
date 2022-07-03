@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TextInputField from "@/components/common/input/TextInputField.vue";
+import TextInputField from "@blog/frontend/components/common/input/TextInputField.vue";
 import { computed, ref } from "vue";
 import InputFormLayout from "../../common/layout/InputFormLayout.vue";
 
@@ -8,12 +8,7 @@ interface LoginCardProps {
 }
 
 interface LoginCardsEmits {
-  (
-    e: "register",
-    username: string,
-    password: string,
-    registerCode: string
-  ): void;
+  (e: "register", username: string, password: string, registerCode: string): void;
 }
 
 const props = defineProps<LoginCardProps>();
@@ -27,7 +22,7 @@ const register = () =>
   emit("register", username.value, password.value, registerCode.value);
 
 const errorText = computed(() =>
-  props.showError ? "Password does not match!" : undefined
+  props.showError ? "Password does not match!" : undefined,
 );
 </script>
 
@@ -38,11 +33,7 @@ const errorText = computed(() =>
     :error-text="errorText"
     @click="register"
   >
-    <TextInputField
-      label="Username"
-      v-model:input-value="username"
-      width="full"
-    />
+    <TextInputField label="Username" v-model:input-value="username" width="full" />
     <TextInputField
       label="Password"
       input-type="password"

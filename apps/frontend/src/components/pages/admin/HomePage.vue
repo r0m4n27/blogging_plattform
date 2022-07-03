@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import UsersTable from "../../admin/users/UsersTable.vue";
-import { useHomePageState } from "@/composables/pages/admin/homePage";
+import { useHomePageState } from "@blog/frontend/composables/pages/admin/homePage";
 import VColumn from "../../base/layout/VColumn.vue";
 import RegisterCodesTable from "../../admin/registerCodes/RegisterCodesTable.vue";
 

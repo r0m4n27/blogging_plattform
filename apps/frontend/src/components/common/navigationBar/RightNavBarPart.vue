@@ -2,12 +2,12 @@
 import { Menu, X } from "lucide-vue-next";
 import ThemeButton from "./ThemeButton.vue";
 import { computed } from "vue";
-import TextButton from "@/components/base/button/TextButton.vue";
-import IconButton from "@/components/base/button/IconButton.vue";
-import VRow from "@/components/base/layout/VRow.vue";
+import TextButton from "@blog/frontend/components/base/button/TextButton.vue";
+import IconButton from "@blog/frontend/components/base/button/IconButton.vue";
+import VRow from "@blog/frontend/components/base/layout/VRow.vue";
 import type { NavigationDestination } from "./navDestination";
-import VLink from "@/components/base/VLink.vue";
-import { contentSpacingConfig } from "@/config/content/spacing";
+import VLink from "@blog/frontend/components/base/VLink.vue";
+import { contentSpacingConfig } from "@blog/frontend/config/content/spacing";
 
 interface RightNavBarPartProps {
   menuExpanded: boolean;

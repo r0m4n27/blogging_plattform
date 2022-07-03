@@ -1,5 +1,5 @@
-import LoginCard from "@/components/visitor/auth/LoginCard.vue";
-import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
+import LoginCard from "@blog/frontend/components/visitor/auth/LoginCard.vue";
+import { createContainerDecorator } from "@blog/frontend/stories/decorators/containerDecorator";
 import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {

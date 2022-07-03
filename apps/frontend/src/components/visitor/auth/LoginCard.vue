@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import TextInputField from "@/components/common/input/TextInputField.vue";
+import TextInputField from "@blog/frontend/components/common/input/TextInputField.vue";
 import { computed, ref } from "vue";
-import VText from "@/components/base/text/VText.vue";
+import VText from "@blog/frontend/components/base/text/VText.vue";
 import VLink from "../../base/VLink.vue";
-import { visitorRoutes } from "@/lib/router/visitor";
+import { visitorRoutes } from "@blog/frontend/lib/router/visitor";
 import InputFormLayout from "../../common/layout/InputFormLayout.vue";
-import { blueButtonBg } from "@/config/content/color";
+import { blueButtonBg } from "@blog/frontend/config/content/color";
 
 interface LoginCardProps {
   showError: boolean;
@@ -23,7 +23,7 @@ const password = ref("");
 
 const login = () => emit("login", username.value, password.value);
 const errorText = computed(() =>
-  props.showError ? "Password does not match!" : undefined
+  props.showError ? "Password does not match!" : undefined,
 );
 </script>
 
@@ -34,11 +34,7 @@ const errorText = computed(() =>
     :error-text="errorText"
     @click="login"
   >
-    <TextInputField
-      label="Username"
-      v-model:input-value="username"
-      width="full"
-    />
+    <TextInputField label="Username" v-model:input-value="username" width="full" />
     <TextInputField
       label="Password"
       input-type="password"

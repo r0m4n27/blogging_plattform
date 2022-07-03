@@ -1,5 +1,5 @@
-import { getArticles, type Article } from "@/api/article";
-import { useRouteParams } from "@/composables/util/routeParams";
+import { getArticles, type Article } from "@blog/frontend/api/article";
+import { useRouteParams } from "@blog/frontend/composables/util/routeParams";
 import { computed, type ComputedRef, type Ref } from "vue";
 import type { RouteParams } from "vue-router";
 import { usePageTitle } from "../../head/pageTitle";
@@ -19,7 +19,7 @@ export const useYearPageState = (): YearPageState => {
   const year = computed(() => params.value.id);
 
   const articlesFetcher = computed(
-    () => () => getArticles("year", parseInt(year.value))
+    () => () => getArticles("year", parseInt(year.value)),
   );
   const { value: articles } = useEndpoint(articlesFetcher, []);
   const yearTitle = computed(() => (year.value ? year.value : ""));

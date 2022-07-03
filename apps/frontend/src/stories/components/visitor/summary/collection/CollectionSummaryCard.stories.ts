@@ -1,6 +1,6 @@
-import CollectionSummaryCard from "@/components/visitor/summary/collection/CollectionSummaryCard.vue";
-import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
-import { mockCollection } from "@/stories/data/collection";
+import CollectionSummaryCard from "@blog/frontend/components/visitor/summary/collection/CollectionSummaryCard.vue";
+import { createContainerDecorator } from "@blog/frontend/stories/decorators/containerDecorator";
+import { mockCollection } from "@blog/frontend/stories/data/collection";
 import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {

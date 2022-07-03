@@ -8,7 +8,7 @@ export type ContentComponentRecord = Record<
 
 export const createContentComponent = <P>(
   component: ConcreteComponent<P>,
-  componentProps: Partial<P>
+  componentProps: Partial<P>,
 ): [ConcreteComponent<P>, Partial<P>] => [component, componentProps];
 
 // Create a render function that wraps the one from vue
@@ -25,9 +25,5 @@ export const createContentComponentRenderer =
     // because raw values are passed for slots
     //
     // Source: https://stackoverflow.com/questions/69875273/non-function-value-encountered-for-default-slot-in-vue-3-composition-api-comp
-    return h(
-      component as ConcreteComponent,
-      { ...attrs, ...oldAttrs },
-      () => children
-    );
+    return h(component as ConcreteComponent, { ...attrs, ...oldAttrs }, () => children);
   };

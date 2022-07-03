@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import BasePageLayout from "@/components/common/layout/BasePageLayout.vue";
+import BasePageLayout from "@blog/frontend/components/common/layout/BasePageLayout.vue";
 import { RouterView } from "vue-router";
-import { useAdminPageLayoutState } from "@/composables/pages/layout/adminPageLayout";
+import { useAdminPageLayoutState } from "@blog/frontend/composables/pages/layout/adminPageLayout";
 
 const { footerLinks, navBarDestinations, headingDestination } =
   useAdminPageLayoutState();

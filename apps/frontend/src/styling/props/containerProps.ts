@@ -1,9 +1,9 @@
-import { containerConfig } from "@/config/theme/container";
-import type { TypeFromProps } from "@/lib/typeFromProps";
+import { containerConfig } from "@blog/frontend/config/theme/container";
+import type { TypeFromProps } from "@blog/frontend/lib/typeFromProps";
 import { css, type CSSObject } from "@emotion/css";
 import type { PropType } from "vue";
 import { writeResponsivePropToStyle } from "../responsive";
-import type { Responsive } from "@/lib/responsive";
+import type { Responsive } from "@blog/frontend/lib/responsive";
 import { createRecordWriter } from "../writer";
 
 export type ContainerSize = keyof typeof containerConfig;
@@ -20,12 +20,7 @@ export type ContainerProps = TypeFromProps<typeof containerProps>;
 
 export const createContainerPropsCss = (props: ContainerProps): string => {
   const style: CSSObject = {};
-  writeResponsivePropToStyle(
-    style,
-    "maxWidth",
-    containerConfigWriter,
-    props.size
-  );
+  writeResponsivePropToStyle(style, "maxWidth", containerConfigWriter, props.size);
 
   style["margin"] = "0 auto";
 

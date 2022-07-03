@@ -1,13 +1,13 @@
-import type { SiteConfig } from "@/api/siteConfig";
-import { useSiteConfig } from "@/composables/store/siteConfig";
-import { useUser } from "@/composables/store/user";
-import { fileToBase64 } from "@/lib/fileReader";
-import { promise } from "@/lib/promise";
+import type { SiteConfig } from "@blog/frontend/api/siteConfig";
+import { useSiteConfig } from "@blog/frontend/composables/store/siteConfig";
+import { useUser } from "@blog/frontend/composables/store/user";
+import { fileToBase64 } from "@blog/frontend/lib/fileReader";
+import { promise } from "@blog/frontend/lib/promise";
 import { computed, ref, type ComputedRef, type Ref } from "vue";
 import {
   updateSiteConfig as updateSiteConfigInternal,
   createSiteConfig as createSiteConfigInternal,
-} from "@/api/siteConfig";
+} from "@blog/frontend/api/siteConfig";
 
 // Settings for the siteConfig
 // where it can be either created or updated
@@ -70,20 +70,16 @@ export const useSiteConfigSettingsPage = (): SiteConfigSettingsPageState => {
 async function createSiteConfigPayload(
   title: string,
   logo: File,
-  icon: File
+  icon: File,
 ): Promise<SiteConfig>;
 
 async function createSiteConfigPayload(
   title?: string,
   logo?: File,
-  icon?: File
+  icon?: File,
 ): Promise<Partial<SiteConfig>>;
 
-async function createSiteConfigPayload(
-  title?: string,
-  logo?: File,
-  icon?: File
-) {
+async function createSiteConfigPayload(title?: string, logo?: File, icon?: File) {
   const payload: Partial<SiteConfig> = {};
   if (title !== undefined) {
     payload.blogTitle = title;

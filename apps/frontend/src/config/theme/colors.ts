@@ -123,14 +123,11 @@ const white = "#FFFFFF";
 const black = "#000000";
 
 export function getColor(color: "white" | "black"): string;
-export function getColor(
-  color: ColorWithPalette,
-  value: ColorPaletteValues
-): string;
+export function getColor(color: ColorWithPalette, value: ColorPaletteValues): string;
 
 export function getColor(
   color: "white" | "black" | ColorWithPalette,
-  value?: ColorPaletteValues
+  value?: ColorPaletteValues,
 ): string {
   switch (color) {
     case "white":

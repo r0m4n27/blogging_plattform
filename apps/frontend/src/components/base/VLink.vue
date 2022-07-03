@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { systemProps, createSystemPropsCss } from "@/styling/props/systemProps";
+import {
+  systemProps,
+  createSystemPropsCss,
+} from "@blog/frontend/styling/props/systemProps";
 import type { PropType } from "vue";
 import { type RouteLocationRaw, RouterLink } from "vue-router";
-import type { Color } from "@/styling/color";
-import type { Responsive } from "@/lib/responsive";
-import { globalContentConfig } from "@/config/content/global";
+import type { Color } from "@blog/frontend/styling/color";
+import type { Responsive } from "@blog/frontend/lib/responsive";
+import { globalContentConfig } from "@blog/frontend/config/content/global";
 
 const props = defineProps({
   ...systemProps,

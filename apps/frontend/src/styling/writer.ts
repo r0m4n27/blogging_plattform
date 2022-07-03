@@ -2,7 +2,7 @@ import type { CSSInterpolation, CSSObject } from "@emotion/css";
 
 // Creates a writer that looks up the css value from a record
 export const createRecordWriter = <K extends string | number | symbol>(
-  record: Readonly<Record<K, CSSInterpolation>>
+  record: Readonly<Record<K, CSSInterpolation>>,
 ): ((style: CSSObject, propertyName: keyof CSSObject, prop: K) => void) => {
   return (style: CSSObject, propertyName: keyof CSSObject, prop: K) => {
     style[propertyName] = record[prop];
@@ -13,7 +13,7 @@ export const createRecordWriter = <K extends string | number | symbol>(
 export const createValueWriter = <T extends CSSInterpolation>(): ((
   style: CSSObject,
   propertyName: keyof CSSObject,
-  prop: T
+  prop: T,
 ) => void) => {
   return (style: CSSObject, propertyName: keyof CSSObject, prop: T) => {
     style[propertyName] = prop;
@@ -22,7 +22,7 @@ export const createValueWriter = <T extends CSSInterpolation>(): ((
 
 // Creates a that maps tha value to a css value and writes it to the style
 export const createMapperWriter = <T>(
-  mapper: (value: T) => CSSInterpolation
+  mapper: (value: T) => CSSInterpolation,
 ): ((style: CSSObject, propertyName: keyof CSSObject, prop: T) => void) => {
   return (style: CSSObject, propertyName: keyof CSSObject, prop: T) => {
     style[propertyName] = mapper(prop);

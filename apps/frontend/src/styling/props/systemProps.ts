@@ -3,7 +3,7 @@ import { colorWriter, type Color } from "../color";
 import { writeResponsivePropToStyle } from "../responsive";
 import { spacingWriter, type Spacing } from "../spacing";
 import type { PropType } from "vue";
-import type { TypeFromProps } from "@/lib/typeFromProps";
+import type { TypeFromProps } from "@blog/frontend/lib/typeFromProps";
 import {
   type BorderRadius,
   type Shadow,
@@ -15,8 +15,8 @@ import {
   displayWriter,
   hiddenWriter,
 } from "../system";
-import type { Responsive } from "@/lib/responsive";
-import type { ElementType } from "@/lib/elementType";
+import type { Responsive } from "@blog/frontend/lib/responsive";
+import type { ElementType } from "@blog/frontend/lib/elementType";
 
 // NOTE: You can't use an imported interface for defineProps
 // https://github.com/vuejs/core/issues/4294
@@ -103,26 +103,21 @@ export const createSystemPropsCss = (props: SystemProps): string => {
     style,
     "backgroundColor",
     colorWriter,
-    props.backgroundColor
+    props.backgroundColor,
   );
 
   if (props.showBorder !== undefined && props.showBorder) {
     style["borderWidth"] = "1px";
     style["borderStyle"] = "solid";
   }
-  writeResponsivePropToStyle(
-    style,
-    "borderColor",
-    colorWriter,
-    props.borderColor
-  );
+  writeResponsivePropToStyle(style, "borderColor", colorWriter, props.borderColor);
   writeResponsivePropToStyle(style, "boxShadow", shadowWriter, props.shadow);
 
   writeResponsivePropToStyle(
     style,
     "borderRadius",
     borderRadiusWriter,
-    props.borderRadius
+    props.borderRadius,
   );
 
   writeResponsivePropToStyle(style, "display", displayWriter, props.display);

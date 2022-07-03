@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import CategoriesTable from "@/components/author/categories/CategoriesTable.vue";
-import { useCategoriesPageState } from "@/composables/pages/author/categoriesPage";
+import CategoriesTable from "@blog/frontend/components/author/categories/CategoriesTable.vue";
+import { useCategoriesPageState } from "@blog/frontend/composables/pages/author/categoriesPage";
 import VModal from "../../base/VModal.vue";
 import NewCategoryDialog from "../../author/categories/NewCategoryDialog.vue";
 import EditCategoryDialog from "../../author/categories/EditCategoryDialog.vue";

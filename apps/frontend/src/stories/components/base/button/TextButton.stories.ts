@@ -1,5 +1,5 @@
-import TextButton from "@/components/base/button/TextButton.vue";
-import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
+import TextButton from "@blog/frontend/components/base/button/TextButton.vue";
+import { createContainerDecorator } from "@blog/frontend/stories/decorators/containerDecorator";
 import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {

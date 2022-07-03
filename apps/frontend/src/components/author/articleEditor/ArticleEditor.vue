@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import VColumn from "@/components/base/layout/VColumn.vue";
-import { defaultContentSpacing } from "@/config/content/spacing";
+import VColumn from "@blog/frontend/components/base/layout/VColumn.vue";
+import { defaultContentSpacing } from "@blog/frontend/config/content/spacing";
 import ArticleEditorHeader from "./ArticleEditorHeader.vue";
-import TextInputField from "@/components/common/input/TextInputField.vue";
-import TextAreaInputField from "@/components/common/input/TextAreaInputField.vue";
-import { useArticleEditorState } from "@/composables/author/articleEditor/articleEditor";
-import type { AuthorArticle, NewArticlePayload } from "@/api/article";
-import type { AuthorCategory } from "@/api/category";
+import TextInputField from "@blog/frontend/components/common/input/TextInputField.vue";
+import TextAreaInputField from "@blog/frontend/components/common/input/TextAreaInputField.vue";
+import { useArticleEditorState } from "@blog/frontend/composables/author/articleEditor/articleEditor";
+import type { AuthorArticle, NewArticlePayload } from "@blog/frontend/api/article";
+import type { AuthorCategory } from "@blog/frontend/api/category";
 import CategoriesInput from "./categories/CategoriesInput.vue";
 
 interface ArticleEditorProps {
@@ -22,8 +22,10 @@ interface ArticleEditorEmits {
 const props = defineProps<ArticleEditorProps>();
 const emit = defineEmits<ArticleEditorEmits>();
 
-const { title, summary, content, performAction, categories } =
-  useArticleEditorState(emit, props.article);
+const { title, summary, content, performAction, categories } = useArticleEditorState(
+  emit,
+  props.article,
+);
 </script>
 
 <template>

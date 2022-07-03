@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import VCard from "@/components/base/layout/VCard.vue";
-import VColumn from "@/components/base/layout/VColumn.vue";
-import VHeading from "@/components/base/text/VHeading.vue";
-import VText from "@/components/base/text/VText.vue";
-import type { Collection } from "@/lib/collection";
-import VLink from "@/components/base/VLink.vue";
-import { contentSpacingConfig } from "@/config/content/spacing";
-import { contentColorConfig } from "@/config/content/color";
+import VCard from "@blog/frontend/components/base/layout/VCard.vue";
+import VColumn from "@blog/frontend/components/base/layout/VColumn.vue";
+import VHeading from "@blog/frontend/components/base/text/VHeading.vue";
+import VText from "@blog/frontend/components/base/text/VText.vue";
+import type { Collection } from "@blog/frontend/lib/collection";
+import VLink from "@blog/frontend/components/base/VLink.vue";
+import { contentSpacingConfig } from "@blog/frontend/config/content/spacing";
+import { contentColorConfig } from "@blog/frontend/config/content/color";
 import { computed } from "@vue/reactivity";
 
 interface CollectionSummaryCardProps {

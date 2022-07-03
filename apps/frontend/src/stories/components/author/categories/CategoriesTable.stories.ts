@@ -1,5 +1,5 @@
 import CategoriesTable from "../../../../components/author/categories/CategoriesTable.vue";
-import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
+import { createContainerDecorator } from "@blog/frontend/stories/decorators/containerDecorator";
 import { mockCategories } from "../../../data/category";
 import type { Meta, StoryFn } from "@storybook/vue3";
 

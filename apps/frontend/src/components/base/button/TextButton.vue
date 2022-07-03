@@ -2,9 +2,9 @@
 import VButton from "./VButton.vue";
 import VText from "../text/VText.vue";
 import type { PropType } from "vue";
-import { systemProps } from "@/styling/props/systemProps";
-import type { Responsive } from "@/lib/responsive";
-import type { Spacing } from "@/styling/spacing";
+import { systemProps } from "@blog/frontend/styling/props/systemProps";
+import type { Responsive } from "@blog/frontend/lib/responsive";
+import type { Spacing } from "@blog/frontend/styling/spacing";
 
 const props = defineProps({
   label: {

@@ -1,5 +1,5 @@
-import type { AuthorArticle, NewArticlePayload } from "@/api/article";
-import type { Category } from "@/api/category";
+import type { AuthorArticle, NewArticlePayload } from "@blog/frontend/api/article";
+import type { Category } from "@blog/frontend/api/category";
 import { ref, type Ref } from "vue";
 
 export type EditorAction = "publish" | "draft" | "delete" | "save";
@@ -23,7 +23,7 @@ interface ArticleEditorEmits {
 
 export const useArticleEditorState = (
   emit: ArticleEditorEmits,
-  article?: AuthorArticle
+  article?: AuthorArticle,
 ): ArticleEditorState => {
   const title = ref(article?.title ?? "");
   const summary = ref(article?.summary ?? "");

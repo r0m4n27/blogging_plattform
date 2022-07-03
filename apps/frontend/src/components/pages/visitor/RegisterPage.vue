@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import RegisterCard from "@/components/visitor/auth/RegisterCard.vue";
+import RegisterCard from "@blog/frontend/components/visitor/auth/RegisterCard.vue";
 import VCenter from "../../base/layout/VCenter.vue";
-import { useRegisterPageState } from "@/composables/pages/visitor/registerPage";
+import { useRegisterPageState } from "@blog/frontend/composables/pages/visitor/registerPage";
 
 const { register, showError } = useRegisterPageState();
 </script>

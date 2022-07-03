@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import { systemProps, createSystemPropsCss } from "@/styling/props/systemProps";
+import {
+  systemProps,
+  createSystemPropsCss,
+} from "@blog/frontend/styling/props/systemProps";
 import { computed, type PropType } from "vue";
 import { cx } from "@emotion/css";
-import { flexProps, createFlexCss } from "@/styling/props/flexProps";
+import { flexProps, createFlexCss } from "@blog/frontend/styling/props/flexProps";
 
 const props = defineProps({
   direction: {
@@ -14,7 +17,7 @@ const props = defineProps({
 });
 
 const classes = computed(() =>
-  cx(createFlexCss(props, props.direction), createSystemPropsCss(props))
+  cx(createFlexCss(props, props.direction), createSystemPropsCss(props)),
 );
 </script>
 

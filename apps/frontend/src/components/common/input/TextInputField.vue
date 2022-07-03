@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import VColumn from "@/components/base/layout/VColumn.vue";
-import VHeading from "@/components/base/text/VHeading.vue";
-import TextInput from "@/components/base/input/TextInput.vue";
-import { contentSpacingConfig } from "@/config/content/spacing";
-import type { InputType } from "@/styling/props/textInputProps";
+import VColumn from "@blog/frontend/components/base/layout/VColumn.vue";
+import VHeading from "@blog/frontend/components/base/text/VHeading.vue";
+import TextInput from "@blog/frontend/components/base/input/TextInput.vue";
+import { contentSpacingConfig } from "@blog/frontend/config/content/spacing";
+import type { InputType } from "@blog/frontend/styling/props/textInputProps";
 import { computed, type PropType } from "vue";
-import type { TextElementType } from "@/lib/elementType";
-import { systemProps } from "@/styling/props/systemProps";
+import type { TextElementType } from "@blog/frontend/lib/elementType";
+import { systemProps } from "@blog/frontend/styling/props/systemProps";
 
 // The creation of a BaseInputField would be possible
 // but there would be still to many duplication.
@@ -53,10 +53,6 @@ const inputModel = computed({
       {{ label }}
     </VHeading>
 
-    <TextInput
-      width="full"
-      :input-type="inputType"
-      v-model:input-value="inputModel"
-    />
+    <TextInput width="full" :input-type="inputType" v-model:input-value="inputModel" />
   </VColumn>
 </template>

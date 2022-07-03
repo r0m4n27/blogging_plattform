@@ -1,8 +1,8 @@
-import IconButton from "@/components/base/button/IconButton.vue";
+import IconButton from "@blog/frontend/components/base/button/IconButton.vue";
 import { Menu, Moon } from "lucide-vue-next";
-import { getColor } from "@/config/theme/colors";
+import { getColor } from "@blog/frontend/config/theme/colors";
 import type { Meta, StoryFn } from "@storybook/vue3";
-import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
+import { createContainerDecorator } from "@blog/frontend/stories/decorators/containerDecorator";
 
 export default {
   component: IconButton,

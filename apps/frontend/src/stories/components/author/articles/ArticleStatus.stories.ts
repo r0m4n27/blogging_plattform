@@ -1,5 +1,5 @@
 import ArticleStatus from "../../../../components/author/articles/ArticleStatus.vue";
-import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
+import { createContainerDecorator } from "@blog/frontend/stories/decorators/containerDecorator";
 import { mockArticle, mockArticleDraft } from "../../../data/article";
 import type { Meta, StoryFn } from "@storybook/vue3";
 

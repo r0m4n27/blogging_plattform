@@ -1,4 +1,4 @@
-import { usePageTitle } from "@/composables/head/pageTitle";
+import { usePageTitle } from "@blog/frontend/composables/head/pageTitle";
 import {
   useSiteConfigSettingsPage,
   type SiteConfigSettingsPageState,

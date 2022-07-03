@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import VRow from "@/components/base/layout/VRow.vue";
-import type { EditorAction } from "@/composables/author/articleEditor/articleEditor";
+import VRow from "@blog/frontend/components/base/layout/VRow.vue";
+import type { EditorAction } from "@blog/frontend/composables/author/articleEditor/articleEditor";
 import VHeading from "../../base/text/VHeading.vue";
 import { computed } from "vue";
 import ArticleEditorAction from "./ArticleEditorAction.vue";
-import { contentSpacingConfig } from "@/config/content/spacing";
-import type { AuthorArticle } from "@/api/article";
+import { contentSpacingConfig } from "@blog/frontend/config/content/spacing";
+import type { AuthorArticle } from "@blog/frontend/api/article";
 
 interface ArticleEditorHeaderProps {
   article?: AuthorArticle;
@@ -19,7 +19,7 @@ const props = defineProps<ArticleEditorHeaderProps>();
 const emit = defineEmits<ArticleEditorHeaderEmits>();
 
 const title = computed(() =>
-  props.article === undefined ? "New Article" : "Edit Article"
+  props.article === undefined ? "New Article" : "Edit Article",
 );
 
 const actions = computed<EditorAction[]>(() => {

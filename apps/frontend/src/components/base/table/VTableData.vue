@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { Responsive } from "@/lib/responsive";
-import { systemProps } from "@/styling/props/systemProps";
-import type { Spacing } from "@/styling/spacing";
+import type { Responsive } from "@blog/frontend/lib/responsive";
+import { systemProps } from "@blog/frontend/styling/props/systemProps";
+import type { Spacing } from "@blog/frontend/styling/spacing";
 import type { PropType } from "vue";
 import VBox from "../layout/VBox.vue";
-import { contentSpacingConfig } from "@/config/content/spacing";
+import { contentSpacingConfig } from "@blog/frontend/config/content/spacing";
 
 const props = defineProps({
   ...systemProps,

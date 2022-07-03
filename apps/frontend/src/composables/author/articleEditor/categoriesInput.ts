@@ -1,4 +1,4 @@
-import type { AuthorCategory } from "@/api/category";
+import type { AuthorCategory } from "@blog/frontend/api/category";
 import { computed, ref, type ComputedRef, type Ref } from "vue";
 
 export interface CategoriesInputState {
@@ -17,20 +17,18 @@ interface CategoriesInputEmits {
 export const useCategoriesInputState = (
   selectedCategories: Ref<AuthorCategory[]>,
   existingCategories: Ref<AuthorCategory[]>,
-  emit: CategoriesInputEmits
+  emit: CategoriesInputEmits,
 ): CategoriesInputState => {
   const showListing = ref(false);
 
   const availableCategories = computed(() =>
-    existingCategories.value.filter(
-      (c) => !selectedCategories.value.includes(c)
-    )
+    existingCategories.value.filter((c) => !selectedCategories.value.includes(c)),
   );
 
   const removeCategory = computed(() => (category: AuthorCategory) => {
     emit(
       "update:selectedCategories",
-      selectedCategories.value.filter((c) => c.id !== category.id)
+      selectedCategories.value.filter((c) => c.id !== category.id),
     );
   });
 

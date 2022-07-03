@@ -1,14 +1,11 @@
-import VHeading from "@/components/base/text/VHeading.vue";
-import VText from "@/components/base/text/VText.vue";
-import VExternalLink from "@/components/base/VExternalLink.vue";
-import type { HeadingSize } from "@/config/components/heading";
-import type { TextElementType } from "@/lib/elementType";
-import type { SystemProps } from "@/styling/props/systemProps";
-import type { TextProps } from "@/styling/props/textProps";
-import {
-  createContentComponent,
-  type ContentComponentRecord,
-} from "./renderer";
+import VHeading from "@blog/frontend/components/base/text/VHeading.vue";
+import VText from "@blog/frontend/components/base/text/VText.vue";
+import VExternalLink from "@blog/frontend/components/base/VExternalLink.vue";
+import type { HeadingSize } from "@blog/frontend/config/components/heading";
+import type { TextElementType } from "@blog/frontend/lib/elementType";
+import type { SystemProps } from "@blog/frontend/styling/props/systemProps";
+import type { TextProps } from "@blog/frontend/styling/props/textProps";
+import { createContentComponent, type ContentComponentRecord } from "./renderer";
 
 const createHeadingComponent = (is: TextElementType, size: HeadingSize) =>
   createContentComponent(VHeading, { is, size });

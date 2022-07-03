@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import VColumn from "@/components/base/layout/VColumn.vue";
-import VBox from "@/components/base/layout/VBox.vue";
-import VHeading from "@/components/base/text/VHeading.vue";
+import VColumn from "@blog/frontend/components/base/layout/VColumn.vue";
+import VBox from "@blog/frontend/components/base/layout/VBox.vue";
+import VHeading from "@blog/frontend/components/base/text/VHeading.vue";
 import type { NavigationDestination } from "./navDestination";
-import VLink from "@/components/base/VLink.vue";
-import { contentSpacingConfig } from "@/config/content/spacing";
-import { contentColorConfig } from "@/config/content/color";
-import ContentDivider from "@/components/common/util/ContentDivider.vue";
+import VLink from "@blog/frontend/components/base/VLink.vue";
+import { contentSpacingConfig } from "@blog/frontend/config/content/spacing";
+import { contentColorConfig } from "@blog/frontend/config/content/color";
+import ContentDivider from "@blog/frontend/components/common/util/ContentDivider.vue";
 
 interface MobileNavMenuProps {
   destinations: NavigationDestination[];

@@ -1,7 +1,7 @@
-import CategoryList from "@/components/visitor/util/CategoryList.vue";
-import { mockCategories } from "@/stories/data/category";
-import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
-import { cardDecorator } from "@/stories/decorators/cardDecorator";
+import CategoryList from "@blog/frontend/components/visitor/util/CategoryList.vue";
+import { mockCategories } from "@blog/frontend/stories/data/category";
+import { createContainerDecorator } from "@blog/frontend/stories/decorators/containerDecorator";
+import { cardDecorator } from "@blog/frontend/stories/decorators/cardDecorator";
 import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {

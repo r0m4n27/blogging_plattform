@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import VColumn from "@/components/base/layout/VColumn.vue";
-import VHeading from "@/components/base/text/VHeading.vue";
-import TextAreaInput from "@/components/base/input/TextAreaInput.vue";
-import { contentSpacingConfig } from "@/config/content/spacing";
-import type { InputType } from "@/styling/props/textInputProps";
+import VColumn from "@blog/frontend/components/base/layout/VColumn.vue";
+import VHeading from "@blog/frontend/components/base/text/VHeading.vue";
+import TextAreaInput from "@blog/frontend/components/base/input/TextAreaInput.vue";
+import { contentSpacingConfig } from "@blog/frontend/config/content/spacing";
+import type { InputType } from "@blog/frontend/styling/props/textInputProps";
 import { computed, type PropType } from "vue";
-import type { TextElementType } from "@/lib/elementType";
-import { systemProps } from "@/styling/props/systemProps";
+import type { TextElementType } from "@blog/frontend/lib/elementType";
+import { systemProps } from "@blog/frontend/styling/props/systemProps";
 
 interface TextAreaInputFieldEmits {
   (e: "update:inputValue", newValue: string): void;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { systemProps } from "@/styling/props/systemProps";
+import { systemProps } from "@blog/frontend/styling/props/systemProps";
 import VBox from "./VBox.vue";
 
 const props = defineProps(systemProps);

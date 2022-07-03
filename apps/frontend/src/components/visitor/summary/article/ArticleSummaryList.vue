@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Article } from "@/api/article";
+import type { Article } from "@blog/frontend/api/article";
 import ArticleSummaryCard from "./ArticleSummaryCard.vue";
 import SummaryList from "../SummaryList.vue";
 

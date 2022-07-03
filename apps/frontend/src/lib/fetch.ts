@@ -14,7 +14,7 @@ const fetchValue = async <T, B>(
   url: string,
   method: string,
   requestBody?: B,
-  token?: string
+  token?: string,
 ): Promise<T> => {
   const body = requestBody ? JSON.stringify(requestBody) : undefined;
   const headers: Record<string, string> = {};
@@ -48,19 +48,11 @@ export const getWithToken = async <T>(url: string, token: string): Promise<T> =>
 export const post = async <T, B>(url: string, body: B) =>
   fetchValue<T, B>(url, "POST", body, undefined);
 
-export const postWithToken = async <T, B>(
-  url: string,
-  token: string,
-  body: B
-) => fetchValue<T, B>(url, "POST", body, token);
+export const postWithToken = async <T, B>(url: string, token: string, body: B) =>
+  fetchValue<T, B>(url, "POST", body, token);
 
-export const patchWithToken = async <T, B>(
-  url: string,
-  token: string,
-  body: B
-) => fetchValue<T, B>(url, "PATCH", body, token);
+export const patchWithToken = async <T, B>(url: string, token: string, body: B) =>
+  fetchValue<T, B>(url, "PATCH", body, token);
 
-export const deleteWithToken = async <T>(
-  url: string,
-  token: string
-): Promise<T> => fetchValue(url, "DELETE", undefined, token);
+export const deleteWithToken = async <T>(url: string, token: string): Promise<T> =>
+  fetchValue(url, "DELETE", undefined, token);

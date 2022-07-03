@@ -1,4 +1,4 @@
-import { get } from "@/lib/fetch";
+import { get } from "@blog/frontend/lib/fetch";
 
 export interface Year {
   year: number;

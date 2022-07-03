@@ -1,4 +1,4 @@
-import { piniaKeysConfig } from "@/config/pinia";
+import { piniaKeysConfig } from "@blog/frontend/config/pinia";
 import { defineStore } from "pinia";
 
 // HACK : This dummy store is used for accessing the router in other stores

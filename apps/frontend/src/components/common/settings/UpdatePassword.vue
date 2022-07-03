@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import TextInputField from "@/components/common/input/TextInputField.vue";
-import { useUpdatePasswordState } from "@/composables/common/updatePassword";
-import { greenButtonFg, greenButtonBg } from "@/config/content/color";
+import TextInputField from "@blog/frontend/components/common/input/TextInputField.vue";
+import { useUpdatePasswordState } from "@blog/frontend/composables/common/updatePassword";
+import { greenButtonFg, greenButtonBg } from "@blog/frontend/config/content/color";
 import InputFormLayout from "../layout/InputFormLayout.vue";
 import { computed } from "vue";
 
@@ -20,11 +20,11 @@ const { newPassword, secondNewPassword, showError, updatePassword } =
   useUpdatePasswordState(emit);
 
 const successText = computed(() =>
-  props.showSuccess ? "Password updated!" : undefined
+  props.showSuccess ? "Password updated!" : undefined,
 );
 
 const errorText = computed(() =>
-  showError.value ? "Passwords don't match!" : undefined
+  showError.value ? "Passwords don't match!" : undefined,
 );
 </script>
 <template>

@@ -2,7 +2,7 @@ import {
   getAuthorCategories,
   type AuthorCategory,
   type Category,
-} from "@/api/category";
+} from "@blog/frontend/api/category";
 import { computed, ref, type Ref } from "vue";
 import { usePageTitle } from "../../head/pageTitle";
 import { useEndpoint } from "../../util/endpoint";
@@ -10,9 +10,9 @@ import {
   deleteCategory as deleteCategoryInternal,
   createCategory as createCategoryInternal,
   updateCategory as updateCategoryInternal,
-} from "@/api/category";
-import type { Option } from "@/lib/types";
-import { useUser } from "@/composables/store/user";
+} from "@blog/frontend/api/category";
+import type { Option } from "@blog/frontend/lib/types";
+import { useUser } from "@blog/frontend/composables/store/user";
 
 export interface CategoriesPageState {
   categories: Ref<AuthorCategory[]>;
@@ -46,12 +46,12 @@ export const useCategoriesPageState = (): CategoriesPageState => {
 
 const useCategoriesPageInteractions = (
   showNewCategoryModal: Ref<boolean>,
-  categoryToUpdate: Ref<Option<Category>>
+  categoryToUpdate: Ref<Option<Category>>,
 ) => {
   const user = useUser();
 
   const categoriesFetcher = computed(
-    () => () => user.fetchWithToken(getAuthorCategories, [])
+    () => () => user.fetchWithToken(getAuthorCategories, []),
   );
   const { value: categories, refetch } = useEndpoint(categoriesFetcher, []);
 
@@ -73,7 +73,7 @@ const useCategoriesPageInteractions = (
         updateCategoryInternal({
           ...category,
           name,
-        })
+        }),
       );
       categoryToUpdate.value = undefined;
       refetch.value();

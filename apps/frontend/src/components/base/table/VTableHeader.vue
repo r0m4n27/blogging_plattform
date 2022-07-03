@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { systemProps } from "@/styling/props/systemProps";
+import { systemProps } from "@blog/frontend/styling/props/systemProps";
 import { type PropType, computed } from "vue";
-import { textProps } from "@/styling/props/textProps";
+import { textProps } from "@blog/frontend/styling/props/textProps";
 import { cx } from "@emotion/css";
-import { createTextPropsCss } from "@/styling/props/textProps";
-import { createSystemPropsCss } from "@/styling/props/systemProps";
-import type { Responsive } from "@/lib/responsive";
-import type { Alignment, FontSize, FontWeight } from "@/styling/text";
-import type { Spacing } from "@/styling/spacing";
-import type { Color } from "@/styling/color";
-import { contentColorConfig } from "@/config/content/color";
-import { contentSpacingConfig } from "@/config/content/spacing";
+import { createTextPropsCss } from "@blog/frontend/styling/props/textProps";
+import { createSystemPropsCss } from "@blog/frontend/styling/props/systemProps";
+import type { Responsive } from "@blog/frontend/lib/responsive";
+import type { Alignment, FontSize, FontWeight } from "@blog/frontend/styling/text";
+import type { Spacing } from "@blog/frontend/styling/spacing";
+import type { Color } from "@blog/frontend/styling/color";
+import { contentColorConfig } from "@blog/frontend/config/content/color";
+import { contentSpacingConfig } from "@blog/frontend/config/content/spacing";
 
 const props = defineProps({
   label: {
@@ -47,7 +47,7 @@ const props = defineProps({
 });
 
 const className = computed(() =>
-  cx(createTextPropsCss(props), createSystemPropsCss(props))
+  cx(createTextPropsCss(props), createSystemPropsCss(props)),
 );
 </script>
 

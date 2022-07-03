@@ -1,5 +1,5 @@
-import type { Responsive } from "@/lib/responsive";
-import type { Spacing } from "@/styling/spacing";
+import type { Responsive } from "@blog/frontend/lib/responsive";
+import type { Spacing } from "@blog/frontend/styling/spacing";
 
 export const contentSpacingConfig = {
   xs: 2,

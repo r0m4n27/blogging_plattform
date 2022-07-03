@@ -1,6 +1,6 @@
-import ArticleSummaryList from "@/components/visitor/summary/article/ArticleSummaryList.vue";
-import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
-import { mockArticles } from "@/stories/data/article";
+import ArticleSummaryList from "@blog/frontend/components/visitor/summary/article/ArticleSummaryList.vue";
+import { createContainerDecorator } from "@blog/frontend/stories/decorators/containerDecorator";
+import { mockArticles } from "@blog/frontend/stories/data/article";
 import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {

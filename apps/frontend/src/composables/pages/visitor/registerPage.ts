@@ -1,14 +1,10 @@
 import { ref, type Ref } from "vue";
 import { useRouter } from "vue-router";
-import { useUser } from "@/composables/store/user";
+import { useUser } from "@blog/frontend/composables/store/user";
 
 export interface RegisterPageState {
   showError: Ref<boolean>;
-  register: (
-    username: string,
-    password: string,
-    registerCode: string
-  ) => Promise<void>;
+  register: (username: string, password: string, registerCode: string) => Promise<void>;
 }
 
 export const useRegisterPageState = (): RegisterPageState => {
@@ -17,11 +13,7 @@ export const useRegisterPageState = (): RegisterPageState => {
 
   const showError = ref(false);
 
-  const register = async (
-    username: string,
-    password: string,
-    registerCode: string
-  ) => {
+  const register = async (username: string, password: string, registerCode: string) => {
     const loginStatus = await user.register(username, password, registerCode);
 
     if (loginStatus) {

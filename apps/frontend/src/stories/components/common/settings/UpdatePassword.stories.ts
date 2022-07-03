@@ -1,5 +1,5 @@
-import UpdatePassword from "@/components/common/settings/UpdatePassword.vue";
-import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
+import UpdatePassword from "@blog/frontend/components/common/settings/UpdatePassword.vue";
+import { createContainerDecorator } from "@blog/frontend/stories/decorators/containerDecorator";
 import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {

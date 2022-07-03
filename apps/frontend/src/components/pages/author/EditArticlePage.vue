@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useEditArticlePage } from "@/composables/pages/author/editArticlePage";
+import { useEditArticlePage } from "@blog/frontend/composables/pages/author/editArticlePage";
 import ArticleEditor from "../../author/articleEditor/ArticleEditor.vue";
 
 const { article, deleteArticle, updateArticle, existingCategories } =

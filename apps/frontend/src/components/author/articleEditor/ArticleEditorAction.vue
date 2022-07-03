@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import IconButton from "@/components/base/button/IconButton.vue";
+import IconButton from "@blog/frontend/components/base/button/IconButton.vue";
 import { Archive, Upload, Trash2, Save } from "lucide-vue-next";
 import { computed } from "vue";
 import {
@@ -8,8 +8,8 @@ import {
   darkColoredButtonFg,
   redButtonBg,
   blueButtonBg,
-} from "@/config/content/color";
-import type { EditorAction } from "@/composables/author/articleEditor/articleEditor";
+} from "@blog/frontend/config/content/color";
+import type { EditorAction } from "@blog/frontend/composables/author/articleEditor/articleEditor";
 
 interface ArticleEditorActionProps {
   actionType: EditorAction;

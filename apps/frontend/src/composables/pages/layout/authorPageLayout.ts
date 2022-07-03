@@ -1,10 +1,10 @@
-import type { FooterLink } from "@/components/common/footer/footerLink";
-import type { NavigationDestination } from "@/components/common/navigationBar/navDestination";
-import { authorNavBarDestinations } from "@/config/components/navigationBar";
-import { blogLink, logoutLink } from "@/config/components/pageFooter";
-import { authorRoutes } from "@/lib/router/author";
+import type { FooterLink } from "@blog/frontend/components/common/footer/footerLink";
+import type { NavigationDestination } from "@blog/frontend/components/common/navigationBar/navDestination";
+import { authorNavBarDestinations } from "@blog/frontend/config/components/navigationBar";
+import { blogLink, logoutLink } from "@blog/frontend/config/components/pageFooter";
+import { authorRoutes } from "@blog/frontend/lib/router/author";
 import type { RouteLocationRaw } from "vue-router";
-import { useUser } from "@/composables/store/user";
+import { useUser } from "@blog/frontend/composables/store/user";
 
 export interface VisitorPageLayoutState {
   footerLinks: FooterLink[];

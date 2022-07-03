@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import VBox from "../layout/VBox.vue";
-import { systemProps } from "@/styling/props/systemProps";
+import { systemProps } from "@blog/frontend/styling/props/systemProps";
 import { computed, type PropType } from "vue";
-import type { Responsive } from "@/lib/responsive";
-import type { BorderRadius } from "@/styling/system";
-import type { Color } from "@/styling/color";
-import type { Spacing } from "@/styling/spacing";
-import { contentColorConfig } from "@/config/content/color";
-import { contentSpacingConfig } from "@/config/content/spacing";
+import type { Responsive } from "@blog/frontend/lib/responsive";
+import type { BorderRadius } from "@blog/frontend/styling/system";
+import type { Color } from "@blog/frontend/styling/color";
+import type { Spacing } from "@blog/frontend/styling/spacing";
+import { contentColorConfig } from "@blog/frontend/config/content/color";
+import { contentSpacingConfig } from "@blog/frontend/config/content/spacing";
 import {
   textInputProps,
   createTextInputCss,
-} from "@/styling/props/textInputProps";
+} from "@blog/frontend/styling/props/textInputProps";
 
 const props = defineProps({
   ...systemProps,

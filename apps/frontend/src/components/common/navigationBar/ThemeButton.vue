@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useTheme } from "@/composables/store/theme";
+import { useTheme } from "@blog/frontend/composables/store/theme";
 import { Moon, Sun } from "lucide-vue-next";
 import { computed } from "vue";
-import IconButton from "@/components/base/button/IconButton.vue";
-import { getColor } from "@/config/theme/colors";
+import IconButton from "@blog/frontend/components/base/button/IconButton.vue";
+import { getColor } from "@blog/frontend/config/theme/colors";
 
 const theme = useTheme();
 

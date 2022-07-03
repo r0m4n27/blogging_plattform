@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import CollectionSummaryList from "@/components/visitor/summary/collection/CollectionSummaryList.vue";
-import { useCategoriesPageState } from "@/composables/pages/visitor/categoriesPage";
+import CollectionSummaryList from "@blog/frontend/components/visitor/summary/collection/CollectionSummaryList.vue";
+import { useCategoriesPageState } from "@blog/frontend/composables/pages/visitor/categoriesPage";
 
 const { categoriesCollections } = useCategoriesPageState();
 </script>

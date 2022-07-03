@@ -1,7 +1,7 @@
-import type { NavigationDestination } from "@/components/common/navigationBar/navDestination";
-import { adminRoutes } from "@/lib/router/admin";
-import { authorRoutes } from "@/lib/router/author";
-import { visitorRoutes } from "@/lib/router/visitor";
+import type { NavigationDestination } from "@blog/frontend/components/common/navigationBar/navDestination";
+import { adminRoutes } from "@blog/frontend/lib/router/admin";
+import { authorRoutes } from "@blog/frontend/lib/router/author";
+import { visitorRoutes } from "@blog/frontend/lib/router/visitor";
 
 export const visitorNavBarDestinations: NavigationDestination[] = [
   {

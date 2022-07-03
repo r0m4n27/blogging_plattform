@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import { systemProps, createSystemPropsCss } from "@/styling/props/systemProps";
+import {
+  systemProps,
+  createSystemPropsCss,
+} from "@blog/frontend/styling/props/systemProps";
 import { computed, type PropType } from "vue";
 import { cx } from "@emotion/css";
-import type { Responsive } from "@/lib/responsive";
-import { flexProps, createGridCss } from "@/styling/props/flexProps";
+import type { Responsive } from "@blog/frontend/lib/responsive";
+import { flexProps, createGridCss } from "@blog/frontend/styling/props/flexProps";
 
 const props = defineProps({
   columns: {
@@ -15,7 +18,7 @@ const props = defineProps({
 });
 
 const classes = computed(() =>
-  cx(createGridCss(props, props.columns), createSystemPropsCss(props))
+  cx(createGridCss(props, props.columns), createSystemPropsCss(props)),
 );
 </script>
 

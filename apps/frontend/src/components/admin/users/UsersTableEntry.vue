@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import VTableRow from "@/components/base/table/VTableRow.vue";
-import VTableData from "@/components/base/table/VTableData.vue";
-import { redButtonBg, redButtonFg } from "@/config/content/color";
-import { contentSpacingConfig } from "@/config/content/spacing";
+import VTableRow from "@blog/frontend/components/base/table/VTableRow.vue";
+import VTableData from "@blog/frontend/components/base/table/VTableData.vue";
+import { redButtonBg, redButtonFg } from "@blog/frontend/config/content/color";
+import { contentSpacingConfig } from "@blog/frontend/config/content/spacing";
 import VRow from "../../base/layout/VRow.vue";
 import TagButton from "../../base/button/TagButton.vue";
 import VTableTextEntry from "../../base/table/VTableTextEntry.vue";
-import type { AdminUser } from "@/api/user";
+import type { AdminUser } from "@blog/frontend/api/user";
 
 interface UsersTableEntryProps {
   user: AdminUser;

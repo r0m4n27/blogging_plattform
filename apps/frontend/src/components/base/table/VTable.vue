@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { systemProps } from "@/styling/props/systemProps";
+import { systemProps } from "@blog/frontend/styling/props/systemProps";
 import VTableHead from "./VTableHead.vue";
 import VTableBody from "./VTableBody.vue";
 import VTableRow from "./VTableRow.vue";

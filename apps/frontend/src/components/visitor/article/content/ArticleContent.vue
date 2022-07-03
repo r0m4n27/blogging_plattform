@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Option } from "@/lib/types";
+import type { Option } from "@blog/frontend/lib/types";
 import type { Root } from "hast-to-hyperscript";
 import rehypeSanitize from "rehype-sanitize";
 import remarkParse from "remark-parse";
@@ -18,15 +18,10 @@ const htmlNode = ref<Option<Root>>();
 // Guide from:
 // - https://unifiedjs.com/learn/guide/create-an-editor/
 // - https://github.com/remarkjs/react-markdown/blob/main/lib/react-markdown.js
-const processor = unified()
-  .use(remarkParse)
-  .use(remarkRehype)
-  .use(rehypeSanitize);
+const processor = unified().use(remarkParse).use(remarkRehype).use(rehypeSanitize);
 
 watchEffect(() => {
-  processor
-    .run(processor.parse(props.content))
-    .then((root) => (htmlNode.value = root));
+  processor.run(processor.parse(props.content)).then((root) => (htmlNode.value = root));
 });
 </script>
 

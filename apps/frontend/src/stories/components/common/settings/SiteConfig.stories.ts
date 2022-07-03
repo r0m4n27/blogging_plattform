@@ -1,5 +1,5 @@
-import SiteConfigSettings from "@/components/common/settings/SiteConfigSettings.vue";
-import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
+import SiteConfigSettings from "@blog/frontend/components/common/settings/SiteConfigSettings.vue";
+import { createContainerDecorator } from "@blog/frontend/stories/decorators/containerDecorator";
 import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {

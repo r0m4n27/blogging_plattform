@@ -4,7 +4,7 @@ import {
   getWithToken,
   patchWithToken,
   postWithToken,
-} from "@/lib/fetch";
+} from "@blog/frontend/lib/fetch";
 
 export interface Category {
   id: string;
@@ -22,8 +22,7 @@ const categoryBase = "/api/categories";
 
 export const getCategories = () => get<Category[]>(categoryBase);
 
-export const getCategory = (id: string) =>
-  get<Category>(`${categoryBase}/${id}`);
+export const getCategory = (id: string) => get<Category>(`${categoryBase}/${id}`);
 
 const authorCategoryBase = "/api/author/categories";
 
@@ -34,13 +33,9 @@ export const deleteCategory = (category: AuthorCategory) => (token: string) =>
   deleteWithToken(`${authorCategoryBase}/${category.id}`, token);
 
 export const createCategory = (name: string) => (token: string) =>
-  postWithToken<AuthorCategory, CreateCategoryPayload>(
-    authorCategoryBase,
-    token,
-    {
-      name,
-    }
-  );
+  postWithToken<AuthorCategory, CreateCategoryPayload>(authorCategoryBase, token, {
+    name,
+  });
 
 export const updateCategory =
   (category: Category) =>

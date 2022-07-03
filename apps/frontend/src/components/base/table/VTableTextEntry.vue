@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { contentColorConfig } from "@/config/content/color";
-import type { Responsive } from "@/lib/responsive";
-import type { Color } from "@/styling/color";
-import { systemProps } from "@/styling/props/systemProps";
-import { textProps } from "@/styling/props/textProps";
-import type { FontSize, FontWeight } from "@/styling/text";
+import { contentColorConfig } from "@blog/frontend/config/content/color";
+import type { Responsive } from "@blog/frontend/lib/responsive";
+import type { Color } from "@blog/frontend/styling/color";
+import { systemProps } from "@blog/frontend/styling/props/systemProps";
+import { textProps } from "@blog/frontend/styling/props/textProps";
+import type { FontSize, FontWeight } from "@blog/frontend/styling/text";
 import type { PropType } from "vue";
 import VText from "../text/VText.vue";
 

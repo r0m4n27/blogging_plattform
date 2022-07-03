@@ -1,5 +1,5 @@
 import NewCategoryDialog from "../../../../components/author/categories/NewCategoryDialog.vue";
-import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
+import { createContainerDecorator } from "@blog/frontend/stories/decorators/containerDecorator";
 import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {

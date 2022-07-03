@@ -13,19 +13,19 @@ export const adminRoutes: AdminRoutes = {
     path: "",
     name: "Admin/Home",
     route: createAdminRoute(""),
-    component: () => import("@/components/pages/admin/HomePage.vue"),
+    component: () => import("@blog/frontend/components/pages/admin/HomePage.vue"),
   },
   settings: {
     path: "settings",
     name: "Admin/Settings",
     route: createAdminRoute("settings"),
-    component: () => import("@/components/pages/admin/SettingsPage.vue"),
+    component: () => import("@blog/frontend/components/pages/admin/SettingsPage.vue"),
   },
 };
 
 export const adminRootRoute: RouteRecordRaw = {
   path: "/admin",
-  component: () => import("@/components/pages/layout/AdminPageLayout.vue"),
+  component: () => import("@blog/frontend/components/pages/layout/AdminPageLayout.vue"),
   children: Object.values(adminRoutes),
   meta: {
     requiredUserRole: "ADMIN",

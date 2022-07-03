@@ -12,7 +12,7 @@ interface UpdatePasswordEmits {
 }
 
 export const useUpdatePasswordState = (
-  emit: UpdatePasswordEmits
+  emit: UpdatePasswordEmits,
 ): UpdatePasswordState => {
   const newPassword = ref("");
   const secondNewPassword = ref("");

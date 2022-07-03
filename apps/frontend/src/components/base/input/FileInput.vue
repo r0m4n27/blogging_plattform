@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import VText from "../text/VText.vue";
-import { systemProps } from "@/styling/props/systemProps";
+import { systemProps } from "@blog/frontend/styling/props/systemProps";
 import { ref, type PropType } from "vue";
-import { contentSpacingConfig } from "@/config/content/spacing";
+import { contentSpacingConfig } from "@blog/frontend/config/content/spacing";
 import VRow from "../layout/VRow.vue";
 import BoxedTagButton from "../button/BoxedTagButton.vue";
 

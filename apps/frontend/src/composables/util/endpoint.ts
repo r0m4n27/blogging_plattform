@@ -1,5 +1,5 @@
-import { FetchError, type ErrorMessage } from "@/lib/fetch";
-import type { MaybeRef, Option } from "@/lib/types";
+import { FetchError, type ErrorMessage } from "@blog/frontend/lib/fetch";
+import type { MaybeRef, Option } from "@blog/frontend/lib/types";
 import {
   computed,
   ref,
@@ -11,7 +11,7 @@ import {
 
 export function useEndpoint<T>(
   fetcher: MaybeRef<() => Promise<T>>,
-  initialValue: MaybeRef<T>
+  initialValue: MaybeRef<T>,
 ): {
   value: Ref<UnwrapRef<T> | T>;
   refetch: ComputedRef<() => void>;
@@ -30,7 +30,7 @@ export function useEndpoint<T>(fetcher: MaybeRef<() => Promise<T>>): {
 // Also when a bad request happens the message will be provided in an error
 export function useEndpoint<T>(
   fetcher: MaybeRef<() => Promise<T>>,
-  initialValue?: MaybeRef<T>
+  initialValue?: MaybeRef<T>,
 ) {
   const fetchedValue = ref(initialValue);
   const errorValue = ref<ErrorMessage | undefined>(undefined);

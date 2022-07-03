@@ -1,5 +1,5 @@
-import PageFooter from "@/components/common/footer/PageFooter.vue";
-import { contactLink, loginLink } from "@/config/components/pageFooter";
+import PageFooter from "@blog/frontend/components/common/footer/PageFooter.vue";
+import { contactLink, loginLink } from "@blog/frontend/config/components/pageFooter";
 import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {

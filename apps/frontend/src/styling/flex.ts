@@ -1,15 +1,13 @@
 import { createMapperWriter } from "./writer";
 
 export type FlexAlignment = "start" | "end" | "center" | "baseline" | "strech";
-export const flexAlignmentWriter = createMapperWriter(
-  (value: FlexAlignment) => {
-    if (value === "start" || value === "end") {
-      return `flex-${value}`;
-    } else {
-      return value;
-    }
+export const flexAlignmentWriter = createMapperWriter((value: FlexAlignment) => {
+  if (value === "start" || value === "end") {
+    return `flex-${value}`;
+  } else {
+    return value;
   }
-);
+});
 
 export type FlexJustify =
   | "start"
@@ -27,5 +25,5 @@ export const flexJustifyWriter = createMapperWriter((value: FlexJustify) => {
 });
 
 export const gridColumnsWriter = createMapperWriter(
-  (value: number) => `repeat(${value}, minmax(0, 1fr))`
+  (value: number) => `repeat(${value}, minmax(0, 1fr))`,
 );

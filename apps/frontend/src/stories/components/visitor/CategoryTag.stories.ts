@@ -1,6 +1,6 @@
-import CategoryTag from "@/components/visitor/util/CategoryTag.vue";
-import { jsCategory } from "@/stories/data/category";
-import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
+import CategoryTag from "@blog/frontend/components/visitor/util/CategoryTag.vue";
+import { jsCategory } from "@blog/frontend/stories/data/category";
+import { createContainerDecorator } from "@blog/frontend/stories/decorators/containerDecorator";
 import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { AuthorArticle } from "@/api/article";
+import type { AuthorArticle } from "@blog/frontend/api/article";
 import { computed } from "vue";
 import {
   orangeButtonBg,
   orangeButtonFg,
   greenButtonBg,
   greenButtonFg,
-} from "@/config/content/color";
+} from "@blog/frontend/config/content/color";
 import TagButton from "../../base/button/TagButton.vue";
 
 interface ArticleStatusProps {

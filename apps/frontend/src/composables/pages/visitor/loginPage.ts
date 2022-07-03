@@ -1,6 +1,6 @@
 import { ref, type Ref } from "vue";
 import { useRouter } from "vue-router";
-import { useUser } from "@/composables/store/user";
+import { useUser } from "@blog/frontend/composables/store/user";
 
 export interface LoginPageState {
   showError: Ref<boolean>;

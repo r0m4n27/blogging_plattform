@@ -1,5 +1,5 @@
 import ArticleEditor from "../../../components/author/articleEditor/ArticleEditor.vue";
-import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
+import { createContainerDecorator } from "@blog/frontend/stories/decorators/containerDecorator";
 import { mockArticle, mockArticleDraft } from "../../data/article";
 import { mockCategories } from "../../data/category";
 import type { Meta, StoryFn } from "@storybook/vue3";

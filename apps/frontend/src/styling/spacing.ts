@@ -1,4 +1,4 @@
-import { spacingConfig } from "@/config/theme/spacing";
+import { spacingConfig } from "@blog/frontend/config/theme/spacing";
 import type { CSSObject } from "@emotion/css";
 
 export type SpacingConfigKey = keyof typeof spacingConfig;
@@ -14,7 +14,7 @@ export type Spacing = SpacingConfigKey | SpacingObject;
 export const spacingWriter = (
   style: CSSObject,
   propertyName: keyof CSSObject,
-  spacing: Spacing
+  spacing: Spacing,
 ) => {
   if ((spacing as SpacingObject).x !== undefined) {
     const spacingObject = spacing as SpacingObject;

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import TextInputField from "@/components/common/input/TextInputField.vue";
+import TextInputField from "@blog/frontend/components/common/input/TextInputField.vue";
 import { ref } from "vue";
-import SimpleDialogLayout from "@/components/common/layout/SimpleDialogLayout.vue";
-import { orangeButtonBg, orangeButtonFg } from "@/config/content/color";
+import SimpleDialogLayout from "@blog/frontend/components/common/layout/SimpleDialogLayout.vue";
+import { orangeButtonBg, orangeButtonFg } from "@blog/frontend/config/content/color";
 
 interface EditCategoryDialogProps {
   initialName: string;
@@ -31,10 +31,6 @@ const submitCategory = () => {
     @cancel="emit('cancel')"
     @confirm="submitCategory"
   >
-    <TextInputField
-      label="New Name"
-      v-model:input-value="categoryName"
-      width="full"
-    />
+    <TextInputField label="New Name" v-model:input-value="categoryName" width="full" />
   </SimpleDialogLayout>
 </template>

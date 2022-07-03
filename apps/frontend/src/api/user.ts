@@ -1,4 +1,8 @@
-import { deleteWithToken, getWithToken, patchWithToken } from "@/lib/fetch";
+import {
+  deleteWithToken,
+  getWithToken,
+  patchWithToken,
+} from "@blog/frontend/lib/fetch";
 
 export interface AdminUser {
   id: string;

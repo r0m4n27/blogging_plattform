@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useAdminSettingsPageState } from "@/composables/pages/admin/settingsPage";
-import UpdatePassword from "@/components/common/settings/UpdatePassword.vue";
-import SiteConfigSettings from "@/components/common/settings/SiteConfigSettings.vue";
-import VColumn from "@/components/base/layout/VColumn.vue";
+import { useAdminSettingsPageState } from "@blog/frontend/composables/pages/admin/settingsPage";
+import UpdatePassword from "@blog/frontend/components/common/settings/UpdatePassword.vue";
+import SiteConfigSettings from "@blog/frontend/components/common/settings/SiteConfigSettings.vue";
+import VColumn from "@blog/frontend/components/base/layout/VColumn.vue";
 
 const {
   updatePasswordState: { passwordUpdated, updatePassword },
@@ -28,9 +28,6 @@ const {
       @create="createSiteConfig"
     />
 
-    <UpdatePassword
-      @update-password="updatePassword"
-      :show-success="passwordUpdated"
-    />
+    <UpdatePassword @update-password="updatePassword" :show-success="passwordUpdated" />
   </VColumn>
 </template>

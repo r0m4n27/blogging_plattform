@@ -1,13 +1,13 @@
-import type { MaybeRef, Option } from "@/lib/types";
+import type { MaybeRef, Option } from "@blog/frontend/lib/types";
 import { ref, watchEffect, type Ref, type UnwrapRef } from "vue";
 
 export function useLocalStorage<Key extends string, T>(
   key: Key,
-  defaultValue: MaybeRef<T>
+  defaultValue: MaybeRef<T>,
 ): Ref<UnwrapRef<T>>;
 
 export function useLocalStorage<Key extends string, T>(
-  key: Key
+  key: Key,
 ): Ref<Option<UnwrapRef<T>>>;
 
 /**
@@ -20,12 +20,12 @@ export function useLocalStorage<Key extends string, T>(
  */
 export function useLocalStorage<Key extends string, T>(
   key: Key,
-  defaultValue?: MaybeRef<T>
+  defaultValue?: MaybeRef<T>,
 ) {
   const rawStorageItem = localStorage.getItem(key);
 
   const parsedStorageItem = ref(
-    rawStorageItem !== null ? (JSON.parse(rawStorageItem) as T) : defaultValue
+    rawStorageItem !== null ? (JSON.parse(rawStorageItem) as T) : defaultValue,
   );
 
   watchEffect(() => {

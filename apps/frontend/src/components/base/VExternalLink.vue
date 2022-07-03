@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { globalContentConfig } from "@/config/content/global";
-import type { Responsive } from "@/lib/responsive";
-import type { Color } from "@/styling/color";
-import { createSystemPropsCss } from "@/styling/props/systemProps";
-import { systemProps } from "@/styling/props/systemProps";
-import { createTextPropsCss, textProps } from "@/styling/props/textProps";
+import { globalContentConfig } from "@blog/frontend/config/content/global";
+import type { Responsive } from "@blog/frontend/lib/responsive";
+import type { Color } from "@blog/frontend/styling/color";
+import { createSystemPropsCss } from "@blog/frontend/styling/props/systemProps";
+import { systemProps } from "@blog/frontend/styling/props/systemProps";
+import { createTextPropsCss, textProps } from "@blog/frontend/styling/props/textProps";
 import { cx } from "@emotion/css";
 import { computed, type PropType } from "vue";
 
@@ -24,7 +24,7 @@ const props = defineProps({
 });
 
 const className = computed(() =>
-  cx(createSystemPropsCss(props), createTextPropsCss(props))
+  cx(createSystemPropsCss(props), createTextPropsCss(props)),
 );
 </script>
 

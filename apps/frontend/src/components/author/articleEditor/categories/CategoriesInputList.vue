@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { AuthorCategory } from "@/api/category";
-import VColumn from "@/components/base/layout/VColumn.vue";
-import { contentColorConfig } from "@/config/content/color";
-import { globalContentConfig } from "@/config/content/global";
+import type { AuthorCategory } from "@blog/frontend/api/category";
+import VColumn from "@blog/frontend/components/base/layout/VColumn.vue";
+import { contentColorConfig } from "@blog/frontend/config/content/color";
+import { globalContentConfig } from "@blog/frontend/config/content/global";
 import VText from "../../../base/text/VText.vue";
-import { contentSpacingConfig } from "@/config/content/spacing";
+import { contentSpacingConfig } from "@blog/frontend/config/content/spacing";
 import VBox from "../../../base/layout/VBox.vue";
 
 interface CategoriesInputListProps {

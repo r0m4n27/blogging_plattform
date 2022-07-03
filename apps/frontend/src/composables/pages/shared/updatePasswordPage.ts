@@ -1,5 +1,5 @@
-import { updatePassword as updatePasswordInternal } from "@/api/user";
-import { useUser } from "@/composables/store/user";
+import { updatePassword as updatePasswordInternal } from "@blog/frontend/api/user";
+import { useUser } from "@blog/frontend/composables/store/user";
 import { computed, ref, type ComputedRef, type Ref } from "vue";
 
 export interface UpdatePasswordPageState {

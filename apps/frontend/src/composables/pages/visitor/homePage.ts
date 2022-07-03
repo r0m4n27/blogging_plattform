@@ -1,4 +1,4 @@
-import { getArticles, type Article } from "@/api/article";
+import { getArticles, type Article } from "@blog/frontend/api/article";
 import { storeToRefs } from "pinia";
 import type { Ref } from "vue";
 import { usePageTitle } from "../../head/pageTitle";

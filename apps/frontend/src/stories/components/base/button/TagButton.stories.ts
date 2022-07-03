@@ -1,5 +1,5 @@
-import TagButton from "@/components/base/button/TagButton.vue";
-import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
+import TagButton from "@blog/frontend/components/base/button/TagButton.vue";
+import { createContainerDecorator } from "@blog/frontend/stories/decorators/containerDecorator";
 import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {

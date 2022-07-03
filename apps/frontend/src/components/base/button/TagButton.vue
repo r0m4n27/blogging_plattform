@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import VButton from "./VButton.vue";
 import { computed } from "vue";
-import type { Color } from "@/styling/color";
+import type { Color } from "@blog/frontend/styling/color";
 import {
   type TagButtonSize,
   createTagButtonVButtonProps,
-} from "@/styling/props/tagButton";
-import type { Responsive } from "@/lib/responsive";
+} from "@blog/frontend/styling/props/tagButton";
+import type { Responsive } from "@blog/frontend/lib/responsive";
 import TagButtonContent from "./TagButtonContent.vue";
 
 interface SummaryTagProps {
@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<SummaryTagProps>(), {
 });
 
 const buttonProps = computed(() =>
-  createTagButtonVButtonProps(props.size, props.color)
+  createTagButtonVButtonProps(props.size, props.color),
 );
 </script>
 

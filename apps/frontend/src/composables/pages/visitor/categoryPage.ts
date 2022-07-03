@@ -1,6 +1,6 @@
-import { getArticles, type Article } from "@/api/article";
-import { getCategory } from "@/api/category";
-import { useRouteParams } from "@/composables/util/routeParams";
+import { getArticles, type Article } from "@blog/frontend/api/article";
+import { getCategory } from "@blog/frontend/api/category";
+import { useRouteParams } from "@blog/frontend/composables/util/routeParams";
 import { computed, type ComputedRef, type Ref } from "vue";
 import type { RouteParams } from "vue-router";
 import { usePageTitle } from "../../head/pageTitle";
@@ -22,7 +22,7 @@ export const useCategoryPageState = (): CategoryPageState => {
   const { value: category } = useEndpoint(categoryFetcher);
 
   const articlesFetcher = computed(
-    () => () => getArticles("category", params.value.id)
+    () => () => getArticles("category", params.value.id),
   );
   const { value: articles } = useEndpoint(articlesFetcher, []);
 

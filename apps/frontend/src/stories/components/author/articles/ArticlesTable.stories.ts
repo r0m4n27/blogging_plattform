@@ -1,5 +1,5 @@
 import ArticlesTable from "../../../../components/author/articles/ArticlesTable.vue";
-import { createContainerDecorator } from "@/stories/decorators/containerDecorator";
+import { createContainerDecorator } from "@blog/frontend/stories/decorators/containerDecorator";
 import { mockArticles } from "../../../data/article";
 import type { Meta, StoryFn } from "@storybook/vue3";
 

@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { contentSpacingConfig } from "@/config/content/spacing";
-import type { Category } from "@/api/category";
+import { contentSpacingConfig } from "@blog/frontend/config/content/spacing";
+import type { Category } from "@blog/frontend/api/category";
 import type { PropType } from "vue";
-import { flexProps } from "@/styling/props/flexProps";
+import { flexProps } from "@blog/frontend/styling/props/flexProps";
 import CategoryTag from "./CategoryTag.vue";
-import VRow from "@/components/base/layout/VRow.vue";
-import type { Responsive } from "@/lib/responsive";
-import type { Spacing } from "@/styling/spacing";
-import type { TagButtonSize } from "@/styling/props/tagButton";
+import VRow from "@blog/frontend/components/base/layout/VRow.vue";
+import type { Responsive } from "@blog/frontend/lib/responsive";
+import type { Spacing } from "@blog/frontend/styling/spacing";
+import type { TagButtonSize } from "@blog/frontend/styling/props/tagButton";
 
 const props = defineProps({
   size: {

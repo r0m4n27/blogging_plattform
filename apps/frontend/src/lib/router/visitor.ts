@@ -1,6 +1,6 @@
-import type { Article } from "@/api/article";
-import type { Category } from "@/api/category";
-import type { Year } from "@/api/year";
+import type { Article } from "@blog/frontend/api/article";
+import type { Category } from "@blog/frontend/api/category";
+import type { Year } from "@blog/frontend/api/year";
 import type { RouteDestinationWithoutParams, RouteDestination } from "./types";
 import type { RouteRecordRaw } from "vue-router";
 
@@ -26,59 +26,60 @@ export const visitorRoutes: VisitorRoutes = {
     path: "",
     name: "Visitor/Home",
     route: createVisitorRoute(""),
-    component: () => import("@/components/pages/visitor/HomePage.vue"),
+    component: () => import("@blog/frontend/components/pages/visitor/HomePage.vue"),
   },
 
   archive: {
     path: "archive",
     name: "Visitor/Archive",
     route: createVisitorRoute("archive"),
-    component: () => import("@/components/pages/visitor/ArchivePage.vue"),
+    component: () => import("@blog/frontend/components/pages/visitor/ArchivePage.vue"),
   },
   year: {
     path: "archive/:id",
     name: "Visitor/Year",
     createRoute: (data: Year) => createVisitorRoute(`archive/${data.year}`),
-    component: () => import("@/components/pages/visitor/YearPage.vue"),
+    component: () => import("@blog/frontend/components/pages/visitor/YearPage.vue"),
   },
 
   categories: {
     path: "categories",
     name: "Visitor/Categories",
     route: createVisitorRoute("categories"),
-    component: () => import("@/components/pages/visitor/CategoriesPage.vue"),
+    component: () =>
+      import("@blog/frontend/components/pages/visitor/CategoriesPage.vue"),
   },
   category: {
     path: "categories/:id",
     name: "Visitor/Category",
-    createRoute: (data: Category) =>
-      createVisitorRoute(`categories/${data.id}`),
-    component: () => import("@/components/pages/visitor/CategoryPage.vue"),
+    createRoute: (data: Category) => createVisitorRoute(`categories/${data.id}`),
+    component: () => import("@blog/frontend/components/pages/visitor/CategoryPage.vue"),
   },
 
   article: {
     path: "articles/:id",
     name: "Visitor/Article",
     createRoute: (data: Article) => createVisitorRoute(`articles/${data.id}`),
-    component: () => import("@/components/pages/visitor/ArticlePage.vue"),
+    component: () => import("@blog/frontend/components/pages/visitor/ArticlePage.vue"),
   },
 
   login: {
     path: "login",
     name: "Visitor/Login",
     route: createVisitorRoute("login"),
-    component: () => import("@/components/pages/visitor/LoginPage.vue"),
+    component: () => import("@blog/frontend/components/pages/visitor/LoginPage.vue"),
   },
   register: {
     path: "register",
     name: "Visitor/Register",
     route: createVisitorRoute("register"),
-    component: () => import("@/components/pages/visitor/RegisterPage.vue"),
+    component: () => import("@blog/frontend/components/pages/visitor/RegisterPage.vue"),
   },
 };
 
 export const visitorRootRoute: RouteRecordRaw = {
   path: "/",
-  component: () => import("@/components/pages/layout/VisitorPageLayout.vue"),
+  component: () =>
+    import("@blog/frontend/components/pages/layout/VisitorPageLayout.vue"),
   children: Object.values(visitorRoutes),
 };

@@ -1,4 +1,4 @@
-import { deleteWithToken, getWithToken, postWithToken } from "@/lib/fetch";
+import { deleteWithToken, getWithToken, postWithToken } from "@blog/frontend/lib/fetch";
 
 export const getRegisterCodes = (token: string): Promise<string[]> =>
   getWithToken("/api/auth/registerCodes", token);

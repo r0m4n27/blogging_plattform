@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ArticleSummaryList from "@/components/visitor/summary/article/ArticleSummaryList.vue";
-import { useHomePageState } from "@/composables/pages/visitor/homePage";
+import ArticleSummaryList from "@blog/frontend/components/visitor/summary/article/ArticleSummaryList.vue";
+import { useHomePageState } from "@blog/frontend/composables/pages/visitor/homePage";
 
 const { blogTitle, articles } = useHomePageState();
 </script>

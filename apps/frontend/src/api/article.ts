@@ -4,7 +4,7 @@ import {
   getWithToken,
   patchWithToken,
   postWithToken,
-} from "@/lib/fetch";
+} from "@blog/frontend/lib/fetch";
 import type { Category } from "./category";
 
 export interface Article {
@@ -26,19 +26,19 @@ const articlesBase = "/api/articles";
 
 export async function getArticles(
   filterType: "category",
-  filterId: string
+  filterId: string,
 ): Promise<Article[]>;
 
 export async function getArticles(
   filterType: "year",
-  filterId: number
+  filterId: number,
 ): Promise<Article[]>;
 
 export async function getArticles(): Promise<Article[]>;
 
 export async function getArticles(
   filterType?: "category" | "year",
-  filterId?: number | string
+  filterId?: number | string,
 ): Promise<Article[]> {
   if (filterType === undefined) return get(articlesBase);
 

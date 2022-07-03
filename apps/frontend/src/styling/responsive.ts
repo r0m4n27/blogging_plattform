@@ -1,5 +1,5 @@
-import { breakpointsConfig } from "@/config/theme/breakpoints";
-import type { Responsive, ResponsiveObject } from "@/lib/responsive";
+import { breakpointsConfig } from "@blog/frontend/config/theme/breakpoints";
+import type { Responsive, ResponsiveObject } from "@blog/frontend/lib/responsive";
 import type { CSSObject } from "@emotion/css";
 
 const smBreakpointQuery = `@media screen and (min-width: ${breakpointsConfig.sm})`;
@@ -17,7 +17,7 @@ export const writeResponsivePropToStyle = <T>(
   style: CSSObject,
   propertyName: keyof CSSObject,
   writer: (style: CSSObject, propertyName: keyof CSSObject, value: T) => void,
-  prop?: Responsive<T>
+  prop?: Responsive<T>,
 ) => {
   if (prop === undefined) return;
 
@@ -28,11 +28,7 @@ export const writeResponsivePropToStyle = <T>(
     style[smBreakpointQuery] ??= {};
     // SAFETY: Since we build up the CSSObject
     // we can make sure this key contains only a CSSObject
-    writer(
-      style[smBreakpointQuery] as CSSObject,
-      propertyName,
-      responsiveObject.md
-    );
+    writer(style[smBreakpointQuery] as CSSObject, propertyName, responsiveObject.md);
   } else {
     writer(style, propertyName, prop as T);
   }

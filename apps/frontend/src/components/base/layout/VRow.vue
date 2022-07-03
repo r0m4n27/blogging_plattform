@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { systemProps } from "@/styling/props/systemProps";
+import { systemProps } from "@blog/frontend/styling/props/systemProps";
 import VStack from "./VStack.vue";
-import { flexProps } from "@/styling/props/flexProps";
+import { flexProps } from "@blog/frontend/styling/props/flexProps";
 
 const props = defineProps({
   ...flexProps,

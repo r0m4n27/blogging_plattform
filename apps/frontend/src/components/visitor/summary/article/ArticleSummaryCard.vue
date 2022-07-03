@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import VColumn from "@/components/base/layout/VColumn.vue";
-import VHeading from "@/components/base/text/VHeading.vue";
-import VText from "@/components/base/text/VText.vue";
-import type { Article } from "@/api/article";
-import VCard from "@/components/base/layout/VCard.vue";
-import VLink from "@/components/base/VLink.vue";
+import VColumn from "@blog/frontend/components/base/layout/VColumn.vue";
+import VHeading from "@blog/frontend/components/base/text/VHeading.vue";
+import VText from "@blog/frontend/components/base/text/VText.vue";
+import type { Article } from "@blog/frontend/api/article";
+import VCard from "@blog/frontend/components/base/layout/VCard.vue";
+import VLink from "@blog/frontend/components/base/VLink.vue";
 import { computed } from "@vue/reactivity";
-import { contentSpacingConfig } from "@/config/content/spacing";
-import CategoryList from "@/components/visitor/util/CategoryList.vue";
-import { contentColorConfig } from "@/config/content/color";
-import { visitorRoutes } from "@/lib/router/visitor";
+import { contentSpacingConfig } from "@blog/frontend/config/content/spacing";
+import CategoryList from "@blog/frontend/components/visitor/util/CategoryList.vue";
+import { contentColorConfig } from "@blog/frontend/config/content/color";
+import { visitorRoutes } from "@blog/frontend/lib/router/visitor";
 
 // Limitations for the article card
 //
@@ -23,7 +23,7 @@ interface ArticleCategoryTagProps {
 const props = defineProps<ArticleCategoryTagProps>();
 
 const articleDestination = computed(() =>
-  visitorRoutes.article.createRoute(props.article)
+  visitorRoutes.article.createRoute(props.article),
 );
 </script>
 

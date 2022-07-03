@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { Responsive } from "@/lib/responsive";
+import type { Responsive } from "@blog/frontend/lib/responsive";
 import {
   type TagButtonSize,
   createTagButtonTextProps,
-} from "@/styling/props/tagButton";
+} from "@blog/frontend/styling/props/tagButton";
 import { computed } from "vue";
-import VCenter from "@/components/base/layout/VCenter.vue";
-import VText from "@/components/base/text/VText.vue";
+import VCenter from "@blog/frontend/components/base/layout/VCenter.vue";
+import VText from "@blog/frontend/components/base/text/VText.vue";
 
 interface TagButtonContentProps {
   label: string;

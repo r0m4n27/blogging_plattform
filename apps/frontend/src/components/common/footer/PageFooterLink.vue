@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import VLink from "@/components/base/VLink.vue";
-import VExternalLink from "@/components/base/VExternalLink.vue";
+import VLink from "@blog/frontend/components/base/VLink.vue";
+import VExternalLink from "@blog/frontend/components/base/VExternalLink.vue";
 import PageFooterItem from "./PageFooterItem.vue";
 import type { RouteLocationRaw } from "vue-router";
 

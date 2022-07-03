@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import VTableRow from "@/components/base/table/VTableRow.vue";
-import VTableData from "@/components/base/table/VTableData.vue";
+import VTableRow from "@blog/frontend/components/base/table/VTableRow.vue";
+import VTableData from "@blog/frontend/components/base/table/VTableData.vue";
 import {
   orangeButtonBg,
   orangeButtonFg,
   redButtonBg,
   redButtonFg,
-} from "@/config/content/color";
-import { contentSpacingConfig } from "@/config/content/spacing";
-import type { AuthorCategory } from "@/api/category";
+} from "@blog/frontend/config/content/color";
+import { contentSpacingConfig } from "@blog/frontend/config/content/spacing";
+import type { AuthorCategory } from "@blog/frontend/api/category";
 import VRow from "../../base/layout/VRow.vue";
 import TagButton from "../../base/button/TagButton.vue";
 import VTableTextEntry from "../../base/table/VTableTextEntry.vue";

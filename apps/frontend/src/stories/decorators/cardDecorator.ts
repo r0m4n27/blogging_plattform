@@ -1,4 +1,4 @@
-import VCard from "@/components/base/layout/VCard.vue";
+import VCard from "@blog/frontend/components/base/layout/VCard.vue";
 import type { SBDecorator } from "../types";
 
 export const cardDecorator: SBDecorator = (story) => ({

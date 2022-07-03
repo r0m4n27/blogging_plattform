@@ -1,4 +1,4 @@
-import type { Color } from "@/styling/color";
+import type { Color } from "@blog/frontend/styling/color";
 import { getColor } from "../theme/colors";
 
 // Foregrounds

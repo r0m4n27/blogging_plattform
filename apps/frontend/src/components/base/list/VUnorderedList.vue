@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { css } from "@emotion/css";
-import { contentSpacingConfig } from "@/config/content/spacing";
+import { contentSpacingConfig } from "@blog/frontend/config/content/spacing";
 
 const className = css`
   list-style-position: inside;

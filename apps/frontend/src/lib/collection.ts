@@ -1,5 +1,5 @@
-import type { Category } from "@/api/category";
-import type { Year } from "@/api/year";
+import type { Category } from "@blog/frontend/api/category";
+import type { Year } from "@blog/frontend/api/year";
 import { visitorRoutes } from "./router/visitor";
 import type { RouteLocationRaw } from "vue-router";
 

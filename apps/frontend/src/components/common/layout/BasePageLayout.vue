@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import VColumn from "@/components/base/layout/VColumn.vue";
-import NavigationBar from "@/components/common/navigationBar/NavigationBar.vue";
-import VContainer from "@/components/base/layout/VContainer.vue";
-import { contentSpacingConfig } from "@/config/content/spacing";
-import PageFooter from "@/components/common/footer/PageFooter.vue";
-import { useSiteConfig } from "@/composables/store/siteConfig";
+import VColumn from "@blog/frontend/components/base/layout/VColumn.vue";
+import NavigationBar from "@blog/frontend/components/common/navigationBar/NavigationBar.vue";
+import VContainer from "@blog/frontend/components/base/layout/VContainer.vue";
+import { contentSpacingConfig } from "@blog/frontend/config/content/spacing";
+import PageFooter from "@blog/frontend/components/common/footer/PageFooter.vue";
+import { useSiteConfig } from "@blog/frontend/composables/store/siteConfig";
 import { storeToRefs } from "pinia";
-import type { NavigationDestination } from "@/components/common/navigationBar/navDestination";
-import type { FooterLink } from "@/components/common/footer/footerLink";
+import type { NavigationDestination } from "@blog/frontend/components/common/navigationBar/navDestination";
+import type { FooterLink } from "@blog/frontend/components/common/footer/footerLink";
 import type { RouteLocationRaw } from "vue-router";
 
 interface BasePageLayoutProps {

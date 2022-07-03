@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import BlogArticle from "@/components/visitor/article/BlogArticle.vue";
-import { useArticlePageState } from "@/composables/pages/visitor/articlePage";
+import BlogArticle from "@blog/frontend/components/visitor/article/BlogArticle.vue";
+import { useArticlePageState } from "@blog/frontend/composables/pages/visitor/articlePage";
 import VContainer from "../../base/layout/VContainer.vue";
 
 const { article } = useArticlePageState();

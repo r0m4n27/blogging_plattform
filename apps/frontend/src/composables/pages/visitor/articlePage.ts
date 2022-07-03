@@ -1,6 +1,6 @@
-import { getArticle, type Article } from "@/api/article";
-import { useRouteParams } from "@/composables/util/routeParams";
-import type { Option } from "@/lib/types";
+import { getArticle, type Article } from "@blog/frontend/api/article";
+import { useRouteParams } from "@blog/frontend/composables/util/routeParams";
+import type { Option } from "@blog/frontend/lib/types";
 import { computed } from "@vue/reactivity";
 import type { Ref } from "vue";
 import type { RouteParams } from "vue-router";
