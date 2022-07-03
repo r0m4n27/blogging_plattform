@@ -5,6 +5,7 @@ import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: CategoryTag,
+  title: "frontend/visitor/summary/CategoryTag",
 } as Meta<typeof CategoryTag>;
 
 const Template: StoryFn<typeof CategoryTag> = (args) => ({

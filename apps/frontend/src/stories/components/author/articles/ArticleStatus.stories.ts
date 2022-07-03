@@ -5,6 +5,7 @@ import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: ArticleStatus,
+  title: "frontend/author/articles/ArticleStatus",
 } as Meta<typeof ArticleStatus>;
 
 const Template: StoryFn<typeof ArticleStatus> = (args) => ({

@@ -4,6 +4,7 @@ import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: SiteConfigSettings,
+  title: "frontend/common/settings/SiteConfig",
 } as Meta<typeof SiteConfigSettings>;
 
 const Template: StoryFn<typeof SiteConfigSettings> = (args) => ({

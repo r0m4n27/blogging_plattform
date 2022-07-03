@@ -5,6 +5,7 @@ import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: NavigationBar,
+  title: "frontend/common/NavigationBar",
 } as Meta<typeof NavigationBar>;
 
 const Template: StoryFn<typeof NavigationBar> = (args) => ({

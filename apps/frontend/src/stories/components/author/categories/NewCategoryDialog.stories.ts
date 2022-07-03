@@ -4,6 +4,7 @@ import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: NewCategoryDialog,
+  title: "frontend/author/categories/NewCategoryDialog",
 } as Meta<typeof NewCategoryDialog>;
 
 const Template: StoryFn<typeof NewCategoryDialog> = (args) => ({

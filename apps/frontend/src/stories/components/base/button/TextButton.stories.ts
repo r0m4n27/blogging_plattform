@@ -4,6 +4,7 @@ import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: TextButton,
+  title: "frontend/base/button/TextButton",
 } as Meta<typeof TextButton>;
 
 const Template: StoryFn<typeof TextButton> = (args) => ({

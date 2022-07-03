@@ -6,6 +6,7 @@ import { createContainerDecorator } from "@blog/frontend/stories/decorators/cont
 
 export default {
   component: IconButton,
+  title: "frontend/base/button/IconButton",
 } as Meta<typeof IconButton>;
 
 const Template: StoryFn<typeof IconButton> = (args) => ({

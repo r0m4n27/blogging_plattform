@@ -4,6 +4,7 @@ import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: UpdatePassword,
+  title: "frontend/common/settings/UpdatePassword",
 } as Meta<typeof UpdatePassword>;
 
 const Template: StoryFn<typeof UpdatePassword> = (args) => ({

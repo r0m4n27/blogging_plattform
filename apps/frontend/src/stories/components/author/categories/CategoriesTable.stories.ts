@@ -5,6 +5,7 @@ import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: CategoriesTable,
+  title: "frontend/author/categories/CategoriesTable",
 } as Meta<typeof CategoriesTable>;
 
 const Template: StoryFn<typeof CategoriesTable> = (args) => ({

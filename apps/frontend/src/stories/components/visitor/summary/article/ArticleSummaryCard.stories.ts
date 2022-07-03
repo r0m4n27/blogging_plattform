@@ -5,6 +5,7 @@ import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: ArticleSummaryCard,
+  title: "frontend/visitor/summary/article/ArticleSummaryCard",
 } as Meta<typeof ArticleSummaryCard>;
 
 const Template: StoryFn<typeof ArticleSummaryCard> = (args) => ({

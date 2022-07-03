@@ -4,6 +4,7 @@ import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: RegisterCard,
+  title: "frontend/visitor/auth/RegisterCard",
 } as Meta<typeof RegisterCard>;
 
 const Template: StoryFn<typeof RegisterCard> = (args) => ({

@@ -4,6 +4,7 @@ import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: PageFooter,
+  title: "frontend/common/PageFooter",
 } as Meta<typeof PageFooter>;
 
 const Template: StoryFn<typeof PageFooter> = (args) => ({

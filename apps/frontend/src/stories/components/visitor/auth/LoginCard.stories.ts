@@ -4,6 +4,7 @@ import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: LoginCard,
+  title: "frontend/visitor/auth/LoginCard",
 } as Meta<typeof LoginCard>;
 
 const Template: StoryFn<typeof LoginCard> = (args) => ({

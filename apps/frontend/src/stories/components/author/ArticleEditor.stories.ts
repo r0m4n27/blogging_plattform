@@ -6,6 +6,7 @@ import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: ArticleEditor,
+  title: "frontend/author/ArticleEditor",
 } as Meta<typeof ArticleEditor>;
 
 const Template: StoryFn<typeof ArticleEditor> = (args) => ({

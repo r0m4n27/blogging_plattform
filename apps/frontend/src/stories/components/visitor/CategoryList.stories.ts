@@ -6,6 +6,7 @@ import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   component: CategoryList,
+  title: "frontend/visitor/summary/CategoryList",
 } as Meta<typeof CategoryList>;
 
 const Template: StoryFn<typeof CategoryList> = (args) => ({
