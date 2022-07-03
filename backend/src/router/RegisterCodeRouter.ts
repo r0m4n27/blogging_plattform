@@ -26,6 +26,7 @@ export class RegisterCodeRouter implements SiteRouter {
       .handle(controller.create);
 
     this.deleteRoute = Route.delete("/:id")
+      .use(authMiddleware.userGuard("ADMIN"))
       .use(commonMiddleware.validateParams(idParamsSchema))
       .handle(controller.delete);
   }

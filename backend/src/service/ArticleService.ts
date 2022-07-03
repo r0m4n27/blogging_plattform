@@ -92,13 +92,17 @@ export class ArticleService {
 
     const categories = await this.categories.readByCategoryIds(categoriesIds);
 
+    const updatedAt = new Date();
+    const year = updatedAt.getFullYear();
+
     return await handlePrismaNotFound(
       articleErrorMessages.articleNotFound,
       async () => {
         return await this.database.article.update({
           data: {
             ...restModel,
-            updatedAt: new Date(),
+            updatedAt,
+            year,
             categories: {
               connect: categories.map((c) => ({
                 id: c.id,

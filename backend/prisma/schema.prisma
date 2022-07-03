@@ -2,6 +2,11 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// Uncomment for generation of https://dbdiagram.io/ diagram
+// generator dbml {
+//   provider = "prisma-dbml-generator"
+// }
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")

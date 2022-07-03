@@ -7,6 +7,12 @@
 node_modules/
 .turbo
 
+########
+# Docs #
+########
+
+docs/report/build
+
 ############
 # FRONTEND #
 ############
@@ -78,3 +84,5 @@ backend/*.ntvs*
 backend/*.njsproj
 backend/*.sln
 backend/*.sw?
+
+backend/prisma/dbml
