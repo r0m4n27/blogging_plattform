@@ -31,6 +31,7 @@ services:
       - DATABASE_URL=${DATABASE_URL}
       - JWT_SECRET=${JWT_SECRET}
       - ADMIN_REGISTER_CODE=${ADMIN_REGISTER_CODE}
+      - TOKEN_EXPIRY_INTERVALL=${TOKEN_EXPIRY_INTERVALL}
     restart: unless-stopped
     depends_on:
       - db

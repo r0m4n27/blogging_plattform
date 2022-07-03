@@ -8,17 +8,12 @@ COPY ./package*.json .
 COPY ./apps/frontend/package*.json ./apps/frontend/.
 COPY ./packages/config ./packages/config
 
-WORKDIR /app/apps/backend
-RUN npm install
+RUN npm install --workspace=@blog/config --workspace=@blog/frontend
 
 # Install app
-WORKDIR /app
-
-COPY . .
-
-WORKDIR /app/apps/frontend
-
-RUN npm run build
+COPY ./packages /app/packages
+COPY ./apps/frontend /app/apps/frontend
+RUN npm run build --workspace=@blog/frontend
 
 FROM nginx:alpine as runner
 COPY ./deploy/nginx.conf /etc/nginx/conf.d/default.conf
