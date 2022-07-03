@@ -14,19 +14,26 @@ services:
       - 5432:5432
     restart: unless-stopped
 
-  # frontend:
-  #   build: ./apps/frontend
-  #   ports:
-  #     - 8080:80
+  frontend:
+    build:
+      dockerfile: ./docker/frontend.Dockerfile
+      context: .
+    ports:
+      - 8080:80
+    depends_on:
+      - backend
 
   backend:
     build:
       dockerfile: ./docker/backend.Dockerfile
+      context: .
     environment:
       - DATABASE_URL=${DATABASE_URL}
       - JWT_SECRET=${JWT_SECRET}
       - ADMIN_REGISTER_CODE=${ADMIN_REGISTER_CODE}
     restart: unless-stopped
+    depends_on:
+      - db
 
 volumes:
   blogging-plattform_db:
