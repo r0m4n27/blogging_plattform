@@ -14,3 +14,10 @@ dist/
 ########
 
 docs/build
+
+############
+# Frontend #
+############
+
+apps/frontend/icon_sample.ico
+apps/frontend/logo_sample.png
