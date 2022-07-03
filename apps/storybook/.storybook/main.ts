@@ -1,13 +1,16 @@
-const path = require("path");
+import path from "path";
+import { UserConfig } from "vite";
 
-module.exports = {
+export default {
   stories: ["../../frontend/src/**/*.stories.ts"],
   core: {
     builder: "@storybook/builder-vite",
   },
   addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
   framework: "@storybook/vue3",
-  viteFinal: async (config) => {
+  viteFinal: async (config: UserConfig) => {
+    config.resolve ??= {};
+
     config.resolve.alias = {
       ...config.resolve.alias,
       "@blog/storybook": path.resolve(__dirname, "../src"),

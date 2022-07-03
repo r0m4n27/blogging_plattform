@@ -7,6 +7,11 @@ import { adminRootRoute } from "@blog/frontend/lib/router/admin";
 import { app } from "@storybook/vue3";
 import { createPinia } from "pinia";
 import StoryRoot from "@blog/storybook/StoryRoot.vue";
+import type { DecoratorFunction } from "@storybook/csf";
+import type { VueFramework } from "@storybook/vue3";
+
+// Reexport decorator function with Vue3 type
+export type SBDecorator = DecoratorFunction<VueFramework>;
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -20,7 +25,7 @@ export const parameters = {
 
 app.use(createPinia());
 
-const storyRootDecorator = (story) => ({
+const storyRootDecorator: SBDecorator = (story) => ({
   components: { story, StoryRoot },
   template: `
       <StoryRoot>
