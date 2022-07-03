@@ -406,3 +406,47 @@ GET & & \\
 
 \end{tabular}
 \end{center}
+
+## Figma Seitenexport \label{FigmaPages}
+
+Die folgenden Abschnitte enthalten des Figma Export aller
+Seiten der jeweiligen Anwendergruppe.
+
+### Besucher {.unlisted .unnumbered}
+
+![Besucher Startseite \label{VisitorStartpage}](../assets/pages/visitor/startpage.png)
+
+![Artikel](../assets/pages/visitor/article.png)
+
+![Kategorien Liste](../assets/pages/visitor/categories.png)
+
+![Artikelliste nach Kategorie](../assets/pages/visitor/category.png)
+
+![Archiv](../assets/pages/visitor/archive.png)
+
+![Artikelliste nach Jahr](../assets/pages/visitor/year.png)
+
+\FloatBarrier
+
+### Autor {.unlisted .unnumbered}
+
+![Login](../assets/pages/author/login.png)
+
+![Registration](../assets/pages/author/register.png)
+
+![Autor Dashboard](../assets/pages/author/dashboard.png)
+
+![Artikeleditor](../assets/pages/author/article_editor.png)
+
+![Kategorien Dashboard](../assets/pages/author/categories.png)
+
+![Autor Einstellungen](../assets/pages/author/settings.png)
+
+\FloatBarrier
+
+### Administrator {.unlisted .unnumbered}
+
+![Administrator Dashboard](../assets/pages/admin/dashboard.png)
+
+![Administrator Einstellungen](../assets/pages/admin/settings.png)
+

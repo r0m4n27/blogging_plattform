@@ -10,10 +10,11 @@ $(shell mkdir -p $(DIRS))
 ##################
 
 CHAPTERS = $(wildcard chapters/*.md)
-ASSETS = $(wildcard assets/*)
+ASSETS = $(wildcard assets/**/*)
 
 TEX_TITLEPAGE = build/latex/titlepage.tex
-TEX_FILES = $(TEX_TITLEPAGE)
+TEX_HEADER = build/latex/header.tex
+TEX_FILES = $(TEX_TITLEPAGE) $(TEX_HEADER)
 
 PANDOCFLAGS = \
 	--pdf-engine=xelatex \
@@ -21,6 +22,7 @@ PANDOCFLAGS = \
 	--lua-filter=build/include-files.lua \
 	--metadata-file=metadata.yml \
 	--include-in-header=$(TEX_TITLEPAGE) \
+	--include-in-header=$(TEX_HEADER) \
 	--citeproc \
 	-M bibliography=references.bib \
 	-M link-citations=true \
@@ -67,4 +69,4 @@ open: build/dokumentation.pdf
 
 .PHONY: watch
 watch:
-	watchman-make -p 'main.md' 'Makefile' 'metadata.yml' 'latex/*.tex' 'chapters/*.md' 'references.bib' 'assets/*' -t all
+	watchman-make -p 'main.md' 'Makefile' 'metadata.yml' 'latex/*.tex' 'chapters/*.md' 'references.bib' 'assets/**/*' -t all
