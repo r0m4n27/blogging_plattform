@@ -1,15 +1,16 @@
 {
   "compilerOptions": {
     // Modules
-    "module": "commonjs",
+    "module": "ESNext",
     "moduleResolution": "Node",
     "target": "ESNext",
     "resolveJsonModule": true,
     "jsx": "preserve",
     "isolatedModules": true,
-    // "preserveValueImports": true,
+    "preserveValueImports": true,
     "esModuleInterop": true,
     "skipLibCheck": false,
+    "noEmit": true,
     // Helper
     "allowSyntheticDefaultImports": true,
     "importHelpers": true,

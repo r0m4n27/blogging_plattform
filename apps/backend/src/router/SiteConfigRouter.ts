@@ -1,4 +1,4 @@
-import { ConfiguredRoute, Route } from "@blog/backend/common/router";
+import { type ConfiguredRoute, Route } from "@blog/backend/common/router";
 import type { SiteRouter } from "@blog/backend/common/siteRouter";
 import type { SiteConfigController } from "@blog/backend/controller/SiteConfigController";
 import type { AuthMiddleware } from "@blog/backend/middleware/AuthMiddleware";

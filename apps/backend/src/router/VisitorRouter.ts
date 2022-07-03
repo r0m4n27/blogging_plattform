@@ -1,4 +1,4 @@
-import { ConfiguredRoute, Route } from "@blog/backend/common/router";
+import { type ConfiguredRoute, Route } from "@blog/backend/common/router";
 import type { SiteRouter } from "@blog/backend/common/siteRouter";
 import type { VisitorController } from "@blog/backend/controller/VisitorController";
 import type { CommonMiddleware } from "@blog/backend/middleware/CommonMiddleware";
@@ -19,10 +19,7 @@ export class VisitorRouter implements SiteRouter {
   private readonly readCategoriesRoute: ConfiguredRoute;
   private readonly readSingleCategoryRoute: ConfiguredRoute;
 
-  constructor(
-    controller: VisitorController,
-    commonMiddleware: CommonMiddleware,
-  ) {
+  constructor(controller: VisitorController, commonMiddleware: CommonMiddleware) {
     this.readArticlesRoute = Route.get("/articles")
       .use(commonMiddleware.validateQuery(readArticlesQuerySchema))
       .handle(controller.readArticles);
@@ -31,9 +28,7 @@ export class VisitorRouter implements SiteRouter {
       .use(commonMiddleware.validateParams(idParamsSchema))
       .handle(controller.readSingleArticle);
 
-    this.readArchiveRoute = Route.get("/archive").handle(
-      controller.readArchive,
-    );
+    this.readArchiveRoute = Route.get("/archive").handle(controller.readArchive);
 
     this.readCategoriesRoute = Route.get("/categories").handle(
       controller.readCategories,

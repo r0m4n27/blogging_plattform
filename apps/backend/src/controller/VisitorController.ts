@@ -5,13 +5,13 @@ import {
 import { HttpException, Req } from "@blog/backend/common/router/types";
 import type { IdParamsModel } from "@blog/backend/model/commonModels";
 import {
-  ArticleWithCategories,
-  ReadArticlesQueryModel,
-  VisitorArchiveResponse,
+  type ArticleWithCategories,
+  type ReadArticlesQueryModel,
+  type VisitorArchiveResponse,
   visitorArticleFromDb,
-  VisitorArticleResponse,
+  type VisitorArticleResponse,
   visitorCategoryFromDb,
-  VisitorCategoryResponse,
+  type VisitorCategoryResponse,
 } from "@blog/backend/model/visitorModels";
 import type { ArticleService } from "@blog/backend/service/ArticleService";
 import type { CategoryService } from "@blog/backend/service/CategoryService";
@@ -30,9 +30,7 @@ export class VisitorController {
     const category = req.query["category"];
     const year = req.query["year"];
     if (category !== undefined) {
-      articles = await this.articles.readAllByCategoryAsVisitor(
-        category as string,
-      );
+      articles = await this.articles.readAllByCategoryAsVisitor(category as string);
     } else if (year !== undefined) {
       articles = await this.articles.readAllByYearAsVisitor(year);
     } else {
@@ -72,9 +70,7 @@ export class VisitorController {
   readCategory = async (
     req: Req<unknown, IdParamsModel>,
   ): Promise<VisitorCategoryResponse> => {
-    const category = await this.categories.readSingleWithArticleCount(
-      req.params.id,
-    );
+    const category = await this.categories.readSingleWithArticleCount(req.params.id);
 
     if (category !== null) {
       return visitorCategoryFromDb(category);

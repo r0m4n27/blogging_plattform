@@ -1,5 +1,5 @@
 import type { SiteRouter } from "@blog/backend/common/siteRouter";
-import { Request, Response, Router } from "express";
+import { type Request, type Response, Router } from "express";
 import fetch from "node-fetch";
 
 export class ImageRouter implements SiteRouter {

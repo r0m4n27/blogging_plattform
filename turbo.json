@@ -12,6 +12,11 @@
         "lint",
         "typecheck"
       ]
+    },
+    "start": {
+      "dependsOn": [
+        "build"
+      ]
     }
   }
 }

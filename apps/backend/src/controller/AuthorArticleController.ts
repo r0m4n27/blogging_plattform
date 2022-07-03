@@ -2,8 +2,8 @@ import { articleErrorMessages } from "@blog/backend/common/errorMessages";
 import { HttpException, Req } from "@blog/backend/common/router/types";
 import type { ReqWithUser } from "@blog/backend/model/authModels";
 import {
-  ArticleModel,
-  ArticleResponse,
+  type ArticleModel,
+  type ArticleResponse,
   articleResponseFromDb,
 } from "@blog/backend/model/authorArticleModels";
 import type { IdParamsModel } from "@blog/backend/model/commonModels";
@@ -19,9 +19,7 @@ export class AuthorArticleController {
     return articles.map(articleResponseFromDb);
   };
 
-  readSingle = async (
-    req: Req<unknown, IdParamsModel>,
-  ): Promise<ArticleResponse> => {
+  readSingle = async (req: Req<unknown, IdParamsModel>): Promise<ArticleResponse> => {
     const article = await this.articles.readSingle(req.params["id"]);
 
     if (article !== null) {

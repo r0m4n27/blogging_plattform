@@ -1,4 +1,4 @@
-import { ConfiguredRoute, Route } from "@blog/backend/common/router";
+import { type ConfiguredRoute, Route } from "@blog/backend/common/router";
 import type { SiteRouter } from "@blog/backend/common/siteRouter";
 import type { AuthorCategoryController } from "@blog/backend/controller/AuthorCategoryController";
 import type { AuthMiddleware } from "@blog/backend/middleware/AuthMiddleware";
@@ -41,11 +41,6 @@ export class AuthorCategoryRouter implements SiteRouter {
   }
 
   get routes() {
-    return [
-      this.readAllRoute,
-      this.createRoute,
-      this.updateRoute,
-      this.deleteRoute,
-    ];
+    return [this.readAllRoute, this.createRoute, this.updateRoute, this.deleteRoute];
   }
 }
