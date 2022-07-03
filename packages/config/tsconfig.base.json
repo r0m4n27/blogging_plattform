@@ -1,23 +1,21 @@
 {
   "compilerOptions": {
     // Modules
-    "module": "commonjs",
-    "target": "ES2020",
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "target": "ESNext",
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "isolatedModules": true,
+    "preserveValueImports": true,
     "esModuleInterop": true,
-    "lib": [
-      "ES2020"
-    ],
-    // General
-    "outDir": "dist",
-    "rootDir": "src",
-    "sourceMap": true,
+    "skipLibCheck": false,
     // Helper
     "allowSyntheticDefaultImports": true,
     "importHelpers": true,
     "alwaysStrict": true,
-    "strict": true,
     // Syntax
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
@@ -26,15 +24,16 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
+    "importsNotUsedAsValues": "error",
     // Paths
     "baseUrl": "src/",
     "paths": {
-      "@/*": [
-        "*"
+      "@blog/frontend": [
+        "../../apps/frontend"
+      ],
+      "@blog/backend": [
+        "../../apps/backend"
       ]
     }
-  },
-  "include": [
-    "src/**/*"
-  ],
+  }
 }

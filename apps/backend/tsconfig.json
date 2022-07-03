@@ -1,0 +1,6 @@
+{
+  "extends": "@blog/config/tsconfig.base.json",
+  "include": [
+    "src/**/*"
+  ],
+}
