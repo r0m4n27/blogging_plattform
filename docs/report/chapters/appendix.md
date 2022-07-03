@@ -4,8 +4,8 @@
 
 In diesem Abschnitt finden sich alle API-Routen des Backends.
 So wird jeder Router in einem Unterabschnitt dargestellt.
-Für einen Endpunkt wird immer wird immer seine Route, Methode,
-Middleware und Response angegeben. Da immer wenn ein Endpunkt
+Für einen Endpunkt wird immer seine Route, Methode,
+Middleware und Response angegeben. Da immer, wenn ein Endpunkt
 Daten vom Request erwartet, diese durch eine Entsprechende
 Middleware validiert wird, wird der Typ nicht explizit angegeben.
 Dieser kann stattdessen aus dem `zod`-Schema abgeleitet werden.
@@ -22,7 +22,7 @@ Den Endpunkten stehen folgenden Middleware zur Verfügung:
 - `validateParams(schema: ZodSchema<Body>)`:
   - Validiert die Request-Parameter nach dem Schema
 
-Bei jeder einzelnen Route kann noch ein Error zurückgegeben werden, dieser
+Bei jeder einzelnen Route kann noch ein Error zurückgegeben werden. Dieser
 hat den folgenden Typen: `type ErrorResponse = { message: string; }`.
 Normalerweise wird bei falschen Eingabedaten der Error-Code 400 verwendet,
 ansonsten wird der 401 Code für einen Unautorisierten Request und der 404
