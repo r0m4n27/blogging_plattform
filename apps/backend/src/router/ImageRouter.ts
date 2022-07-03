@@ -1,4 +1,4 @@
-import { SiteRouter } from "@/common/siteRouter";
+import type { SiteRouter } from "@blog/backend/common/siteRouter";
 import { Request, Response, Router } from "express";
 import fetch from "node-fetch";
 

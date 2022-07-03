@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import type { PrismaClient } from "@prisma/client";
 import { ControllerModule } from "./ControllerModule";
 import { EnvironmentModule } from "./EnvironmentModule";
 import { MiddlewareModule } from "./MiddlewareModule";

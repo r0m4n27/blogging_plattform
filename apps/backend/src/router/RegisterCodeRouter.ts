@@ -1,9 +1,9 @@
-import { ConfiguredRoute, Route } from "@/common/router";
-import { SiteRouter } from "@/common/siteRouter";
-import { RegisterCodeController } from "@/controller/RegisterCodeController";
-import { AuthMiddleware } from "@/middleware/AuthMiddleware";
-import { CommonMiddleware } from "@/middleware/CommonMiddleware";
-import { idParamsSchema } from "@/model/commonModels";
+import { ConfiguredRoute, Route } from "@blog/backend/common/router";
+import type { SiteRouter } from "@blog/backend/common/siteRouter";
+import type { RegisterCodeController } from "@blog/backend/controller/RegisterCodeController";
+import type { AuthMiddleware } from "@blog/backend/middleware/AuthMiddleware";
+import type { CommonMiddleware } from "@blog/backend/middleware/CommonMiddleware";
+import { idParamsSchema } from "@blog/backend/model/commonModels";
 
 export class RegisterCodeRouter implements SiteRouter {
   readonly path: string = "/auth/registerCodes";

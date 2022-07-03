@@ -1,10 +1,10 @@
-import { ConfiguredRoute, Route } from "@/common/router";
-import { SiteRouter } from "@/common/siteRouter";
-import { AuthorArticleController } from "@/controller/AuthorArticleController";
-import { AuthMiddleware } from "@/middleware/AuthMiddleware";
-import { CommonMiddleware } from "@/middleware/CommonMiddleware";
-import { articleSchema } from "@/model/authorArticleModels";
-import { idParamsSchema } from "@/model/commonModels";
+import { ConfiguredRoute, Route } from "@blog/backend/common/router";
+import type { SiteRouter } from "@blog/backend/common/siteRouter";
+import type { AuthorArticleController } from "@blog/backend/controller/AuthorArticleController";
+import type { AuthMiddleware } from "@blog/backend/middleware/AuthMiddleware";
+import type { CommonMiddleware } from "@blog/backend/middleware/CommonMiddleware";
+import { articleSchema } from "@blog/backend/model/authorArticleModels";
+import { idParamsSchema } from "@blog/backend/model/commonModels";
 
 export class AuthorArticleRouter implements SiteRouter {
   readonly path: string = "/author/articles";

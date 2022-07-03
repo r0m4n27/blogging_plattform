@@ -1,11 +1,11 @@
-import { verifyJwt, signJwt } from "@/common/jwt";
-import { AuthResponse, LoginToken } from "@/model/authModels";
-import { User, UserRole } from "@prisma/client";
-import { DatabaseService } from "./database";
+import { verifyJwt, signJwt } from "@blog/backend/common/jwt";
+import type { AuthResponse, LoginToken } from "@blog/backend/model/authModels";
+import type { User, UserRole } from "@prisma/client";
+import type { DatabaseService } from "./database";
 import { verify as verifyPassword } from "argon2";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
-import { HttpException } from "@/common/router/types";
-import { authErrorMessages } from "@/common/errorMessages";
+import { HttpException } from "@blog/backend/common/router/types";
+import { authErrorMessages } from "@blog/backend/common/errorMessages";
 
 export class AuthService {
   constructor(

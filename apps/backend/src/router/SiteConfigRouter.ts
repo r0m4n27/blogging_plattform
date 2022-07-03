@@ -1,9 +1,9 @@
-import { ConfiguredRoute, Route } from "@/common/router";
-import { SiteRouter } from "@/common/siteRouter";
-import { SiteConfigController } from "@/controller/SiteConfigController";
-import { AuthMiddleware } from "@/middleware/AuthMiddleware";
-import { CommonMiddleware } from "@/middleware/CommonMiddleware";
-import { siteConfigSchema } from "@/model/siteConfigModels";
+import { ConfiguredRoute, Route } from "@blog/backend/common/router";
+import type { SiteRouter } from "@blog/backend/common/siteRouter";
+import type { SiteConfigController } from "@blog/backend/controller/SiteConfigController";
+import type { AuthMiddleware } from "@blog/backend/middleware/AuthMiddleware";
+import type { CommonMiddleware } from "@blog/backend/middleware/CommonMiddleware";
+import { siteConfigSchema } from "@blog/backend/model/siteConfigModels";
 
 // The SiteConfig can be read by everyone
 // but only the admin can create and modify it

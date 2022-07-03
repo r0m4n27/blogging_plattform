@@ -1,4 +1,4 @@
-import { User } from "@prisma/client";
+import type { User } from "@prisma/client";
 import { z } from "zod";
 
 export type UserResponse = Pick<User, "id" | "username">;

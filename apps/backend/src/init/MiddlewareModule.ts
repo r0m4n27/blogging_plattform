@@ -1,6 +1,6 @@
-import { AuthMiddleware } from "@/middleware/AuthMiddleware";
-import { CommonMiddleware } from "@/middleware/CommonMiddleware";
-import { ServiceModule } from "./ServiceModule";
+import { AuthMiddleware } from "@blog/backend/middleware/AuthMiddleware";
+import { CommonMiddleware } from "@blog/backend/middleware/CommonMiddleware";
+import type { ServiceModule } from "./ServiceModule";
 
 export class MiddlewareModule {
   readonly commonMiddleware: CommonMiddleware;

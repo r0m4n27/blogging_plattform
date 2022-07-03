@@ -1,7 +1,7 @@
 import {
-  JwtPayload,
+  type JwtPayload,
   sign as signInternal,
-  SignOptions,
+  type SignOptions,
   verify as verifyInternal,
 } from "jsonwebtoken";
 

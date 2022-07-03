@@ -1,12 +1,12 @@
-import { siteConfigErrorMessages } from "@/common/errorMessages";
-import { handlePrismaNotFound } from "@/common/prisma";
-import { HttpException, Req } from "@/common/router/types";
+import { siteConfigErrorMessages } from "@blog/backend/common/errorMessages";
+import { handlePrismaNotFound } from "@blog/backend/common/prisma";
+import { HttpException, Req } from "@blog/backend/common/router/types";
 import {
-  SiteConfigModel,
+  type SiteConfigModel,
   siteConfigModelFromDb,
   siteConfigModelToDb,
-} from "@/model/siteConfigModels";
-import { DatabaseService } from "@/service/database";
+} from "@blog/backend/model/siteConfigModels";
+import type { DatabaseService } from "@blog/backend/service/database";
 
 export class SiteConfigController {
   constructor(private readonly database: DatabaseService) {}

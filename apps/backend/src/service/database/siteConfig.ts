@@ -1,6 +1,6 @@
-import { siteConfigErrorMessages } from "@/common/errorMessages";
-import { HttpException } from "@/common/router/types";
-import { PrismaClient, Prisma } from "@prisma/client";
+import { siteConfigErrorMessages } from "@blog/backend/common/errorMessages";
+import { HttpException } from "@blog/backend/common/router/types";
+import type { PrismaClient, Prisma } from "@prisma/client";
 
 // Allow only one row to be in the SiteConfig table
 export const createAllowOnlyOneSiteConfigRow =

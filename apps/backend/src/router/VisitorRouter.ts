@@ -1,9 +1,9 @@
-import { ConfiguredRoute, Route } from "@/common/router";
-import { SiteRouter } from "@/common/siteRouter";
-import { VisitorController } from "@/controller/VisitorController";
-import { CommonMiddleware } from "@/middleware/CommonMiddleware";
-import { idParamsSchema } from "@/model/commonModels";
-import { readArticlesQuerySchema } from "@/model/visitorModels";
+import { ConfiguredRoute, Route } from "@blog/backend/common/router";
+import type { SiteRouter } from "@blog/backend/common/siteRouter";
+import type { VisitorController } from "@blog/backend/controller/VisitorController";
+import type { CommonMiddleware } from "@blog/backend/middleware/CommonMiddleware";
+import { idParamsSchema } from "@blog/backend/model/commonModels";
+import { readArticlesQuerySchema } from "@blog/backend/model/visitorModels";
 
 // All routes that can be accessed by the visitor
 //

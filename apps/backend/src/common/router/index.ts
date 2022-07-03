@@ -1,10 +1,10 @@
-import { Request, Response, Router } from "express";
+import type { Request, Response, Router } from "express";
 import {
   HttpException,
-  Middleware,
+  type Middleware,
   Req,
-  RouteHandler,
-  RouteMethod,
+  type RouteHandler,
+  type RouteMethod,
 } from "./types";
 
 // The typesafety is provided with the router itself

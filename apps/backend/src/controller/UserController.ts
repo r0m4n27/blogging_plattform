@@ -1,14 +1,14 @@
-import { userErrorMessages } from "@/common/errorMessages";
-import { handlePrismaNotFound } from "@/common/prisma";
-import { Req } from "@/common/router/types";
-import { ReqWithUser } from "@/model/authModels";
-import { IdParamsModel } from "@/model/commonModels";
-import {
+import { userErrorMessages } from "@blog/backend/common/errorMessages";
+import { handlePrismaNotFound } from "@blog/backend/common/prisma";
+import type { Req } from "@blog/backend/common/router/types";
+import type { ReqWithUser } from "@blog/backend/model/authModels";
+import type { IdParamsModel } from "@blog/backend/model/commonModels";
+import type {
   FullUserResponse,
   UpdateUserSchema,
   UserResponse,
-} from "@/model/userModels";
-import { DatabaseService } from "@/service/database";
+} from "@blog/backend/model/userModels";
+import type { DatabaseService } from "@blog/backend/service/database";
 
 export class UserController {
   constructor(private readonly database: DatabaseService) {}

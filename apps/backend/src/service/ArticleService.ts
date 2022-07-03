@@ -1,9 +1,9 @@
-import { articleErrorMessages } from "@/common/errorMessages";
-import { handlePrismaNotFound } from "@/common/prisma";
-import { ArticleModel } from "@/model/authorArticleModels";
-import { Article, User } from "@prisma/client";
-import { CategoryService } from "./CategoryService";
-import { DatabaseService } from "./database";
+import { articleErrorMessages } from "@blog/backend/common/errorMessages";
+import { handlePrismaNotFound } from "@blog/backend/common/prisma";
+import type { ArticleModel } from "@blog/backend/model/authorArticleModels";
+import type { Article, User } from "@prisma/client";
+import type { CategoryService } from "./CategoryService";
+import type { DatabaseService } from "./database";
 
 // The articles that are returned for the user
 // also contain the the categories

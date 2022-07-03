@@ -1,8 +1,8 @@
-import { Req } from "@/common/router/types";
-import { CategoryModel } from "@/model/authorCategoryModels";
-import { IdParamsModel } from "@/model/commonModels";
-import { CategoryService } from "@/service/CategoryService";
-import { Category } from "@prisma/client";
+import type { Req } from "@blog/backend/common/router/types";
+import type { CategoryModel } from "@blog/backend/model/authorCategoryModels";
+import type { IdParamsModel } from "@blog/backend/model/commonModels";
+import type { CategoryService } from "@blog/backend/service/CategoryService";
+import type { Category } from "@prisma/client";
 
 export class AuthorCategoryController {
   constructor(private readonly categories: CategoryService) {}

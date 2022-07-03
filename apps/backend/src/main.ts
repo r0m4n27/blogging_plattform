@@ -1,4 +1,4 @@
-import { Server } from "@/server";
+import { Server } from "./server";
 import { PrismaClient } from "@prisma/client";
 import "dotenv/config";
 import { createModules } from "./init";

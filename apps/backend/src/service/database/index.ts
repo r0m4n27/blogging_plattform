@@ -1,4 +1,4 @@
-import { PrismaClient, PrismaPromise } from "@prisma/client";
+import type { PrismaClient, PrismaPromise } from "@prisma/client";
 import { createAllowOnlyOneSiteConfigRow } from "./siteConfig";
 import { createAllowOnlyOneAdmin, hashUserPassword } from "./user";
 

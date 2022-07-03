@@ -1,4 +1,4 @@
-import { ServerConfig } from "@/server";
+import type { ServerConfig } from "@blog/backend/server";
 
 export class EnvironmentModule {
   readonly serverConfig: ServerConfig;

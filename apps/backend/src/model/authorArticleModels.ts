@@ -1,4 +1,4 @@
-import { Article } from "@prisma/client";
+import type { Article } from "@prisma/client";
 import { z } from "zod";
 
 export type ArticleResponse = Omit<Article, "authorId" | "updatedAt">;

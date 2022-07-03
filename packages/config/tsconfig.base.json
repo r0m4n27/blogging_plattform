@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
     // Modules
-    "module": "ESNext",
+    "module": "commonjs",
     "moduleResolution": "Node",
     "target": "ESNext",
     "resolveJsonModule": true,
     "jsx": "preserve",
     "isolatedModules": true,
-    "preserveValueImports": true,
+    // "preserveValueImports": true,
     "esModuleInterop": true,
     "skipLibCheck": false,
     // Helper
@@ -26,13 +26,16 @@
     "strictNullChecks": true,
     "importsNotUsedAsValues": "error",
     // Paths
-    "baseUrl": "src/",
+    "baseUrl": "../../",
     "paths": {
-      "@blog/frontend": [
-        "../../apps/frontend"
+      "@blog/frontend/*": [
+        "./apps/frontend/src/*"
       ],
-      "@blog/backend": [
-        "../../apps/backend"
+      "@blog/backend/*": [
+        "./apps/backend/src/*"
+      ],
+      "@blog/config/*": [
+        "./apps/config/*"
       ]
     }
   }

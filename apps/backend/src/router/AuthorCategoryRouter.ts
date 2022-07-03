@@ -1,10 +1,10 @@
-import { ConfiguredRoute, Route } from "@/common/router";
-import { SiteRouter } from "@/common/siteRouter";
-import { AuthorCategoryController } from "@/controller/AuthorCategoryController";
-import { AuthMiddleware } from "@/middleware/AuthMiddleware";
-import { CommonMiddleware } from "@/middleware/CommonMiddleware";
-import { categorySchema } from "@/model/authorCategoryModels";
-import { idParamsSchema } from "@/model/commonModels";
+import { ConfiguredRoute, Route } from "@blog/backend/common/router";
+import type { SiteRouter } from "@blog/backend/common/siteRouter";
+import type { AuthorCategoryController } from "@blog/backend/controller/AuthorCategoryController";
+import type { AuthMiddleware } from "@blog/backend/middleware/AuthMiddleware";
+import type { CommonMiddleware } from "@blog/backend/middleware/CommonMiddleware";
+import { categorySchema } from "@blog/backend/model/authorCategoryModels";
+import { idParamsSchema } from "@blog/backend/model/commonModels";
 
 export class AuthorCategoryRouter implements SiteRouter {
   readonly path: string = "/author/categories";

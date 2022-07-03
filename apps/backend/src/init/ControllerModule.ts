@@ -1,11 +1,11 @@
-import { AuthController } from "@/controller/AuthController";
-import { AuthorArticleController } from "@/controller/AuthorArticleController";
-import { AuthorCategoryController } from "@/controller/AuthorCategoryController";
-import { RegisterCodeController } from "@/controller/RegisterCodeController";
-import { SiteConfigController } from "@/controller/SiteConfigController";
-import { UserController } from "@/controller/UserController";
-import { VisitorController } from "@/controller/VisitorController";
-import { ServiceModule } from "./ServiceModule";
+import { AuthController } from "@blog/backend/controller/AuthController";
+import { AuthorArticleController } from "@blog/backend/controller/AuthorArticleController";
+import { AuthorCategoryController } from "@blog/backend/controller/AuthorCategoryController";
+import { RegisterCodeController } from "@blog/backend/controller/RegisterCodeController";
+import { SiteConfigController } from "@blog/backend/controller/SiteConfigController";
+import { UserController } from "@blog/backend/controller/UserController";
+import { VisitorController } from "@blog/backend/controller/VisitorController";
+import type { ServiceModule } from "./ServiceModule";
 
 export class ControllerModule {
   readonly authController: AuthController;

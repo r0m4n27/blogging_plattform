@@ -1,8 +1,11 @@
-import { ConfiguredRoute, Route } from "@/common/router";
-import { SiteRouter } from "@/common/siteRouter";
-import { AuthController } from "@/controller/AuthController";
-import { CommonMiddleware } from "@/middleware/CommonMiddleware";
-import { loginPayloadSchema, registerPayloadSchema } from "@/model/authModels";
+import { ConfiguredRoute, Route } from "@blog/backend/common/router";
+import type { SiteRouter } from "@blog/backend/common/siteRouter";
+import type { AuthController } from "@blog/backend/controller/AuthController";
+import type { CommonMiddleware } from "@blog/backend/middleware/CommonMiddleware";
+import {
+  loginPayloadSchema,
+  registerPayloadSchema,
+} from "@blog/backend/model/authModels";
 
 export class AuthRouter implements SiteRouter {
   readonly path: string = "/auth";

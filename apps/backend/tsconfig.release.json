@@ -5,6 +5,6 @@
     "removeComments": true
   },
   "include": [
-    "src/**/*"
+    "src"
   ]
 }

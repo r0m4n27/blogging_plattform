@@ -1,5 +1,5 @@
-import { checkInt } from "@/common/zod";
-import { Article, Category } from "@prisma/client";
+import { checkInt } from "@blog/backend/common/zod";
+import type { Article, Category } from "@prisma/client";
 import { z } from "zod";
 
 export type ArticleWithCategories = Article & { categories: Category[] };

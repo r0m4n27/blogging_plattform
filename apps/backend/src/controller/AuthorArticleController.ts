@@ -1,13 +1,13 @@
-import { articleErrorMessages } from "@/common/errorMessages";
-import { HttpException, Req } from "@/common/router/types";
-import { ReqWithUser } from "@/model/authModels";
+import { articleErrorMessages } from "@blog/backend/common/errorMessages";
+import { HttpException, Req } from "@blog/backend/common/router/types";
+import type { ReqWithUser } from "@blog/backend/model/authModels";
 import {
   ArticleModel,
   ArticleResponse,
   articleResponseFromDb,
-} from "@/model/authorArticleModels";
-import { IdParamsModel } from "@/model/commonModels";
-import { ArticleService } from "@/service/ArticleService";
+} from "@blog/backend/model/authorArticleModels";
+import type { IdParamsModel } from "@blog/backend/model/commonModels";
+import type { ArticleService } from "@blog/backend/service/ArticleService";
 
 export class AuthorArticleController {
   constructor(private readonly articles: ArticleService) {}

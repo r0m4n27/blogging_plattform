@@ -1,6 +1,6 @@
-import { authErrorMessages } from "@/common/errorMessages";
-import { HttpException } from "@/common/router/types";
-import { PrismaClient, Prisma } from "@prisma/client";
+import { authErrorMessages } from "@blog/backend/common/errorMessages";
+import { HttpException } from "@blog/backend/common/router/types";
+import type { PrismaClient, Prisma } from "@prisma/client";
 import { hash } from "argon2";
 
 // Allow only one admin in the database

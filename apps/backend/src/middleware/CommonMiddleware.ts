@@ -1,5 +1,5 @@
-import { HttpException, Req } from "@/common/router/types";
-import { z } from "zod";
+import { HttpException, Req } from "@blog/backend/common/router/types";
+import type { z } from "zod";
 
 // Reorder the fields of the ZodSchema to be generic over the input
 // and Output for in the middleware

@@ -1,14 +1,14 @@
-import { SiteRouter } from "@/common/siteRouter";
-import { AuthorArticleRouter } from "@/router/AuthorArticleRouter";
-import { AuthorCategoryRouter } from "@/router/AuthorCategoryRouter";
-import { AuthRouter } from "@/router/AuthRouter";
-import { ImageRouter } from "@/router/ImageRouter";
-import { RegisterCodeRouter } from "@/router/RegisterCodeRouter";
-import { SiteConfigRouter } from "@/router/SiteConfigRouter";
-import { UserRouter } from "@/router/UserRouter";
-import { VisitorRouter } from "@/router/VisitorRouter";
-import { ControllerModule } from "./ControllerModule";
-import { MiddlewareModule } from "./MiddlewareModule";
+import type { SiteRouter } from "@blog/backend/common/siteRouter";
+import { AuthorArticleRouter } from "@blog/backend/router/AuthorArticleRouter";
+import { AuthorCategoryRouter } from "@blog/backend/router/AuthorCategoryRouter";
+import { AuthRouter } from "@blog/backend/router/AuthRouter";
+import { ImageRouter } from "@blog/backend/router/ImageRouter";
+import { RegisterCodeRouter } from "@blog/backend/router/RegisterCodeRouter";
+import { SiteConfigRouter } from "@blog/backend/router/SiteConfigRouter";
+import { UserRouter } from "@blog/backend/router/UserRouter";
+import { VisitorRouter } from "@blog/backend/router/VisitorRouter";
+import type { ControllerModule } from "./ControllerModule";
+import type { MiddlewareModule } from "./MiddlewareModule";
 
 export class RouterModule {
   private readonly authRouter: AuthRouter;

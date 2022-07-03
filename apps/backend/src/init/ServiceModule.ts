@@ -1,9 +1,9 @@
-import { PrismaClient } from "@prisma/client";
-import { DatabaseService } from "@/service/database";
-import { AuthService } from "@/service/AuthService";
-import { EnvironmentModule } from "./EnvironmentModule";
-import { CategoryService } from "@/service/CategoryService";
-import { ArticleService } from "@/service/ArticleService";
+import type { PrismaClient } from "@prisma/client";
+import { DatabaseService } from "@blog/backend/service/database";
+import { AuthService } from "@blog/backend/service/AuthService";
+import type { EnvironmentModule } from "./EnvironmentModule";
+import { CategoryService } from "@blog/backend/service/CategoryService";
+import { ArticleService } from "@blog/backend/service/ArticleService";
 
 export class ServiceModule {
   readonly databaseService: DatabaseService;

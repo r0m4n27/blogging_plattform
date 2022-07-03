@@ -1,8 +1,8 @@
-import { registerCodesMessages } from "@/common/errorMessages";
-import { handlePrismaNotFound } from "@/common/prisma";
-import { Req } from "@/common/router/types";
-import { IdParamsModel } from "@/model/commonModels";
-import { DatabaseService } from "@/service/database";
+import { registerCodesMessages } from "@blog/backend/common/errorMessages";
+import { handlePrismaNotFound } from "@blog/backend/common/prisma";
+import type { Req } from "@blog/backend/common/router/types";
+import type { IdParamsModel } from "@blog/backend/model/commonModels";
+import type { DatabaseService } from "@blog/backend/service/database";
 
 export class RegisterCodeController {
   constructor(private readonly database: DatabaseService) {}

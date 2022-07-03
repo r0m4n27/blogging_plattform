@@ -1,6 +1,9 @@
 {
-  "extends": "@blog/config/tsconfig.base.json",
+  "extends": "../../packages/config/tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist"
+  },
   "include": [
-    "src/**/*"
+    "src"
   ],
 }

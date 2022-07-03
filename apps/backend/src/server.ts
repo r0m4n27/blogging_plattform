@@ -1,7 +1,7 @@
-import { Express, Router } from "express";
+import { type Express, Router } from "express";
 import express from "express";
 import morgan from "morgan";
-import { SiteRouter } from "./common/siteRouter";
+import type { SiteRouter } from "./common/siteRouter";
 
 export interface ServerConfig {
   port: number;

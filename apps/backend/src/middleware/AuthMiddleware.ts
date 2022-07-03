@@ -1,7 +1,7 @@
-import { HttpException, Req } from "@/common/router/types";
-import { ReqWithUser } from "@/model/authModels";
-import { AuthService } from "@/service/AuthService";
-import { UserRole } from "@prisma/client";
+import { HttpException, Req } from "@blog/backend/common/router/types";
+import type { ReqWithUser } from "@blog/backend/model/authModels";
+import type { AuthService } from "@blog/backend/service/AuthService";
+import type { UserRole } from "@prisma/client";
 
 export class AuthMiddleware {
   constructor(private readonly auth: AuthService) {}

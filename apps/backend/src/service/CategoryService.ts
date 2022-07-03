@@ -1,9 +1,9 @@
-import { categoryErrorMessages } from "@/common/errorMessages";
-import { handlePrismaNotFound } from "@/common/prisma";
-import { CategoriesIdsModel } from "@/model/authorArticleModels";
-import { CategoryModel } from "@/model/authorCategoryModels";
-import { Category } from "@prisma/client";
-import { DatabaseService } from "./database";
+import { categoryErrorMessages } from "@blog/backend/common/errorMessages";
+import { handlePrismaNotFound } from "@blog/backend/common/prisma";
+import type { CategoriesIdsModel } from "@blog/backend/model/authorArticleModels";
+import type { CategoryModel } from "@blog/backend/model/authorCategoryModels";
+import type { Category } from "@prisma/client";
+import type { DatabaseService } from "./database";
 
 export class CategoryService {
   constructor(private readonly database: DatabaseService) {}

@@ -1,5 +1,5 @@
-import { Req } from "@/common/router/types";
-import { User, UserRole } from "@prisma/client";
+import type { Req } from "@blog/backend/common/router/types";
+import type { User, UserRole } from "@prisma/client";
 import { z } from "zod";
 
 // Return also a role in the auth response

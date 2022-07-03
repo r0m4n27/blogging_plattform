@@ -1,10 +1,10 @@
-import { Req } from "@/common/router/types";
-import {
+import type { Req } from "@blog/backend/common/router/types";
+import type {
   AuthResponse,
   LoginPayload,
   RegisterPayload,
-} from "@/model/authModels";
-import { AuthService } from "@/service/AuthService";
+} from "@blog/backend/model/authModels";
+import type { AuthService } from "@blog/backend/service/AuthService";
 
 export class AuthController {
   constructor(private readonly auth: AuthService) {}

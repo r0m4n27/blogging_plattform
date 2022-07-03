@@ -1,9 +1,9 @@
 import {
   articleErrorMessages,
   categoryErrorMessages,
-} from "@/common/errorMessages";
-import { HttpException, Req } from "@/common/router/types";
-import { IdParamsModel } from "@/model/commonModels";
+} from "@blog/backend/common/errorMessages";
+import { HttpException, Req } from "@blog/backend/common/router/types";
+import type { IdParamsModel } from "@blog/backend/model/commonModels";
 import {
   ArticleWithCategories,
   ReadArticlesQueryModel,
@@ -12,9 +12,9 @@ import {
   VisitorArticleResponse,
   visitorCategoryFromDb,
   VisitorCategoryResponse,
-} from "@/model/visitorModels";
-import { ArticleService } from "@/service/ArticleService";
-import { CategoryService } from "@/service/CategoryService";
+} from "@blog/backend/model/visitorModels";
+import type { ArticleService } from "@blog/backend/service/ArticleService";
+import type { CategoryService } from "@blog/backend/service/CategoryService";
 
 export class VisitorController {
   constructor(

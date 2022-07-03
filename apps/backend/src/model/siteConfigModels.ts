@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { SiteConfig } from "@prisma/client";
+import type { SiteConfig } from "@prisma/client";
 
 // Can't check wether logo and icon are correctly encoded
 // https://github.com/validatorjs/validator.js/issues/1972
