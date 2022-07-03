@@ -14,13 +14,14 @@ services:
       - 5432:5432
     restart: unless-stopped
 
-  frontend:
-    build: ./frontend
-    ports:
-      - 8080:80
+  # frontend:
+  #   build: ./apps/frontend
+  #   ports:
+  #     - 8080:80
 
   backend:
-    build: ./backend
+    build:
+      dockerfile: ./docker/backend.Dockerfile
     environment:
       - DATABASE_URL=${DATABASE_URL}
       - JWT_SECRET=${JWT_SECRET}
