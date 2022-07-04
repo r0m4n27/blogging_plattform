@@ -21,6 +21,8 @@ Auf der `ArticleCard` findet man den Titel, die Zusammenfassung und die Kategori
 Neben der Auflistung enthält die Startseite eine Navigationsbar, welche die Navigation zur Startseite selbst,
 dem Archiv und den Kategorien ermöglicht.
 
+![Besucher Startseite \label{VisitorStartpage}](../assets/pages/visitor/startpage.png)
+
 Wenn auf den Titel oder die Zusammenfassung geklickt wird, gelangt man auf die Detailansicht
 des Artikels. In diesem findet sich neben den Titel und Kategorien des Artikels noch der eigentliche
 Artikelinhalt. Der Inhalt kann dabei Text, Bilder, Listen und Überschriften enthalten.
@@ -46,8 +48,10 @@ wird man zur Startseite navigiert, ansonsten wird ein passender Fehler unter den
 
 Nachdem ein Autor sich erfolgreich eingeloggt oder registriert hat, findet sich auf dem Footer der Startseite
 anstatt dem Login Link eines für das Dashboard des Autors und einen Link zum Ausloggen. Der Autor kann sich zum Dashboard
-navigieren und sieht eine Tabelle von Artikeln. Die Tabelle zeigt den Titel des Blogartikels und dem Veröffentlichungsstatus an.
+navigieren und sieht eine Tabelle von Artikeln, zu sehen in \ref{AuthorDashboard}. Die Tabelle zeigt den Titel des Blogartikels und dem Veröffentlichungsstatus an.
 Auch ist über der Tabelle ein Button zum Erstellen eines Artikels enthalten.
+
+![Autor Dashboard \label{AuthorDashboard}](../assets/pages/author/dashboard.png)
 
 Klickt man entweder auf dem Button oder auf einen der Artikel aus der Tabelle, kommt man zum Artikeleditor.
 Der Editor enthält ein Textfeld für den Titel und ein Textarea-Feld für die Zusammenfassung und den Inhalt.
@@ -71,10 +75,12 @@ Wenn die Passwörter übereinstimmen, wird dieses geändert.
 ## Administrator
 
 Um genauso wie der Autor auf seinen Arbeitsbereich zuzugreifen zu können, muss der Admin sich auch einloggen.
-Der Prozess dazu verhält sich gleich wie beim Autor, jedoch wird der Admin zu einem anderen Dashboard navigiert.
+Der Prozess dazu verhält sich gleich wie beim Autor, jedoch wird der Admin zu einem anderen Dashboard (siehe Abbildung \ref{AdminDashboard}) navigiert.
 In diesem befinden sich zwei Tabellen, eines für die Registrations-Code und eines für die Nutzerverwaltung.
 In der Tabelle für die Registrations-Codes können neue erzeugt und alte gelöscht werden. Die Nutzertabelle
 ermöglicht es, alle Nutzernamen der Autoren zu sehen und diese Accounts zu löschen.
+
+![Administrator Dashboard \label{AdminDashboard}](../assets/pages/admin/dashboard.png)
 
 Der Administrator hat wie der Autor eine Einstellungsseite. Durch diese kann auch das Passwort des Admins verändert werden.
 Es gibt jedoch auch die Möglichkeit die Einstellungen des Blogs zu verändern. Dazu gibt es eine Form

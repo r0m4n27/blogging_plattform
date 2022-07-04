@@ -414,7 +414,7 @@ Seiten der jeweiligen Anwendergruppe.
 
 ### Besucher {.unlisted .unnumbered}
 
-![Besucher Startseite \label{VisitorStartpage}](../assets/pages/visitor/startpage.png)
+![Besucher Startseite](../assets/pages/visitor/startpage.png)
 
 ![Artikel](../assets/pages/visitor/article.png)
 

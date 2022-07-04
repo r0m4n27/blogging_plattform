@@ -18,9 +18,7 @@ gestyled werden können. Dazu wurden eine Reihe von Property-Objekten definiert,
 verwendet werden. So können z.B. durch das `systemProps` Objekt Styles, wie das Padding,
 die Hintergrundfarbe oder der Border-Radius gesetzt werden. Um dies zu ermöglichen, wurde das
 in den Grundlagen beschriebene Paket `emotion` verwendet. Zu jedem Property-Objekt wurde eine
-Funktion definiert, welche ein Stylesheet definiert und den passenden Klassennamen zurückgibt.
-So mussten dafür nur die jeweiligen Styles in ein Objekt, unter dem passenden Namen geschrieben werden
-und `emotion` kann danach daraus das Stylesheet bilden.
+Funktion definiert, über die der Stylesheet erzeugt werden kann
 
 Jedoch gab es die Besonderheit, dass einige Stylewerte abhängig von der Laufzeitumgebung waren.
 So sollten diese je nach Größe des Gerätes verschiedene Werte annehmen oder eine andere Farbe
