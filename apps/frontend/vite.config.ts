@@ -1,8 +1,8 @@
-import { fileURLToPath, URL } from "url";
-
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { readdirSync } from "fs";
+
+import { createResolveConfig } from "../../packages/config/src/vite.config";
 
 const pagePath = "./src/components/pages";
 
@@ -15,16 +15,7 @@ const layoutFile = (name: string) => `${pagePath}/layout/${name}`;
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
-  resolve: {
-    alias: {
-      "@blog/frontend": fileURLToPath(
-        new URL("../../apps/frontend/src", import.meta.url),
-      ),
-      "@blog/backend": fileURLToPath(
-        new URL("../../apps/backend/src", import.meta.url),
-      ),
-    },
-  },
+  resolve: createResolveConfig(__dirname),
   // See: https://router.vuejs.org/guide/advanced/lazy-loading.html#with-vite
   build: {
     rollupOptions: {

@@ -1,5 +1,6 @@
-import path from "path";
-import { UserConfig } from "vite";
+import { type UserConfig, mergeConfig } from "vite";
+
+import { createStorybookResolveConfig } from "@blog/config/src/vite.config";
 
 export default {
   stories: ["../../frontend/src/**/*.stories.ts"],
@@ -8,16 +9,6 @@ export default {
   },
   addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
   framework: "@storybook/vue3",
-  viteFinal: async (config: UserConfig) => {
-    config.resolve ??= {};
-
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      "@blog/storybook": path.resolve(__dirname, "../src"),
-      "@blog/frontend": path.resolve(__dirname, "../../frontend/src"),
-      "@blog/backend": path.resolve(__dirname, "../../backend/src"),
-    };
-
-    return config;
-  },
+  viteFinal: async (config: UserConfig) =>
+    mergeConfig(config, { resolve: createStorybookResolveConfig(__dirname) }),
 };
