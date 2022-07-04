@@ -1,44 +1,59 @@
-# Fullstack-Webentwicklung Projekt
+# Fullstack-Course Project: Blogging-Plattform
 
-Obwohl heutzutage static site generators, wie Hugo oder Gatsby,
-immer beliebter werden, soll in diesem Projekt ein CMS für eine Blogging-Plattform
-erstellt werden. Diese Plattform sollte ein Benutzer bei sich selbst hosten
-können und so eine Onlinepräsenz über einen Blog für sich erstellen können.
+This project was done as part of the fullstack course at the
+[HSA](https://www.hs-augsburg.de/Informatik.html) where the goal
+was to build up a web app that uses `express` and `Vue`.
 
-## Links
+The goal of this project was to build a simple blog that
+has a administrative interface for the admin and the authors of the blog.
+The posts could be written in markdown thanks to [unified.js](https://unifiedjs.com/).
 
-- [Figma](https://www.figma.com/file/c3UmnmRKhvv52DWA9BWkQx/Blogging-Plattform)
-- [Webapp](https://blogging-plattform.fly.dev)
-  - In der Webapp werden zurzeit nur mockdaten verwenden die in memory leben
-  - und so nach jeden Neustart neu geladen werden
-  - Accounts (Username, Password):
-    - Admin: `admin`, `admin`
-    - Author: `author`, `author`
+![](./assets/author_view.png)
 
-## Anforderungen
+## Getting Started
 
-Siehe [Anforderungen](./docs/anforderungen.md)
+1. Create a `.env` file with the following variables
 
-## Technologie Stack
+```sh
+DB_USER="<username>"
+DB_PASSWORD="<password>"
+DB_DATABASE="<db-name>"
 
-Als Datenbank wird in diesem Projekt PostgreSQL verwendet, da jedoch zu zweit an diesem Projekt gearbeitet wird,
-wird diese indirekt über einen ORM angesprochen.
+DATABASE_URL="postgresql://${DB_USER}:${DB_PASSWORD}@localhost:5432/${DB_DATABASE}?schema=public"
+JWT_SECRET="<random hex string>"
+ADMIN_REGISTER_CODE="<random uuid>"
+TOKEN_EXPIRY_INTERVALL="<time span>"
+```
 
-Das Backend wird mit Hilfe des Frameworks `Express` (JS) geschrieben. Als ORM wird vermutlich `Prisma` eingesetzt.
-Um bestimmte Endpoints nur dem Betreiber zugänglich zu machen, werden Bearer Tokens im `Authorization` Header verwendet.
+If you want to build and run the docker containers swap `localhost` with `db`.
+The `TOKEN_EXPIRY_INTERVALL` is a time span that is described with [vercel/ms](https://github.com/vercel/ms).
 
-### Frontend
+2. Copy the env file into the `backend`: `cp .env apps/backend`
+3. Start the database: `docker-compose up -f compose-database.yml`
+4. Perform the migrations: `npm run migrate --workspace=@blog/backend`
+5. Start the application: `npm run start:watch`
 
-- Design in [Figma](https://www.figma.com/file/c3UmnmRKhvv52DWA9BWkQx/Blogging-Plattform)
-- Verwendung von `Vue`
-- Falls nötig [Pinia](https://pinia.vuejs.org/) als state management library
-- Es wurde gedacht `Chakra UI` als Komponentenbibliothek zu verwenden
-  - Es doch befindet diese sich für Vue 3 in der alpha und hat nicht alle benötigten Komponenten
-- Das Design in Figma wurde mit den Komponenten von `Chakra` erstellt
-- Diese wurden jedoch selbst nachgebaut und die theming werte von `Chakra` übernommen
-- Zur Hilfe wurde [Emotion](https://emotion.sh/docs/introduction) verwendet
+## Monorepo structure
 
-### Deployment
+### Apps
 
-- Die Site wird auf [Fly.io](https://fly.io) gehostet
-- [LINK](https://blogging-plattform.fly.dev)
+- `@blog/backend`: The backend using `express` and `prisma`
+- `@blog/frontend`: `Vue` app running and bundles with `vite`
+- `@blog/storybook`: App for `storybook` that shows every story of the Monorepo
+  - Currently only has the stories of `@blog/frontend`
+
+### Packages
+
+- `@blog/config`: Base configuration files like `tsconfig.base.json`
+
+## Acknowledgments
+
+Other projects/blog posts that helped me in creating this project:
+
+- [Chakra UI](https://chakra-ui.com/): Beautiful Component library
+  - Since [@chakra-ui/vue](https://github.com/chakra-ui/chakra-ui-vue-next) is in alpha
+    the actual components were recreated with the help of the react source
+- [Writing a Book with Pandoc, Make, and Vim](https://keleshev.com/my-book-writing-setup/): Setup for the report
+- [pandoc-thesis](https://github.com/cagix/pandoc-thesis): The template for the report
+- [node-typescript-boilerplate
+](https://github.com/jsynowiec/node-typescript-boilerplate): Scaffolding of `@blog/backend`

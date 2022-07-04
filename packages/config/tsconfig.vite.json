@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.base.json",
+  "include": [
+    "vite.config.*",
+    "../../packages/config"
+  ],
+  "compilerOptions": {
+    "rootDir": "../../",
+    "composite": true,
+    "types": [
+      "node"
+    ],
+    "noEmit": true
+  }
+}

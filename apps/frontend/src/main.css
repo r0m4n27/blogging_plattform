@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Inter');
+
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+a, a:hover, a:active, a:visited, a:focus, a:-webkit-any-link {
+  text-decoration: none;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+/* Hide file inputs and create our own item for it
+*/
+input[type="file"] {
+  display: none;
+}

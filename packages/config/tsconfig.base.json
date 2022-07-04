@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    // Modules
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "target": "ESNext",
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "isolatedModules": true,
+    "preserveValueImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": false,
+    "noEmit": true,
+    // Helper
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "alwaysStrict": true,
+    // Syntax
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "importsNotUsedAsValues": "error",
+    // Paths
+    "baseUrl": "../../",
+    "paths": {
+      "@blog/frontend/*": [
+        "./apps/frontend/src/*"
+      ],
+      "@blog/backend/*": [
+        "./apps/backend/src/*"
+      ],
+      "@blog/config/*": [
+        "./packages/config/*"
+      ]
+    }
+  }
+}
