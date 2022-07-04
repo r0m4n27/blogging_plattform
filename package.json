@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "workspaces": [
-    "backend",
-    "frontend"
+    "apps/*",
+    "packages/*"
   ],
   "scripts": {
     "start:watch": "turbo run start:watch",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
-    "build": "turbo run build"
+    "build": "turbo run build",
+    "storybook": "turbo run storybook"
   },
   "devDependencies": {
     "turbo": "^1.2.14"

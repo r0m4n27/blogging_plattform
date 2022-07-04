@@ -5,12 +5,20 @@
     "start:watch": {
       "cache": false
     },
+    "storybook": {
+      "cache": false
+    },
     "lint": {},
     "typecheck": {},
     "build": {
       "dependsOn": [
         "lint",
         "typecheck"
+      ]
+    },
+    "start": {
+      "dependsOn": [
+        "build"
       ]
     }
   }

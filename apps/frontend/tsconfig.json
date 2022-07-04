@@ -1,0 +1,39 @@
+{
+  // Don't use @blog/config because otherwise the stubbing somehow doesn't work
+  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "include": [
+    "env.d.ts",
+    "src/**/*",
+    "src/**/*.vue"
+  ],
+  "compilerOptions": {
+    "baseUrl": "../../",
+    "paths": {
+      "@blog/frontend/*": [
+        "./apps/frontend/src/*"
+      ],
+      "@blog/backend/*": [
+        "./apps/backend/src/*"
+      ],
+      "@blog/config/*": [
+        "./packages/config/*"
+      ],
+      // storybook breaks vue when used with typescript stories
+      // https://github.com/johnsoncodehk/volar/discussions/592
+      //
+      // Also tsconfig overwrites the paths
+      // So they have to be duplicated
+      "react": [
+        "./apps/frontend/stub"
+      ]
+    },
+    "lib": [
+      "ES2017"
+    ]
+  },
+  "references": [
+    {
+      "path": "./tsconfig.vite.json"
+    }
+  ]
+}

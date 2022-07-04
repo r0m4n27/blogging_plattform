@@ -15,17 +15,26 @@ services:
     restart: unless-stopped
 
   frontend:
-    build: ./frontend
+    build:
+      dockerfile: ./docker/frontend.Dockerfile
+      context: .
     ports:
       - 8080:80
+    depends_on:
+      - backend
 
   backend:
-    build: ./backend
+    build:
+      dockerfile: ./docker/backend.Dockerfile
+      context: .
     environment:
       - DATABASE_URL=${DATABASE_URL}
       - JWT_SECRET=${JWT_SECRET}
       - ADMIN_REGISTER_CODE=${ADMIN_REGISTER_CODE}
+      - TOKEN_EXPIRY_INTERVALL=${TOKEN_EXPIRY_INTERVALL}
     restart: unless-stopped
+    depends_on:
+      - db
 
 volumes:
   blogging-plattform_db:

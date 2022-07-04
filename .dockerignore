@@ -1,0 +1,28 @@
+# Ignore everything
+
+*
+
+!apps/frontend
+!apps/backend
+!packages
+!deploy
+
+!package.json
+!package-lock.json
+
+#######
+# ALL #
+#######
+
+.env
+.vscode/
+node_modules/
+dist/
+.turbo
+.DS_Store
+
+########
+# Docs #
+########
+
+docs/build
