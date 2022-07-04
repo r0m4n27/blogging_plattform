@@ -5,7 +5,7 @@
   "scripts": {
     "start": "vite preview --port 8080",
     "start:watch": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
     "typecheck": "vue-tsc --noEmit",
     "lint": "eslint ./src --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix"
   },
