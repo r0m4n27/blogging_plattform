@@ -29,9 +29,10 @@ If you want to build and run the docker containers swap `localhost` with `db`.
 The `TOKEN_EXPIRY_INTERVALL` is a time span that is described with [vercel/ms](https://github.com/vercel/ms).
 
 2. Copy the env file into the `backend`: `cp .env apps/backend`
-3. Start the database: `docker-compose up -f compose-database.yml`
-4. Perform the migrations: `npm run migrate --workspace=@blog/backend`
-5. Start the application: `npm run start:watch`
+3. Install npm packages: `npm i`
+4. Start the database: `docker-compose -f compose-database.yml up`
+5. Perform the migrations: `npm run migrate --workspace=@blog/backend`
+6. Start the application: `npm run start:watch`
 
 ## Monorepo structure
 
